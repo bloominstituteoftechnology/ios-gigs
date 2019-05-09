@@ -21,5 +21,8 @@ class GigDetailViewController: UIViewController {
 	
 	}
 
-
+	@IBOutlet var descriptionTextView: UITextView!
+	@IBOutlet var jobTitleTextField: UITextField!
+	@IBOutlet var datePicker: UIDatePicker!
+	
 }
