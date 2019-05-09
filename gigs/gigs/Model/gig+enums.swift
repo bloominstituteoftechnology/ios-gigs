@@ -20,3 +20,8 @@ enum NetworkError: Error {
 	case badData
 	case noDecode
 }
+
+enum LoginType {
+	case SignUp
+	case SignIn
+}

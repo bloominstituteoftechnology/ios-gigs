@@ -16,17 +16,19 @@ class LoginViewController: UIViewController {
     }
 	
 	@IBAction func singInUpButton(_ sender: UIButton) {
-	
-	
 	}
 	
 	@IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
-	
+		if sender.selectedSegmentIndex == 0 {
+			
+		}
 	}
 	
 	@IBOutlet var signInUpButtonOutlet: UIButton!
 	@IBOutlet var usernameTextField: UITextField!
 	@IBOutlet var passwordTextField: UITextField!
 	@IBOutlet var segmentedControl: UISegmentedControl!
-	
+	var loginType = LoginType.SignUp
 }
+
+
