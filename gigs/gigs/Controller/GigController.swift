@@ -63,13 +63,14 @@ class GigController {
 		
 		URLSession.shared.dataTask(with: request) {
 			data, response, error in
+			
 			if let response = response as? HTTPURLResponse,
 				response.statusCode != 200 {
 				completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
 				return
 			}
 			
-			if let error = error {
+			if let _ = error {
 				completion(NSError())
 				return
 			}
@@ -87,11 +88,7 @@ class GigController {
 				completion(error)
 				return
 			}
-			
-			
-			
-		}
-		
+		}.resume()
 	}
 	
 
