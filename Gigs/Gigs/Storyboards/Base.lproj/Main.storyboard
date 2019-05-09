@@ -236,7 +236,11 @@
                         <viewLayoutGuide key="safeArea" id="TRd-6I-hwT"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Gig / Gig Details" id="IYe-01-Kqf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="BIP-Il-wjE"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="BIP-Il-wjE">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="hpA-2w-FDQ" id="1lT-hc-ULC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dueDatePicker" destination="6zA-jr-3qC" id="0cn-hG-mud"/>

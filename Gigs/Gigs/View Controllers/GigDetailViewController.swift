@@ -19,16 +19,53 @@ class GigDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateViews()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        
+        view.endEditing(true)
+        
+        guard let jobTitle = jobTitleTextField.text,
+        !jobTitle.isEmpty,
+        let description = gigDescriptionTextView.text,
+        !description.isEmpty
+        else { return }
+        
+        
+        let dueDate = dueDatePicker.date
+        
+        let newGig = Gig(title: jobTitle, description: description, dueDate: dueDate)
+        
+        gigController?.createGig(with: newGig, completion: { error in
+            
+            if let error = error {
+                NSLog("Error saving new gig: \(error)")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.gig = newGig
+                self.updateViews()
+            }
+        })
     }
-    */
+    
+    private func updateViews() {
+        
+        if let gig = gig {
+            
+            self.title = gig.title
+            jobTitleTextField.text = gig.title
+            dueDatePicker.date = gig.dueDate
+            gigDescriptionTextView.text = gig.description
+            
+            // Make UI Elements Non-editable
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+            gigDescriptionTextView.isEditable = false
+        } else {
+            self.title = "New Gig"
+        }
+    }
 }

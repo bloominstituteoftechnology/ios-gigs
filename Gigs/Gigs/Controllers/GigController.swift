@@ -139,5 +139,44 @@ class GigController {
         }.resume()
     }
     
-    // TODO: Create gig
+    // Create gig
+    func createGig(with gig: Gig, completion: @escaping (Error?) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(NSError())
+            return
+        }
+        
+        let url = baseURL.appendingPathComponent("/gigs/")
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.dateEncodingStrategy = .iso8601
+            request.httpBody = try jsonEncoder.encode(gig)
+        } catch {
+            completion(error)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            
+            if let response = response as? HTTPURLResponse,
+            response.statusCode == 401 {
+                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                return
+            }
+            
+            if let error = error {
+                completion(error)
+                return
+            }
+            
+            self.gigs.append(gig)
+        }.resume()
+    }
 }
