@@ -23,8 +23,11 @@ class GigsTableViewController: UITableViewController {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
 		let gig = gigController.gigs[indexPath.row]
 		
+		let datef = DateFormatter()
+		datef.dateStyle = .medium
+		
 		cell.textLabel?.text = gig.title
-		cell.detailTextLabel?.text = gig.description
+		cell.detailTextLabel?.text = datef.string(from: gig.dueDate)
 		
 		return cell
 	}
