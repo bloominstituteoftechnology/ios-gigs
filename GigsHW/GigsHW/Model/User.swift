@@ -1,5 +1,5 @@
 //
-//  Gig.swift
+//  User.swift
 //  GigsHW
 //
 //  Created by Michael Flowers on 5/9/19.
@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct Gig: Codable {
-    let title: String
-    let dueDate: Date
-    let description: String
+struct User: Codable {
+    let username: String
+    let password: String
 }

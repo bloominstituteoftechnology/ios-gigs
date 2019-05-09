@@ -1,5 +1,5 @@
 //
-//  Gig.swift
+//  Bearer.swift
 //  GigsHW
 //
 //  Created by Michael Flowers on 5/9/19.
@@ -8,8 +8,6 @@
 
 import Foundation
 
-struct Gig: Codable {
-    let title: String
-    let dueDate: Date
-    let description: String
+struct Bearer: Codable {
+    let token: String
 }

@@ -15,6 +15,9 @@
 		1BD6C53C2284CA8500DB60D7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD6C53B2284CA8500DB60D7 /* LoginViewController.swift */; };
 		1BD6C53E2284CFA800DB60D7 /* NewGigsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD6C53D2284CFA800DB60D7 /* NewGigsViewController.swift */; };
 		1BD6C5402284D0E700DB60D7 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD6C53F2284D0E700DB60D7 /* Gig.swift */; };
+		1BD6C5432284D15B00DB60D7 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD6C5422284D15B00DB60D7 /* Bearer.swift */; };
+		1BD6C5452284D17B00DB60D7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD6C5442284D17B00DB60D7 /* User.swift */; };
+		1BD6C5482284D1BF00DB60D7 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD6C5472284D1BF00DB60D7 /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		1BD6C53B2284CA8500DB60D7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1BD6C53D2284CFA800DB60D7 /* NewGigsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGigsViewController.swift; sourceTree = "<group>"; };
 		1BD6C53F2284D0E700DB60D7 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
+		1BD6C5422284D15B00DB60D7 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		1BD6C5442284D17B00DB60D7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1BD6C5472284D1BF00DB60D7 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,7 @@
 		1BD6C5252284C7A700DB60D7 /* GigsHW */ = {
 			isa = PBXGroup;
 			children = (
+				1BD6C5462284D1AF00DB60D7 /* Model Controller */,
 				1BD6C5382284C81100DB60D7 /* Views */,
 				1BD6C5262284C7A700DB60D7 /* AppDelegate.swift */,
 				1BD6C52A2284C7A700DB60D7 /* Main.storyboard */,
@@ -85,8 +92,18 @@
 			isa = PBXGroup;
 			children = (
 				1BD6C53F2284D0E700DB60D7 /* Gig.swift */,
+				1BD6C5422284D15B00DB60D7 /* Bearer.swift */,
+				1BD6C5442284D17B00DB60D7 /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1BD6C5462284D1AF00DB60D7 /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1BD6C5472284D1BF00DB60D7 /* GigController.swift */,
+			);
+			path = "Model Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,10 +178,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BD6C53C2284CA8500DB60D7 /* LoginViewController.swift in Sources */,
+				1BD6C5482284D1BF00DB60D7 /* GigController.swift in Sources */,
 				1BD6C53E2284CFA800DB60D7 /* NewGigsViewController.swift in Sources */,
+				1BD6C5432284D15B00DB60D7 /* Bearer.swift in Sources */,
 				1BD6C5272284C7A700DB60D7 /* AppDelegate.swift in Sources */,
 				1BD6C53A2284C8C700DB60D7 /* GigsTableViewController.swift in Sources */,
 				1BD6C5402284D0E700DB60D7 /* Gig.swift in Sources */,
+				1BD6C5452284D17B00DB60D7 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
