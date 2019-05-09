@@ -21,6 +21,23 @@ class GigsTableViewController: UITableViewController {
         
         if gigController.bearer == nil {
             performSegue(withIdentifier: "ShowLoginScreen", sender: self)
+        } else {
+            fetchGigs()
+        }
+    }
+    
+    private func fetchGigs() {
+        
+        gigController.fetchAllGigs { error in
+            
+            if let error = error {
+                NSLog("Error fetching all gigs: \(error)")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 
@@ -33,6 +50,15 @@ class GigsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        
+        let gig = gigController.gigs[indexPath.row]
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        
+        cell.textLabel?.text = gig.title
+        cell.detailTextLabel?.text = "Due: \(dateFormatter.string(from: gig.dueDate))"
 
         return cell
     }

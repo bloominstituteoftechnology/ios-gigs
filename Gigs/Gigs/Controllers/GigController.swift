@@ -48,7 +48,7 @@ class GigController {
         }.resume()
     }
     
-    // TODO: Log In
+    // Log In
     func signIn(with user: User, completion: @escaping (Error?) -> Void) {
         
         let url = baseURL.appendingPathComponent("/users/login")
@@ -95,7 +95,49 @@ class GigController {
         }.resume()
     }
     
-    // TODO: Fetch all gigs
+    // Fetch all gigs
+    func fetchAllGigs(completion: @escaping (Error?) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(NSError())
+            return
+        }
+        
+        let url = baseURL.appendingPathComponent("/gigs/")
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse,
+            response.statusCode != 200 {
+                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                return
+            }
+            
+            if let error = error {
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                completion(NSError())
+                return
+            }
+            
+            do {
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.dateDecodingStrategy = .iso8601
+                self.gigs = try jsonDecoder.decode([Gig].self, from: data)
+                completion(nil)
+            } catch {
+                completion(error)
+                return
+            }
+        }.resume()
+    }
     
     // TODO: Create gig
 }
