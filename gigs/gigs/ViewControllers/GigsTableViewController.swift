@@ -13,8 +13,10 @@ class GigsTableViewController: UITableViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
-		if gigController.bearer != nil {
-			
+		if gigController.bearer == nil {
+			performSegue(withIdentifier: "ModalySegue", sender: self)
+		} else {
+			fetchGigs()
 		}
 	}
 	
@@ -47,11 +49,13 @@ class GigsTableViewController: UITableViewController {
 
 
 extension GigsTableViewController {
+	
 	func fetchGigs() {
 		gigController.fetchGigs {
 			result in
+			
 			guard let result = try? result.get() else {
-				
+				print("error fetchGigs()")
 				return
 			}
 			
@@ -59,7 +63,8 @@ extension GigsTableViewController {
 				self.gigs = result
 				self.tableView.reloadData()
 			}
-			
 		}
 	}
+	
+	
 }
