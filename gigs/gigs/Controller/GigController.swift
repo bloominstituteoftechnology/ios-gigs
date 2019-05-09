@@ -91,7 +91,7 @@ class GigController {
 		}.resume()
 	}
 	
-	func fetchDetails(for animalName: String, completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+	func fetchGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
 		guard let bearer = bearer else {
 			completion(.failure(.noAuth))
 			return
