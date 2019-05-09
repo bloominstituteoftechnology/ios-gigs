@@ -10,6 +10,14 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
 
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		if gigController.bearer != nil {
+			
+		}
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,5 +42,24 @@ class GigsTableViewController: UITableViewController {
 	
 
 	let gigController = GigController()
-	
+	var gigs: [Gig] = []
+}
+
+
+extension GigsTableViewController {
+	func fetchGigs() {
+		gigController.fetchGigs {
+			result in
+			guard let result = try? result.get() else {
+				
+				return
+			}
+			
+			DispatchQueue.main.async {
+				self.gigs = result
+				self.tableView.reloadData()
+			}
+			
+		}
+	}
 }
