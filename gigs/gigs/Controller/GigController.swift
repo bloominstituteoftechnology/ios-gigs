@@ -91,6 +91,7 @@ class GigController {
 		}.resume()
 	}
 	
+	func fetchDetails(for animalName: String, completion: @escaping (Result<Animal, NetworkError>) -> Void)
 
 	private(set) var gigs: [Gig] = []
 	var bearer: Bearer?

@@ -13,4 +13,10 @@ enum HTTPMethod: String {
 	case post = "POST"
 }
 
-
+enum NetworkError: Error {
+	case noAuth
+	case badAuth
+	case otherError
+	case badData
+	case noDecode
+}
