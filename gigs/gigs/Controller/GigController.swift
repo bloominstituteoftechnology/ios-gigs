@@ -91,7 +91,48 @@ class GigController {
 		}.resume()
 	}
 	
-	func fetchDetails(for animalName: String, completion: @escaping (Result<Animal, NetworkError>) -> Void)
+	func fetchDetails(for animalName: String, completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+		guard let bearer = bearer else {
+			completion(.failure(.noAuth))
+			return
+		}
+		
+		let url = baseURL.appendingPathComponent("gigs")
+		
+		var request = URLRequest(url: url)
+		request.httpMethod = HTTPMethod.get.rawValue
+		request.addValue("Bearer \(bearer)", forHTTPHeaderField: "Authorization")
+		
+		URLSession.shared.dataTask(with: request) {
+			data, response, error in
+			
+			if let response = response as? HTTPURLResponse,
+				response.statusCode != 200 {
+				completion(.failure(.badAuth))
+				return
+			}
+			
+			if let _ = error {
+				completion(.failure(.otherError))
+			}
+			
+			guard let data = data else {
+				completion(.failure(.badData))
+				return
+			}
+			
+			let decoder = JSONDecoder()
+			decoder.dateDecodingStrategy = .iso8601
+
+			do {
+				let gigs = try decoder.decode([Gig].self, from: data)
+				completion(.success(gigs))
+			} catch {
+				print("Error decoding animal object: \(error)")
+				completion(.failure(.noDecode))
+			}
+		}.resume()
+	}
 
 	private(set) var gigs: [Gig] = []
 	var bearer: Bearer?
