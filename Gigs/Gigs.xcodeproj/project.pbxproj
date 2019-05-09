@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		FF2E03FC2284C57B0001D190 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E03FB2284C57B0001D190 /* AppDelegate.swift */; };
-		FF2E03FE2284C57B0001D190 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E03FD2284C57B0001D190 /* ViewController.swift */; };
 		FF2E04012284C57B0001D190 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF2E03FF2284C57B0001D190 /* Main.storyboard */; };
 		FF2E04032284C57C0001D190 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF2E04022284C57C0001D190 /* Assets.xcassets */; };
 		FF2E04062284C57C0001D190 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF2E04042284C57C0001D190 /* LaunchScreen.storyboard */; };
+		FF2E04132284C8750001D190 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E04122284C8750001D190 /* GigsTableViewController.swift */; };
+		FF2E04152284D0580001D190 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E04142284D0580001D190 /* LoginViewController.swift */; };
+		FF2E04172284E2540001D190 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E04162284E2540001D190 /* GigDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FF2E03F82284C57B0001D190 /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF2E03FB2284C57B0001D190 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FF2E03FD2284C57B0001D190 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FF2E04002284C57B0001D190 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FF2E04022284C57C0001D190 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF2E04052284C57C0001D190 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF2E04072284C57C0001D190 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF2E04122284C8750001D190 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
+		FF2E04142284D0580001D190 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FF2E04162284E2540001D190 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,56 @@
 		FF2E03FA2284C57B0001D190 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				FF2E03FB2284C57B0001D190 /* AppDelegate.swift */,
-				FF2E03FD2284C57B0001D190 /* ViewController.swift */,
-				FF2E03FF2284C57B0001D190 /* Main.storyboard */,
-				FF2E04022284C57C0001D190 /* Assets.xcassets */,
-				FF2E04042284C57C0001D190 /* LaunchScreen.storyboard */,
-				FF2E04072284C57C0001D190 /* Info.plist */,
+				FF2E04112284C6500001D190 /* Models */,
+				FF2E04102284C6440001D190 /* Model Controllers */,
+				FF2E040F2284C6350001D190 /* View Controllers */,
+				FF2E040E2284C61C0001D190 /* Storyboards */,
+				FF2E040D2284C6100001D190 /* Resources */,
 			);
 			path = Gigs;
+			sourceTree = "<group>";
+		};
+		FF2E040D2284C6100001D190 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FF2E03FB2284C57B0001D190 /* AppDelegate.swift */,
+				FF2E04022284C57C0001D190 /* Assets.xcassets */,
+				FF2E04072284C57C0001D190 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FF2E040E2284C61C0001D190 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FF2E03FF2284C57B0001D190 /* Main.storyboard */,
+				FF2E04042284C57C0001D190 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FF2E040F2284C6350001D190 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FF2E04122284C8750001D190 /* GigsTableViewController.swift */,
+				FF2E04142284D0580001D190 /* LoginViewController.swift */,
+				FF2E04162284E2540001D190 /* GigDetailViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FF2E04102284C6440001D190 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		FF2E04112284C6500001D190 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +181,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF2E03FE2284C57B0001D190 /* ViewController.swift in Sources */,
+				FF2E04152284D0580001D190 /* LoginViewController.swift in Sources */,
+				FF2E04172284E2540001D190 /* GigDetailViewController.swift in Sources */,
 				FF2E03FC2284C57B0001D190 /* AppDelegate.swift in Sources */,
+				FF2E04132284C8750001D190 /* GigsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +332,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2LA5UAXN45;
-				INFOPLIST_FILE = Gigs/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Gigs/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,7 +350,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2LA5UAXN45;
-				INFOPLIST_FILE = Gigs/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Gigs/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
