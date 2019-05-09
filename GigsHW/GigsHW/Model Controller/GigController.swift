@@ -13,6 +13,14 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+}
+
 class GigController {
     
     var gigs: [Gig] = []
@@ -108,5 +116,51 @@ class GigController {
         }.resume()
     }
     
-    
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void){
+        //get the url set up
+        let url = baseURL.appendingPathComponent("gigs")
+        
+        //set up the request
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        //because authorization is required we have to use the token and add its value to the header/key
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        //we dont have to do the request body because the http method is a get
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse, response.statusCode == 401 {
+                //per the documentation 401 is a bad response code
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let error = error {
+                print("Error in the fetch all data task function: \(error.localizedDescription)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            guard let data = data else {
+                print("Error n the fetchallgigs unwrapping data: \(NSError())")
+                completion(.failure(.badData))
+                return
+            }
+            
+            do {
+                let jd = JSONDecoder()
+                let gigs = try jd.decode([Gig].self, from: data)
+                completion(.success(gigs))
+            } catch {
+                print("Error decoding in the catch block: \(error.localizedDescription)")
+                completion(.failure(.noDecode))
+                return
+            }
+        }.resume()
+    }
 }
