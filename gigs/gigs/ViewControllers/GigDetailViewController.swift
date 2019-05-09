@@ -12,10 +12,14 @@ class GigDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
         
     }
-    
+	
+	@objc func save() {
+	
+	
+	}
 
 
 }
