@@ -17,6 +17,8 @@
 		FF2E04192284E2F10001D190 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E04182284E2F10001D190 /* Gig.swift */; };
 		FF2E041B2284E3490001D190 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E041A2284E3490001D190 /* Bearer.swift */; };
 		FF2E041D2284E3830001D190 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E041C2284E3830001D190 /* User.swift */; };
+		FF2E041F2284E3D80001D190 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E041E2284E3D80001D190 /* GigController.swift */; };
+		FF2E04212284E8130001D190 /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2E04202284E8130001D190 /* AuthenticationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		FF2E04182284E2F10001D190 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 		FF2E041A2284E3490001D190 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		FF2E041C2284E3830001D190 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FF2E041E2284E3D80001D190 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		FF2E04202284E8130001D190 /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,8 @@
 		FF2E04102284C6440001D190 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FF2E041E2284E3D80001D190 /* GigController.swift */,
+				FF2E04202284E8130001D190 /* AuthenticationController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -190,7 +196,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF2E04212284E8130001D190 /* AuthenticationController.swift in Sources */,
 				FF2E04152284D0580001D190 /* LoginViewController.swift in Sources */,
+				FF2E041F2284E3D80001D190 /* GigController.swift in Sources */,
 				FF2E04172284E2540001D190 /* GigDetailViewController.swift in Sources */,
 				FF2E041B2284E3490001D190 /* Bearer.swift in Sources */,
 				FF2E03FC2284C57B0001D190 /* AppDelegate.swift in Sources */,
