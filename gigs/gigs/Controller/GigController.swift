@@ -13,9 +13,9 @@ import Foundation
 class GigController {
 
 	func signUp(with user: User, completion: @escaping (Error?) -> ()) {
-		let signUpURL = baseURL.appendingPathComponent("users/signup")
+		let url = baseURL.appendingPathComponent("users/signup")
 		
-		var request = URLRequest(url: signUpURL)
+		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.post.rawValue
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		
@@ -43,8 +43,14 @@ class GigController {
 			
 			completion(nil)
 		}.resume()
-		
 	}
+	
+	func signIn(user: User, completion: @escaping (Error?) -> ()) {
+		let url = baseURL.appendingPathComponent("users/login")
+		
+		var request = URLRequest(url: url)
+	}
+	
 
 	private(set) var gigs: [Gig] = []
 	var bearer: String?
