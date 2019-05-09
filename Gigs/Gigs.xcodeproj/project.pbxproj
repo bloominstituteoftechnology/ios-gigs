@@ -15,6 +15,9 @@
 		731533EA2284BC5D00FF5523 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731533E92284BC5D00FF5523 /* GigsTableViewController.swift */; };
 		731533EE2284BCBA00FF5523 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731533ED2284BCBA00FF5523 /* LoginViewController.swift */; };
 		731533F02284BCD600FF5523 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731533EF2284BCD600FF5523 /* GigDetailViewController.swift */; };
+		731533F22284BE6600FF5523 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731533F12284BE6600FF5523 /* Gig.swift */; };
+		731533F42284BE7400FF5523 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731533F32284BE7400FF5523 /* Bearer.swift */; };
+		731533F62284BE8100FF5523 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731533F52284BE8100FF5523 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		731533E92284BC5D00FF5523 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		731533ED2284BCBA00FF5523 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		731533EF2284BCD600FF5523 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		731533F12284BE6600FF5523 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
+		731533F32284BE7400FF5523 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		731533F52284BE8100FF5523 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,7 @@
 		731533D22284B5E800FF5523 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
+				731533F72284BE9300FF5523 /* Models */,
 				731533E62284B6C000FF5523 /* Controllers */,
 				731533EC2284BCA500FF5523 /* View Controllers */,
 				731533E52284B6A800FF5523 /* Storyboards */,
@@ -95,6 +102,16 @@
 				731533EF2284BCD600FF5523 /* GigDetailViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		731533F72284BE9300FF5523 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				731533F12284BE6600FF5523 /* Gig.swift */,
+				731533F32284BE7400FF5523 /* Bearer.swift */,
+				731533F52284BE8100FF5523 /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,8 +188,11 @@
 				731533EE2284BCBA00FF5523 /* LoginViewController.swift in Sources */,
 				731533F02284BCD600FF5523 /* GigDetailViewController.swift in Sources */,
 				731533E82284B6D900FF5523 /* APIController.swift in Sources */,
+				731533F42284BE7400FF5523 /* Bearer.swift in Sources */,
+				731533F62284BE8100FF5523 /* User.swift in Sources */,
 				731533D42284B5E800FF5523 /* AppDelegate.swift in Sources */,
 				731533EA2284BC5D00FF5523 /* GigsTableViewController.swift in Sources */,
+				731533F22284BE6600FF5523 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
