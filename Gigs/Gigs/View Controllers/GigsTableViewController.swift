@@ -23,13 +23,20 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let currentGig = gigController.gigs[indexPath.row]
+        
+        let df = DateFormatter()
+        df.dateStyle = .short
+        let date = df.string(from: currentGig.dueDate)
 
-        // Configure the cell...
+        cell.textLabel?.text = currentGig.title
+        cell.detailTextLabel?.text = date
+        
 
         return cell
     }
@@ -37,11 +44,18 @@ class GigsTableViewController: UITableViewController {
     // MARK: - prepare(for segue)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ModalLoginViewController",
-            let detailVC = segue.destination as? LoginViewController {
-            detailVC.gigController = gigController
+            let loginVC = segue.destination as? LoginViewController {
+            loginVC.gigController = gigController
         }
-        else if segue.identifier == "LoginViewModalSegue" {
+        else if segue.identifier == "AddGig", let addVC = segue.destination as? GigsDetailViewController {
+            addVC.gigController = gigController
+        }
+        else if segue.identifier == "ViewGig", let viewVC = segue.destination as? GigsDetailViewController {
+            if let index = tableView.indexPathForSelectedRow {
+                viewVC.gig = gigController.gigs[index.row]
+            }
             
+            viewVC.gigController = gigController
         }
     }
 

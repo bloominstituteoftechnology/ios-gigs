@@ -9,6 +9,15 @@
 import UIKit
 
 class GigsDetailViewController: UIViewController {
+    // MARK: - Properties
+    var gigController: GigController?
+    
+    // Mark: - Computed Properties
+    var gig: Gig? {
+        didSet {
+            updateViews()
+        }
+    }
 
     // MARK: - IBOtlets
     @IBOutlet weak var jobTitleTextField: UITextField!
@@ -19,21 +28,38 @@ class GigsDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if gig == nil {
+            title = "New Gig"
+        }
     }
+
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - updateViews()
+    func updateViews() {
+        guard let gig = gig else { return }
+        
+        jobTitleTextField.text = gig.title
+        jobDescriptionTextView.text = gig.description
+        dueDatePicker.date = gig.dueDate
+        
+        
     }
-    */
 
     // MARK: - IBActions
     @IBAction func saveButtonTapped(_ sender: Any) {
+        let date = dueDatePicker.date
+        guard let title = jobTitleTextField.text else { return }
+        guard let description = jobDescriptionTextView.text else { return }
+        
+        gigController?.createGig(title: title, description: description, dueDate: date, completion: { (error) in
+            if let error = error {
+                print(error)
+                return
+            } else {
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        })
     }
 }
