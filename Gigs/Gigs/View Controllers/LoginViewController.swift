@@ -15,19 +15,26 @@ class LoginViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
-    @IBOutlet weak var userNameTextLabel: UITextField!
-    @IBOutlet weak var passwordTextLabel: UITextField!
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signInButton: UIButton!
     
+    
+    // MARK: - View states
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        
+        // Customize the sign in button
+        signInButton.backgroundColor = UIColor(hue: 301/368, saturation: 78/100, brightness: 58/100, alpha: 1.0)
     }
     
     
     
     @IBAction func segmentControlTapped(_ sender: Any) {
+    }
+    @IBAction func signInButtonTapped(_ sender: Any) {
     }
     
     /*
