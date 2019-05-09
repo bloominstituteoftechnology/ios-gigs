@@ -9,6 +9,9 @@
 import UIKit
 
 class GigDetailViewController: UIViewController {
+    
+    var gigController: GigController?
+    var gig: Gig?
 
     @IBOutlet weak var jobTitleTextField: UITextField!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
