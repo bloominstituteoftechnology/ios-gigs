@@ -8,13 +8,15 @@
 
 import Foundation
 
+
+
 class GigController {
 
 	func signUp(with user: User, completion: @escaping (Error?) -> ()) {
 		let signUpURL = baseURL.appendingPathComponent("users/signup")
 		
 		var request = URLRequest(url: signUpURL)
-		
+		request.httpMethod = "POST"
 		
 	}
 
