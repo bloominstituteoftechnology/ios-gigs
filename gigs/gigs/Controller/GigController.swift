@@ -9,5 +9,16 @@
 import Foundation
 
 class GigController {
-	
+
+	func signUp(with user: User, completion: @escaping (Error?) -> ()) {
+		let signUpURL = baseURL.appendingPathComponent("users/signup")
+		
+		var request = URLRequest(url: signUpURL)
+		
+		
+	}
+
+	private(set) var gigs: [Gig] = []
+	var bearer: String?
+	private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
 }
