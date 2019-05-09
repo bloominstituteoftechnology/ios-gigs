@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gigs Table View Controller-->
+        <!--Gigs-->
         <scene sceneID="Gbx-tb-KU0">
             <objects>
                 <tableViewController id="Hld-bC-jdS" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -43,6 +43,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="tintColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="XTF-ON-Eft" kind="presentation" trigger="accessoryAction" id="V0v-3S-KPY"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -50,26 +53,65 @@
                             <outlet property="delegate" destination="Hld-bC-jdS" id="of9-V5-K6x"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="FfX-nZ-GxG"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="FfX-nZ-GxG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="QDE-KU-z1J"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v75-G8-m1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="236" y="151"/>
+            <point key="canvasLocation" x="225" y="155"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="dLb-q9-L0L">
             <objects>
-                <viewController id="XTF-ON-Eft" sceneMemberID="viewController">
+                <viewController id="XTF-ON-Eft" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jGQ-sa-jA1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HCf-59-Fec">
+                                <rect key="frame" x="149" y="106" width="121" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentControlTapped:" destination="XTF-ON-Eft" eventType="valueChanged" id="dfJ-3y-SeN"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DrH-jn-YsD">
+                                <rect key="frame" x="159" y="198" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="29U-LF-ErE">
+                                <rect key="frame" x="161" y="292" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycd-UQ-Hxx">
+                                <rect key="frame" x="186" y="413" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="acr-6B-AgK"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextLabel" destination="29U-LF-ErE" id="NZi-oc-12s"/>
+                        <outlet property="segmentControl" destination="HCf-59-Fec" id="vD1-P3-wjb"/>
+                        <outlet property="userNameTextLabel" destination="DrH-jn-YsD" id="JNN-XG-ubB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQ5-lS-BF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="904" y="-469"/>
+            <point key="canvasLocation" x="988" y="-469"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C1m-c4-0CK">
@@ -87,7 +129,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VId-ei-CLA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-422" y="146"/>
+            <point key="canvasLocation" x="-462" y="155"/>
         </scene>
     </scenes>
 </document>
