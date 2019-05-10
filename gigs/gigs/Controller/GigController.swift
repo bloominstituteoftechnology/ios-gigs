@@ -143,7 +143,8 @@ class GigController {
 		
 		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.post.rawValue
-		request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+		request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		
 		let encoder = JSONEncoder()
 		do {
