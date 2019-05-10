@@ -27,23 +27,19 @@ class GigDetailViewController: UIViewController {
 			return
 		}
 		
-		
-		print(datePicker.date)
-		if gig == nil {
-			let newgig = Gig(title: title, description: description, dueDate: datePicker.date)
-			gigController.creatGig(gig: newgig) { error in
-				if let error = error {
-					print("error creating gig: \(error)")
-				} else {
-					DispatchQueue.main.async {
-						self.navigationController?.popViewController(animated: true)
-					}
+		let newgig = Gig(title: title, description: description, dueDate: datePicker.date)
+		gigController.creatGig(gig: newgig) { error in
+			
+			if let error = error {
+				print("error creating gig: \(error)")
+			} else {
+				DispatchQueue.main.async {
+					self.navigationController?.popViewController(animated: true)
 				}
 			}
-		} else {
-			//update gig
-			print("update gig")
-		}
+		
+			}
+		
 	}
 	
 	func setupViews() {
@@ -58,7 +54,6 @@ class GigDetailViewController: UIViewController {
 	var gigController: GigController!
 	var gig: Gig? {
 		didSet {
-			print("here!!!")
 			setupViews()
 		}
 	}

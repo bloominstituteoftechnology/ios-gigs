@@ -22,7 +22,7 @@ class GigsTableViewController: UITableViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reload))
     }
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,16 +61,20 @@ class GigsTableViewController: UITableViewController {
 	
 
 	let gigController = GigController()
-	var gigs: [Gig] = []
 }
 
 
 extension GigsTableViewController {
 	
+	@objc func reload() {
+		fetchGigs()
+	}
+	
 	func fetchGigs() {
 		gigController.fetchGigs { error in
-			if let error = error {
-				print("error fetching gigs: \(error)")
+			if let _ = error {
+				print("error fetching gigs: ")
+				return
 			} else {
 				DispatchQueue.main.async {
 					self.tableView.reloadData()

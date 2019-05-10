@@ -119,7 +119,7 @@ class GigController {
 			}
 			
 			guard let data = data else {
-				completion(NSError())
+				completion(nil)
 				return
 			}
 			
@@ -128,7 +128,7 @@ class GigController {
 
 			do {
 				let decodedGigs = try decoder.decode([Gig].self, from: data)
-				self.gigs = decodedGigs
+				self.gigs = decodedGigs.sorted {$0.title < $1.title }
 			} catch {
 				print("Error decoding gig object: \(error)")
 				completion(error)
@@ -143,18 +143,17 @@ class GigController {
 		
 		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.post.rawValue
-		request.setValue("Bear \(bearer.token)", forHTTPHeaderField: "Authorization")
+		request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
 		
 		let encoder = JSONEncoder()
 		do {
 			request.httpBody = try encoder.encode(gig)
-			
 		} catch {
 			print("error encoding gig object: \(error)")
 			completion(error)
 			return
 		}
-		
+		print(request)
 		URLSession.shared.dataTask(with: request) { _, _, error in
 			
 			if let error = error {
