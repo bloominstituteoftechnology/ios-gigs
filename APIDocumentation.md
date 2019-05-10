@@ -1,18 +1,4 @@
-# Gigs API Documentation
-
-The base URL for this API is https://lambdagigs.vapor.cloud/api
-
---- 
-
-### Sign Up
-
-**Endpoint:** `/users/signup`
-
-**Method:** `POST`
-
-**Auth Required:** NO
-
-Creates a user whose credentials can then be used to log in to the API, giving them a bearer token.
+an then be used to log in to the API, giving them a bearer token.
 
 JSON should be POSTed in the following format: 
 
@@ -93,6 +79,60 @@ The `token` may be used to authenticate a request.
   },
   ...
 ]
+```
+
+#### Not Authenticated Response
+
+**Code:** `401 Unauthorized`
+
+**Description:** The user has not included their token in the `Authorization` header.
+
+**Response:**
+
+``` JSON
+{
+  "error": true,
+  "reason": "User not authenticated."
+}
+```
+
+---
+### Create a Gig
+
+**Endpoint:** `/gigs/`
+
+**Method:** `POST`
+
+**Auth Required:** YES
+
+**Required Header:** 
+
+| Key | Example Value | Description |
+|---|---|---|
+| `Authorization` | `Bearer fsMd9aHpoJ62vo4OvLC79MDqd38oE2ihkx6A1KeFwek` | "Bearer " + The token returned from logging in | 
+
+**Description:** Creates a Gig in the API. Your request body should be in the following format:
+
+``` JSON
+{
+  "title": "Test Gig",
+  "description": "This is just a test",
+  "dueDate": "2019-05-10T05:29:01Z"
+}
+```
+
+#### Success Response
+
+**Code:** `200 OK`
+
+**Response:** 
+
+``` JSON
+{
+  "title": "Test Gig",
+  "description": "This is just a test",
+  "dueDate": "2019-05-10T05:29:01Z"
+}
 ```
 
 #### Not Authenticated Response
