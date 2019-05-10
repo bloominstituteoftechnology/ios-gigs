@@ -66,8 +66,7 @@ class LoginViewController: UIViewController {
 		gigController?.signUp(with: user, completion: { [weak self] (error) in
 			if let error = error {
 				print(error)
-				let alertVC = UIAlertController(preferredStyle: .alert)
-				alertVC.configureWith(error: error)
+				let alertVC = UIAlertController(error: error, preferredStyle: .alert)
 				DispatchQueue.main.async {
 					self?.present(alertVC, animated: true)
 				}
@@ -91,8 +90,7 @@ class LoginViewController: UIViewController {
 
 		gigController?.login(with: user, completion: { [weak self] (error) in
 			if let error = error {
-				let alertVC = UIAlertController(preferredStyle: .alert)
-				alertVC.configureWith(error: error)
+				let alertVC = UIAlertController(error:error, preferredStyle: .alert)
 				DispatchQueue.main.async {
 					self?.present(alertVC, animated: true)
 				}

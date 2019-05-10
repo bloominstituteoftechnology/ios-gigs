@@ -32,8 +32,7 @@ class GigsTableViewController: UITableViewController {
 	func loadData() {
 		gigController.getAllGigs { [weak self] (error) in
 			if let error = error {
-				let alertVC = UIAlertController(preferredStyle: .alert)
-				alertVC.configureWith(error: error)
+				let alertVC = UIAlertController(error: error, preferredStyle: .alert)
 				DispatchQueue.main.async {
 					self?.present(alertVC, animated: true)
 				}
@@ -45,10 +44,21 @@ class GigsTableViewController: UITableViewController {
 	}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "ShowLoginVC" {
-			if let dest = segue.destination as? LoginViewController {
+
+		if let dest = segue.destination as? LoginViewController {
+			if segue.identifier == "ShowLoginVC" {
 				dest.gigController = gigController
 			}
+		} else if let dest = segue.destination as? GigDetailViewController {
+			dest.gigController = gigController
+			if segue.identifier == "CreateGigDetail" {
+				// dont need anything else right now
+			} else if segue.identifier == "ShowGigDetail" {
+				guard let indexPath = tableView.indexPathForSelectedRow else { return }
+				let gig = gigController.gigs[indexPath.row]
+				dest.gig = gig
+			}
+
 		}
 	}
 }

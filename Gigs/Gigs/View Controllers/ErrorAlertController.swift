@@ -10,11 +10,12 @@ import UIKit
 
 extension UIAlertController {
 
-	convenience init(preferredStyle: UIAlertController.Style) {
+	convenience init(error: Error, preferredStyle: UIAlertController.Style = .alert) {
 		self.init(title: nil, message: nil, preferredStyle: preferredStyle)
+		configureWith(error: error)
 	}
 
-	func configureWith(error: Error) {
+	private func configureWith(error: Error) {
 		title = "Error"
 
 		switch error {
