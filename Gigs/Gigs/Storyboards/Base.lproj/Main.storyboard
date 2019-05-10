@@ -44,7 +44,7 @@
                                 </tableViewCellContentView>
                                 <color key="tintColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <segue destination="XTF-ON-Eft" kind="presentation" identifier="OpenLogin" trigger="accessoryAction" id="V0v-3S-KPY"/>
+                                    <segue destination="XTF-ON-Eft" kind="presentation" identifier="LoginVCSegue" trigger="accessoryAction" id="V0v-3S-KPY"/>
                                     <segue destination="y3U-vA-lrn" kind="show" identifier="ShowGig" id="rFs-rS-SA6"/>
                                 </connections>
                             </tableViewCell>
@@ -74,8 +74,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WAc-ST-zZ4">
-                                <rect key="frame" x="8" y="106" width="398" height="162"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WAc-ST-zZ4">
+                                <rect key="frame" x="8" y="92" width="398" height="162"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HCf-59-Fec">
                                         <rect key="frame" x="136.5" y="0.0" width="125" height="29"/>
@@ -83,29 +83,31 @@
                                             <segment title="Sign Up"/>
                                             <segment title="Sign In"/>
                                         </segments>
+                                        <color key="tintColor" red="0.58105844259999995" green="0.12855249639999999" blue="0.57453137639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <action selector="segmentControlTapped:" destination="XTF-ON-Eft" eventType="valueChanged" id="dfJ-3y-SeN"/>
+                                            <action selector="segmentControlTapped:" destination="XTF-ON-Eft" eventType="valueChanged" id="aJJ-ES-Ywp"/>
                                         </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N5v-w5-BJc">
                                         <rect key="frame" x="16" y="36" width="366" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" smartDashesType="no" smartInsertDeleteType="no" textContentType="username"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="524-Uj-1rV">
                                         <rect key="frame" x="16" y="74" width="366" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycd-UQ-Hxx">
                                         <rect key="frame" x="48" y="112" width="302" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="JXk-Fy-FsD"/>
                                         </constraints>
-                                        <state key="normal" title="Button">
-                                            <color key="titleColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <state key="normal" title="Sign In">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="signInButtonTapped:" destination="XTF-ON-Eft" eventType="touchUpInside" id="xei-Z3-Xfu"/>
@@ -121,36 +123,20 @@
                                     <constraint firstAttribute="trailing" secondItem="N5v-w5-BJc" secondAttribute="trailing" constant="16" id="hhL-v3-n7i"/>
                                 </constraints>
                             </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DrH-jn-YsD">
-                                <rect key="frame" x="20" y="526" width="366" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="29U-LF-ErE">
-                                <rect key="frame" x="20" y="634" width="366" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="acr-6B-AgK" firstAttribute="trailing" secondItem="WAc-ST-zZ4" secondAttribute="trailing" constant="8" id="SMb-Ao-p7y"/>
+                            <constraint firstItem="WAc-ST-zZ4" firstAttribute="top" secondItem="acr-6B-AgK" secondAttribute="top" constant="48" id="qiZ-i3-dyt"/>
                             <constraint firstItem="WAc-ST-zZ4" firstAttribute="leading" secondItem="jGQ-sa-jA1" secondAttribute="leading" constant="8" id="vtp-Tz-zKE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="acr-6B-AgK"/>
                     </view>
                     <connections>
                         <outlet property="passwordTextField" destination="524-Uj-1rV" id="vJ6-gj-72z"/>
-                        <outlet property="passwordTextLabel" destination="29U-LF-ErE" id="NZi-oc-12s"/>
-                        <outlet property="segmentControl" destination="HCf-59-Fec" id="vD1-P3-wjb"/>
-                        <outlet property="segmentController" destination="HCf-59-Fec" id="ofK-BM-Ten"/>
+                        <outlet property="segmentControl" destination="HCf-59-Fec" id="hPh-tF-n6g"/>
                         <outlet property="signInButton" destination="Ycd-UQ-Hxx" id="Mfq-BY-bco"/>
                         <outlet property="userNameTextField" destination="N5v-w5-BJc" id="cuP-QE-Yyq"/>
-                        <outlet property="userNameTextLabel" destination="DrH-jn-YsD" id="JNN-XG-ubB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQ5-lS-BF7" userLabel="First Responder" sceneMemberID="firstResponder"/>

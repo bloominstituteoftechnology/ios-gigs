@@ -10,8 +10,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    // MARK: -Properties
-
     // MARK: Outlets
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
@@ -19,6 +17,16 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     
+    
+    // MARK: -Properties
+
+    enum LoginType {
+        case signUp
+        case signIn
+    }
+    
+    // Keep track of the login type selected by the segmented controller
+     var loginType = LoginType.signUp
     
     // MARK: - View states
     
@@ -28,13 +36,28 @@ class LoginViewController: UIViewController {
         
         // Customize the sign in button
         signInButton.backgroundColor = UIColor(hue: 301/368, saturation: 78/100, brightness: 58/100, alpha: 1.0)
+        signInButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        signInButton.tintColor = .white
+        signInButton.layer.cornerRadius = 8.0
+        signInButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
     
     
     
-    @IBAction func segmentControlTapped(_ sender: Any) {
+    @IBAction func segmentControlTapped(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            loginType = .signUp
+            signInButton.setTitle("Sign Up", for: .normal)
+        } else {
+            loginType = .signIn
+            signInButton.setTitle("Sign In", for: .normal)
+        }
+        
     }
-    @IBAction func signInButtonTapped(_ sender: Any) {
+    
+    @IBAction func signInButtonTapped(_ sender: UIButton) {
+
+        
     }
     
     /*

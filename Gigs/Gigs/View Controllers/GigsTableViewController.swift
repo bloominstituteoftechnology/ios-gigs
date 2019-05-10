@@ -10,6 +10,8 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
     
+    // MARK: - Outlets
+    
     // MARK: - Properties
     
     let reuseIdentifier = "GigCell"
@@ -22,6 +24,10 @@ class GigsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+    //    performSegue(withIdentifier: "LoginVCSegue", sender: self)
+        
+        performSegue(withIdentifier: "LoginVCSegue", sender: self)
     }
 
     // MARK: - Table view data source
