@@ -22,6 +22,8 @@ class GigsTableViewController: UITableViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
+		navigationItem.title = "Mah Gigs!"
+
 		if gigController.bearer == nil {
 			performSegue(withIdentifier: "ShowLoginVC", sender: self)
 		} else {

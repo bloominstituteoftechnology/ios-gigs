@@ -13,7 +13,15 @@ class GigController {
 
 	let networkManager = MahDataGetter()
 
-	var gigs: [Gig] = []
+	private var _gigs: [Gig] = []
+	var gigs: [Gig] {
+		get {
+			return _gigs
+		}
+		set {
+			_gigs = newValue.sorted { $0.dueDate < $1.dueDate }
+		}
+	}
 	var bearer: Bearer?
 
 	enum Endpoints: String {

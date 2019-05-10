@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
 
 	@IBOutlet var submitButton: UIButton!
 
-	private(set) var loginType: LoginType = .signup
+	private(set) var loginType: LoginType = .login
 
 	enum LoginType: Int {
 		case login
