@@ -147,20 +147,21 @@ class GigController {
 		let encoder = JSONEncoder()
 		do {
 			request.httpBody = try encoder.encode(gig)
+			
 		} catch {
 			print("error encoding gig object: \(error)")
 			completion(error)
 			return
 		}
 		
-		URLSession.shared.dataTask(with: request) {
-			_, _, error in
+		URLSession.shared.dataTask(with: request) { _, _, error in
 			
 			if let error = error {
 				print("error entering dataTask: \(error)")
 				completion(error)
 				return
 			}
+			
 			completion(nil)
 		}.resume()
 	}

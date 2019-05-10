@@ -35,12 +35,14 @@ class GigDetailViewController: UIViewController {
 					print("error creating gig: \(error)")
 				} else {
 					DispatchQueue.main.async {
-						self.dismiss(animated: true, completion: nil)
+						print("here420")
+						self.navigationController?.popViewController(animated: true)
 					}
 				}
 			}
 		} else {
 			//update gig
+			print("update gig")
 		}
 	}
 
