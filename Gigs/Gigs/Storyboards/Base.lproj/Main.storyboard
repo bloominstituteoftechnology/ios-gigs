@@ -64,6 +64,7 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.23921568627450979" green="0.70588235294117641" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="TH3-d9-gpa" firstAttribute="trailing" secondItem="oKy-dt-dRS" secondAttribute="trailing" constant="16" id="gVI-RH-PEG"/>
                             <constraint firstItem="oKy-dt-dRS" firstAttribute="centerX" secondItem="Lso-Ey-fJQ" secondAttribute="centerX" id="uYk-hz-Klx"/>
@@ -88,8 +89,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sHq-FG-yY5" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rUj-8q-7NU">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="rUj-8q-7NU">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -101,7 +102,7 @@
             </objects>
             <point key="canvasLocation" x="37.681159420289859" y="136.60714285714286"/>
         </scene>
-        <!--Gigs Table View Controller-->
+        <!--Gigs-->
         <scene sceneID="W0K-Lj-jvY">
             <objects>
                 <tableViewController id="Q7y-tr-urH" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -143,7 +144,7 @@
                             <outlet property="delegate" destination="Q7y-tr-urH" id="1ep-81-yS0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="2AX-Dp-oaj">
+                    <navigationItem key="navigationItem" title="Gigs" id="2AX-Dp-oaj">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="SgK-FM-8Ox">
                             <connections>
                                 <segue destination="Ebx-E5-AMS" kind="show" identifier="CreateGig" id="SeB-xa-Fn5"/>
@@ -167,19 +168,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2Ul-9e-Eey">
-                                <rect key="frame" x="16" y="108" width="382" height="734"/>
+                                <rect key="frame" x="16" y="160" width="382" height="682"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bte-BL-CsJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB TITLE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYX-1r-NfL">
-                                                <rect key="frame" x="0.0" y="0.0" width="85.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="85.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0nF-8R-Ayk">
-                                                <rect key="frame" x="93.5" y="0.0" width="288.5" height="30"/>
+                                                <rect key="frame" x="93.5" y="0.0" width="288.5" height="20.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -187,25 +188,25 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCD-lu-yBj">
-                                        <rect key="frame" x="0.0" y="38" width="382" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="28.5" width="382" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="vIP-x0-2mp">
-                                        <rect key="frame" x="0.0" y="66.5" width="382" height="216"/>
+                                        <rect key="frame" x="0.0" y="36.5" width="382" height="194"/>
                                         <date key="date" timeIntervalSinceReferenceDate="579133610.52453601">
                                             <!--2019-05-09 22:26:50 +0000-->
                                         </date>
                                     </datePicker>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xS9-i2-48K">
-                                        <rect key="frame" x="0.0" y="290.5" width="382" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="238.5" width="382" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Gv-Og-ZCM">
-                                        <rect key="frame" x="0.0" y="319" width="382" height="415"/>
+                                        <rect key="frame" x="0.0" y="267" width="382" height="415"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

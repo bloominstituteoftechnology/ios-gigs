@@ -44,6 +44,8 @@ class GigDetailViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         
+        view.endEditing(true)
+        
         guard let gig = gigTextField.text,
             !gig.isEmpty,
             let description = descTextView.text,
@@ -61,8 +63,9 @@ class GigDetailViewController: UIViewController {
             DispatchQueue.main.async {
                 self.gig = newGig
                 self.updateViews()
-                self.navigationController?.popViewController(animated: true)
             }
         }
+        
+        navigationController?.popViewController(animated: true)
     }
 }

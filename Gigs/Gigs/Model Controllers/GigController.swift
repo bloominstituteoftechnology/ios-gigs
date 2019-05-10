@@ -70,7 +70,7 @@ class GigController {
         let gigsURL = baseURL.appendingPathComponent("/gigs/")
         
         var request = URLRequest(url: gigsURL)
-        request.httpMethod = "GET"
+        request.httpMethod = "POST"
         request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
