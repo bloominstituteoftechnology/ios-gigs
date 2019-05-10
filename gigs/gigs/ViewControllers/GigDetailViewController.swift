@@ -18,8 +18,16 @@ class GigDetailViewController: UIViewController {
 	
 	@objc func save() {
 		guard let description = descriptionTextView.text,
-			let title = jobTitleTextField.text else { return }
+			let title = jobTitleTextField.text,
+				!description.isEmpty, !title.isEmpty else {
+					
+			//return alert
+			print("empty fields")
+			return
+		}
 		
+		
+		print(datePicker.date)
 		if gig == nil {
 			let newgig = Gig(title: title, description: description, dueDate: datePicker.date)
 			gigController.creatGig(gig: newgig) { error in
