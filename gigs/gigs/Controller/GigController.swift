@@ -93,7 +93,7 @@ class GigController {
 		}.resume()
 	}
 	
-	func fetchGigs(completion: @escaping (Error?) -> ()) {	//@escaping (Result<[Gig], NetworkError>) -> Void) {
+	func fetchGigs(completion: @escaping (Error?) -> ()) {	
 		guard let bearer = bearer else {
 			completion(NSError())
 			return
