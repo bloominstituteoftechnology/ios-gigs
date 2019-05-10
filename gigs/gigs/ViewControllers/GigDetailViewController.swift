@@ -14,6 +14,7 @@ class GigDetailViewController: UIViewController {
         super.viewDidLoad()
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
         descriptionTextView.text = ""
+		setupViews()
     }
 	
 	@objc func save() {
@@ -44,11 +45,22 @@ class GigDetailViewController: UIViewController {
 			print("update gig")
 		}
 	}
+	
+	func setupViews() {
+		guard let gig = gig else { return }
+		descriptionTextView?.text = gig.description
+		jobTitleTextField?.text = gig.title
+	}
 
 	@IBOutlet var descriptionTextView: UITextView!
 	@IBOutlet var jobTitleTextField: UITextField!
 	@IBOutlet var datePicker: UIDatePicker!
 	var gigController: GigController!
-	var gig: Gig?
+	var gig: Gig? {
+		didSet {
+			print("here!!!")
+			setupViews()
+		}
+	}
 	
 }

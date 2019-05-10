@@ -93,7 +93,7 @@ class GigController {
 		}.resume()
 	}
 	
-	func fetchGigs(completion: @escaping (Error?) -> ()) {	
+	func fetchGigs(completion: @escaping (Error?) -> ()) {
 		guard let bearer = bearer else {
 			completion(NSError())
 			return
@@ -167,7 +167,7 @@ class GigController {
 		}.resume()
 	}
 	
-	
+
 	private(set) var gigs: [Gig] = []
 	var bearer: Bearer?
 	private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
