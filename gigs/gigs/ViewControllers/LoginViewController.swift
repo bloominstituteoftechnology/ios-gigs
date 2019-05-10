@@ -18,15 +18,7 @@ class LoginViewController: UIViewController {
     }
 	
 	
-	func setWithSegmentedControl(_ index: Int) {
-		if index == 0 {
-			loginType = .SignUp
-			signInUpButtonOutlet.setTitle("Sign Up", for: .normal)
-		} else {
-			loginType = .SignIn
-			signInUpButtonOutlet.setTitle("Sign In", for: .normal)
-		}
-	}
+	
 	
 	@IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
 		setWithSegmentedControl(sender.selectedSegmentIndex)
@@ -41,6 +33,7 @@ class LoginViewController: UIViewController {
 		if loginType == .SignUp {
 			gigController?.signUp(with: user, completion: {
 				error in
+				
 				if let error = error {
 					print("error with sign up: \(error)")
 				} else {
@@ -50,7 +43,19 @@ class LoginViewController: UIViewController {
 				}
 			})
 		} else {
-			
+			gigController?.signIn(user: user, completion: {
+				error in
+				
+				if let error = error {
+					print("error with sign in \(error)")
+				} else {
+					
+					DispatchQueue.main.async {
+						self.dismiss(animated: true, completion: nil)
+					}
+					
+				}
+			})
 		}
 	}
 	
@@ -59,8 +64,22 @@ class LoginViewController: UIViewController {
 		let alertController = UIAlertController(title: "Please Log In", message: nil, preferredStyle: .alert)
 		let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
 		alertController.addAction(alertAction)
+		present(alertController, animated: true) {
+			
+			self.setWithSegmentedControl(1)
+		}
 		
-		
+	}
+	
+	func setWithSegmentedControl(_ index: Int) {
+		segmentedControl.selectedSegmentIndex = index
+		if index == 0 {
+			loginType = .SignUp
+			signInUpButtonOutlet.setTitle("Sign Up", for: .normal)
+		} else {
+			loginType = .SignIn
+			signInUpButtonOutlet.setTitle("Sign In", for: .normal)
+		}
 	}
 	
 	
