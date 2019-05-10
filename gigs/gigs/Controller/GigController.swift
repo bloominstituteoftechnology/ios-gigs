@@ -105,6 +105,7 @@ class GigController {
 		request.httpMethod = HTTPMethod.get.rawValue
 		request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
 		print(request)
+		
 		URLSession.shared.dataTask(with: request) {
 			data, response, error in
 			
@@ -143,10 +144,11 @@ class GigController {
 		
 		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.post.rawValue
-		request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-		
+		request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+	
 		let encoder = JSONEncoder()
+		encoder.dateEncodingStrategy = .iso8601
 		do {
 			request.httpBody = try encoder.encode(gig)
 		} catch {
