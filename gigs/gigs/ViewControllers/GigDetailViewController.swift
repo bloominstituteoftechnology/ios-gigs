@@ -28,17 +28,32 @@ class GigDetailViewController: UIViewController {
 		}
 		
 		let newgig = Gig(title: title, description: description, dueDate: datePicker.date)
-		gigController.creatGig(gig: newgig) { error in
-			
-			if let error = error {
-				print("error creating gig: \(error)")
-			} else {
-				DispatchQueue.main.async {
-					self.navigationController?.popViewController(animated: true)
+		if gigController.isDuplicate(newgig: newgig) {
+			duplicateGigAlert()
+		} else {
+			gigController.creatGig(gig: newgig) { error in
+				
+				if let error = error {
+					print("error creating gig: \(error)")
+				} else {
+					DispatchQueue.main.async {
+						self.navigationController?.popViewController(animated: true)
+					}
 				}
+				
 			}
-		
 		}
+		
+		
+		
+	}
+	
+	func duplicateGigAlert() {
+		let alertController = UIAlertController(title: "Duplicate gig", message: "Please change Title", preferredStyle: .actionSheet)
+		alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+			self.jobTitleTextField?.text = ""
+		}))
+		present(alertController, animated: true)
 		
 	}
 	

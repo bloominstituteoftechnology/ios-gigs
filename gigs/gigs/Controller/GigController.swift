@@ -156,10 +156,12 @@ class GigController {
 			completion(error)
 			return
 		}
-		print(request)
+
 		URLSession.shared.dataTask(with: request) { _, response, error in
+			
 			if let response = response as? HTTPURLResponse,
 				response.statusCode != 200{
+				
 				print("response creating a gig: ", response.statusCode)
 				completion(nil)
 				return
@@ -167,12 +169,24 @@ class GigController {
 			
 			if let error = error {
 				print("error entering dataTask: \(error)")
-				completion(error)
+				completion(NSError())
 				return
 			}
+			
 			self.gigs.append(gig)
 			completion(nil)
 		}.resume()
+	}
+	
+	func isDuplicate(newgig: Gig) -> Bool{
+		
+		for gig in gigs {
+			if gig.title  == newgig.title {
+				return true
+			}
+		}
+		
+		return false
 	}
 	
 

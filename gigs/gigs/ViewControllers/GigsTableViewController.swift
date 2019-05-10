@@ -82,6 +82,4 @@ extension GigsTableViewController {
 			}
 		}
 	}
-	
-	
 }
