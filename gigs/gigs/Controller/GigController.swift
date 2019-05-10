@@ -154,14 +154,17 @@ class GigController {
 			return
 		}
 		print(request)
-		URLSession.shared.dataTask(with: request) { _, _, error in
+		URLSession.shared.dataTask(with: request) { _, response, error in
+			if let response = response as? HTTPURLResponse {
+				print(response.statusCode)
+			}
 			
 			if let error = error {
 				print("error entering dataTask: \(error)")
 				completion(error)
 				return
 			}
-			
+
 			completion(nil)
 		}.resume()
 	}
