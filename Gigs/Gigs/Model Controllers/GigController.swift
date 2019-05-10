@@ -148,11 +148,13 @@ class GigController {
         
         let gig = Gig(title: title, dueDate: dueDate, description: description)
         
-        let gigsURL = baseURL.appendingPathComponent("gigs")
+        let gigsURL = baseURL.appendingPathComponent("gigs/")
         
         var request = URLRequest(url: gigsURL)
         request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        print(request)
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
@@ -166,7 +168,8 @@ class GigController {
         
         URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
-                response.statusCode == 401 {
+                response.statusCode != 200 {
+                print(response)
                 completion(NSError(domain: "No Auth", code: 401, userInfo: nil))
                 return
             }
@@ -177,6 +180,8 @@ class GigController {
             }
             
             self.gigs.append(gig)
+            
+            completion(nil)
 
             }.resume()
     }

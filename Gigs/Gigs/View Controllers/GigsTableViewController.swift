@@ -25,9 +25,15 @@ class GigsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return gigController.gigs.count
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         let currentGig = gigController.gigs[indexPath.row]
         
         let df = DateFormatter()

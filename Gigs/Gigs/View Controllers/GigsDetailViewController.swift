@@ -15,7 +15,9 @@ class GigsDetailViewController: UIViewController {
     // Mark: - Computed Properties
     var gig: Gig? {
         didSet {
-            updateViews()
+            DispatchQueue.main.async {
+                self.updateViews()
+            }
         }
     }
 
@@ -31,18 +33,20 @@ class GigsDetailViewController: UIViewController {
         if gig == nil {
             title = "New Gig"
         }
+        
+        
     }
 
     
     // MARK: - updateViews()
     func updateViews() {
-        guard let gig = gig else { return }
+        guard let currentGig = gig else { return }
         
-        jobTitleTextField.text = gig.title
-        jobDescriptionTextView.text = gig.description
-        dueDatePicker.date = gig.dueDate
+        jobTitleTextField.text! = currentGig.title
+        jobDescriptionTextView.text! = currentGig.description
+        dueDatePicker.date = currentGig.dueDate
         
-        
+//        jobDescriptionTextView.text = gig.description ?? ""
     }
 
     // MARK: - IBActions
