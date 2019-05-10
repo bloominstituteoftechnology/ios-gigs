@@ -98,7 +98,7 @@ class LoginViewController: UIViewController {
 				}
 			} else {
 				DispatchQueue.main.async {
-					self?.navigationController?.popViewController(animated: true)
+					self?.dismiss(animated: true)
 				}
 			}
 		})

@@ -18,7 +18,7 @@ class GigController {
 
 	enum Endpoints: String {
 		case signup = "/users/signup"
-		case login = "/user/login"
+		case login = "/users/login"
 		case gigs = "/gigs"
 	}
 
