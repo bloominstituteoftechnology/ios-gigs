@@ -19,7 +19,7 @@ class GigsTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         if authController.bearer == nil {
-            performSegue(withIdentifier: "SignUpSegue", sender: self)
+            performSegue(withIdentifier: "SignInUpSegue", sender: self)
         } else {
             gigController.bearer = authController.bearer
             gigController.fetchAllGigs { (error) in
@@ -59,6 +59,19 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "SignInUpSegue" {
+            guard let loginVC = segue.destination as? LoginViewController else { return }
+            loginVC.authController = authController
+            
+        } else if segue.identifier == "CreateGig" {
+            guard let detailVC = segue.destination as? GigDetailViewController else { return }
+            detailVC.gigController = gigController
+            
+        } else if segue.identifier == "ViewGig" {
+            guard let detailVC = segue.destination as? GigDetailViewController else { return }
+            detailVC.gigController = gigController
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            detailVC.gig = gigController.gigs[indexPath.row]
+        }
     }
 }
