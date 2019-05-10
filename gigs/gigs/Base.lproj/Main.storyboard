@@ -85,20 +85,17 @@
                                     <action selector="segmentedControlValueChanged:" destination="ywv-Cf-TeP" eventType="valueChanged" id="fQu-Df-RsZ"/>
                                 </connections>
                             </segmentedControl>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iQg-ub-l3p">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iQg-ub-l3p">
                                 <rect key="frame" x="8" y="104" width="398" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKI-1G-Eh0">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKI-1G-Eh0">
                                 <rect key="frame" x="8" y="142" width="398" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="passWordTextField:" destination="ywv-Cf-TeP" eventType="editingDidEnd" id="p3W-Ae-GuT"/>
-                                </connections>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aW6-P3-J8c">
                                 <rect key="frame" x="85.5" y="188" width="243" height="52"/>
@@ -106,7 +103,9 @@
                                     <constraint firstAttribute="width" constant="243" id="oqb-ct-wZR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <state key="normal" title="Sign Up"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="singInUpButton:" destination="ywv-Cf-TeP" eventType="touchUpInside" id="zWx-rz-R4m"/>
                                 </connections>
@@ -130,10 +129,10 @@
                         <viewLayoutGuide key="safeArea" id="Vcw-Gs-PMC"/>
                     </view>
                     <connections>
-                        <outlet property="passwordTextField" destination="jKI-1G-Eh0" id="dvU-PT-6UA"/>
+                        <outlet property="passwordTextField" destination="jKI-1G-Eh0" id="pEC-vY-oU2"/>
                         <outlet property="segmentedControl" destination="nuf-CB-ja2" id="lDC-di-DPd"/>
                         <outlet property="signInUpButtonOutlet" destination="aW6-P3-J8c" id="JXS-VF-ref"/>
-                        <outlet property="usernameTextField" destination="iQg-ub-l3p" id="6aV-po-m5D"/>
+                        <outlet property="usernameTextField" destination="iQg-ub-l3p" id="juP-6g-Vsw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7AR-vW-s98" userLabel="First Responder" sceneMemberID="firstResponder"/>

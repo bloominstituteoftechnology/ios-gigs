@@ -12,15 +12,24 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		signInUpButtonOutlet.backgroundColor = .green
+		signInUpButtonOutlet.tintColor = .green
+		signInUpButtonOutlet.layer.cornerRadius = 8.0
     }
 	
 	@IBAction func singInUpButton(_ sender: UIButton) {
+		
+		
+		
 	}
 	
 	@IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
 		if sender.selectedSegmentIndex == 0 {
-			
+			loginType = .SignUp
+			signInUpButtonOutlet.setTitle("Sign Up", for: .normal)
+		} else {
+			loginType = .SignIn
+		signInUpButtonOutlet.setTitle("Sign In", for: .normal)
 		}
 	}
 	
