@@ -18,7 +18,7 @@ class GigController {
 		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.post.rawValue
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-		
+		print(request)
 		let encoder = JSONEncoder()
 		do {
 			let jsonData = try encoder.encode(user)
@@ -47,6 +47,7 @@ class GigController {
 	
 	func signIn(user: User, completion: @escaping (Error?) -> ()) {
 		let url = baseURL.appendingPathComponent("users/login")
+		
 		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.post.rawValue
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -60,7 +61,7 @@ class GigController {
 			completion(error)
 			return
 		}
-		
+		print(request)
 		URLSession.shared.dataTask(with: request) {
 			data, response, error in
 			
@@ -79,7 +80,7 @@ class GigController {
 				completion(NSError())
 				return
 			}
-			
+			print("here")
 			let decoder = JSONDecoder()
 			do {
 				self.bearer = try decoder.decode(Bearer.self, from: data)
@@ -88,6 +89,7 @@ class GigController {
 				completion(error)
 				return
 			}
+			completion(nil)
 		}.resume()
 	}
 	

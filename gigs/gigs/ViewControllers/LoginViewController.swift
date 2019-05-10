@@ -46,14 +46,16 @@ class LoginViewController: UIViewController {
 			gigController?.signIn(user: user, completion: {
 				error in
 				
+				print("here")
 				if let error = error {
 					print("error with sign in \(error)")
 				} else {
-					
+					print("sign in!")
 					DispatchQueue.main.async {
+						
 						self.dismiss(animated: true, completion: nil)
 					}
-					
+				
 				}
 			})
 		}
