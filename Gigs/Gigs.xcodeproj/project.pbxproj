@@ -13,6 +13,7 @@
 		33EB633D22850BD500853431 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33EB633C22850BD500853431 /* Assets.xcassets */; };
 		33EB634022850BD500853431 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33EB633E22850BD500853431 /* LaunchScreen.storyboard */; };
 		33EB634B22850BD500853431 /* GigsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB634A22850BD500853431 /* GigsTests.swift */; };
+		33EB635722850C9E00853431 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB635622850C9E00853431 /* GigsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		33EB634622850BD500853431 /* GigsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GigsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33EB634A22850BD500853431 /* GigsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTests.swift; sourceTree = "<group>"; };
 		33EB634C22850BD500853431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33EB635622850C9E00853431 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				33EB633522850BD300853431 /* AppDelegate.swift */,
-				33EB633722850BD300853431 /* ViewController.swift */,
+				33EB635522850C8700853431 /* View Controllers */,
 				33EB633922850BD300853431 /* Main.storyboard */,
 				33EB633C22850BD500853431 /* Assets.xcassets */,
 				33EB633E22850BD500853431 /* LaunchScreen.storyboard */,
@@ -94,6 +96,15 @@
 				33EB634C22850BD500853431 /* Info.plist */,
 			);
 			path = GigsTests;
+			sourceTree = "<group>";
+		};
+		33EB635522850C8700853431 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				33EB633722850BD300853431 /* ViewController.swift */,
+				33EB635622850C9E00853431 /* GigsTableViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 			files = (
 				33EB633822850BD300853431 /* ViewController.swift in Sources */,
 				33EB633622850BD300853431 /* AppDelegate.swift in Sources */,
+				33EB635722850C9E00853431 /* GigsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
