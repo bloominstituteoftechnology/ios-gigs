@@ -38,7 +38,7 @@ class GigDetailViewController: UIViewController {
 				}
 			}
 		
-			}
+		}
 		
 	}
 	

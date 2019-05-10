@@ -155,8 +155,11 @@ class GigController {
 		}
 		print(request)
 		URLSession.shared.dataTask(with: request) { _, response, error in
-			if let response = response as? HTTPURLResponse {
-				print(response.statusCode)
+			if let response = response as? HTTPURLResponse,
+				response.statusCode != 200{
+				print("response creating a gig: ", response.statusCode)
+				completion(nil)
+				return
 			}
 			
 			if let error = error {
@@ -164,7 +167,7 @@ class GigController {
 				completion(error)
 				return
 			}
-
+			self.gigs.append(gig)
 			completion(nil)
 		}.resume()
 	}
