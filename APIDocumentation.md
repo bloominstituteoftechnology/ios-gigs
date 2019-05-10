@@ -1,4 +1,18 @@
-an then be used to log in to the API, giving them a bearer token.
+# Gigs API Documentation
+
+The base URL for this API is https://lambdagigs.vapor.cloud/api
+
+--- 
+
+### Sign Up
+
+**Endpoint:** `/users/signup`
+
+**Method:** `POST`
+
+**Auth Required:** NO
+
+Creates a user whose credentials can then be used to log in to the API, giving them a bearer token.
 
 JSON should be POSTed in the following format: 
 
@@ -149,3 +163,4 @@ The `token` may be used to authenticate a request.
   "reason": "User not authenticated."
 }
 ```
+
