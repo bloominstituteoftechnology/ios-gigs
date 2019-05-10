@@ -46,6 +46,16 @@ class GigsTableViewController: UITableViewController {
 		if segue.identifier == "ModalySegue" {
 			guard let vc = segue.destination as? LoginViewController else { return }
 			vc.gigController = gigController
+		} else if segue.identifier == "AddGigSegue" {
+			guard let vc = segue.destination as? GigDetailViewController else { return }
+			vc.gigController = gigController
+		} else if segue.identifier == "ShowSegue" {
+			guard let vc = segue.destination as? GigDetailViewController,
+				 let cell = sender as? UITableViewCell else { return }
+			vc.gigController = gigController
+			if let indexpath = tableView.indexPath(for: cell) {
+				vc.gig = gigController.gigs[indexpath.row]
+			}
 		}
 	}
 	

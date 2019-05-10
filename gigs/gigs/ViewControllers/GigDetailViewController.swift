@@ -25,5 +25,6 @@ class GigDetailViewController: UIViewController {
 	@IBOutlet var jobTitleTextField: UITextField!
 	@IBOutlet var datePicker: UIDatePicker!
 	var gigController: GigController!
+	var gig: Gig?
 	
 }
