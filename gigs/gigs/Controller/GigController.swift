@@ -136,6 +136,13 @@ class GigController {
 		}.resume()
 	}
 
+	func creatGig(gig: Gig, completion: @escaping (Error?) -> ()) {
+		
+		
+		
+	}
+	
+	
 	private(set) var gigs: [Gig] = []
 	var bearer: Bearer?
 	private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
