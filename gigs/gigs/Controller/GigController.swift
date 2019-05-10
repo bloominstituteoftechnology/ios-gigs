@@ -137,8 +137,21 @@ class GigController {
 	}
 
 	func creatGig(gig: Gig, completion: @escaping (Error?) -> ()) {
+		guard let bearer = bearer else { return }
+		let url = baseURL.appendingPathComponent("gigs")
 		
+		var request = URLRequest(url: url)
+		request.httpMethod = HTTPMethod.post.rawValue
+		request.setValue("Bear \(bearer)", forHTTPHeaderField: "Authorization")
 		
+		let encoder = JSONEncoder()
+		do {
+			request.httpBody = try encoder.encode(gig)
+		} catch {
+			print("error encoding gig object: \(error)")
+			completion(error)
+			return
+		}
 		
 	}
 	
