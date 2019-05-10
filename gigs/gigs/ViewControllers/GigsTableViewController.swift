@@ -61,7 +61,11 @@ class GigsTableViewController: UITableViewController {
 	
 
 	let gigController = GigController()
-	var gigs: [Gig] = []
+	var gigs: [Gig] = [] {
+		didSet {
+			tableView.reloadData()
+		}
+	}
 }
 
 

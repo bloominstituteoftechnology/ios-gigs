@@ -99,7 +99,7 @@ class GigController {
 			return
 		}
 		
-		let url = baseURL.appendingPathComponent("gigs")
+		let url = baseURL.appendingPathComponent("gigs").appendingPathExtension("json")
 		
 		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.get.rawValue
@@ -129,7 +129,7 @@ class GigController {
 			do {
 				let gigs = try decoder.decode([Gig].self, from: data)
 				completion(.success(gigs))
-				print(gigs.count)
+				
 			} catch {
 				print("Error decoding animal object: \(error)")
 				completion(.failure(.noDecode))
