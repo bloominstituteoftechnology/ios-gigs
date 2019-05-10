@@ -9,13 +9,15 @@
 
 import Foundation
 
+enum HTTPMethods: String {
+	case post = "POST"
+	case put = "PUT"
+	case delete = "DELETE"
+	case get = "GET"
+}
+
 class MahDataGetter {
 
-	enum HTTPMethods: String {
-		case post = "POST"
-		case put = "PUT"
-		case delete = "DELETE"
-	}
 
 	enum NetworkError: Error {
 		case noAuth
