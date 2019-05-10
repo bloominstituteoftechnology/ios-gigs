@@ -179,14 +179,7 @@ class GigController {
 	}
 	
 	func isDuplicate(newgig: Gig) -> Bool{
-		
-		for gig in gigs {
-			if gig.title  == newgig.title {
-				return true
-			}
-		}
-		
-		return false
+		return gigs.contains(newgig) 
 	}
 	
 
