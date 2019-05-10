@@ -40,7 +40,7 @@ class GigController {
         //do catch the body
         do {
             let je = JSONEncoder()
-          request.httpBody =  try je.encode(user)
+            request.httpBody =  try je.encode(user)
         } catch  {
             print("Error encoding the httpBody for the signup functon: \(error.localizedDescription)")
             completion(error)
@@ -60,11 +60,11 @@ class GigController {
                 return
             }
             completion(nil)
-        }.resume()
+            }.resume()
     }
     
     func logIn(with user: User, completion: @escaping (Error?) -> Void){
-       //get url
+        //get url
         let url = baseURL.appendingPathComponent("users/login")
         
         //create urlRequest
@@ -72,9 +72,10 @@ class GigController {
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        let je = JSONEncoder()
         do {
-            let je = JSONEncoder()
-           request.httpBody = try je.encode(user)
+            let jsonData = try je.encode(user)
+            request.httpBody = jsonData
         } catch  {
             print("Error encoding user logging in: \(error.localizedDescription)")
             completion(error)
@@ -113,7 +114,7 @@ class GigController {
                 return
             }
             completion(nil)
-        }.resume()
+            }.resume()
     }
     
     func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void){
@@ -152,15 +153,65 @@ class GigController {
                 return
             }
             
+            let jd = JSONDecoder()
+            jd.dateDecodingStrategy = .iso8601  //because our object has a property of type Date, we must decode/encode Date property by using this
             do {
-                let jd = JSONDecoder()
                 let gigs = try jd.decode([Gig].self, from: data)
                 completion(.success(gigs))
             } catch {
-                print("Error decoding in the catch block: \(error.localizedDescription)")
+                print("Error decoding in the catch block of the fetch all gigs: \(error.localizedDescription)")
                 completion(.failure(.noDecode))
                 return
             }
+            }.resume()
+    }
+    
+    func createGig(with title: String, dueDate: Date, descripton: String, completion: @escaping (Error?) -> Void){
+        let newGig = Gig(title: title, dueDate: dueDate, description: descripton)
+        
+        //get the url
+        let url = baseURL.appendingPathComponent("gigs")
+        
+        //create the request
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue //we are going to post the gig we just created.
+        
+        //unwarp the bearer because we need to add the value to the header
+        guard let bearer = bearer else {
+            completion(NSError())
+            return }
+        
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type") //it doesn't matter the order of setValue and addValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        print("this is the token: \(bearer.token)")
+        
+        //we are posting so we need to encode the httpbody
+        let je = JSONEncoder()
+         je.dateEncodingStrategy = .iso8601
+        do {
+            let jsondata = try je.encode(newGig)
+            request.httpBody =  jsondata
+        } catch  {
+            print("Error in the catch block creating a gig: \(error.localizedDescription)")
+            completion(error)
+            return
+        }
+        
+        //now we have our request set we can call urlsession
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                print("this is the response: \(response)")
+                return
+            }
+            
+            if let error = error {
+                print("Error in the data task call of our crateGig function: \(error.localizedDescription)")
+                completion(error)
+                return
+            }
+            self.gigs.append(newGig)
+            completion(nil)
         }.resume()
     }
 }
