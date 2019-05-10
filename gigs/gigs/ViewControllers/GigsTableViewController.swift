@@ -42,6 +42,13 @@ class GigsTableViewController: UITableViewController {
 		return cell
 	}
 	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "ModalySegue" {
+			guard let vc = segue.destination as? LoginViewController else { return }
+			vc.gigController = gigController
+		}
+	}
+	
 
 	let gigController = GigController()
 	var gigs: [Gig] = []

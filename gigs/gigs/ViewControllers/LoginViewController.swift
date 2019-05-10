@@ -38,6 +38,7 @@ class LoginViewController: UIViewController {
 	@IBOutlet var passwordTextField: UITextField!
 	@IBOutlet var segmentedControl: UISegmentedControl!
 	var loginType = LoginType.SignUp
+	var gigController: GigController?
 }
 
 
