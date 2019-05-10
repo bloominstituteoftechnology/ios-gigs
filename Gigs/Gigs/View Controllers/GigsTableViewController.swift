@@ -32,7 +32,11 @@ class GigsTableViewController: UITableViewController {
 	func loadData() {
 		gigController.getAllGigs { [weak self] (error) in
 			if let error = error {
-				print("Error happened: \(error)")
+				let alertVC = UIAlertController(preferredStyle: .alert)
+				alertVC.configureWith(error: error)
+				DispatchQueue.main.async {
+					self?.present(alertVC, animated: true)
+				}
 			}
 			DispatchQueue.main.async {
 				self?.tableView.reloadData()

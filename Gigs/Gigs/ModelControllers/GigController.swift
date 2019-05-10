@@ -100,11 +100,13 @@ class GigController {
 
 		var request = URLRequest(url: gigsURL)
 		request.httpMethod = HTTPMethods.get.rawValue
-		request.addValue(bearer.token, forHTTPHeaderField: HTTPHeaderKeys.auth.rawValue)
+		request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: HTTPHeaderKeys.auth.rawValue)
+		request.addValue(HTTPHeaderKeys.ContentTypes.json.rawValue, forHTTPHeaderField: HTTPHeaderKeys.contentType.rawValue)
 
 		networkManager.fetchMahDatas(with: request) { (_, data, error) in
 			if let error = error {
 				completion(error)
+				return
 			}
 
 			guard let data = data else {
@@ -132,7 +134,8 @@ class GigController {
 
 		var request = URLRequest(url: gigsURL)
 		request.httpMethod = HTTPMethods.post.rawValue
-		request.addValue(bearer.token, forHTTPHeaderField: HTTPHeaderKeys.auth.rawValue)
+		request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: HTTPHeaderKeys.auth.rawValue)
+		request.addValue(HTTPHeaderKeys.ContentTypes.json.rawValue, forHTTPHeaderField: HTTPHeaderKeys.contentType.rawValue)
 
 		let encoder = JSONEncoder()
 		encoder.dateEncodingStrategy = .iso8601
