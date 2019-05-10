@@ -17,9 +17,6 @@ class LoginViewController: UIViewController {
 		signInUpButtonOutlet.layer.cornerRadius = 8.0
     }
 	
-	
-	
-	
 	@IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
 		setWithSegmentedControl(sender.selectedSegmentIndex)
 	}
@@ -31,9 +28,8 @@ class LoginViewController: UIViewController {
 		let user = User(username: username, password: password)
 		
 		if loginType == .SignUp {
-			gigController?.signUp(with: user, completion: {
-				error in
-				
+			
+			gigController?.signUp(with: user, completion: { error in
 				if let error = error {
 					print("error with sign up: \(error)")
 				} else {
@@ -42,25 +38,19 @@ class LoginViewController: UIViewController {
 					}
 				}
 			})
+			
 		} else {
-			gigController?.signIn(user: user, completion: {
-				error in
-				
-				print("here")
+			gigController?.signIn(user: user, completion: { error in
 				if let error = error {
 					print("error with sign in \(error)")
 				} else {
-					print("sign in!")
 					DispatchQueue.main.async {
-						
 						self.dismiss(animated: true, completion: nil)
 					}
-				
 				}
 			})
 		}
 	}
-	
 	
 	func pleaseLogInAlert(){
 		let alertController = UIAlertController(title: "Please Log In", message: nil, preferredStyle: .alert)
@@ -70,7 +60,6 @@ class LoginViewController: UIViewController {
 			
 			self.setWithSegmentedControl(1)
 		}
-		
 	}
 	
 	func setWithSegmentedControl(_ index: Int) {
@@ -83,7 +72,6 @@ class LoginViewController: UIViewController {
 			signInUpButtonOutlet.setTitle("Sign In", for: .normal)
 		}
 	}
-	
 	
 	@IBOutlet var signInUpButtonOutlet: UIButton!
 	@IBOutlet var usernameTextField: UITextField!

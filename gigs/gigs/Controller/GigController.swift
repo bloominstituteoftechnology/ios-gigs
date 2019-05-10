@@ -80,7 +80,7 @@ class GigController {
 				completion(NSError())
 				return
 			}
-			print("here")
+
 			let decoder = JSONDecoder()
 			do {
 				self.bearer = try decoder.decode(Bearer.self, from: data)
