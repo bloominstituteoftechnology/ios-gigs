@@ -68,8 +68,7 @@ class GigsTableViewController: UITableViewController {
 extension GigsTableViewController {
 	
 	func fetchGigs() {
-		gigController.fetchGigs {
-			result in
+		gigController.fetchGigs { result in
 			
 			guard let result = try? result.get() else {
 				print("error fetchGigs()")

@@ -35,7 +35,6 @@ class GigDetailViewController: UIViewController {
 					print("error creating gig: \(error)")
 				} else {
 					DispatchQueue.main.async {
-						print("here420")
 						self.navigationController?.popViewController(animated: true)
 					}
 				}

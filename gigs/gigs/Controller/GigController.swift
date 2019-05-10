@@ -103,8 +103,8 @@ class GigController {
 		
 		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.get.rawValue
-		request.addValue("Bearer \(bearer)", forHTTPHeaderField: "Authorization")
-		
+		request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+		print(request)
 		URLSession.shared.dataTask(with: request) {
 			data, response, error in
 			
@@ -129,6 +129,7 @@ class GigController {
 			do {
 				let gigs = try decoder.decode([Gig].self, from: data)
 				completion(.success(gigs))
+				print(gigs.count)
 			} catch {
 				print("Error decoding animal object: \(error)")
 				completion(.failure(.noDecode))
@@ -142,7 +143,7 @@ class GigController {
 		
 		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.post.rawValue
-		request.setValue("Bear \(bearer)", forHTTPHeaderField: "Authorization")
+		request.setValue("Bear \(bearer.token)", forHTTPHeaderField: "Authorization")
 		
 		let encoder = JSONEncoder()
 		do {
