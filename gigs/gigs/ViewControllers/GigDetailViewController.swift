@@ -20,18 +20,20 @@ class GigDetailViewController: UIViewController {
 		guard let description = descriptionTextView.text,
 			let title = jobTitleTextField.text else { return }
 		
-		let gig = Gig(title: title, description: description, dueDate: datePicker.date)
-		
-		gigController.creatGig(gig: gig) { error in
-			if let error = error {
-				print("error creating gig: \(error)")
-			} else {
-				DispatchQueue.main.async {
-					self.dismiss(animated: true, completion: nil)
+		if gig == nil {
+			let newgig = Gig(title: title, description: description, dueDate: datePicker.date)
+			gigController.creatGig(gig: newgig) { error in
+				if let error = error {
+					print("error creating gig: \(error)")
+				} else {
+					DispatchQueue.main.async {
+						self.dismiss(animated: true, completion: nil)
+					}
 				}
 			}
+		} else {
+			//update gig
 		}
-	
 	}
 
 	@IBOutlet var descriptionTextView: UITextView!
