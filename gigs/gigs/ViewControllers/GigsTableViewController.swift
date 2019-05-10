@@ -61,27 +61,20 @@ class GigsTableViewController: UITableViewController {
 	
 
 	let gigController = GigController()
-	var gigs: [Gig] = [] {
-		didSet {
-			tableView.reloadData()
-		}
-	}
+	var gigs: [Gig] = []
 }
 
 
 extension GigsTableViewController {
 	
 	func fetchGigs() {
-		gigController.fetchGigs { result in
-			
-			guard let result = try? result.get() else {
-				print("error fetchGigs()")
-				return
-			}
-			
-			DispatchQueue.main.async {
-				self.gigs = result
-				self.tableView.reloadData()
+		gigController.fetchGigs { error in
+			if let error = error {
+				print("error fetching gigs: \(error)")
+			} else {
+				DispatchQueue.main.async {
+					self.tableView.reloadData()
+				}
 			}
 		}
 	}

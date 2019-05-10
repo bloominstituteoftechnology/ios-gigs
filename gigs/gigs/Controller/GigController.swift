@@ -93,13 +93,13 @@ class GigController {
 		}.resume()
 	}
 	
-	func fetchGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+	func fetchGigs(completion: @escaping (Error?) -> ()) {	//@escaping (Result<[Gig], NetworkError>) -> Void) {
 		guard let bearer = bearer else {
-			completion(.failure(.noAuth))
+			completion(NSError())
 			return
 		}
 		
-		let url = baseURL.appendingPathComponent("gigs").appendingPathExtension("json")
+		let url = baseURL.appendingPathComponent("gigs")
 		
 		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.get.rawValue
@@ -109,17 +109,17 @@ class GigController {
 			data, response, error in
 			
 			if let response = response as? HTTPURLResponse,
-				response.statusCode != 200 {
-				completion(.failure(.badAuth))
+				response.statusCode == 401 {
+				completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
 				return
 			}
 			
-			if let _ = error {
-				completion(.failure(.otherError))
+			if let error = error {
+				completion(error)
 			}
 			
 			guard let data = data else {
-				completion(.failure(.badData))
+				completion(NSError())
 				return
 			}
 			
@@ -127,13 +127,13 @@ class GigController {
 			decoder.dateDecodingStrategy = .iso8601
 
 			do {
-				let gigs = try decoder.decode([Gig].self, from: data)
-				completion(.success(gigs))
-				
+				let decodedGigs = try decoder.decode([Gig].self, from: data)
+				self.gigs = decodedGigs
 			} catch {
-				print("Error decoding animal object: \(error)")
-				completion(.failure(.noDecode))
+				print("Error decoding gig object: \(error)")
+				completion(error)
 			}
+			completion(nil)
 		}.resume()
 	}
 
