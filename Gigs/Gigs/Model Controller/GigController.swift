@@ -114,6 +114,7 @@ class GigController: Codable {
                 return
             }
             if let error = error {
+                print(error)
                 completion(.failure(.apiError))
                 return
             }

@@ -9,28 +9,42 @@
 import UIKit
 
 class GigDetailViewController: UIViewController {
-
+    var gigController: GigController!
+    var gig: Gig?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    }
+        updateViews()
+    } // end of view did load
+    
+    func updateViews() {
+        if gig != nil {
+            guard let gig = gig else { return }
+            jobTitleTextField.text = gig.title
+            dueDatePicker.date = gig.dueDate
+            descriptionTextView.text = gig.description
+            navigationItem.title = gig.title
+        } else {
+            navigationItem.title = "New Gig"
+        }
+    } // end of update views
     
     @IBOutlet weak var jobTitleTextField: UITextField!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextView: UITextView!
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        let dueDate = dueDatePicker.date
+        guard let title = jobTitleTextField.text,
+            let description = descriptionTextView.text else { return }
         
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+        gigController.createGig(title: title, dueDate: dueDate, description: description) { (error) in
+            if let error = error {
+                NSLog("Error creating new gig: \(error)")
+            }
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    } // end of save button
 }
