@@ -24,7 +24,7 @@ class GigController {
 		
 		var request = URLRequest(url: signUpUrl)
 		request.httpMethod = HTTPMethod.post.rawValue
-		request.setValue("applcation/json", forHTTPHeaderField: "Content-Type")
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		
 		do {
 			request.httpBody = try JSONEncoder().encode(user)
@@ -54,7 +54,7 @@ class GigController {
 		
 		var request = URLRequest(url: logInUrl)
 		request.httpMethod = HTTPMethod.post.rawValue
-		request.setValue("applcation/json", forHTTPHeaderField: "Content-Type")
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		
 		do {
 			request.httpBody = try JSONEncoder().encode(user)
