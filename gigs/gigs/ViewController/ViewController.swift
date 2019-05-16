@@ -15,10 +15,11 @@ class ViewController: UIViewController {
 	var gig: Gig? {
 		didSet {
 			DispatchQueue.main.async {
-				self.updateView()
+				
 			}
 		}
 	}
+
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -48,6 +48,23 @@ class GigsTableViewController: UITableViewController {
 		
 		return cell
 	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "LoginModal",
+			let loginVC = segue.destination as? LoginViewController {
+			loginVC.gigController = gigController
+		} else if segue.identifier == "AddGig",
+			let addVC = segue.destination as? ViewController {
+			addVC.gigController = gigController
+		} else if segue.identifier == "ShowGig",
+			let viewVC = segue.destination as? ViewController {
+			if let index = tableView.indexPathForSelectedRow {
+				viewVC.gig = gigController.gigs[index.row]
+			}
+			
+			viewVC.gigController = gigController
+		}
+	}
 
   
 }
