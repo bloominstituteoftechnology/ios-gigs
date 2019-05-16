@@ -8,19 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		42EDFAA4228DEEB400CF5C8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDFAA3228DEEB400CF5C8B /* AppDelegate.swift */; };
-		42EDFAA6228DEEB400CF5C8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDFAA5228DEEB400CF5C8B /* ViewController.swift */; };
 		42EDFAA9228DEEB400CF5C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42EDFAA7228DEEB400CF5C8B /* Main.storyboard */; };
 		42EDFAAB228DEEB500CF5C8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42EDFAAA228DEEB500CF5C8B /* Assets.xcassets */; };
 		42EDFAAE228DEEB500CF5C8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42EDFAAC228DEEB500CF5C8B /* LaunchScreen.storyboard */; };
 		42EDFAB6228DEF6F00CF5C8B /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDFAB5228DEF6F00CF5C8B /* GigsTableViewController.swift */; };
 		42EDFAB8228DF06B00CF5C8B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDFAB7228DF06B00CF5C8B /* LoginViewController.swift */; };
 		42EDFABA228DF3C700CF5C8B /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDFAB9228DF3C700CF5C8B /* GigDetailViewController.swift */; };
+		42EDFABD228DF68400CF5C8B /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDFABC228DF68400CF5C8B /* Gig.swift */; };
+		42EDFAC0228DF6DE00CF5C8B /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDFABF228DF6DE00CF5C8B /* Bearer.swift */; };
+		42EDFAC2228DF70300CF5C8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDFAC1228DF70300CF5C8B /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		42EDFAA0228DEEB400CF5C8B /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42EDFAA3228DEEB400CF5C8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		42EDFAA5228DEEB400CF5C8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		42EDFAA8228DEEB400CF5C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		42EDFAAA228DEEB500CF5C8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42EDFAAD228DEEB500CF5C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -28,6 +29,9 @@
 		42EDFAB5228DEF6F00CF5C8B /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		42EDFAB7228DF06B00CF5C8B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		42EDFAB9228DF3C700CF5C8B /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		42EDFABC228DF68400CF5C8B /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
+		42EDFABF228DF6DE00CF5C8B /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		42EDFAC1228DF70300CF5C8B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,16 +65,34 @@
 			isa = PBXGroup;
 			children = (
 				42EDFAA3228DEEB400CF5C8B /* AppDelegate.swift */,
-				42EDFAA5228DEEB400CF5C8B /* ViewController.swift */,
-				42EDFAB5228DEF6F00CF5C8B /* GigsTableViewController.swift */,
-				42EDFAB7228DF06B00CF5C8B /* LoginViewController.swift */,
-				42EDFAB9228DF3C700CF5C8B /* GigDetailViewController.swift */,
+				42EDFABE228DF68F00CF5C8B /* Model */,
+				42EDFABB228DF66400CF5C8B /* View Controllers */,
 				42EDFAA7228DEEB400CF5C8B /* Main.storyboard */,
 				42EDFAAA228DEEB500CF5C8B /* Assets.xcassets */,
 				42EDFAAC228DEEB500CF5C8B /* LaunchScreen.storyboard */,
 				42EDFAAF228DEEB500CF5C8B /* Info.plist */,
 			);
 			path = Gigs;
+			sourceTree = "<group>";
+		};
+		42EDFABB228DF66400CF5C8B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				42EDFAB5228DEF6F00CF5C8B /* GigsTableViewController.swift */,
+				42EDFAB7228DF06B00CF5C8B /* LoginViewController.swift */,
+				42EDFAB9228DF3C700CF5C8B /* GigDetailViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		42EDFABE228DF68F00CF5C8B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				42EDFABC228DF68400CF5C8B /* Gig.swift */,
+				42EDFABF228DF6DE00CF5C8B /* Bearer.swift */,
+				42EDFAC1228DF70300CF5C8B /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +168,11 @@
 			files = (
 				42EDFAB8228DF06B00CF5C8B /* LoginViewController.swift in Sources */,
 				42EDFABA228DF3C700CF5C8B /* GigDetailViewController.swift in Sources */,
-				42EDFAA6228DEEB400CF5C8B /* ViewController.swift in Sources */,
+				42EDFAC0228DF6DE00CF5C8B /* Bearer.swift in Sources */,
 				42EDFAA4228DEEB400CF5C8B /* AppDelegate.swift in Sources */,
 				42EDFAB6228DEF6F00CF5C8B /* GigsTableViewController.swift in Sources */,
+				42EDFABD228DF68400CF5C8B /* Gig.swift in Sources */,
+				42EDFAC2228DF70300CF5C8B /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
