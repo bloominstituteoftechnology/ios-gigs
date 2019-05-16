@@ -104,7 +104,7 @@ class GigController {
         
     }
     
-    func getAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+    func getAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         guard let bearer = bearer else {
             NSLog("No bearer token available")
             completion(.failure(.noBearer))
@@ -140,7 +140,7 @@ class GigController {
             let decoder = JSONDecoder()
             
             do {
-                let gigs = try decoder.decode([String].self, from: data)
+                let gigs = try decoder.decode([Gig].self, from: data)
                 completion(.success(gigs))
             } catch {
                 NSLog("Error decoding gigs: \(error)")

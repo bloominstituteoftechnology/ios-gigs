@@ -15,12 +15,26 @@ class GigsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         if gigController.bearer == nil {
             // Send the user to the login VC.
             
             performSegue(withIdentifier: "LoginSegue", sender: self)
+        } else {
+            gigController.getAllGigs { (result) in
+                do {
+                    self.gigController.gigs = try result.get()
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                } catch {
+                    NSLog("Error getting gigs")
+                }
+            }
         }
-
     }
 
     // MARK: - Table view data source
