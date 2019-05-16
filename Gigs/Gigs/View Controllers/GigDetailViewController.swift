@@ -10,6 +10,9 @@ import UIKit
 
 class GigDetailViewController: UIViewController {
 
+    var gigController: GigController!
+    var gig: Gig?
+
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -18,9 +21,33 @@ class GigDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+
+    func updateViews() {
+        guard let gig = gig else {
+            navigationItem.title = "New Gig"
+            return
+        }
+
+        titleTextField.text = gig.title
+        datePicker.date = gig.dueDate
+        descriptionTextView.text = gig.description
+
+
+    }
     
 
     @IBAction func saveButtonPressed(_ sender: Any) {
+        guard let title = titleTextField.text, !title.isEmpty,
+        let description = descriptionTextView.text, !description.isEmpty else { return }
+        let dueDate = datePicker.date
+
+        gigController.createGig(title: title, dueDate: dueDate, description: description) { (error) in
+            if let error = error{
+                print(error)
+                return
+            }
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     /*
     // MARK: - Navigation

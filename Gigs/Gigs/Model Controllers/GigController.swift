@@ -16,7 +16,7 @@ class GigController {
 
 
 
-    
+
 
 
     func getAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void ) {
@@ -27,12 +27,13 @@ class GigController {
             return
         }
 
-        let requestURL = baseURL
-            .appendingPathComponent("gigs")
+        let requestURL = baseURL.appendingPathComponent("gigs")
 
         var request = URLRequest(url: requestURL)
 
-        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = HTTPMethod.get.rawValue
+
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
 
@@ -68,7 +69,47 @@ class GigController {
         }.resume()
     }
 
+    func createGig(title: String, dueDate: Date, description: String, completion: @escaping (Error?) -> Void) {
 
+        guard let bearer = bearer else {
+            completion(NSError())
+            return
+        }
+
+        let requestURL = baseURL.appendingPathComponent("gigs")
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        let gig = Gig(title: title, description: description, dueDate: dueDate)
+
+        do {
+            request.httpBody = try JSONEncoder().encode(gig)
+        } catch {
+            NSLog("Error encoding Gig: \(error)")
+            completion(error)
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(NSError())
+                return
+            }
+
+            if let error = error {
+                NSLog("Error pushing gig: \(error)")
+                completion(error)
+                return
+            }
+
+            completion(nil)
+        }.resume()
+        self.gigs.append(gig)
+
+    }
 
     func signUp(with username: String, password: String, completion: @escaping (Error?) -> Void) {
 

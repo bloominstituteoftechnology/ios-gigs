@@ -155,20 +155,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pUx-G9-IU1">
-                                <rect key="frame" x="20" y="130" width="374" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iEf-3f-FYk">
-                                <rect key="frame" x="20" y="168" width="374" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="743-Mx-SuZ">
+                                <rect key="frame" x="20" y="130" width="374" height="68"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pUx-G9-IU1">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="username"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iEf-3f-FYk">
+                                        <rect key="frame" x="0.0" y="38" width="374" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oRD-gS-7Os">
                                 <rect key="frame" x="146" y="84" width="122" height="29"/>
                                 <segments>
@@ -176,7 +179,7 @@
                                     <segment title="Sign In"/>
                                 </segments>
                                 <connections>
-                                    <action selector="logInTypeChanged:" destination="xhT-gY-xxa" eventType="valueChanged" id="e4N-Hk-b5C"/>
+                                    <action selector="signInTypeChanged:" destination="xhT-gY-xxa" eventType="valueChanged" id="e4N-Hk-b5C"/>
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWx-TA-gdz">
@@ -190,8 +193,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="oRD-gS-7Os" firstAttribute="leading" secondItem="mgn-P4-64A" secondAttribute="leading" constant="146" id="0NY-T9-oxV"/>
+                            <constraint firstItem="743-Mx-SuZ" firstAttribute="leading" secondItem="mgn-P4-64A" secondAttribute="leading" constant="20" id="0Nx-h3-7qL"/>
                             <constraint firstItem="AWx-TA-gdz" firstAttribute="top" secondItem="mgn-P4-64A" secondAttribute="top" constant="178" id="22v-px-Bof"/>
+                            <constraint firstItem="mgn-P4-64A" firstAttribute="trailing" secondItem="743-Mx-SuZ" secondAttribute="trailing" constant="20" id="Nf4-Cf-vGX"/>
                             <constraint firstItem="AWx-TA-gdz" firstAttribute="leading" secondItem="mgn-P4-64A" secondAttribute="leading" constant="161" id="S5Y-wH-viE"/>
+                            <constraint firstItem="743-Mx-SuZ" firstAttribute="top" secondItem="oRD-gS-7Os" secondAttribute="bottom" constant="18" id="boO-7t-cCz"/>
                             <constraint firstItem="mgn-P4-64A" firstAttribute="trailing" secondItem="oRD-gS-7Os" secondAttribute="trailing" constant="146" id="eLW-bL-PDA"/>
                             <constraint firstItem="mgn-P4-64A" firstAttribute="trailing" secondItem="AWx-TA-gdz" secondAttribute="trailing" constant="165" id="l6B-05-tyX"/>
                             <constraint firstItem="oRD-gS-7Os" firstAttribute="top" secondItem="mgn-P4-64A" secondAttribute="top" constant="40" id="vhz-WK-nV3"/>
