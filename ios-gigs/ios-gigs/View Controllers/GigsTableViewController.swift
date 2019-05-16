@@ -18,13 +18,14 @@ var gigController = GigController()
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         if gigController.bearer == nil {
-            performSegue(withIdentifier: "ShowLoginScreen", sender: self)
+            performSegue(withIdentifier: "LoginScreen", sender: self)
         } else { gigController.fetchGigs { (result) in
-
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+    }
         }
     }
-    }
-   
     
     // MARK: - Table view data source
     // learning to delete #of sections when I don't need it ...
@@ -55,7 +56,7 @@ var gigController = GigController()
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LoginSegue" {
+        if segue.identifier == "LoginScreen" {
             guard let destinationVC = segue.destination as? LoginViewController else { return }
             destinationVC.gigController = gigController
         }
@@ -82,3 +83,4 @@ var gigController = GigController()
     
 
 }
+

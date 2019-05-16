@@ -117,7 +117,7 @@ class GigController: Codable {
             }.resume()
     }
 
-    func fetchGigs (completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+    func fetchGigs (completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         guard let bearer = bearer else {
             completion(.failure(.badAuth))
             return
@@ -150,7 +150,7 @@ class GigController: Codable {
             decoder.dateDecodingStrategy = .iso8601
             
             do {
-                let gig = try decoder.decode(Gig.self, from: data)
+                let gig = try decoder.decode([Gig].self, from: data)
                 completion(.success(gig))
             
             }catch {

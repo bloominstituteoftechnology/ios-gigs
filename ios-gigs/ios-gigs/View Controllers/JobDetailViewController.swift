@@ -10,7 +10,7 @@ import UIKit
 
 class JobDetailViewController: UIViewController {
 
-    var gigController: GigController?
+    var gigController: GigController!
     var gig: Gig?
     
     @IBOutlet weak var jobDescriptionText: UITextView!
@@ -24,15 +24,48 @@ class JobDetailViewController: UIViewController {
     
 
     @IBAction func saveJob(_ sender: Any) {
+        guard let jobTitle = jobTitleTextField.text,
+            !jobTitle.isEmpty,
+            let description = jobDescriptionText.text,
+            !description.isEmpty
+            else { return }
+        
+        
+        let dueDate = dueDatePicker.date
+        
+        let newGig = Gig(title: jobTitle, dueDate: dueDate, description: description)
+        
+        gigController?.createGig(with: newGig, completion: { error in
+            
+            if let error = error {
+                NSLog("Error saving new gig: \(error)")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.gig = newGig
+                self.updateViews()
+            }
+        })
+    
+    print("SaveButtonPressed")
     }
     
-    // MARK: - Navigation
+    
+    
+    
+private func updateViews() {
+    
+    if let gig = gig {
+        
+        self.title = gig.title
+        jobTitleTextField.text = gig.title
+        dueDatePicker.date = gig.dueDate
+        jobDescriptionText.text = gig.description
+        
+        
+        }
+    }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    
 
 }
