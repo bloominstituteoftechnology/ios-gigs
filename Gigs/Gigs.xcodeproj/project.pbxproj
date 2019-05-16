@@ -14,6 +14,10 @@
 		EFB6F067228DF90D00D3F401 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB6F066228DF90D00D3F401 /* GigsTableViewController.swift */; };
 		EFB6F06A228DFA2C00D3F401 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB6F069228DFA2C00D3F401 /* LoginViewController.swift */; };
 		EFB6F06C228E00E000D3F401 /* GigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB6F06B228E00E000D3F401 /* GigViewController.swift */; };
+		EFB6F070228E01E200D3F401 /* Gigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB6F06F228E01E200D3F401 /* Gigs.swift */; };
+		EFB6F072228E024800D3F401 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB6F071228E024800D3F401 /* Bearer.swift */; };
+		EFB6F074228E026D00D3F401 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB6F073228E026D00D3F401 /* User.swift */; };
+		EFB6F076228E02E300D3F401 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB6F075228E02E300D3F401 /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		EFB6F066228DF90D00D3F401 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		EFB6F069228DFA2C00D3F401 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EFB6F06B228E00E000D3F401 /* GigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigViewController.swift; sourceTree = "<group>"; };
+		EFB6F06F228E01E200D3F401 /* Gigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gigs.swift; sourceTree = "<group>"; };
+		EFB6F071228E024800D3F401 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		EFB6F073228E026D00D3F401 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EFB6F075228E02E300D3F401 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,8 @@
 		EFB6F052228DF7A400D3F401 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
+				EFB6F06D228E01B800D3F401 /* Model */,
+				EFB6F06E228E01CC00D3F401 /* Model Controller */,
 				EFB6F068228DF91300D3F401 /* View Controller */,
 				EFB6F065228DF7EB00D3F401 /* Storyboard */,
 				EFB6F05A228DF7A400D3F401 /* Assets.xcassets */,
@@ -84,6 +94,24 @@
 				EFB6F066228DF90D00D3F401 /* GigsTableViewController.swift */,
 			);
 			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		EFB6F06D228E01B800D3F401 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EFB6F06F228E01E200D3F401 /* Gigs.swift */,
+				EFB6F071228E024800D3F401 /* Bearer.swift */,
+				EFB6F073228E026D00D3F401 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EFB6F06E228E01CC00D3F401 /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EFB6F075228E02E300D3F401 /* GigController.swift */,
+			);
+			path = "Model Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,10 +185,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB6F070228E01E200D3F401 /* Gigs.swift in Sources */,
+				EFB6F076228E02E300D3F401 /* GigController.swift in Sources */,
 				EFB6F06C228E00E000D3F401 /* GigViewController.swift in Sources */,
+				EFB6F072228E024800D3F401 /* Bearer.swift in Sources */,
 				EFB6F06A228DFA2C00D3F401 /* LoginViewController.swift in Sources */,
 				EFB6F054228DF7A400D3F401 /* AppDelegate.swift in Sources */,
 				EFB6F067228DF90D00D3F401 /* GigsTableViewController.swift in Sources */,
+				EFB6F074228E026D00D3F401 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
