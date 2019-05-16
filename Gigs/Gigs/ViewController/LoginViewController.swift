@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
         
         
         if loginType == .signUp {
-            gigController.signUp(with: username, password: password) { (error) in
+            gigController.signUp(with: username, password: password, completion: { (error) in
                 if let error = error {
                     NSLog("Error signing up \(error)")
                 } else {
@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
                         })
                     }
                 }
-            }
+            })
         } else {
             gigController.logIn(with: username, password: password) { (error) in
                 

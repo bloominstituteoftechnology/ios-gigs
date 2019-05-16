@@ -29,6 +29,7 @@ class GigController {
         case badAuth
         case apiError
         case noDecode
+        case noEncode
     }
     
     //Signing UP
@@ -135,7 +136,7 @@ class GigController {
     }
     
     
-    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         
         guard let bearer = bearer else {
             NSLog("No bearer token available")
@@ -172,8 +173,10 @@ class GigController {
             }
             
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
             do {
-                let gigs = try decoder.decode([String].self, from: data)
+                let gigs = try decoder.decode([Gig].self, from: data)
+                self.gigs = gigs
                 completion(.success(gigs))
             } catch {
                 NSLog("Error decoding gigs: \(error)")
@@ -191,10 +194,17 @@ class GigController {
         
         let newGig = Gig(title: title, description: description, dueDate: dueDate)
         
+        guard let bearer = bearer else {
+            NSLog("No bearer token available")
+            completion(nil)
+            return
+        }
+        
         let gigURL = baseURL.appendingPathComponent("gigs")
         
         var request = URLRequest(url: gigURL)
         request.httpMethod = HTTPMethod.post.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         do {
             let encoder = JSONEncoder()

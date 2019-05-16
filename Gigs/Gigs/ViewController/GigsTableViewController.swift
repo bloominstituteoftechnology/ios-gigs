@@ -14,6 +14,7 @@ class GigsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -21,8 +22,21 @@ class GigsTableViewController: UITableViewController {
         
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginSegue", sender: self)
-        }
+        } else {
+            gigController.fetchAllGigs { (result) in
+                
+                do {
+                    self.gigController.gigs = try result.get()
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                } catch {
+                    NSLog("Error getting gigs")
+                }      
+            }
         
+        }
     }
 
     
@@ -48,8 +62,22 @@ class GigsTableViewController: UITableViewController {
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "GigDetailSegue" {
+            guard let destinationVC = segue.destination as? GigDetailViewController,
+                let index = tableView.indexPathForSelectedRow else { return }
+            
+            destinationVC.gig = gigController.gigs[index.row]
+            destinationVC.gigController = gigController
+            
+        } else if segue.identifier == "NewGigSegue" {
+            guard let destinationVC = segue.destination as? GigDetailViewController else { return }
+            destinationVC.gigController = gigController
+            
+        } else if segue.identifier == "LoginSegue" {
+            guard let destinationVC = segue.destination as? LoginViewController else { return }
+            destinationVC.gigController = gigController
+        }
+
     }
 
 }
