@@ -41,6 +41,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9S4-l9-ZZO">
+                                            <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -63,7 +64,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="5wa-5M-qaf" kind="presentation" id="WWM-ej-bqX"/>
+                        <segue destination="5wa-5M-qaf" kind="presentation" identifier="LoginScreen" id="WWM-ej-bqX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gni-Xk-kSP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -187,6 +188,7 @@
                         <viewLayoutGuide key="safeArea" id="Y9z-8a-mmB"/>
                     </view>
                     <connections>
+                        <outlet property="logInButton" destination="VEd-y4-kxH" id="3Jb-mE-wXS"/>
                         <outlet property="passwordTextField" destination="rNk-XX-5qN" id="4Ce-CW-6IZ"/>
                         <outlet property="segmentedControll" destination="8Rw-nE-o98" id="nFt-El-bP6"/>
                         <outlet property="userNameTextField" destination="ok5-bf-cqz" id="bWi-vV-Ncb"/>
@@ -216,6 +218,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="46Z-Pi-EM4"/>
+        <segue reference="BgW-mA-UNW"/>
     </inferredMetricsTieBreakers>
 </document>
