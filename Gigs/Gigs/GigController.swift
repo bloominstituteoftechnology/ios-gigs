@@ -117,7 +117,7 @@ class GigController {
         
         request.httpMethod = HTTPMethod.get.rawValue
         
-        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
@@ -162,7 +162,7 @@ class GigController {
         
         request.httpMethod = HTTPMethod.post.rawValue
         
-        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         let newGig = Gig(title: title, description: descpription, dueDate: dueDate)
         
