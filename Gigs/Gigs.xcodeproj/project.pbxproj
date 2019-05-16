@@ -14,6 +14,10 @@
 		3D2A48FC228DF51100AB37DA /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A48FB228DF51100AB37DA /* GigsTableViewController.swift */; };
 		3D2A48FE228DF65B00AB37DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A48FD228DF65B00AB37DA /* LoginViewController.swift */; };
 		3D2A4900228DFA8600AB37DA /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A48FF228DFA8600AB37DA /* GigDetailViewController.swift */; };
+		3D2A4902228DFC2100AB37DA /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A4901228DFC2100AB37DA /* Gig.swift */; };
+		3D2A4904228DFC5600AB37DA /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A4903228DFC5600AB37DA /* Bearer.swift */; };
+		3D2A4906228DFC7500AB37DA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A4905228DFC7500AB37DA /* User.swift */; };
+		3D2A4908228E0CB000AB37DA /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A4907228E0CB000AB37DA /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		3D2A48FB228DF51100AB37DA /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		3D2A48FD228DF65B00AB37DA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3D2A48FF228DFA8600AB37DA /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		3D2A4901228DFC2100AB37DA /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
+		3D2A4903228DFC5600AB37DA /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		3D2A4905228DFC7500AB37DA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3D2A4907228E0CB000AB37DA /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +68,7 @@
 			children = (
 				3D2A48FA228DF3E100AB37DA /* View Controllers */,
 				3D2A48F9228DF3CE00AB37DA /* Model Controller */,
-				3D2A48F8228DF3BE00AB37DA /* Model */,
+				3D2A48F8228DF3BE00AB37DA /* Models */,
 				3D2A48F6228DF3A500AB37DA /* Storyboards */,
 				3D2A48F7228DF3B100AB37DA /* Resources */,
 			);
@@ -86,16 +94,20 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		3D2A48F8228DF3BE00AB37DA /* Model */ = {
+		3D2A48F8228DF3BE00AB37DA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3D2A4901228DFC2100AB37DA /* Gig.swift */,
+				3D2A4905228DFC7500AB37DA /* User.swift */,
+				3D2A4903228DFC5600AB37DA /* Bearer.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3D2A48F9228DF3CE00AB37DA /* Model Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3D2A4907228E0CB000AB37DA /* GigController.swift */,
 			);
 			path = "Model Controller";
 			sourceTree = "<group>";
@@ -182,9 +194,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D2A48FE228DF65B00AB37DA /* LoginViewController.swift in Sources */,
+				3D2A4908228E0CB000AB37DA /* GigController.swift in Sources */,
 				3D2A4900228DFA8600AB37DA /* GigDetailViewController.swift in Sources */,
+				3D2A4904228DFC5600AB37DA /* Bearer.swift in Sources */,
 				3D2A48E5228DF34B00AB37DA /* AppDelegate.swift in Sources */,
 				3D2A48FC228DF51100AB37DA /* GigsTableViewController.swift in Sources */,
+				3D2A4902228DFC2100AB37DA /* Gig.swift in Sources */,
+				3D2A4906228DFC7500AB37DA /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +348,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K3F959XXFV;
-				INFOPLIST_FILE = Gigs/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Gigs/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -350,7 +366,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K3F959XXFV;
-				INFOPLIST_FILE = Gigs/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Gigs/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
