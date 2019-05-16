@@ -150,6 +150,51 @@ class GigController {
         }.resume()
     }
     
+    func fetchDetails(for gigTitle: String, completion: @escaping (Result<Gigs, NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.badAuth))
+            return
+        }
+        
+        let gigURL = baseURL.appendingPathComponent("gigs/\(gigTitle)")
+        
+        var request = URLRequest(url: gigURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let error = error {
+                completion(.failure(.apiError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noDataReturned))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            
+            do {
+                let gig = try decoder.decode(Gigs.self, from: data)
+                completion(.success(gig))
+            } catch {
+                print("Error decoding gig object: \(error)")
+                completion(.failure(.noDecode))
+                return
+            }
+        }.resume()
+    }
+    
     // MARK: - Properties
     
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
