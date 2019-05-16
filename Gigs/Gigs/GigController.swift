@@ -150,6 +150,48 @@ class GigController {
         
     }
     
+    func createGig(title: String, descpription: String, dueDate: Date, completion: @escaping (Error?) -> Void) {
+        guard let bearer = bearer else {
+            NSLog("No bearer token")
+            completion(NSError())
+            return
+        }
+        let requestURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: requestURL)
+        
+        request.httpMethod = HTTPMethod.post.rawValue
+        
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let newGig = Gig(title: title, description: descpription, dueDate: dueDate)
+        
+        do {
+            request.httpBody = try JSONEncoder().encode(newGig)
+        } catch {
+            NSLog("Error encoding newGig: \(error)")
+            completion(error)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(error)
+                return
+            }
+            
+            if let error = error {
+                NSLog("Error getting gigs: \(error)")
+                completion(error)
+                return
+            }
+            self.gigs.append(newGig)
+            completion(nil)
+        
+        }.resume()
+    }
+    
     
     enum NetworkError: Error {
         case noDataReturned
