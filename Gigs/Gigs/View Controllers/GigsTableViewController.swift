@@ -34,6 +34,19 @@ class GigsTableViewController: UITableViewController {
     }
     // MARK: - Table view data source
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LoginViewModalSegue" {
+            let destinationVC = segue.destination as! LoginViewController
+            destinationVC.gigController = self.gigController
+        }else if segue.identifier == "ShowGig" {
+            let destinationVC = segue.destination as! GigDetailViewController
+            destinationVC.gigController = self.gigController
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            destinationVC.gig = gigController.gigs[indexPath.row]
+
+        }
+    }
+
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

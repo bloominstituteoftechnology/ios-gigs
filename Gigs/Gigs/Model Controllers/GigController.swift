@@ -185,8 +185,6 @@ class GigController {
 
             do {
                 let bearer = try decoder.decode(Bearer.self, from: data)
-
-                // We now have the bearer to authenticate the other requests
                 self.bearer = bearer
                 completion(nil)
             } catch {
