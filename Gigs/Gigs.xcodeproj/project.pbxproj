@@ -17,6 +17,7 @@
 		D164CC96228DFA3700BAFD5F /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164CC95228DFA3700BAFD5F /* Gig.swift */; };
 		D164CC98228DFB4900BAFD5F /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164CC97228DFB4900BAFD5F /* Bearer.swift */; };
 		D164CC9A228DFB7C00BAFD5F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164CC99228DFB7C00BAFD5F /* User.swift */; };
+		D164CC9D228DFCBD00BAFD5F /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D164CC9C228DFCBD00BAFD5F /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		D164CC95228DFA3700BAFD5F /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 		D164CC97228DFB4900BAFD5F /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		D164CC99228DFB7C00BAFD5F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D164CC9C228DFCBD00BAFD5F /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		D164CC78228DEE3F00BAFD5F /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
+				D164CC9B228DFC9C00BAFD5F /* Model Controllers */,
 				D164CC94228DFA1900BAFD5F /* Model */,
 				D164CC8E228DEFB500BAFD5F /* View Controllers */,
 				D164CC8D228DEF9C00BAFD5F /* Storyboards */,
@@ -109,6 +112,14 @@
 				D164CC99228DFB7C00BAFD5F /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D164CC9B228DFC9C00BAFD5F /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D164CC9C228DFCBD00BAFD5F /* GigController.swift */,
+			);
+			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D164CC91228DF20300BAFD5F /* LoginViewController.swift in Sources */,
+				D164CC9D228DFCBD00BAFD5F /* GigController.swift in Sources */,
 				D164CC93228DF96400BAFD5F /* GigDetailViewController.swift in Sources */,
 				D164CC98228DFB4900BAFD5F /* Bearer.swift in Sources */,
 				D164CC7A228DEE3F00BAFD5F /* AppDelegate.swift in Sources */,
