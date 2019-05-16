@@ -17,14 +17,6 @@ class GigController {
         case delete = "DELETE"
     }
     
-    enum NetworkError: Error {
-        case noDataReturned
-        case noBearer
-        case badAuth
-        case apiError
-        case noDecode
-    }
-    
     private (set) var gigs: [Gig] = []
     var bearer: Bearer?
     
@@ -131,10 +123,10 @@ class GigController {
             }.resume()
     }
     
-    func getAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+    func getAllGigs(completion: @escaping (Error?) -> Void) {
         guard let bearer = bearer else {
             NSLog("No bearer token available")
-            completion(.failure(.noBearer))
+            completion(NSError())
             return
         }
         
@@ -153,29 +145,31 @@ class GigController {
             
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401 {
-                completion(.failure(.badAuth))
+                NSLog("Bad auth: \(error)")
+                completion(error)
                 return
             }
             
             if let error = error {
                 NSLog("Error getting gigs: \(error)")
-                completion(.failure(.apiError))
+                completion(error)
                 return
             }
             
             guard let data = data else {
-                completion(.failure(.noDataReturned))
+                NSLog("No data returned: \(error)")
+                completion(error)
                 return
             }
             
             let decoder = JSONDecoder()
             
             do {
-                let gigs = try decoder.decode([Gig].self, from: data)
-                completion(.success(gigs))
+                self.gigs = try decoder.decode([Gig].self, from: data)
+                completion(nil)
             } catch {
                 NSLog("Error decoding gigs: \(error)")
-                completion(.failure(.noDecode))
+                completion(error)
             }
             }.resume()
     }
