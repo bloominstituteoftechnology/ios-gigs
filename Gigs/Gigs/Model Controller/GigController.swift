@@ -102,12 +102,68 @@ class GigController {
             }.resume()
     }
     
+    func getGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            NSLog("No bearer token available")
+            completion(.failure(.noBearer))
+            return
+        }
+        
+        let requestURL = baseURL
+            .appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: requestURL)
+        
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let error = error {
+                NSLog("Error getting Gigs: \(error)")
+                completion(.failure(.apiError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noDataReturned))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+                let gig = try decoder.decode([String].self, from: data)
+                completion(.success(gig))
+            } catch {
+                NSLog("Error decoding gigs: \(error)")
+                completion(.failure(.noDecode))
+            }
+        }.resume()
+    }
+    
     // MARK: - Properties
     
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
     var bearer: Bearer?
     var gigs: [Gigs] = []
+    
+    enum NetworkError: Error {
+        case noDataReturned
+        case noBearer
+        case badAuth
+        case apiError
+        case noDecode
+    }
     
     enum HTTPMethod: String {
         case get = "GET"
