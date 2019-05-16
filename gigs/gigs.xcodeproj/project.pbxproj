@@ -14,6 +14,10 @@
 		F5FAEFB7228DF45400815C50 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAEFB6228DF45400815C50 /* GigsTableViewController.swift */; };
 		F5FAEFB9228DF56100815C50 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAEFB8228DF56100815C50 /* LoginViewController.swift */; };
 		F5FAEFBE228DFB5600815C50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAEFBD228DFB5600815C50 /* ViewController.swift */; };
+		F5FAEFC0228DFC5700815C50 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAEFBF228DFC5700815C50 /* Gig.swift */; };
+		F5FAEFC3228DFD4700815C50 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAEFC2228DFD4700815C50 /* Bearer.swift */; };
+		F5FAEFC5228DFD7C00815C50 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAEFC4228DFD7C00815C50 /* User.swift */; };
+		F5FAEFC7228DFDCF00815C50 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAEFC6228DFDCF00815C50 /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		F5FAEFB6228DF45400815C50 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		F5FAEFB8228DF56100815C50 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F5FAEFBD228DFB5600815C50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F5FAEFBF228DFC5700815C50 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
+		F5FAEFC2228DFD4700815C50 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		F5FAEFC4228DFD7C00815C50 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F5FAEFC6228DFDCF00815C50 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				F5FAEFA4228DF38900815C50 /* AppDelegate.swift */,
+				F5FAEFC1228DFD2D00815C50 /* Models */,
 				F5FAEFBA228DF56B00815C50 /* ViewController */,
 				F5FAEFA8228DF38900815C50 /* Main.storyboard */,
 				F5FAEFAB228DF38A00815C50 /* Assets.xcassets */,
@@ -73,9 +82,20 @@
 			children = (
 				F5FAEFB6228DF45400815C50 /* GigsTableViewController.swift */,
 				F5FAEFB8228DF56100815C50 /* LoginViewController.swift */,
+				F5FAEFC6228DFDCF00815C50 /* GigController.swift */,
 				F5FAEFBD228DFB5600815C50 /* ViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F5FAEFC1228DFD2D00815C50 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F5FAEFBF228DFC5700815C50 /* Gig.swift */,
+				F5FAEFC4228DFD7C00815C50 /* User.swift */,
+				F5FAEFC2228DFD4700815C50 /* Bearer.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,9 +170,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5FAEFB9228DF56100815C50 /* LoginViewController.swift in Sources */,
+				F5FAEFC7228DFDCF00815C50 /* GigController.swift in Sources */,
 				F5FAEFA5228DF38900815C50 /* AppDelegate.swift in Sources */,
+				F5FAEFC3228DFD4700815C50 /* Bearer.swift in Sources */,
 				F5FAEFBE228DFB5600815C50 /* ViewController.swift in Sources */,
 				F5FAEFB7228DF45400815C50 /* GigsTableViewController.swift in Sources */,
+				F5FAEFC0228DFC5700815C50 /* Gig.swift in Sources */,
+				F5FAEFC5228DFD7C00815C50 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
