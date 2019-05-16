@@ -66,6 +66,7 @@ class LoginViewController: UIViewController {
             gigController?.logIn(with: username, password: password, completion: { (error) in
                 if let error = error {
                     NSLog("Error logging in: \(error)")
+                    return
                 } else {
                     DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: nil)
