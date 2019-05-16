@@ -163,6 +163,7 @@ class GigController {
             }
             
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
             
             do {
                 self.gigs = try decoder.decode([Gig].self, from: data)

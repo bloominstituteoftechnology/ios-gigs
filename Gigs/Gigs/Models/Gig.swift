@@ -12,4 +12,5 @@ struct Gig: Codable {
     let title: String
     let dueDate: Date
     let description: String
+    
 }

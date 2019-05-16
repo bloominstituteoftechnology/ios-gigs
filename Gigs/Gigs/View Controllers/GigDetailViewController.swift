@@ -61,9 +61,10 @@ class GigDetailViewController: UIViewController {
             DispatchQueue.main.async {
                 self.gig = gig
                 self.updateViews()
-                self.navigationController?.popViewController(animated: true)
+                
             }
         }
+        navigationController?.popViewController(animated: true)
     }
     
 }
