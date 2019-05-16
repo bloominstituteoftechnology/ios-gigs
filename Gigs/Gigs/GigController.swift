@@ -206,12 +206,21 @@ class GigController {
         }
         
         
-        URLSession.shared.dataTask(with: request) { (data, _, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if let error = error {
                 NSLog("Error pushing gig to DB: \(error)")
                 completion(error)
             }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                NSLog("Bad authenticator")
+                completion(error)
+                return
+            }
+            
+            
             self.gigs.append(newGig)
             completion(nil)
             
