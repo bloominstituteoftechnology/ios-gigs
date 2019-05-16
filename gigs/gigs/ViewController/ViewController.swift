@@ -9,6 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController {
+	
+	var gigController: GigController?
+	
+	var gig: Gig? {
+		didSet {
+			DispatchQueue.main.async {
+				self.updateView()
+			}
+		}
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
