@@ -12,20 +12,8 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     @IBAction func signInTypeChanged(_ sender: Any) {
         if loginTypeSegmentedControl.selectedSegmentIndex == 0 {
             signInType = .signUp
@@ -33,6 +21,7 @@ class LoginViewController: UIViewController {
         } else {
             signInType = .logIn
             signInButton.setTitle("Log In", for: .normal)
+            navigationItem.title = "Log In"
         }
     }
     

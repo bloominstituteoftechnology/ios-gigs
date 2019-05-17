@@ -13,13 +13,14 @@ class GigViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        updateViews()
     }
     
     // MARK: - Methods
     
-    func updateViews(with gig: Gigs) {
+    func updateViews() {
         if gig != nil {
+            guard let gig = gig else { return }
             jobTitleTextField.text = gig.title
             descriptionTextView.text = gig.description
             datePicker.date = gig.duedate

@@ -150,6 +150,55 @@ class GigController {
         }.resume()
     }
     
+    func fetchAllGigs(completion: @escaping (Result<[Gigs], NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            NSLog("No bearer token available")
+            completion(.failure(.noBearer))
+            return
+        }
+        
+        let requestURL = baseURL
+            .appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: requestURL)
+        
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let error = error {
+                NSLog("Error getting gigs: \(error)")
+                completion(.failure(.apiError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noDataReturned))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            do {
+                let gigs = try decoder.decode([Gigs].self, from: data)
+                self.gigs = gigs
+                completion(.success(gigs))
+            } catch {
+                NSLog("Error decoding gigs: \(error)")
+                completion(.failure(.noDecode))
+            }
+            }.resume()
+    }
+    
     func createGigs(for gigTitle: String, description: String, dueDate: Date, completion: @escaping (Error?) -> Void) {
         
         let newGig = Gigs(title: gigTitle, description: description, duedate: dueDate)
