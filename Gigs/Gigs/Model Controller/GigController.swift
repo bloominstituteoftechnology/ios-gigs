@@ -150,49 +150,51 @@ class GigController {
         }.resume()
     }
     
-    func fetchDetails(for gigTitle: String, completion: @escaping (Result<Gigs, NetworkError>) -> Void) {
+    func createGigs(for gigTitle: String, description: String, dueDate: Date, completion: @escaping (Error?) -> Void) {
+        
+        let newGig = Gigs(title: gigTitle, description: description, duedate: dueDate)
         
         guard let bearer = bearer else {
-            completion(.failure(.badAuth))
+            NSLog("No bearer token available")
+            completion(nil)
             return
         }
         
-        let gigURL = baseURL.appendingPathComponent("gigs/\(gigTitle)")
+        let gigURL = baseURL.appendingPathComponent("gigs")
         
         var request = URLRequest(url: gigURL)
-        request.httpMethod = HTTPMethod.get.rawValue
+        request.httpMethod = HTTPMethod.post.rawValue
         request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        do {
+            let encoder = JSONEncoder()
+            request.httpBody = try encoder.encode(newGig)
+        } catch {
+            NSLog("Error encoding gig: \(error)")
+            completion(error)
+            return
+        }
+        
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
+            if let error = error {
+                NSLog("Error pushing gig to DB: \(error)")
+                completion(error)
+            }
+            
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401 {
-                completion(.failure(.badAuth))
+                NSLog("Bad authenticator")
+                completion(error)
                 return
             }
             
-            if let error = error {
-                completion(.failure(.apiError))
-                return
-            }
             
-            guard let data = data else {
-                completion(.failure(.noDataReturned))
-                return
-            }
+            self.gigs.append(newGig)
+            completion(nil)
             
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            
-            do {
-                let gig = try decoder.decode(Gigs.self, from: data)
-                completion(.success(gig))
-            } catch {
-                print("Error decoding gig object: \(error)")
-                completion(.failure(.noDecode))
-                return
-            }
-        }.resume()
+            }.resume()
     }
     
     // MARK: - Properties

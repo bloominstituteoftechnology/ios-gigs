@@ -47,6 +47,25 @@ class GigsTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowGig" {
+            guard let destinationVC = segue.destination as? GigViewController,
+                let index = tableView.indexPathForSelectedRow else { return }
+            
+            destinationVC.gig = gigController.gigs[index.row]
+            destinationVC.gigController = gigController
+            
+        } else if segue.identifier == "CreateGig" {
+            guard let destinationVC = segue.destination as? GigViewController else { return }
+            destinationVC.gigController = gigController
+            
+        } else if segue.identifier == "LoginViewModalSegue" {
+            guard let destinationVC = segue.destination as? LoginViewController else { return }
+            destinationVC.gigController = gigController
+        }
+        
+    }
 
     let gigController = GigController()
 }
