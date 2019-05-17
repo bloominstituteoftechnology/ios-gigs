@@ -16,11 +16,10 @@ class LoginViewController: UIViewController {
         case logIn
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    }
+    } // end of view did load 
     
     @IBOutlet weak var loginSegmentedControl: UISegmentedControl!
     @IBOutlet weak var usernameTextField: UITextField!

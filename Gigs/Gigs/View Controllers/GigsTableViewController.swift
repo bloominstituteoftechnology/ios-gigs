@@ -44,6 +44,15 @@ class GigsTableViewController: UITableViewController {
     } // end of cell for row at
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
+        switch segue.identifier {
+        case "loginSegue":
+            <#code#>
+        case "gigSegue":
+            <#code#>
+        case "addSegue":
+            <#code#>
+        default:
+            break
+        }
     }
 }
