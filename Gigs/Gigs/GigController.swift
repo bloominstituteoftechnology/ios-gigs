@@ -151,7 +151,7 @@ class GigController {
     }
     
     func createGig(title: String, descpription: String, dueDate: Date, completion: @escaping (Error?) -> Void) {
-        guard let bearer = bearer else {
+        guard let _ = bearer else {
             NSLog("No bearer token")
             completion(NSError())
             return
@@ -162,7 +162,8 @@ class GigController {
         
         request.httpMethod = HTTPMethod.post.rawValue
         
-        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+//        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let newGig = Gig(title: title, description: descpription, dueDate: dueDate)
         

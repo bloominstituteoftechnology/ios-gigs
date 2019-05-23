@@ -17,7 +17,7 @@ class GigsTableViewController: UITableViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if gigController.bearer == nil {
             // Send the user to the login VC.
             

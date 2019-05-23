@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
                 if let error = error {
                     NSLog("Error logging in: \(error)")
                 } else {
-                    DispatchQueue.main.sync {
+                    DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: nil)
                     }
                 }
