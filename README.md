@@ -3,8 +3,8 @@
 ## Introduction
 
 Please look at the screen recording below to know what the finished project should look like:
+![Gigs pt. 1](https://user-images.githubusercontent.com/16965587/59760255-1f7f0300-924f-11e9-83f2-a01933712ece.gif)
 
-![Gigs Screen Recording](https://user-images.githubusercontent.com/16965587/57464723-71893d80-723a-11e9-87fe-1831188727e5.gif)
 
 (The gif is fairly large in size. It may take a few seconds for it to appear)
 
