@@ -23,6 +23,7 @@ class GigsTableViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if gigController.bearer == nil {
             performSegue(withIdentifier: "SignUpModalSegue", sender: self)
         }
