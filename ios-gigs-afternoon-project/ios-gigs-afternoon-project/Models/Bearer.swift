@@ -9,9 +9,9 @@
 import Foundation
 
 struct Bearer: Codable {
-    enum KeyValue: String {
-        case identification = "id"
-        case token = "token"
-        case userID = "userId"
-    }
+//    enum KeyValue: String {
+//        case identification = "id"
+//        case token = "token"
+//        case userID = "userId"
+//    }
 }
