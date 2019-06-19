@@ -14,6 +14,8 @@
 		372CC5AF22BAC43700613BDA /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CC5AE22BAC43700613BDA /* GigsTableViewController.swift */; };
 		372CC5B322BAC82700613BDA /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CC5B222BAC82700613BDA /* Bearer.swift */; };
 		372CC5B722BAC8A100613BDA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CC5B622BAC8A100613BDA /* User.swift */; };
+		372CC5B922BAC9D900613BDA /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CC5B822BAC9D900613BDA /* GigController.swift */; };
+		372CC5BB22BACAB600613BDA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CC5BA22BACAB600613BDA /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		372CC5AE22BAC43700613BDA /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		372CC5B222BAC82700613BDA /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		372CC5B622BAC8A100613BDA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		372CC5B822BAC9D900613BDA /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		372CC5BA22BACAB600613BDA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				372CC5AE22BAC43700613BDA /* GigsTableViewController.swift */,
+				372CC5BA22BACAB600613BDA /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -88,6 +93,7 @@
 		372CC5B522BAC83900613BDA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				372CC5B822BAC9D900613BDA /* GigController.swift */,
 				372CC5B222BAC82700613BDA /* Bearer.swift */,
 				372CC5B622BAC8A100613BDA /* User.swift */,
 			);
@@ -165,8 +171,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				372CC5BB22BACAB600613BDA /* LoginViewController.swift in Sources */,
 				372CC5B722BAC8A100613BDA /* User.swift in Sources */,
 				372CC59D22BAC04600613BDA /* AppDelegate.swift in Sources */,
+				372CC5B922BAC9D900613BDA /* GigController.swift in Sources */,
 				372CC5AF22BAC43700613BDA /* GigsTableViewController.swift in Sources */,
 				372CC5B322BAC82700613BDA /* Bearer.swift in Sources */,
 			);
