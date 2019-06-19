@@ -11,6 +11,8 @@
 		A2D971DC22BABDB400937E72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D971DA22BABDB400937E72 /* Main.storyboard */; };
 		A2D971DE22BABDB500937E72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2D971DD22BABDB500937E72 /* Assets.xcassets */; };
 		A2D971E122BABDB500937E72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D971DF22BABDB500937E72 /* LaunchScreen.storyboard */; };
+		A2D971E922BABFB400937E72 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D971E822BABFB400937E72 /* GigsTableViewController.swift */; };
+		A2D971EC22BAC23900937E72 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D971EB22BAC23900937E72 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		A2D971DD22BABDB500937E72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2D971E022BABDB500937E72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2D971E222BABDB500937E72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2D971E822BABFB400937E72 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
+		A2D971EB22BAC23900937E72 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,12 +57,22 @@
 			isa = PBXGroup;
 			children = (
 				A2D971D622BABDB400937E72 /* AppDelegate.swift */,
+				A2D971EA22BABFBD00937E72 /* View Controllers */,
 				A2D971DA22BABDB400937E72 /* Main.storyboard */,
 				A2D971DD22BABDB500937E72 /* Assets.xcassets */,
 				A2D971DF22BABDB500937E72 /* LaunchScreen.storyboard */,
 				A2D971E222BABDB500937E72 /* Info.plist */,
 			);
 			path = "ios-gigs-afternoon-project";
+			sourceTree = "<group>";
+		};
+		A2D971EA22BABFBD00937E72 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A2D971E822BABFB400937E72 /* GigsTableViewController.swift */,
+				A2D971EB22BAC23900937E72 /* LoginViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,7 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2D971EC22BAC23900937E72 /* LoginViewController.swift in Sources */,
 				A2D971D722BABDB400937E72 /* AppDelegate.swift in Sources */,
+				A2D971E922BABFB400937E72 /* GigsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
