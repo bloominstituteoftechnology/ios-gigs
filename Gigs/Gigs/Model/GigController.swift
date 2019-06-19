@@ -24,7 +24,7 @@ class GigController: Codable {
 		
 		var request = URLRequest(url: signUpUrl)
 		request.httpMethod = HTTPMethod.post.rawValue
-		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type") //What is this doing????????
 		
 		let jsonEncoder = JSONEncoder()
 		do {
@@ -98,4 +98,7 @@ class GigController: Codable {
 			completion(nil)
 		}.resume()
 	}
+	
+	
+	// Function for fetching all Gigs
 }

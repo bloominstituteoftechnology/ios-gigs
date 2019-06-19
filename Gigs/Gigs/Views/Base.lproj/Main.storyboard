@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gigs Table View Controller-->
+        <!--Gigs-->
         <scene sceneID="mm7-BD-unX">
             <objects>
                 <tableViewController id="V5q-Fe-GUO" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,9 +49,9 @@
                             <outlet property="delegate" destination="V5q-Fe-GUO" id="gK7-yI-C8p"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="QtN-N7-v7M"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="QtN-N7-v7M"/>
                     <connections>
-                        <segue destination="ghe-mN-fXV" kind="presentation" id="nxg-Hd-F5L"/>
+                        <segue destination="ghe-mN-fXV" kind="presentation" identifier="ShowSignUpSegue" id="nxg-Hd-F5L"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RBD-bp-cRr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -84,16 +84,16 @@
                                         <rect key="frame" x="20" y="44" width="334" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sxc-iG-mmn">
                                         <rect key="frame" x="20" y="90" width="334" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zrp-WC-XhK">
-                                        <rect key="frame" x="100" y="136" width="174" height="40"/>
+                                        <rect key="frame" x="90" y="136" width="194" height="40"/>
                                         <color key="backgroundColor" red="0.48570332319999998" green="0.52806198059999998" blue="0.77918781729999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Z5p-59-VFg"/>
@@ -108,12 +108,12 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Zrp-WC-XhK" firstAttribute="leading" secondItem="IzU-zb-2QU" secondAttribute="leading" constant="100" id="R9G-Lt-Ies"/>
+                                    <constraint firstItem="Zrp-WC-XhK" firstAttribute="leading" secondItem="IzU-zb-2QU" secondAttribute="leading" constant="90" id="R9G-Lt-Ies"/>
                                     <constraint firstAttribute="trailing" secondItem="FHg-E1-P0T" secondAttribute="trailing" constant="20" id="Wcf-Xq-CCj"/>
                                     <constraint firstAttribute="trailing" secondItem="Sxc-iG-mmn" secondAttribute="trailing" constant="20" id="ePQ-fw-i3S"/>
                                     <constraint firstItem="FHg-E1-P0T" firstAttribute="leading" secondItem="IzU-zb-2QU" secondAttribute="leading" constant="20" id="jPh-1J-7T3"/>
                                     <constraint firstItem="Sxc-iG-mmn" firstAttribute="leading" secondItem="IzU-zb-2QU" secondAttribute="leading" constant="20" id="yNQ-9a-wQb"/>
-                                    <constraint firstAttribute="trailing" secondItem="Zrp-WC-XhK" secondAttribute="trailing" constant="100" id="zB0-0b-yKK"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zrp-WC-XhK" secondAttribute="trailing" constant="90" id="zB0-0b-yKK"/>
                                 </constraints>
                             </stackView>
                         </subviews>

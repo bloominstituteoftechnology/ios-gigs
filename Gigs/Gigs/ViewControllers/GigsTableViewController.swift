@@ -8,7 +8,18 @@
 
 import UIKit
 
+
 class GigsTableViewController: UITableViewController {
+	
+	let gigController = GigController()
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		if gigController.bearer == nil {
+			performSegue(withIdentifier: "ShowSignUpSegue", sender: self)
+		}
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,15 +43,15 @@ class GigsTableViewController: UITableViewController {
         return 0
     }
 
-    /*
+	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    */
+	
 
     /*
     // Override to support conditional editing of the table view.
@@ -77,14 +88,16 @@ class GigsTableViewController: UITableViewController {
     }
     */
 
-    /*
+	
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+	
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+		if segue.identifier == "ShowSignUpSegue" {
+			
+			if let loginVC = segue.destination as? LoginViewController {
+				loginVC.gigController = gigController
+			}
+		}
     }
-    */
-
 }
