@@ -17,7 +17,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6VJ-qu-ij4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GigCell" textLabel="kom-7K-aue" detailTextLabel="uWE-1J-iW3" style="IBUITableViewCellStyleValue1" id="Q1I-pY-fQd">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
@@ -51,7 +51,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Gigs" id="PGk-B1-EOb"/>
                     <connections>
-                        <segue destination="VGf-4N-Ppl" kind="presentation" id="hrU-tV-Dca"/>
+                        <segue destination="VGf-4N-Ppl" kind="presentation" identifier="SignUpModalSegue" id="hrU-tV-Dca"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iab-0L-ODt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -66,8 +66,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9AZ-2u-sEo">
-                                <rect key="frame" x="10" y="44" width="394" height="142"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="9AZ-2u-sEo">
+                                <rect key="frame" x="10" y="64" width="394" height="160"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4VP-H3-SSE">
                                         <rect key="frame" x="134.5" y="0.0" width="125" height="29"/>
@@ -75,28 +75,32 @@
                                             <segment title="Sign Up"/>
                                             <segment title="Log In"/>
                                         </segments>
+                                        <color key="tintColor" red="0.012577910464083847" green="0.67992148090523952" blue="0.75846684640913709" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="signInTypeChanged:" destination="VGf-4N-Ppl" eventType="valueChanged" id="ByV-8a-X9s"/>
                                         </connections>
                                     </segmentedControl>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0AC-co-HKK">
-                                        <rect key="frame" x="0.0" y="36" width="394" height="106"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="0AC-co-HKK">
+                                        <rect key="frame" x="0.0" y="41" width="394" height="119"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ntn-ty-cYH">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="username"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EWy-2b-p6b">
-                                                <rect key="frame" x="0.0" y="38" width="394" height="30"/>
+                                                <rect key="frame" x="0.0" y="43" width="394" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sut-Rs-hif">
-                                                <rect key="frame" x="0.0" y="76" width="394" height="30"/>
-                                                <state key="normal" title="Button"/>
+                                                <rect key="frame" x="0.0" y="86" width="394" height="33"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <state key="normal" title="Sign Up">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="signInButtonTapped:" destination="VGf-4N-Ppl" eventType="touchUpInside" id="Naz-43-8CR"/>
                                                 </connections>
@@ -110,16 +114,14 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="0AC-co-HKK" secondAttribute="trailing" id="Oag-DQ-Cie"/>
-                                    <constraint firstItem="0AC-co-HKK" firstAttribute="top" secondItem="4VP-H3-SSE" secondAttribute="bottom" constant="8" id="c3z-zl-mIB"/>
-                                    <constraint firstItem="0AC-co-HKK" firstAttribute="top" secondItem="4VP-H3-SSE" secondAttribute="bottom" constant="8" id="iDb-U2-dAq"/>
                                     <constraint firstItem="0AC-co-HKK" firstAttribute="leading" secondItem="9AZ-2u-sEo" secondAttribute="leading" id="oCa-E9-0hB"/>
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9AZ-2u-sEo" firstAttribute="leading" secondItem="IrS-FU-Xc0" secondAttribute="leading" constant="10" id="CwA-Yk-dBV"/>
-                            <constraint firstItem="9AZ-2u-sEo" firstAttribute="top" secondItem="IrS-FU-Xc0" secondAttribute="top" id="Jpy-IU-Yia"/>
+                            <constraint firstItem="9AZ-2u-sEo" firstAttribute="top" secondItem="IrS-FU-Xc0" secondAttribute="top" constant="20" id="Jpy-IU-Yia"/>
                             <constraint firstItem="IrS-FU-Xc0" firstAttribute="trailing" secondItem="9AZ-2u-sEo" secondAttribute="trailing" constant="10" id="zDr-WQ-BJi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IrS-FU-Xc0"/>
@@ -127,7 +129,7 @@
                     <connections>
                         <outlet property="passwordTextField" destination="EWy-2b-p6b" id="KlL-lO-xZP"/>
                         <outlet property="segmentedControl" destination="4VP-H3-SSE" id="gg3-EB-Eqk"/>
-                        <outlet property="signInButton" destination="Sut-Rs-hif" id="z8k-RB-xSL"/>
+                        <outlet property="signInButton" destination="Sut-Rs-hif" id="3N0-CF-6nf"/>
                         <outlet property="usernameTextField" destination="Ntn-ty-cYH" id="lhW-1A-Md9"/>
                     </connections>
                 </viewController>
@@ -143,6 +145,14 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Oo0-9y-T2k">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
