@@ -10,7 +10,7 @@ import UIKit
 
 enum LoginType {
     case signUp
-    case signIn
+    case logIn
 }
 
 class LoginViewController: UIViewController {
@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Custom logInButton
         
         logInButton.backgroundColor = UIColor(hue: 140/360, saturation: 75/100, brightness: 50/100, alpha: 1.0)
@@ -45,6 +45,7 @@ class LoginViewController: UIViewController {
         logInSegmentedControl.layer.cornerRadius = 8.0
         
     }
+ 
     
     //
     // MARK:- IBActions
@@ -67,7 +68,7 @@ class LoginViewController: UIViewController {
                             let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                             alertController.addAction(alertAction)
                             self.present(alertController, animated: true, completion: {
-                                self.loginType = .signIn
+                                self.loginType = .logIn
                                 self.logInSegmentedControl.selectedSegmentIndex = 1
                                 self.logInButton.setTitle("Log In", for: .normal)
                             })
@@ -75,7 +76,7 @@ class LoginViewController: UIViewController {
                     }
                 }
             }else {
-                gigController.signIn(with: user) { error in
+                gigController.logIn(with: user) { error in
                     if let error = error {
                         print("error during sign in: \(error)")
                     }else {
@@ -94,20 +95,8 @@ class LoginViewController: UIViewController {
             loginType = .signUp
             logInButton.setTitle("Sign Up", for: .normal)
         }else {
-            loginType = .signIn
+            loginType = .logIn
             logInButton.setTitle("Sign In", for: .normal)
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -61,10 +61,10 @@ class GigController {
     //MARK: - Sign In Method
     //
     
-    func signIn(with user: User, completion: @escaping (Error?) -> ()) {
-        let signInUrl = baseUrl.appendingPathComponent("users/login")
+    func logIn(with user: User, completion: @escaping (Error?) -> ()) {
+        let logInUrl = baseUrl.appendingPathComponent("users/login")
         
-        var request = URLRequest(url: signInUrl)
+        var request = URLRequest(url: logInUrl)
         request.httpMethod = HTTPMethod.post.rawValue //setting up ability to send info to api
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
