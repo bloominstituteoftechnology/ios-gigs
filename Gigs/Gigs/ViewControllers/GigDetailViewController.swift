@@ -15,10 +15,13 @@ class GigDetailViewController: UIViewController {
 	@IBOutlet var datePicker: UIDatePicker!
 	@IBOutlet var descriptionTextView: UITextView!
 	
+	var gigController: GigController!
+	var gig: Gig?
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+		
     }
     
 	@IBAction func saveButtonTaped(_ sender: UIBarButtonItem) {
