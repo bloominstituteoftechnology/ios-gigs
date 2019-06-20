@@ -36,6 +36,7 @@ class GigController {
         } catch {
             print("Error encoding User Object: \(error)")
             completion(error)
+            return
         }
         
         URLSession.shared.dataTask(with: request) { (_, response, error) in
