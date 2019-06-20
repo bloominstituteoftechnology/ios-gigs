@@ -15,6 +15,8 @@ class GigsTableViewController: UITableViewController {
     //
     
     let gigController = GigController()
+    let df = DateFormatter()
+
     
     //
     //MARK: - View LifeCycle
@@ -38,12 +40,15 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
-        
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        df.dateStyle = .short
+        df.timeStyle = .short
+        cell.detailTextLabel?.text = df.string(from: gigController.gigs[indexPath.row].dueDate)
         return cell
     }
 
