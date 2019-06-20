@@ -78,8 +78,7 @@ class LoginViewController: UIViewController {
 			loginType = LoginType.signIn
 			signInButton.setTitle("Sign In", for: .normal)
 		default:											//Ask Conner why it still wants a default even though I've exhausted all options
-			loginType = LoginType.signUp
-			signInButton.setTitle("Sign Up", for: .normal)
+			()
 		}
 	}
 	
