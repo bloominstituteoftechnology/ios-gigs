@@ -164,7 +164,7 @@ class GigController {
     //MARK: - Fetch Gig Details
     //
     
-    func fetchDetails(for gig: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+    func fetchDetails(for gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
         guard let bearer = bearer else {
             completion(.failure(.noAuth))
             return

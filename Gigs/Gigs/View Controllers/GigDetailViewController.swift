@@ -16,13 +16,24 @@ class GigDetailViewController: UIViewController {
     
     var gigController: GigController!
     var gig: Gig?
-    let df = DateFormatter()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        noGigUpdateViews()
+    }
+    
+    func getGig() {
+        guard let gigController = gigController,
+            let gig = gig else { return }
+        
+        gigController.fetchDetails(for: gig) { result in
+            if let gig = try? result.get() {
+                DispatchQueue.main.async {
+                    self.updateViews(with: gig)
+                }
+            }
+        }
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
@@ -37,24 +48,25 @@ class GigDetailViewController: UIViewController {
                 if let error = error {
                     print("Error occured adding new gig: \(error)")
                 }else  {
-                    
+                    DispatchQueue.main.async {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
                 }
             }
         }
     }
-    
-    func updateViews() {
-        
-        df.dateStyle = .short
-        df.timeStyle = .short
-        
+    func noGigUpdateViews() {
+        self.title = "Add New Gig"
+    }
+    func updateViews(with newGig: Gig) {
+
         if gig == nil {
-            title = "New Gig"
+            self.title = "New Gig"
         }else {
-            guard let gig = gig else { return }
-            jobTitleTextView?.text = gig.title
-            dueDatePicker?.date = gig.dueDate
-            descriptionTextView?.text = gig.description
+          
+            jobTitleTextView?.text = newGig.title
+            dueDatePicker?.date = newGig.dueDate
+            descriptionTextView?.text = newGig.description
         }
     }
     
