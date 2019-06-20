@@ -13,17 +13,10 @@ class GigDetailViewController: UIViewController {
     @IBOutlet var gigTitle: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var gigDescription: UITextView!
+    @IBOutlet var saveButton: UIBarButtonItem!
     
-    var gigController: GigController! {
-        didSet {
-            print("gigcontroller passed into vc.")
-        }
-    }
-    var gig: Gig? {
-        didSet {
-            updateViews()
-        }
-    }
+    var gigController: GigController!
+    var gig: Gig?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +42,12 @@ class GigDetailViewController: UIViewController {
             DispatchQueue.main.async {
                 self.gig = newGig
                 self.updateViews()
-                self.navigationController?.popViewController(animated: true)
+                
                 
             }
         }
+        print(newGig)
+        self.navigationController?.popViewController(animated: true)
         
         
     }
@@ -63,6 +58,7 @@ class GigDetailViewController: UIViewController {
             isViewLoaded else {
                 title = "New Gig"
                 return }
+        saveButton.isEnabled = false
         title = newGig.title
         gigTitle.text = newGig.title
         datePicker.date = newGig.dueDate

@@ -163,16 +163,27 @@ class GigController {
             return
         }
         
-        let allGigsUrl = baseURL.appendingPathComponent("gigs")
-        
+        let allGigsUrl = baseURL.appendingPathComponent("gigs/")
+        // Create request and add parameters.
         var request = URLRequest(url: allGigsUrl)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        // Creating an encoder to encode gig.
+        do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            // Encoded gig included in httpBody.
+            request.httpBody = try encoder.encode(gig)
+            
+        } catch {
+            completion(error)
+            return
+        }
         
-        URLSession.shared.dataTask(with: request) { (_, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
-                response.statusCode == 401{
+                response.statusCode == 401 {
                 completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
                 return
             }
@@ -181,22 +192,27 @@ class GigController {
                 completion(error)
                 return
             }
-        
+            
+            guard let data = data else {
+                print("No data returned.")
+                return }
+            // Decode
             
             do {
-            let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .iso8601
-            request.httpBody = try encoder.encode(gig)
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let newGig = try decoder.decode(Gig.self, from: data)
+                self.gigs.append(newGig)
             } catch {
                 completion(error)
                 return
             }
         
         
-        self.gigs.append(gig)
-        completion(nil)
-    }.resume()
+            
+                completion(nil)
+            }.resume()
     
-}
+    }
     
 }

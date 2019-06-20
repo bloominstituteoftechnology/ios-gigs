@@ -20,6 +20,7 @@ class GigsTableViewController: UITableViewController {
         
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tableView.reloadData()
@@ -32,6 +33,7 @@ class GigsTableViewController: UITableViewController {
                 }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        print(self.gigController.gigs)
                     }
                 }
             }
