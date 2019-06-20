@@ -11,20 +11,32 @@ import UIKit
 class GigsTableViewController: UITableViewController {
     
     var gigController = GigController()
+    let df = DateFormatter()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        self.tableView.reloadData()
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginModalSegue", sender: self)
+        } else {
+            gigController.fetchGigs { (error) in
+                if let error = error {
+                        print(error)
+                }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
         }
-    }
+    
 
     // MARK: - Table view data source
 
@@ -32,33 +44,21 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        
+        let gig = gigController.gigs[indexPath.row]
+        cell.textLabel?.text = gig.title
+        df.dateStyle = .short
+        cell.detailTextLabel?.text = df.string(from: gig.dueDate)
         
         return cell
     }
     
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
+ 
 
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,6 +66,17 @@ class GigsTableViewController: UITableViewController {
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.gigController = gigController
             }
+        }
+        if segue.identifier == "AddGig" {
+            guard let addGigVC = segue.destination as? GigDetailViewController else { return }
+            addGigVC.gigController = gigController
+        }
+        if segue.identifier == "ShowGig" {
+            guard let showGigVC = segue.destination as? GigDetailViewController,
+                let index = tableView.indexPathForSelectedRow else { return }
+            let shownGig = gigController.gigs[index.row]
+            showGigVC.gigController = gigController
+            showGigVC.gig = shownGig
         }
     }
     

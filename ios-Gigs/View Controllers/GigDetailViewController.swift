@@ -13,17 +13,62 @@ class GigDetailViewController: UIViewController {
     @IBOutlet var gigTitle: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var gigDescription: UITextView!
+    
+    var gigController: GigController! {
+        didSet {
+            print("gigcontroller passed into vc.")
+        }
+    }
+    var gig: Gig? {
+        didSet {
+            updateViews()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        updateViews()
         // Do any additional setup after loading the view.
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        guard let title = gigTitle.text,
+            !title.isEmpty,
+            let description = gigDescription.text,
+            !description.isEmpty,
+            let gigController = gigController else { return }
+        let dueDate = datePicker.date
+        let newGig = Gig(title: title, description: description, dueDate: dueDate)
+        
+        gigController.createGig(with: newGig) { (error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            DispatchQueue.main.async {
+                self.gig = newGig
+                self.updateViews()
+                self.navigationController?.popViewController(animated: true)
+                
+            }
+        }
+        
         
     }
     
+ 
+    func updateViews() {
+        guard let newGig = gig,
+            isViewLoaded else {
+                title = "New Gig"
+                return }
+        title = newGig.title
+        gigTitle.text = newGig.title
+        datePicker.date = newGig.dueDate
+        gigDescription.text = newGig.description
+        
+    }
 
     /*
     // MARK: - Navigation

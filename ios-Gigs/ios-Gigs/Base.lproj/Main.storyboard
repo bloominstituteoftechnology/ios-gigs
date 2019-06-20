@@ -70,7 +70,7 @@
         <!--New Gig-->
         <scene sceneID="ixD-YW-c5u">
             <objects>
-                <viewController id="zU2-8F-a27" sceneMemberID="viewController">
+                <viewController id="zU2-8F-a27" customClass="GigDetailViewController" customModule="ios_Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vPd-cJ-jya">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -141,8 +141,17 @@
                         <viewLayoutGuide key="safeArea" id="i6L-og-Soc"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Gig" id="17j-ly-Rcl">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="trk-2i-kcb"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="trk-2i-kcb">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="zU2-8F-a27" id="3l0-6I-XYZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="thY-Te-RK6" id="Xe8-zq-f7z"/>
+                        <outlet property="gigDescription" destination="J3T-rh-wX2" id="0Nb-pD-ddz"/>
+                        <outlet property="gigTitle" destination="3yC-RX-eme" id="YJi-Wv-klF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lud-dR-0jX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

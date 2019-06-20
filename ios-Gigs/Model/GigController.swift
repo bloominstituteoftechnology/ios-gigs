@@ -14,9 +14,21 @@ enum HTTPMethod: String {
     case get = "GET"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+}
+
 class GigController {
     
-    var gigs: [Gig] = []
+    var gigs: [Gig] = [] {
+        didSet {
+            
+        }
+    }
     
     var bearer: Bearer?
     private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
@@ -102,6 +114,89 @@ class GigController {
             }.resume()
     }
     
+    // fetch gigs
     
+    func fetchGigs(completion: @escaping (Error?) -> Void) {
+        guard let bearer = bearer else {
+            completion(NSError())
+            return
+        }
+        
+        let allGigsUrl = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: allGigsUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(error)
+                return
+            }
+            
+            if let error = error {
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                completion(NSError())
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                self.gigs = try decoder.decode([Gig].self, from: data)
+                completion(nil)
+            } catch {
+                completion(error)
+                return
+            }
+            }.resume()
+    }
+    
+    func createGig(with gig: Gig, completion: @escaping (Error?) -> ()) {
+        
+        guard let bearer = bearer else {
+            completion(NSError())
+            return
+        }
+        
+        let allGigsUrl = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: allGigsUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401{
+                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                return
+            }
+            
+            if let error = error {
+                completion(error)
+                return
+            }
+        
+            
+            do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            request.httpBody = try encoder.encode(gig)
+            } catch {
+                completion(error)
+                return
+            }
+        
+        
+        self.gigs.append(gig)
+        completion(nil)
+    }.resume()
+    
+}
     
 }
