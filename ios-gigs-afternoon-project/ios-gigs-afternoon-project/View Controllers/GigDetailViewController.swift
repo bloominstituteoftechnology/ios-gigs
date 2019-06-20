@@ -13,6 +13,10 @@ class GigDetailViewController: UIViewController {
     @IBOutlet weak var jobTitleTextField: UITextField!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     @IBOutlet weak var jobDescriptionTextView: UITextView!
+    
+    var gigController: GigController!
+    var gig: Gig?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +25,23 @@ class GigDetailViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        if let title = jobTitleTextField.text,
+            title != "",
+            let description = jobDescriptionTextView.text,
+            description != "" {
+            var newGig = Gig(title: title, description: description, dueDate: dueDatePicker.date)
+        }
         
+    }
+    
+    func updateViews() {
+        if let gig = gig {
+            jobTitleTextField.text = gig.title
+            dueDatePicker.date = gig.dueDate
+            jobDescriptionTextView.text = gig.description
+        } else {
+            self.title = "New Gig"
+        }
     }
     
 

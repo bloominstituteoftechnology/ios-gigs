@@ -169,12 +169,10 @@ class GigController {
             let encoder = JSONEncoder()
             let jsonData = try encoder.encode(gig)
             request.httpBody = jsonData
-            gigs.append(gig)
-            completion(.success(gig))
         } catch {
             completion(.failure(.badData))
         }
-        
+        // Even though it's a POST, URLSession is just ensuring that the server received it and has it stored on their database as well, THEN you append the gig to the gigs array. Doing it in this block ensures your gigs array and the server array of gigs match up
         URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
@@ -186,6 +184,9 @@ class GigController {
                 completion(.failure(.otherError))
                 return
             }
-        }
+            
+            self.gigs.append(gig)
+            completion(.success(gig))
+        }.resume()
     }
 }
