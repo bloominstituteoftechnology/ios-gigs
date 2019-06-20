@@ -9,5 +9,5 @@
 import Foundation
 
 struct Bearer: Codable {
-    
+    var token: String
 }

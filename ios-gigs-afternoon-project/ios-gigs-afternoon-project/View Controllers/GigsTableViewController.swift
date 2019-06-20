@@ -11,6 +11,11 @@ import UIKit
 class GigsTableViewController: UITableViewController {
     // MARK: - Properties
     private let gigController = GigController()
+    private var gigNames: [String] = [] {
+        didSet {
+            
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +43,9 @@ class GigsTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        cell.textLabel?.text = gigNames[indexPath.row]
+        
         // Configure the cell...
 
         return cell
