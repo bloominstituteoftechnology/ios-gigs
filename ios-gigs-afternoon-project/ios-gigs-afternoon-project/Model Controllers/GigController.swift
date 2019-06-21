@@ -119,11 +119,11 @@ class GigController {
             return
         }
         
-        let gigsURL = baseURL.appendingPathComponent("/gigs")
+        let gigsURL = baseURL.appendingPathComponent("gigs")
         var request = URLRequest(url: gigsURL)
         
         request.httpMethod = HTTPMethod.get.rawValue
-        request.addValue(bearer.token, forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response as? HTTPURLResponse,
@@ -144,16 +144,19 @@ class GigController {
             
             do {
                 let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
                 self.gigs = try decoder.decode([Gig].self, from: data)
+                
                 completion(.success(self.gigs))
             } catch {
-                completion(.failure(.badData))
+                completion(.failure(.noDecode))
                 return
             }
         }.resume()
     }
     
-    func addGig(gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+    func addGig(gigTitle: String, description: String, date: Date, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        let gig = Gig(title: gigTitle, description: description, dueDate: date)
         guard let bearer = bearer else {
             completion(.failure(.noAuth))
             return

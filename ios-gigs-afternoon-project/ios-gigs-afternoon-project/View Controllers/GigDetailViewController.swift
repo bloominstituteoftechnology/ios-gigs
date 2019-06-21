@@ -26,10 +26,14 @@ class GigDetailViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         if let title = jobTitleTextField.text,
-            title != "",
+            !title.isEmpty,
             let description = jobDescriptionTextView.text,
-            description != "" {
-            var newGig = Gig(title: title, description: description, dueDate: dueDatePicker.date)
+            !description.isEmpty {
+            gigController.addGig(gigTitle: title, description: description, date: dueDatePicker.date) { (_) in
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
         }
         
     }

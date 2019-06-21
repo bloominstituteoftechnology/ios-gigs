@@ -25,9 +25,10 @@ class GigsTableViewController: UITableViewController {
             performSegue(withIdentifier: "SignUpModalSegue", sender: self)
         } else {
             gigController.fetchingAllGigs { (result) in
-                if let gigs = try? result.get() {
+                
+                if let _ = try? result.get() {
                     DispatchQueue.main.async {
-                        self.gigController.gigs = gigs
+                        self.tableView.reloadData()
                     }
                 }
             }
@@ -44,6 +45,7 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        cell.backgroundColor = .black
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
         let dateString = dateFormatter.string(from: gigController.gigs[indexPath.row].dueDate)
@@ -74,6 +76,9 @@ class GigsTableViewController: UITableViewController {
                 detailVC.gig = gigController.gigs[indexPath.row]
             }
             detailVC.gigController = self.gigController
+        } else if segue.identifier == "AddGigSegue",
+            let addDetailVC = segue.destination as? GigDetailViewController {
+            addDetailVC.gigController = self.gigController
         }
     }
 }
