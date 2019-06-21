@@ -26,7 +26,6 @@ class GigsTableViewController: UITableViewController {
 			performSegue(withIdentifier: "ShowSignUpSegue", sender: self)
 		}
 		gigController.fetchAllGigs { result in
-			
 			DispatchQueue.main.async {
 				self.tableView.reloadData()
 			}
@@ -53,6 +52,7 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+		
 		cell.textLabel?.text = gigController.gigs[indexPath.row].title
 		cell.detailTextLabel?.text = gigController.df(date: gigController.gigs[indexPath.row].dueDate)
         

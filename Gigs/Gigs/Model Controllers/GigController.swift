@@ -106,7 +106,7 @@ class GigController: Codable {
 			let decoder = JSONDecoder() //Why is decoding done under URLSession??????
 			do {
 				self.bearer = try decoder.decode(Bearer.self, from: data)
-
+				print(self.bearer)
 			} catch {
 				completion(error)
 				return

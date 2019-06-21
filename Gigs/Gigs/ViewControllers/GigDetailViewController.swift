@@ -25,8 +25,8 @@ class GigDetailViewController: UIViewController {
     }
     
 	@IBAction func saveButtonTaped(_ sender: UIBarButtonItem) {
-		guard let gigTitle = gigTitleTextField.text else { return }
-		guard let description = descriptionTextView.text else { return }
+		guard let gigTitle = gigTitleTextField.text,
+			let description = descriptionTextView.text else { return }
 		let date = datePicker.date
 		gigController.createGig(for: gigTitle, gigDescription: description, gigDate: date) { _ in
 			DispatchQueue.main.async {
@@ -34,15 +34,4 @@ class GigDetailViewController: UIViewController {
 			}
 		}
 	}
-	
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
