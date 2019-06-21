@@ -57,6 +57,7 @@ class LoginViewController: UIViewController {
 				}
 			} else {
 				gigController.signIn(with: user) { error in
+					
 					if let error = error {
 						print("Error occured during sign up: \(error)")
 					} else {

@@ -106,6 +106,7 @@ class GigController: Codable {
 			let decoder = JSONDecoder() //Why is decoding done under URLSession??????
 			do {
 				self.bearer = try decoder.decode(Bearer.self, from: data)
+
 			} catch {
 				completion(error)
 				return
@@ -116,7 +117,7 @@ class GigController: Codable {
 	}
 	
 	// Function for fetching all Gigs
-	func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+	func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
 		guard let bearer = bearer else {
 			completion(.failure(.noAuth))
 			return
@@ -144,9 +145,10 @@ class GigController: Codable {
 			}
 			
 			let decoder = JSONDecoder()
+			decoder.dateDecodingStrategy = .iso8601
 			do {
-				let gigs = try decoder.decode([String].self, from: data)
-				completion(.success(gigs))
+				self.gigs = try decoder.decode([Gig].self, from: data)
+				completion(.success(self.gigs))
 			} catch {
 				completion(.failure(.noDecode))
 				return
@@ -195,7 +197,8 @@ class GigController: Codable {
 	}
 	
 	//Function for creating a gig and adding details to server
-	func createGig(for gig: Gig, completion: @escaping (Error?) -> ()) {
+	func createGig(for gigTitle: String, gigDescription: String, gigDate: Date, completion: @escaping (Error?) -> ()) {
+		let gig = Gig(title: gigTitle, description: gigDescription, dueDate: gigDate)
 		let createGigUrl = baseUrl.appendingPathComponent("gigs")
 		
 		var request = URLRequest(url: createGigUrl)

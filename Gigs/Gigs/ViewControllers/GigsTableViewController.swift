@@ -25,16 +25,18 @@ class GigsTableViewController: UITableViewController {
 		if gigController.bearer == nil {
 			performSegue(withIdentifier: "ShowSignUpSegue", sender: self)
 		}
+		gigController.fetchAllGigs { result in
+			
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
+			}
+		}
 	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
 		
     }
-	
-	func getGigs() {
-		
-	}
 	
 
     // MARK: - Table view data source
