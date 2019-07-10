@@ -51,7 +51,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Gigs" id="Tr2-2u-fMw"/>
                     <connections>
-                        <segue destination="MqV-3b-xF6" kind="presentation" id="lxZ-nS-bpb"/>
+                        <segue destination="MqV-3b-xF6" kind="presentation" identifier="LoginModalSegue" id="lxZ-nS-bpb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxY-Zm-SRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -79,7 +79,7 @@
                                         <rect key="frame" x="0.0" y="55" width="374" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -90,6 +90,9 @@
                                     <segment title="Sign In"/>
                                 </segments>
                                 <color key="tintColor" red="0.13505540460000001" green="0.51922058760000001" blue="0.70247065360000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="signInSegmentChanged:" destination="MqV-3b-xF6" eventType="valueChanged" id="zZ5-B8-s1s"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yz0-iJ-jgg">
                                 <rect key="frame" x="107" y="257" width="200" height="50"/>
@@ -101,6 +104,9 @@
                                 <state key="normal" title="Button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="MqV-3b-xF6" eventType="touchUpInside" id="Rwl-v3-YRz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -115,6 +121,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LD6-Jq-4Yf"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="ucD-gL-jQB" id="7jb-zS-ynB"/>
+                        <outlet property="signInButton" destination="Yz0-iJ-jgg" id="Vmq-yp-uhJ"/>
+                        <outlet property="signInTypeSegmentedControl" destination="iUS-gi-zwz" id="thD-WA-zQI"/>
+                        <outlet property="usernameTextField" destination="x7e-Zg-Yfm" id="rYc-c2-kew"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JW7-Xs-3PU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
