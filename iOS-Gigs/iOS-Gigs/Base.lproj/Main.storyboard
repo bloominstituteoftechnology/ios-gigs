@@ -42,6 +42,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="kWP-1G-KCl" kind="show" identifier="ShowGig" id="tTf-QA-SMm"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -49,7 +52,13 @@
                             <outlet property="delegate" destination="NTz-9O-pk6" id="CLP-CL-yM0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Gigs" id="Tr2-2u-fMw"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="Tr2-2u-fMw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="plA-sb-7aw">
+                            <connections>
+                                <segue destination="kWP-1G-KCl" kind="show" identifier="AddGig" id="aQz-Z5-47W"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="MqV-3b-xF6" kind="presentation" identifier="LoginModalSegue" id="lxZ-nS-bpb"/>
                     </connections>
@@ -57,6 +66,108 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxY-Zm-SRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1186.9565217391305" y="112.5"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="F4B-bY-aab">
+            <objects>
+                <viewController id="kWP-1G-KCl" customClass="GigDetailViewController" customModule="iOS_Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IiT-aP-Yfn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TVf-7K-SqF">
+                                <rect key="frame" x="16" y="150" width="382" height="696"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="UhV-ZQ-yQo">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDK-71-hKU">
+                                                <rect key="frame" x="0.0" y="0.0" width="71" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uJr-K2-hat">
+                                                <rect key="frame" x="101" y="0.0" width="281" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QxY-Eu-Lk2">
+                                        <rect key="frame" x="0.0" y="40" width="382" height="236.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="902-KY-SPc">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="lDI-wU-b7v">
+                                                <rect key="frame" x="0.0" y="20.5" width="382" height="216"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="584481724.22366905">
+                                                    <!--2019-07-10 20:02:04 +0000-->
+                                                </date>
+                                                <date key="minimumDate" timeIntervalSinceReferenceDate="568033200">
+                                                    <!--2019-01-01 11:00:00 +0000-->
+                                                </date>
+                                            </datePicker>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nWX-Hx-EhE">
+                                        <rect key="frame" x="0.0" y="286.5" width="382" height="409.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Za-Xr-IHO">
+                                                <rect key="frame" x="0.0" y="0.0" width="92.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nYB-dr-mnU">
+                                                <rect key="frame" x="100.5" y="0.0" width="281.5" height="393.5"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="0Za-Xr-IHO" firstAttribute="top" secondItem="nWX-Hx-EhE" secondAttribute="top" id="FkB-K9-aLu"/>
+                                            <constraint firstItem="nYB-dr-mnU" firstAttribute="leading" secondItem="0Za-Xr-IHO" secondAttribute="trailing" constant="8" id="I1J-2H-VzT"/>
+                                            <constraint firstAttribute="trailing" secondItem="nYB-dr-mnU" secondAttribute="trailing" id="PTE-1B-Jb3"/>
+                                            <constraint firstItem="0Za-Xr-IHO" firstAttribute="leading" secondItem="nWX-Hx-EhE" secondAttribute="leading" id="Z6S-oh-3xq"/>
+                                            <constraint firstItem="nYB-dr-mnU" firstAttribute="top" secondItem="nWX-Hx-EhE" secondAttribute="top" id="dXi-ec-ond"/>
+                                            <constraint firstAttribute="bottom" secondItem="nYB-dr-mnU" secondAttribute="bottom" constant="16" id="mpd-dq-LEL"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="O9v-CR-lcf" firstAttribute="trailing" secondItem="TVf-7K-SqF" secondAttribute="trailing" constant="16" id="1ab-6Y-QrA"/>
+                            <constraint firstItem="TVf-7K-SqF" firstAttribute="top" secondItem="O9v-CR-lcf" secondAttribute="top" constant="10" id="XAc-at-dGO"/>
+                            <constraint firstItem="O9v-CR-lcf" firstAttribute="bottom" secondItem="TVf-7K-SqF" secondAttribute="bottom" constant="16" id="ccW-Gy-1Tg"/>
+                            <constraint firstItem="TVf-7K-SqF" firstAttribute="leading" secondItem="O9v-CR-lcf" secondAttribute="leading" constant="16" id="etg-vq-zee"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="O9v-CR-lcf"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="ePV-Fk-UKY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="3Fw-S9-cgv">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="kWP-1G-KCl" id="8tQ-Fw-nbh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dueDatePicker" destination="lDI-wU-b7v" id="PAn-KZ-7L5"/>
+                        <outlet property="jobDescriptionTextView" destination="nYB-dr-mnU" id="6nR-Zm-DxT"/>
+                        <outlet property="jobTitleTextField" destination="uJr-K2-hat" id="Hty-SX-evz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tet-OT-0cS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2093" y="317"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="pdS-nG-mob">
@@ -130,7 +241,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JW7-Xs-3PU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1984" y="116"/>
+            <point key="canvasLocation" x="2094" y="-382"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wmd-cf-CXe">
@@ -151,4 +262,7 @@
             <point key="canvasLocation" x="276.81159420289856" y="112.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="aQz-Z5-47W"/>
+    </inferredMetricsTieBreakers>
 </document>
