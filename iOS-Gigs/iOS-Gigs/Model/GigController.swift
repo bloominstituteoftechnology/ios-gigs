@@ -114,10 +114,10 @@ class GigController {
     }
     
     // fetch gigs
-    
-    func fetchGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+//    (Result<[Gig], NetworkError>)
+    func fetchGigs(completion: @escaping (Error?) -> Void) {
         guard let bearer = bearer else {
-            completion(.failure(.noAuth))
+            completion(NSError())
             return
         }
         
@@ -130,28 +130,29 @@ class GigController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401 {
-                completion(.failure(.badAuth))
+                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
                 return
             }
             
             if let error = error {
-                NSLog("Error getting gigs: \(error)")
-                completion(.failure(.otherError))
+                completion(error)
                 return
             }
             
             guard let data = data else {
-                completion(.failure(.badData))
+                completion(NSError())
                 return
             }
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            
             do {
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .iso8601
+                
                 self.gigs = try decoder.decode([Gig].self, from: data)
-                completion(.success(self.gigs))
+                completion(nil)
             } catch {
-                NSLog("Error decoding gigs: \(error)")
-                completion(.failure(.noDecode))
+                
+                completion(error)
                 return
             }
             }.resume()
@@ -168,17 +169,20 @@ class GigController {
             return
         }
         
-        let newGig = Gig(title: title, description: description, dueDate: dueDate)
+        let newGig = Gig(title: title, dueDate: dueDate, description: description)
         
         let allGigsUrl = baseURL.appendingPathComponent("gigs")
         // Create request and add parameters.
         var request = URLRequest(url: allGigsUrl)
         request.httpMethod = HTTPMethod.post.rawValue
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         // Creating an encoder to encode gig.
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        
         do {
-            let encoder = JSONEncoder()
+        
             // Encoded gig included in httpBody.
             request.httpBody = try encoder.encode(newGig)
             
@@ -201,7 +205,7 @@ class GigController {
             }
             
           
-            // Decode
+           
             
            self.gigs.append(newGig)
             

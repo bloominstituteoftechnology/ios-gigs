@@ -18,6 +18,7 @@ class GigsTableViewController: UITableViewController {
         tableView.reloadData()
        
     }
+    
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -25,19 +26,10 @@ class GigsTableViewController: UITableViewController {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginModalSegue", sender: self)
         } else {
-            gigController.fetchGigs { (result) in
-                
-                do {
-                    self.gigController.gigs = try result.get()
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                } catch {
-                    NSLog("Error fetching gigs")
-                }
-            }
+            fetchGigsList()
         }
+        
+        tableView.reloadData()
     }
     
     
@@ -63,6 +55,18 @@ class GigsTableViewController: UITableViewController {
     }
     
 
+    func fetchGigsList() {
+        gigController.fetchGigs { error in
+            
+            if let error = error {
+                NSLog("Error fetching gigs: \(error)")
+                return
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
    
 
     

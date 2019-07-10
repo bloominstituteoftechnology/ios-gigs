@@ -34,7 +34,7 @@ class GigDetailViewController: UIViewController {
             !description.isEmpty,
             let gigController = gigController else { return }
         let dueDate = dueDatePicker.date
-        let newGig = Gig(title: title, description: description, dueDate: dueDate)
+        let newGig = Gig(title: title, dueDate: dueDate, description: description)
         
         gigController.createGig(title: title, description: description, dueDate: dueDate) { (error) in
             if let error = error {
