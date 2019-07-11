@@ -36,7 +36,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ftS-rv-LPb">
                                             <rect key="frame" x="20" y="25.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -124,6 +124,7 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nYB-dr-mnU">
                                                 <rect key="frame" x="103.5" y="0.0" width="278.5" height="393.5"/>
                                                 <color key="backgroundColor" red="0.54067537254383191" green="0.71830726999123751" blue="0.75485802669644675" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -204,14 +205,14 @@
                                     <segment title="Sign Up"/>
                                     <segment title="Sign In"/>
                                 </segments>
-                                <color key="tintColor" red="0.13505540460000001" green="0.51922058760000001" blue="0.70247065360000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.54067537249999997" green="0.71830727000000005" blue="0.75485802670000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="signInSegmentChanged:" destination="MqV-3b-xF6" eventType="valueChanged" id="zZ5-B8-s1s"/>
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yz0-iJ-jgg">
                                 <rect key="frame" x="107" y="248" width="200" height="50"/>
-                                <color key="backgroundColor" red="0.13505540460000001" green="0.51922058760000001" blue="0.70247065360000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.54067537249999997" green="0.71830727000000005" blue="0.75485802670000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cHY-A9-B8P"/>
                                     <constraint firstAttribute="width" constant="200" id="qbz-oK-flX"/>
@@ -269,4 +270,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="aQz-Z5-47W"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.54067537249999997" green="0.71830727000000005" blue="0.75485802670000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
