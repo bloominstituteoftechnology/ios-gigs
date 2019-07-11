@@ -10,12 +10,19 @@ import UIKit
 
 class GigDetailViewController: UIViewController {
     
-    @IBOutlet var jobTitleTextField: UITextField!
-    @IBOutlet var dueDatePicker: UIDatePicker!
-    @IBOutlet var jobDescriptionTextView: UITextView!
+    @IBOutlet weak var jobTitleTextField: UITextField!
+    @IBOutlet weak var dueDatePicker: UIDatePicker!
+    @IBOutlet weak var jobDescriptionTextView: UITextView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var gigController: GigController!
-    var gig: Gig?
+    var gig: Gig? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    let dateFormatter = DateFormatter()
 
 
     override func viewDidLoad() {
@@ -24,47 +31,52 @@ class GigDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateViews()
+    }
     
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         
-        guard let title = jobTitleTextField.text,
-            !title.isEmpty,
+        guard let gigTitle = jobTitleTextField.text,
+            !gigTitle.isEmpty,
             let description = jobDescriptionTextView.text,
-            !description.isEmpty,
-            let gigController = gigController else { return }
-        let dueDate = dueDatePicker.date
-        let newGig = Gig(title: title, dueDate: dueDate, description: description)
+            !description.isEmpty else {
+
+                print("gig not saved")
+                return }
         
-        gigController.createGig(title: title, description: description, dueDate: dueDate) { (error) in
+        
+        gigController?.createGig(title: gigTitle, description: description, dueDate: dueDatePicker.date, completion: { (error) in
             if let error = error {
                 print(error)
                 return
             }
             DispatchQueue.main.async {
-                self.gig = newGig
-                self.updateViews()
-                
+                self.navigationController?.popViewController(animated: true)
                 
             }
-        }
-        print(newGig)
-        self.navigationController?.popViewController(animated: true)
+        })
         
     }
 
     
-    func updateViews() {
+    private func updateViews() {
         
-        if gig != nil {
-            title = gig?.title
-            jobTitleTextField.text = gig?.title
-            dueDatePicker.date = gig!.dueDate
-            jobDescriptionTextView.text = gig?.description
-        } else {
-            title = "Add New Gig"
+        guard let selectedGig = gig,
+            isViewLoaded else {
+                title = "Add New Gig"
+                return
         }
         
+            title = selectedGig.title
+            jobTitleTextField.text = selectedGig.title
+            dueDatePicker.date = selectedGig.dueDate
+            jobDescriptionTextView.text = selectedGig.description
+            saveButton.isEnabled = false
+        
+    
     }
     
     /*

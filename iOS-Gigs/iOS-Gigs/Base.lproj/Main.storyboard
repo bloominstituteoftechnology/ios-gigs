@@ -109,9 +109,6 @@
                                                 <date key="date" timeIntervalSinceReferenceDate="584481724.22366905">
                                                     <!--2019-07-10 20:02:04 +0000-->
                                                 </date>
-                                                <date key="minimumDate" timeIntervalSinceReferenceDate="568033200">
-                                                    <!--2019-01-01 11:00:00 +0000-->
-                                                </date>
                                             </datePicker>
                                         </subviews>
                                     </stackView>
@@ -126,7 +123,7 @@
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nYB-dr-mnU">
                                                 <rect key="frame" x="103.5" y="0.0" width="278.5" height="393.5"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.54067537254383191" green="0.71830726999123751" blue="0.75485802669644675" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -155,14 +152,15 @@
                     <navigationItem key="navigationItem" title="Title" id="ePV-Fk-UKY">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="3Fw-S9-cgv">
                             <connections>
-                                <action selector="saveButtonPressed:" destination="kWP-1G-KCl" id="8tQ-Fw-nbh"/>
+                                <action selector="saveButtonPressed:" destination="kWP-1G-KCl" id="UH7-JD-qD5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="dueDatePicker" destination="lDI-wU-b7v" id="PAn-KZ-7L5"/>
-                        <outlet property="jobDescriptionTextView" destination="nYB-dr-mnU" id="6nR-Zm-DxT"/>
-                        <outlet property="jobTitleTextField" destination="uJr-K2-hat" id="Hty-SX-evz"/>
+                        <outlet property="dueDatePicker" destination="lDI-wU-b7v" id="nAX-wg-4Sd"/>
+                        <outlet property="jobDescriptionTextView" destination="nYB-dr-mnU" id="gWP-96-V8q"/>
+                        <outlet property="jobTitleTextField" destination="uJr-K2-hat" id="dDw-tY-N1K"/>
+                        <outlet property="saveButton" destination="3Fw-S9-cgv" id="ALU-4t-aIM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tet-OT-0cS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -177,19 +175,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="SRR-40-vtg">
-                                <rect key="frame" x="20" y="122" width="374" height="85"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SRR-40-vtg">
+                                <rect key="frame" x="40" y="122" width="334" height="96"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x7e-Zg-Yfm">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="L1y-wH-tXO"/>
+                                        </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ucD-gL-jQB">
-                                        <rect key="frame" x="0.0" y="55" width="374" height="30"/>
+                                        <rect key="frame" x="0.0" y="56" width="334" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="xWq-Cb-51K"/>
+                                        </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
@@ -206,7 +210,7 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yz0-iJ-jgg">
-                                <rect key="frame" x="107" y="237" width="200" height="50"/>
+                                <rect key="frame" x="107" y="248" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.13505540460000001" green="0.51922058760000001" blue="0.70247065360000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cHY-A9-B8P"/>
@@ -222,10 +226,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="SRR-40-vtg" firstAttribute="leading" secondItem="LD6-Jq-4Yf" secondAttribute="leading" constant="20" id="GnF-qE-k1k"/>
+                            <constraint firstItem="SRR-40-vtg" firstAttribute="leading" secondItem="LD6-Jq-4Yf" secondAttribute="leading" constant="40" id="GnF-qE-k1k"/>
                             <constraint firstItem="SRR-40-vtg" firstAttribute="top" secondItem="iUS-gi-zwz" secondAttribute="bottom" constant="20" id="JPe-AW-hkS"/>
                             <constraint firstItem="Yz0-iJ-jgg" firstAttribute="top" secondItem="SRR-40-vtg" secondAttribute="bottom" constant="30" id="KVo-ti-p1u"/>
-                            <constraint firstItem="LD6-Jq-4Yf" firstAttribute="trailing" secondItem="SRR-40-vtg" secondAttribute="trailing" constant="20" id="LN0-y7-0av"/>
+                            <constraint firstItem="LD6-Jq-4Yf" firstAttribute="trailing" secondItem="SRR-40-vtg" secondAttribute="trailing" constant="40" id="LN0-y7-0av"/>
                             <constraint firstItem="iUS-gi-zwz" firstAttribute="top" secondItem="LD6-Jq-4Yf" secondAttribute="top" constant="30" id="Og4-8E-B1X"/>
                             <constraint firstItem="iUS-gi-zwz" firstAttribute="centerX" secondItem="eng-o9-V0i" secondAttribute="centerX" id="aPL-Ze-xRZ"/>
                             <constraint firstItem="Yz0-iJ-jgg" firstAttribute="centerX" secondItem="eng-o9-V0i" secondAttribute="centerX" id="bff-7l-7KO"/>

@@ -172,29 +172,29 @@ class GigController {
         let newGig = Gig(title: title, dueDate: dueDate, description: description)
         
         let allGigsUrl = baseURL.appendingPathComponent("gigs")
-        // Create request and add parameters.
+        
         var request = URLRequest(url: allGigsUrl)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
-        // Creating an encoder to encode gig.
+        print("\(bearer.token)")
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         
         do {
         
-            // Encoded gig included in httpBody.
-            request.httpBody = try encoder.encode(newGig)
             
+            let jsonData = try encoder.encode(newGig)
+            request.httpBody = jsonData
         } catch {
             NSLog("Error encoding gig: \(error)")
             completion(error)
             return
         }
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
-                response.statusCode == 401 {
+                response.statusCode != 200 {
                 completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
                 return
             }
@@ -203,14 +203,8 @@ class GigController {
                 completion(error)
                 return
             }
-            
-          
-           
-            
-           self.gigs.append(newGig)
-            
-            
-            
+
+            self.gigs.append(newGig)
             completion(nil)
             }.resume()
         
