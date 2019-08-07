@@ -15,6 +15,7 @@
 		A23B05BA22FB65340049336D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23B05B922FB65340049336D /* LoginViewController.swift */; };
 		A23B05BC22FB68030049336D /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23B05BB22FB68030049336D /* Bearer.swift */; };
 		A23B05BE22FB68ED0049336D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23B05BD22FB68ED0049336D /* User.swift */; };
+		A23B05C022FB6B4E0049336D /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23B05BF22FB6B4E0049336D /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		A23B05B922FB65340049336D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A23B05BB22FB68030049336D /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		A23B05BD22FB68ED0049336D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A23B05BF22FB6B4E0049336D /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,15 +64,40 @@
 			children = (
 				A23B05A522FB61940049336D /* AppDelegate.swift */,
 				A23B05A922FB61940049336D /* Main.storyboard */,
-				A23B05BB22FB68030049336D /* Bearer.swift */,
-				A23B05BD22FB68ED0049336D /* User.swift */,
-				A23B05B922FB65340049336D /* LoginViewController.swift */,
-				A23B05B722FB637B0049336D /* GigsTableViewController.swift */,
+				A23B05C122FB6B590049336D /* Models */,
+				A23B05C322FB6B6D0049336D /* Model Controllers */,
+				A23B05C222FB6B620049336D /* View Controllers */,
 				A23B05AC22FB61950049336D /* Assets.xcassets */,
 				A23B05AE22FB61950049336D /* LaunchScreen.storyboard */,
 				A23B05B122FB61950049336D /* Info.plist */,
 			);
 			path = Gigs;
+			sourceTree = "<group>";
+		};
+		A23B05C122FB6B590049336D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A23B05BB22FB68030049336D /* Bearer.swift */,
+				A23B05BD22FB68ED0049336D /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A23B05C222FB6B620049336D /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A23B05B922FB65340049336D /* LoginViewController.swift */,
+				A23B05B722FB637B0049336D /* GigsTableViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A23B05C322FB6B6D0049336D /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A23B05BF22FB6B4E0049336D /* GigController.swift */,
+			);
+			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +176,7 @@
 				A23B05A622FB61940049336D /* AppDelegate.swift in Sources */,
 				A23B05BE22FB68ED0049336D /* User.swift in Sources */,
 				A23B05B822FB637B0049336D /* GigsTableViewController.swift in Sources */,
+				A23B05C022FB6B4E0049336D /* GigController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
