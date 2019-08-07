@@ -13,7 +13,7 @@
         <!--Root View Controller-->
         <scene sceneID="ZYT-m2-Qth">
             <objects>
-                <tableViewController id="aXv-EV-nBT" sceneMemberID="viewController">
+                <tableViewController id="aXv-EV-nBT" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HKH-RY-5al">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,10 +50,28 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="25Z-vx-zVu"/>
+                    <connections>
+                        <segue destination="WH6-Q7-bDT" kind="presentation" id="tZv-Ru-b6F"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzt-0I-Sgj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="405.79710144927537" y="160.71428571428569"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rcH-dA-x0z">
+            <objects>
+                <viewController id="Iy0-Zi-1bY" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="m7P-op-cYM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="3pH-1M-XHP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gn8-ZY-JyQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1109" y="161"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="L5E-RI-d4x">
@@ -69,22 +87,81 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gby-bq-tQz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-509" y="161"/>
+            <point key="canvasLocation" x="-323" y="161"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="bJT-VM-BMi">
             <objects>
-                <viewController id="WH6-Q7-bDT" sceneMemberID="viewController">
+                <viewController id="WH6-Q7-bDT" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qGM-sW-XDb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="FuP-4f-vok">
+                                <rect key="frame" x="0.0" y="346.5" width="414" height="203"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0Jl-zd-Jwt">
+                                        <rect key="frame" x="144.5" y="0.0" width="125" height="29"/>
+                                        <segments>
+                                            <segment title="Sign Up"/>
+                                            <segment title="Sign In"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.0" green="0.91021573600000005" blue="0.8676423633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </segmentedControl>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="PuU-8c-40h">
+                                        <rect key="frame" x="30" y="55" width="354" height="91"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tz3-21-5TV">
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" textContentType="username"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wv7-tM-Ala">
+                                                <rect key="frame" x="0.0" y="61" width="354" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQr-to-6hC">
+                                        <rect key="frame" x="100" y="171" width="214" height="32"/>
+                                        <color key="backgroundColor" red="0.0" green="0.91021573604060912" blue="0.86764236330171041" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="PuU-8c-40h" firstAttribute="leading" secondItem="FuP-4f-vok" secondAttribute="leading" constant="30" id="Ye6-OA-mIB"/>
+                                    <constraint firstAttribute="trailing" secondItem="PuU-8c-40h" secondAttribute="trailing" constant="30" id="ZPy-4t-5Kp"/>
+                                    <constraint firstItem="SQr-to-6hC" firstAttribute="leading" secondItem="FuP-4f-vok" secondAttribute="leading" constant="100" id="gwp-IG-F4V"/>
+                                    <constraint firstAttribute="trailing" secondItem="SQr-to-6hC" secondAttribute="trailing" constant="100" id="tEM-OA-FrM"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FuP-4f-vok" firstAttribute="centerX" secondItem="qGM-sW-XDb" secondAttribute="centerX" id="HBj-Se-0Ly"/>
+                            <constraint firstItem="FuP-4f-vok" firstAttribute="centerX" secondItem="qGM-sW-XDb" secondAttribute="centerX" id="JGP-t7-zXa"/>
+                            <constraint firstItem="L8g-cM-dju" firstAttribute="trailing" secondItem="FuP-4f-vok" secondAttribute="trailing" id="bZ5-3e-kYc"/>
+                            <constraint firstItem="FuP-4f-vok" firstAttribute="centerY" secondItem="qGM-sW-XDb" secondAttribute="centerY" id="ih3-I4-G2T"/>
+                            <constraint firstItem="FuP-4f-vok" firstAttribute="leading" secondItem="L8g-cM-dju" secondAttribute="leading" id="p4T-qG-CSG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="L8g-cM-dju"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="Wv7-tM-Ala" id="g4Y-gV-wAa"/>
+                        <outlet property="segmentedControl" destination="0Jl-zd-Jwt" id="ab1-YS-MEu"/>
+                        <outlet property="signButton" destination="SQr-to-6hC" id="iRU-eY-Xhz"/>
+                        <outlet property="usernameTextField" destination="tz3-21-5TV" id="BaN-fM-XHQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CBs-Rq-cVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1465" y="161"/>
+            <point key="canvasLocation" x="-1023.1884057971015" y="160.71428571428569"/>
         </scene>
     </scenes>
 </document>
