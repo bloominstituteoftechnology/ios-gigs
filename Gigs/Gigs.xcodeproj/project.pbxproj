@@ -63,12 +63,11 @@
 			isa = PBXGroup;
 			children = (
 				A23B05A522FB61940049336D /* AppDelegate.swift */,
-				A23B05A922FB61940049336D /* Main.storyboard */,
 				A23B05C122FB6B590049336D /* Models */,
 				A23B05C322FB6B6D0049336D /* Model Controllers */,
 				A23B05C222FB6B620049336D /* View Controllers */,
+				A23B05C422FB74C50049336D /* Storyboards */,
 				A23B05AC22FB61950049336D /* Assets.xcassets */,
-				A23B05AE22FB61950049336D /* LaunchScreen.storyboard */,
 				A23B05B122FB61950049336D /* Info.plist */,
 			);
 			path = Gigs;
@@ -98,6 +97,15 @@
 				A23B05BF22FB6B4E0049336D /* GigController.swift */,
 			);
 			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		A23B05C422FB74C50049336D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A23B05A922FB61940049336D /* Main.storyboard */,
+				A23B05AE22FB61950049336D /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Gigs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -340,6 +349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Gigs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -46,6 +46,7 @@ class GigController {
                 completion(error)
                 return
             }
+            completion(nil)
         }.resume()
     }
     
@@ -91,5 +92,9 @@ class GigController {
             
             completion(nil)
         }.resume()
+    }
+    
+    func fetchAllGigs() {
+        
     }
 }
