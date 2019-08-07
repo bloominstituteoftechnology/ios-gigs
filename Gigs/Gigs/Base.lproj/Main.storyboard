@@ -107,6 +107,9 @@
                                             <segment title="Sign In"/>
                                         </segments>
                                         <color key="tintColor" red="0.0" green="0.91021573600000005" blue="0.8676423633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="segmentedControllAction:" destination="WH6-Q7-bDT" eventType="valueChanged" id="JuA-MI-Gxn"/>
+                                        </connections>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="PuU-8c-40h">
                                         <rect key="frame" x="30" y="55" width="354" height="91"/>
@@ -132,6 +135,9 @@
                                         <state key="normal" title="Button">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signButtonTapped:" destination="WH6-Q7-bDT" eventType="touchUpInside" id="v8I-nB-zAp"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

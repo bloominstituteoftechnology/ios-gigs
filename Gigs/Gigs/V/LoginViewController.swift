@@ -21,6 +21,13 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    @IBAction func segmentedControllAction(_ sender: Any) {
+        
+    }
+    
+    @IBAction func signButtonTapped(_ sender: Any) {
+        
+    }
     
 
     /*
