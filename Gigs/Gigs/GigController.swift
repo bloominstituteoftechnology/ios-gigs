@@ -17,7 +17,7 @@ enum HTTPMethod: String {
 
 class GigController {
 	
-	var bearer: Bearer?
+	private(set) var bearer: Bearer?
 	let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
 	
 	func createUser(username: String, password: String, completion: @escaping (Error?) -> Void) {

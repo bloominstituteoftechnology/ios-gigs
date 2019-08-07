@@ -35,7 +35,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="xlQ-AJ-9IP"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="presentation" id="oJQ-BX-3Vf"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="LoginVCModalSegue" id="oJQ-BX-3Vf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aV5-Fx-wPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -59,6 +59,9 @@
                                             <segment title="Sign Up"/>
                                             <segment title="Sign In"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="signTypeSegControlChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="LNg-Bd-5do"/>
+                                        </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BlN-JV-1yi">
                                         <rect key="frame" x="41.5" y="48" width="331" height="30"/>
@@ -79,7 +82,7 @@
                                             <constraint firstAttribute="height" constant="50" id="Og9-2B-Rsz"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                        <state key="normal" title="Button">
+                                        <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -105,6 +108,7 @@
                     </view>
                     <connections>
                         <outlet property="passwordTextField" destination="wjl-Hk-MRg" id="A2u-ki-dfk"/>
+                        <outlet property="signInBtn" destination="x2C-Cq-gaz" id="yTL-Q3-4ET"/>
                         <outlet property="signTypeSegControl" destination="W6m-9A-nUc" id="Fct-u8-y0L"/>
                         <outlet property="usernameTextField" destination="BlN-JV-1yi" id="Rxp-5q-QNO"/>
                     </connections>
