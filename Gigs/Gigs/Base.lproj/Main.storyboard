@@ -24,8 +24,8 @@
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tgc-Be-4gx">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="29"/>
                                         <segments>
-                                            <segment title="First"/>
-                                            <segment title="Second"/>
+                                            <segment title="Sign Up"/>
+                                            <segment title="Login"/>
                                         </segments>
                                         <connections>
                                             <action selector="loginSignUpSwitch:" destination="zLg-Tx-BoP" eventType="valueChanged" id="NOM-zo-gIK"/>
@@ -69,7 +69,7 @@
                         <outlet property="loginSegmentControl" destination="Tgc-Be-4gx" id="bGp-Eb-IXF"/>
                         <outlet property="password" destination="q9Q-eR-3NR" id="q33-ds-HE5"/>
                         <outlet property="signUpLoginButton" destination="Q2c-fT-qrH" id="f07-3b-uMx"/>
-                        <outlet property="username" destination="xaP-9u-BDf" id="mBY-QD-jyf"/>
+                        <outlet property="username" destination="Pt1-Wm-P9L" id="ZDZ-GJ-uhI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NTv-FK-XHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

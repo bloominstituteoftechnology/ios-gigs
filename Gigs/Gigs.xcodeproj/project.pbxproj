@@ -13,6 +13,10 @@
 		F5E844EC22FB73A900E8FB0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5E844EA22FB73A900E8FB0F /* LaunchScreen.storyboard */; };
 		F5E844F422FB743600E8FB0F /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E844F322FB743600E8FB0F /* GigsTableViewController.swift */; };
 		F5E844F622FB76A800E8FB0F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E844F522FB76A800E8FB0F /* LoginViewController.swift */; };
+		F5E844F922FB779900E8FB0F /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E844F822FB779900E8FB0F /* Bearer.swift */; };
+		F5E844FC22FB781800E8FB0F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E844FB22FB781800E8FB0F /* User.swift */; };
+		F5E844FE22FB788500E8FB0F /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E844FD22FB788500E8FB0F /* GigController.swift */; };
+		F5E8450022FB7E4900E8FB0F /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E844FF22FB7E4900E8FB0F /* Gig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		F5E844ED22FB73A900E8FB0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5E844F322FB743600E8FB0F /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		F5E844F522FB76A800E8FB0F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F5E844F822FB779900E8FB0F /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		F5E844FB22FB781800E8FB0F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F5E844FD22FB788500E8FB0F /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		F5E844FF22FB7E4900E8FB0F /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,22 +65,34 @@
 			isa = PBXGroup;
 			children = (
 				F5E844E122FB73A600E8FB0F /* AppDelegate.swift */,
-				F5E844E522FB73A600E8FB0F /* Main.storyboard */,
-				F5E844F722FB76B500E8FB0F /* View */,
+				F5E844FD22FB788500E8FB0F /* GigController.swift */,
+				F5E844FA22FB77EC00E8FB0F /* Models */,
+				F5E844F722FB76B500E8FB0F /* Views */,
 				F5E844E822FB73A900E8FB0F /* Assets.xcassets */,
+				F5E844E522FB73A600E8FB0F /* Main.storyboard */,
 				F5E844EA22FB73A900E8FB0F /* LaunchScreen.storyboard */,
 				F5E844ED22FB73A900E8FB0F /* Info.plist */,
 			);
 			path = Gigs;
 			sourceTree = "<group>";
 		};
-		F5E844F722FB76B500E8FB0F /* View */ = {
+		F5E844F722FB76B500E8FB0F /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				F5E844F322FB743600E8FB0F /* GigsTableViewController.swift */,
 				F5E844F522FB76A800E8FB0F /* LoginViewController.swift */,
 			);
-			path = View;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F5E844FA22FB77EC00E8FB0F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F5E844F822FB779900E8FB0F /* Bearer.swift */,
+				F5E844FF22FB7E4900E8FB0F /* Gig.swift */,
+				F5E844FB22FB781800E8FB0F /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +166,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5E844F922FB779900E8FB0F /* Bearer.swift in Sources */,
 				F5E844F622FB76A800E8FB0F /* LoginViewController.swift in Sources */,
 				F5E844E222FB73A600E8FB0F /* AppDelegate.swift in Sources */,
+				F5E8450022FB7E4900E8FB0F /* Gig.swift in Sources */,
+				F5E844FC22FB781800E8FB0F /* User.swift in Sources */,
 				F5E844F422FB743600E8FB0F /* GigsTableViewController.swift in Sources */,
+				F5E844FE22FB788500E8FB0F /* GigController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
