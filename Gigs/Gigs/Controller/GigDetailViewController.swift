@@ -30,7 +30,7 @@ class GigDetailViewController: UIViewController {
                 let gig = try result.get()
                 self.gigController.gigs.append(gig)
                 DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+                    self.navigationController?.popViewController(animated: true)
                 }
             } catch {
                 NSLog("Error getting gig after create")

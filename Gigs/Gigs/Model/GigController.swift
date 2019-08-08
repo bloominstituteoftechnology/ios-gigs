@@ -16,10 +16,6 @@ class GigController {
     
     var baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
-    init() {
-        fetchAllGigs()
-    }
-    
     func signUp(with username: String, password: String, completion: @escaping (Error?)-> Void){
         let signUpURL = baseURL.appendingPathComponent("users/signup")
         var request = URLRequest(url: signUpURL)
@@ -87,7 +83,7 @@ class GigController {
         }.resume()
     }
     
-    func fetchAllGigs(/*completion: @escaping (Result<[Gig], NetworkError>) -> Void*/) {
+    func fetchAllGigs(completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         guard let bearer = bearer  else { return }
         let requestURL = baseURL.appendingPathComponent("gigs")
         var request = URLRequest(url: requestURL)
@@ -97,24 +93,28 @@ class GigController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error{
                 NSLog("Error fetching all gigs: \(error)")
-                //completion(.failure(.otherError(error)))
+                print("Error fetching all gigs: \(error)")
+                completion(.failure(.otherError(error)))
+                return
             }
             guard let data = data else{
                 NSLog("No data return on fetch all data")
-                //completion(.failure(.noData))
+                print("No data return on fetch all data")
+                completion(.failure(.noData))
                 return
             }
             do {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .iso8601
                 let gigs = try decoder.decode([Gig].self, from: data)
+                print("gigs", gigs)
                 self.gigs = gigs
-                //completion(.success(gigs))
+                completion(.success(true))
             } catch {
                 NSLog("Error decoding all Gigs")
-                //completion(.failure(.noDecode))
+                completion(.failure(.noDecode))
             }
-        }
+        }.resume()
     }
     
     func createGig (title: String, description: String, dueDate: Date, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
@@ -123,6 +123,7 @@ class GigController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let gig = Gig(title: title, description: description, dueDate: dueDate)
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
