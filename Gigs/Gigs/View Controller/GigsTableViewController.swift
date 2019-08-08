@@ -32,20 +32,22 @@ class GigsTableViewController: UITableViewController {
 
     }
 
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+		let gig = gigController.gigs[indexPath.row]
+		
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateStyle = .short
+		let date = dateFormatter.string(from: gig.dueDate)
+		
+		cell.textLabel?.text = gig.title
+		cell.detailTextLabel?.text = date
 		
 		return cell
 	}
