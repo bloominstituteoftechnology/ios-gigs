@@ -76,7 +76,7 @@
             </objects>
             <point key="canvasLocation" x="3928" y="-541"/>
         </scene>
-        <!--View Controller-->
+        <!--Gigs Test-->
         <scene sceneID="8B6-Be-pWq">
             <objects>
                 <viewController id="Cmr-N3-urR" sceneMemberID="viewController">
@@ -85,7 +85,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="dCS-gR-qt3">
-                                <rect key="frame" x="47" y="103" width="320" height="516"/>
+                                <rect key="frame" x="47" y="140" width="320" height="516"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivq-s1-Xhr">
@@ -131,15 +131,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nnD-T6-dRH"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Gigs Test" id="TV9-E4-3Rn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="VSK-Oz-FY6"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdl-lT-OJj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3928" y="240"/>
         </scene>
-        <!--Gigs Table View Controller-->
+        <!--Gigs-->
         <scene sceneID="ZTN-xI-XvH">
             <objects>
-                <tableViewController id="gpu-M5-65E" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Gigs" id="gpu-M5-65E" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="axi-Rn-sjR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -178,7 +181,7 @@
                             <outlet property="delegate" destination="gpu-M5-65E" id="mSm-Q3-Dhp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="bN7-6s-WO4">
+                    <navigationItem key="navigationItem" title="Gigs" id="bN7-6s-WO4">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="DUc-jh-z8l">
                             <connections>
                                 <segue destination="Cmr-N3-urR" kind="show" identifier="AddGigShowSegue" id="QC4-CA-vKy"/>
@@ -198,8 +201,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FX6-eo-jnq" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MnX-UD-juF">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="MnX-UD-juF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
