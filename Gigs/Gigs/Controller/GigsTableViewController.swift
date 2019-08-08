@@ -16,8 +16,6 @@ class GigsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dateFormatter.dateFormat = "MM/dd/yy"
-       
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -25,7 +23,6 @@ class GigsTableViewController: UITableViewController {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginModalSegue", sender: self)
         }
-        print("token", gigController.bearer?.token)
         gigController.fetchAllGigs { (result) in
             guard let sucess = try? result.get(), sucess else { return }
             DispatchQueue.main.async {
@@ -51,7 +48,6 @@ class GigsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return gigController.gigs.count
     }
     
