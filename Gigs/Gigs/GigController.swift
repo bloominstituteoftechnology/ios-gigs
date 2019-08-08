@@ -53,7 +53,7 @@ class GigController {
 		}.resume()
 	}
 	
-	func logIn(with user: User, completeion: @escaping (Error?) -> ()) {
+	func logIn(with user: User, completion: @escaping (Error?) -> ()) {
 		let logInUrl = baseURL
 			.appendingPathComponent("users")
 			.appendingPathComponent("login")
@@ -66,65 +66,38 @@ class GigController {
 			request.httpBody = try JSONEncoder().encode(user)
 		} catch {
 			NSLog("Error encoding user object: \(error)")
-			completeion(error)
+			completion(error)
 			return
 		}
-		
-		URLSession.shared.dataTask(with: request) { (_, response, error) in
-			if let response = response as? HTTPURLResponse,
-				response.statusCode != 200 {
-				completeion(NSError())
-				return
-			}
-			
-			if let error = error {
-				NSLog("Error logging in: \(error)")
-				completeion(error)
-				return
-			}
-			completeion(nil)
-		}.resume()
-	}
-
-	func gettingGig(completion: @escaping (Error?) -> Void) {
-		guard let bearer = bearer else {
-			completion(NSError())
-			return
-		}
-		
-		let gigURL = baseURL.appendingPathComponent("gigs")
-		
-		var request = URLRequest(url: gigURL)
-		request.httpMethod = HTTPMethod.get.rawValue
-		request.addValue("Bearer: \(bearer.token)", forHTTPHeaderField: "Authorization")
 		
 		URLSession.shared.dataTask(with: request) { (data, response, error) in
+			
 			if let response = response as? HTTPURLResponse,
-				response.statusCode != 401 {
+				response.statusCode != 200 {
 				completion(NSError())
 				return
 			}
 			
 			if let error = error {
-				completion(error)
-			}
-			guard let data = data else {
+				NSLog("Error logging in: \(error)")
 				completion(error)
 				return
 			}
 			
-			let decoder = JSONDecoder()
+			guard let data = data else {
+				completion(NSError(domain: "No data recieved", code: -1, userInfo: nil))
+				return
+			}
 			
 			do {
-				let allGig = try decoder.decode([Gig].self, from: data)
-				self.gigs = allGig
+				let bearer = try JSONDecoder().decode(Bearer.self, from: data)
+				self.bearer = bearer
 				completion(nil)
 			} catch {
-				print("Error decoding: \(error)")
+				NSLog("Token not recieved: \(error)")
 				completion(error)
 				return
 			}
 		}.resume()
 	}
-	
 }
