@@ -79,7 +79,7 @@
         <!--Gigs Test-->
         <scene sceneID="8B6-Be-pWq">
             <objects>
-                <viewController id="Cmr-N3-urR" sceneMemberID="viewController">
+                <viewController id="Cmr-N3-urR" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9qG-f3-zyE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,8 +132,17 @@
                         <viewLayoutGuide key="safeArea" id="nnD-T6-dRH"/>
                     </view>
                     <navigationItem key="navigationItem" title="Gigs Test" id="TV9-E4-3Rn">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="VSK-Oz-FY6"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="VSK-Oz-FY6">
+                            <connections>
+                                <action selector="saveButton:" destination="Cmr-N3-urR" id="TLZ-Z8-FPJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="2c3-OA-2Z1" id="PgP-oy-KbX"/>
+                        <outlet property="dueDatePicker" destination="SWE-Ut-a3U" id="2fQ-fu-GfF"/>
+                        <outlet property="jobTextField" destination="2nu-Dm-3id" id="yCd-Cg-KeN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdl-lT-OJj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
