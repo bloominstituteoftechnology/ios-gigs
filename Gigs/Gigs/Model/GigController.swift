@@ -114,7 +114,6 @@ class GigController {
                 NSLog("Error decoding all Gigs")
                 //completion(.failure(.noDecode))
             }
-            
         }
     }
     
@@ -124,7 +123,7 @@ class GigController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
-        let gig = Gig(title: title, description: description, dueDat: dueDate)
+        let gig = Gig(title: title, description: description, dueDate: dueDate)
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         do {
@@ -139,7 +138,6 @@ class GigController {
         } catch {
             NSLog("Error encoding gig: \(error)")
         }
-        
     }
     
     enum HTTPMethod: String{
@@ -148,7 +146,6 @@ class GigController {
         case post = "POST"
         case delete = "DELETE"
     }
-    
 }
 
 enum NetworkError: Error{
