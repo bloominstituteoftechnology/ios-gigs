@@ -100,4 +100,51 @@ class GigController {
 			}
 		}.resume()
 	}
+	
+	func gettingGigs(completion: @escaping (Error?) -> Void) {
+		
+		guard let bearer = bearer else {
+			completion(NSError())
+			return
+		}
+		
+		let gigURL = baseURL.appendingPathComponent("gigs")
+		
+		var request = URLRequest(url: gigURL)
+		request.httpMethod = HTTPMethod.get.rawValue
+		request.addValue("Bearer: \(bearer.token)", forHTTPHeaderField: "Authorization")
+		
+		URLSession.shared.dataTask(with: request) { (data, response, error) in
+			if let response = response as? HTTPURLResponse,
+				response.statusCode == 401 {
+				completion(NSError())
+				return
+			}
+			
+			if let error = error {
+				completion(error)
+			}
+			guard let data = data else {
+				completion(error)
+				return
+			}
+			
+			let decoder = JSONDecoder()
+			
+			do {
+				let allGig = try decoder.decode([Gig].self, from: data)
+				self.gigs = allGig
+				completion(nil)
+			} catch {
+				NSLog("Error decoding: \(error)")
+				completion(error)
+				return
+			}
+			
+		}.resume()
+		
+		
+		
+	}
+	
 }
