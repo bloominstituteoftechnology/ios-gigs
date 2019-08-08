@@ -112,11 +112,13 @@ class GigController {
         let allGigsURL = baseURL.appendingPathComponent("gigs")
         var request = URLRequest(url: allGigsURL)
         request.httpMethod = HTTPMethod.get.rawValue
-        request.addValue("Bearer \(bearer)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401 {
+                print("Status code: \(response.statusCode)")
                 completion(.failure(.badAuth))
                 return
             }
@@ -140,6 +142,47 @@ class GigController {
             } catch {
                 completion(.failure(.noDecode))
             }
+        }.resume()
+    }
+    
+    func addGig(title: String, dueDate: Date, description: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        let newGig = Gig(title: title, dueDate: dueDate, description: description)
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let gigURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: gigURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        
+        do {
+            let jsonData = try encoder.encode(newGig)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(.badData))
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let _ = error {
+                completion(.failure(.otherError))
+                return
+            }
+            
+            self.gigs.append(newGig)
+            completion(.success(newGig))
         }.resume()
     }
 }

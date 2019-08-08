@@ -14,8 +14,6 @@ class GigsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -23,9 +21,9 @@ class GigsTableViewController: UITableViewController {
             performSegue(withIdentifier: "LogInSegue", sender: self)
         } else {
             gigController.fetchAllGigs { (result) in
-                if let gigsList = try? result.get() {
+                if let _ = try? result.get() {
                     DispatchQueue.main.async {
-                        self.gigController.gigs = gigsList
+                        self.tableView.reloadData()
                     }
                 }
             }
@@ -38,7 +36,7 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,7 +45,7 @@ class GigsTableViewController: UITableViewController {
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
         cell.textLabel?.text = gigController.gigs[indexPath.row].title
-        cell.detailTextLabel?.text = gigController.gigs[indexPath.row].dueDate.description
+        cell.detailTextLabel?.text = dateFormatter.string(from: gigController.gigs[indexPath.row].dueDate)
         
         return cell
     }
@@ -59,9 +57,15 @@ class GigsTableViewController: UITableViewController {
         if segue.identifier == "LogInSegue" {
             guard let loginVC = segue.destination as? LoginViewController else { return }
             loginVC.gigController = self.gigController
+        } else if segue.identifier == "ViewGigSegue" {
+            guard let index = self.tableView.indexPathForSelectedRow?.item else { return }
+            guard let detailVC = segue.destination as? GigDetailViewController else { return }
+            detailVC.gigController = self.gigController
+            detailVC.gig = gigController.gigs[index]
+        } else if segue.identifier == "AddGigSegue" {
+            guard let addGigVC = segue.destination as? GigDetailViewController else { return }
+            addGigVC.gigController = self.gigController
         }
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
     
 
