@@ -32,10 +32,10 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func segmentControlSelected(_ sender: Any) {
-        if loginSignupSegmentControl.selectedSegmentIndex == 0{
+        if loginSignupSegmentControl.selectedSegmentIndex == 0 {
             loginType = .signUp
             signUpButton.setTitle("Sign Up", for: .normal)
-        }else{
+        } else {
             loginType = .signIn
             signUpButton.setTitle("Sign In", for: .normal)
         }
@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
         guard let username = usernameTextField.text, !username.isEmpty, let password = passwordTextFeild.text, !password.isEmpty else { return }
-        if loginType == .signUp{
+        if loginType == .signUp {
             gigController.signUp(with: username, password: password) { (error) in
                 if let error = error{
                     print("Error logging in: \(error)")
@@ -60,8 +60,6 @@ class LoginViewController: UIViewController {
                     
                     self.present(alert, animated: true)
                 }
-                
-                
             }
         }else{
             gigController.login(with: username, password: password, completion: { (error) in

@@ -77,7 +77,7 @@ class GigController {
                 completion(error)
                 return
             }
-            }.resume()
+        }.resume()
     }
     
     enum HTTPMethod: String{
