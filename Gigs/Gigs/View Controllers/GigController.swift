@@ -15,10 +15,20 @@ enum HTTPMethod: String {
 	case delete = "DELETE"
 }
 
+enum NetworkError: Error {
+	case badURL
+	case noToken
+	case noData
+	case notDecoding
+	case other(Error)
+}
+
 class GigController {
 	
 	private(set) var bearer: Bearer?
-	let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
+	private(set) var gigs = [Gig]()
+	private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
+	private let session = URLSession.shared
 	
 	func createUser(username: String, password: String, completion: @escaping (Error?) -> Void) {
 		let user = User(username: username, password: password)
@@ -35,7 +45,7 @@ class GigController {
 			NSLog("Trouble encoding user: \(error)")
 		}
 		
-		URLSession.shared.dataTask(with: request) { (_, response, error) in
+		session.dataTask(with: request) { (_, response, error) in
 			if let response = response as? HTTPURLResponse, response.statusCode != 200 {
 				NSLog("Error: status code is \(response.statusCode) instead of 200.")
 			}
@@ -48,7 +58,7 @@ class GigController {
 		}.resume()
 	}
 	
-	func loginUser(username: String, password: String, completion: @escaping (Error?) -> Void) {
+	func loginUser(username: String, password: String, completion: @escaping (Result<String?, NetworkError>) -> Void) {
 		let user = User(username: username, password: password)
 		let loginURL = baseURL.appendingPathComponent("users/login")
 		var request = URLRequest(url: loginURL)
@@ -63,30 +73,70 @@ class GigController {
 			NSLog("Trouble encoding user: \(error)")
 		}
 		
-		URLSession.shared.dataTask(with: request) { (data, response, error) in
+		session.dataTask(with: request) { (data, response, error) in
 			if let response = response as? HTTPURLResponse, response.statusCode != 200 {
 				NSLog("Error: status code is \(response.statusCode) instead of 200.")
 			}
+			
 			if let error = error {
 				NSLog("Error creating user: \(error)")
-				completion(error)
+				completion(.failure(.other(error)))
 				return
 			}
+			
 			guard let data = data else {
 				NSLog("No data was returned")
-				completion(NSError())
+				completion(.failure(.noData))
 				return
 			}
 			
 			do {
 				let bearer = try JSONDecoder().decode(Bearer.self, from: data)
 				self.bearer = bearer
+				completion(.success(nil))
 			} catch {
 				NSLog("Error decoding bearer: \(error)")
-				completion(error)
+				completion(.failure(.notDecoding))
 				return
 			}
-			completion(nil)
+		}.resume()
+	}
+	
+	func getAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+		guard let token = bearer?.token else {
+			completion(.failure(.noToken))
+			return
+		}
+		let gigsURL = baseURL.appendingPathComponent("gigs")
+		var request = URLRequest(url: gigsURL)
+		request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+		
+		session.dataTask(with: request) { (data, response, error) in
+			if let error = error {
+				if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+					NSLog("Error: status code is \(response.statusCode) instead of 200.")
+				}
+				NSLog("Error creating user: \(error)")
+				completion(.failure(.other(error)))
+				return
+			}
+			
+			guard let data = data else {
+				NSLog("No data was returned")
+				completion(.failure(.noData))
+				return
+			}
+			
+			do {
+				let decoder = JSONDecoder()
+				decoder.dateDecodingStrategy = .iso8601
+				
+				let gigs = try decoder.decode([Gig].self, from: data)
+				self.gigs = gigs
+				completion(.success(gigs))
+			} catch {
+				completion(.failure(.notDecoding))
+			}
 		}.resume()
 	}
 }

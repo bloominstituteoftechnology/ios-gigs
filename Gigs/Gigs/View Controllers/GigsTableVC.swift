@@ -16,6 +16,13 @@ class GigsTableVC: UITableViewController {
 	//MARK: - Properties
 	
 	var gigController: GigController?
+	private var gigs: [Gig] {
+		guard let gigs = gigController?.gigs else { return [Gig]() }
+		return gigs
+	}
+//	private var dateFormatter: DateFormatter {
+//		let formatter = DateFormatter()
+//	}
 	
 	//MARK: - Life Cycle
 	
@@ -49,13 +56,15 @@ class GigsTableVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        let gig = gigs[indexPath.row]
+		
+		cell.textLabel?.text = gig.title
+		cell.detailTextLabel?.text = DateFormatter().string(from: gig.dueDate)
 
         return cell
     }

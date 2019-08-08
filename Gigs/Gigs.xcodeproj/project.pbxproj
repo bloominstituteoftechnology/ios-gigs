@@ -16,7 +16,8 @@
 		B516CBFB22FB51E100A790A2 /* GigsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CBFA22FB51E100A790A2 /* GigsTableVC.swift */; };
 		B516CBFD22FB524E00A790A2 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CBFC22FB524E00A790A2 /* GigController.swift */; };
 		B516CBFF22FB52AD00A790A2 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CBFE22FB52AD00A790A2 /* Bearer.swift */; };
-		B516CC0822FCB58B00A790A2 /* NewGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CC0722FCB58B00A790A2 /* NewGigVC.swift */; };
+		B516CC0822FCB58B00A790A2 /* GigDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CC0722FCB58B00A790A2 /* GigDetailsVC.swift */; };
+		B516CC0A22FCC8D500A790A2 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B516CC0922FCC8D500A790A2 /* Gig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +32,8 @@
 		B516CBFA22FB51E100A790A2 /* GigsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableVC.swift; sourceTree = "<group>"; };
 		B516CBFC22FB524E00A790A2 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 		B516CBFE22FB52AD00A790A2 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
-		B516CC0722FCB58B00A790A2 /* NewGigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGigVC.swift; sourceTree = "<group>"; };
+		B516CC0722FCB58B00A790A2 /* GigDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailsVC.swift; sourceTree = "<group>"; };
+		B516CC0922FCC8D500A790A2 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,25 +68,25 @@
 			children = (
 				B516CBF722FB515900A790A2 /* Models */,
 				B516CBF622FB515100A790A2 /* Views */,
-				B516CBF522FB514900A790A2 /* Controllers */,
+				B516CBF522FB514900A790A2 /* View Controllers */,
 				B516CBE322FB4DE000A790A2 /* AppDelegate.swift */,
 				B516CBE722FB4DE000A790A2 /* Main.storyboard */,
 				B516CBEA22FB4DE200A790A2 /* Assets.xcassets */,
 				B516CBEC22FB4DE200A790A2 /* LaunchScreen.storyboard */,
 				B516CBEF22FB4DE200A790A2 /* Info.plist */,
-				B516CBFC22FB524E00A790A2 /* GigController.swift */,
 			);
 			path = Gigs;
 			sourceTree = "<group>";
 		};
-		B516CBF522FB514900A790A2 /* Controllers */ = {
+		B516CBF522FB514900A790A2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				B516CBE522FB4DE000A790A2 /* LoginVC.swift */,
 				B516CBFA22FB51E100A790A2 /* GigsTableVC.swift */,
-				B516CC0722FCB58B00A790A2 /* NewGigVC.swift */,
+				B516CC0722FCB58B00A790A2 /* GigDetailsVC.swift */,
+				B516CBFC22FB524E00A790A2 /* GigController.swift */,
 			);
-			path = Controllers;
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		B516CBF622FB515100A790A2 /* Views */ = {
@@ -99,6 +101,7 @@
 			children = (
 				B516CBF822FB516800A790A2 /* User.swift */,
 				B516CBFE22FB52AD00A790A2 /* Bearer.swift */,
+				B516CC0922FCC8D500A790A2 /* Gig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -175,8 +178,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B516CBE622FB4DE000A790A2 /* LoginVC.swift in Sources */,
-				B516CC0822FCB58B00A790A2 /* NewGigVC.swift in Sources */,
+				B516CC0822FCB58B00A790A2 /* GigDetailsVC.swift in Sources */,
 				B516CBE422FB4DE000A790A2 /* AppDelegate.swift in Sources */,
+				B516CC0A22FCC8D500A790A2 /* Gig.swift in Sources */,
 				B516CBFF22FB52AD00A790A2 /* Bearer.swift in Sources */,
 				B516CBF922FB516800A790A2 /* User.swift in Sources */,
 				B516CBFB22FB51E100A790A2 /* GigsTableVC.swift in Sources */,

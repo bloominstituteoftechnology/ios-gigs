@@ -1,5 +1,5 @@
 //
-//  NewGigVC.swift
+//  GigDetailsVC.swift
 //  Gigs
 //
 //  Created by Jeffrey Santana on 8/8/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewGigVC: UIViewController {
+class GigDetailsVC: UIViewController {
 	
 	//MARK: - IBOutlets
 	
@@ -34,5 +34,7 @@ class NewGigVC: UIViewController {
 	
 	//MARK: - Helpers
 	
-
+	private func updateviews() {
+		
+	}
 }

@@ -70,8 +70,9 @@ class LoginVC: UIViewController {
 				}
 			}
 		case .signIn:
-			gigController.loginUser(username: username, password: password) { (error) in
-				guard error == nil else { return }
+			gigController.loginUser(username: username, password: password) { (result) in
+				guard let _ = try? result.get() else { return }
+				
 				DispatchQueue.main.async {
 					let alert = UIAlertController(title: "Log in Successful", message: nil, preferredStyle: .alert)
 					alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
