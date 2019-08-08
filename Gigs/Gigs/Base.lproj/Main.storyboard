@@ -42,6 +42,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="kMx-Yt-ZFh" kind="show" identifier="gigDetailShowSegue" id="s5C-TT-8fp"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -49,7 +52,13 @@
                             <outlet property="delegate" destination="b7C-xr-IMA" id="MgF-xB-GPa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="540-Zh-LQO"/>
+                    <navigationItem key="navigationItem" id="540-Zh-LQO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="pk7-zp-21W">
+                            <connections>
+                                <segue destination="kMx-Yt-ZFh" kind="show" identifier="addGigShowSegue" id="nfr-Og-st8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="Pis-iC-cqS" kind="presentation" identifier="LoginModalSegue" id="5cB-xa-dTJ"/>
                     </connections>
@@ -152,7 +161,91 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AOO-kQ-K9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1261" y="-60"/>
+            <point key="canvasLocation" x="1214" y="-731"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="cZh-4L-c6l">
+            <objects>
+                <viewController id="kMx-Yt-ZFh" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lFX-bI-Zsj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gig Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wg8-A1-u7u">
+                                <rect key="frame" x="40" y="108" width="68.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2HQ-rH-TC7">
+                                <rect key="frame" x="138.5" y="108" width="235.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iKq-Ij-HDZ">
+                                <rect key="frame" x="50" y="477" width="354" height="365"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrz-c3-aEI">
+                                <rect key="frame" x="40" y="159" width="76" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="y0r-sO-2RM">
+                                <rect key="frame" x="10" y="200" width="394" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="586989164.40982997">
+                                    <!--2019-08-08 20:32:44 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDw-SD-miE">
+                                <rect key="frame" x="40" y="436" width="92.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LDw-SD-miE" firstAttribute="top" secondItem="y0r-sO-2RM" secondAttribute="bottom" constant="20" id="Cx2-Gj-V7G"/>
+                            <constraint firstItem="Wg8-A1-u7u" firstAttribute="top" secondItem="6z0-kD-1Tw" secondAttribute="top" constant="20" id="EWY-zK-rIy"/>
+                            <constraint firstItem="iKq-Ij-HDZ" firstAttribute="top" secondItem="LDw-SD-miE" secondAttribute="bottom" constant="20" id="Hwh-UZ-f48"/>
+                            <constraint firstItem="iKq-Ij-HDZ" firstAttribute="leading" secondItem="LDw-SD-miE" secondAttribute="leading" constant="10" id="OcD-qh-G1b"/>
+                            <constraint firstItem="2HQ-rH-TC7" firstAttribute="top" secondItem="Wg8-A1-u7u" secondAttribute="top" id="RCk-jj-7Fo"/>
+                            <constraint firstItem="y0r-sO-2RM" firstAttribute="leading" secondItem="6z0-kD-1Tw" secondAttribute="leading" constant="10" id="TaE-oq-MAY"/>
+                            <constraint firstItem="6z0-kD-1Tw" firstAttribute="bottom" secondItem="iKq-Ij-HDZ" secondAttribute="bottom" constant="20" id="YWG-33-xjf"/>
+                            <constraint firstAttribute="trailing" secondItem="y0r-sO-2RM" secondAttribute="trailing" constant="10" id="Zj4-gA-lRT"/>
+                            <constraint firstItem="y0r-sO-2RM" firstAttribute="top" secondItem="hrz-c3-aEI" secondAttribute="bottom" constant="20" id="eHG-xC-Wt0"/>
+                            <constraint firstItem="2HQ-rH-TC7" firstAttribute="leading" secondItem="Wg8-A1-u7u" secondAttribute="trailing" constant="30" id="eKe-1f-kRE"/>
+                            <constraint firstItem="6z0-kD-1Tw" firstAttribute="trailing" secondItem="iKq-Ij-HDZ" secondAttribute="trailing" constant="10" id="isO-rb-47l"/>
+                            <constraint firstItem="Wg8-A1-u7u" firstAttribute="leading" secondItem="6z0-kD-1Tw" secondAttribute="leading" constant="40" id="lAZ-ir-20i"/>
+                            <constraint firstItem="6z0-kD-1Tw" firstAttribute="trailing" secondItem="2HQ-rH-TC7" secondAttribute="trailing" constant="40" id="mt9-xu-CU1"/>
+                            <constraint firstItem="LDw-SD-miE" firstAttribute="leading" secondItem="Wg8-A1-u7u" secondAttribute="leading" id="nU6-Ug-Af7"/>
+                            <constraint firstItem="hrz-c3-aEI" firstAttribute="leading" secondItem="Wg8-A1-u7u" secondAttribute="leading" id="oFe-aP-E8h"/>
+                            <constraint firstItem="hrz-c3-aEI" firstAttribute="top" secondItem="Wg8-A1-u7u" secondAttribute="bottom" constant="30" id="vo1-BC-ymx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6z0-kD-1Tw"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="zYh-HS-Dkl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="2mR-Cw-dAs">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="kMx-Yt-ZFh" id="mIh-CK-RL5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="iKq-Ij-HDZ" id="pMV-5v-rYA"/>
+                        <outlet property="dueDatePicker" destination="y0r-sO-2RM" id="DcB-mN-0wP"/>
+                        <outlet property="titleTextField" destination="2HQ-rH-TC7" id="6eG-G0-soz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bvo-Er-IDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1390" y="-60"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qCC-wo-b3i">
@@ -173,4 +266,7 @@
             <point key="canvasLocation" x="-378.26086956521743" y="-60.267857142857139"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="nfr-Og-st8"/>
+    </inferredMetricsTieBreakers>
 </document>
