@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
 			
 			if loginType == .signUp {
 				gigController.signUp(with: user, completion: { (error) in
-					if let error = error {
+					if error != nil {
 						NSLog("error")
 					} else {
 						DispatchQueue.main.async {
@@ -68,7 +68,7 @@ class LoginViewController: UIViewController {
 				})
 			} else {
 				gigController.logIn(with: user) { (error) in
-					if let error = error {
+					if error != nil {
 						NSLog("error")
 					} else {
 						DispatchQueue.main.async {

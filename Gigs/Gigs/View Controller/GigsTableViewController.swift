@@ -19,12 +19,12 @@ class GigsTableViewController: UITableViewController {
 			performSegue(withIdentifier: "LoginModalSegue", sender: nil)
 		}
 	}
-	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if let loginVC = segue.destination as? LoginViewController {
-			loginVC.gigController = gigController
-		}
-	}
+//
+//	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//		if let loginVC = segue.destination as? LoginViewController {
+//			loginVC.gigController = gigController
+//		}
+//	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,12 +52,22 @@ class GigsTableViewController: UITableViewController {
 		return cell
 	}
 
-//	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//		if let segue.identifier == "LoginModalSegue" {
-//			let loginVC = segue.destination as? LoginViewController {
-//				loginVC.gigCon
-//			}
-//		}
-//	}
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "LoginModalSegue",
+			let loginVC = segue.destination as? LoginViewController {
+			loginVC.gigController = gigController
+		} else if segue.identifier == "AddGig",
+			let addVC = segue.destination as? GigDetailViewController {
+			addVC.gigController = gigController
+		} else if segue.identifier == "ShowGig",
+			let viewVC = segue.destination as? GigDetailViewController {
+			if let index = tableView.indexPathForSelectedRow {
+				viewVC.gig = gigController.gigs[index.row]
+			}
+			
+			viewVC.gigController = gigController
+		}
+	}
+
 
 }

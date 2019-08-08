@@ -10,6 +10,17 @@ import UIKit
 
 class GigDetailViewController: UIViewController {
 	
+	var gigController: GigController!
+	
+	var gig: Gig? {
+		didSet {
+			DispatchQueue.main.async {
+				self.updateViews()
+			}
+		}
+	}
+	
+	
 	
 	@IBOutlet weak var jobTextField: UITextField!
 	@IBOutlet weak var dueDatePicker: UIDatePicker!
@@ -18,11 +29,33 @@ class GigDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+		if gig == nil {
+			title = "New Gig"
+		}
     }
     
 	@IBAction func saveButton(_ sender: UIBarButtonItem) {
+		let date = dueDatePicker.date
+		guard let title = jobTextField.text else { return }
+		guard let description = descriptionTextView.text else { return }
+		
+		gigController?.createGig(title: title, description: description, dueDate: date, completion: { (error) in
+			if error != nil {
+				NSLog("error")
+				return
+			} else {
+				DispatchQueue.main.async {
+					self.navigationController?.popViewController(animated: true)
+				}
+			}
+		})
 	}
 	
-	
+	func updateViews() {
+		guard let realGig = gig else { return }
+		
+		jobTextField.text! = realGig.title
+		dueDatePicker.date = realGig.dueDate
+		descriptionTextView.text! = realGig.description
+	}
 }
