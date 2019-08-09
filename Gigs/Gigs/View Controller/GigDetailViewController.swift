@@ -20,8 +20,6 @@ class GigDetailViewController: UIViewController {
 		}
 	}
 	
-	
-	
 	@IBOutlet weak var jobTextField: UITextField!
 	@IBOutlet weak var dueDatePicker: UIDatePicker!
 	@IBOutlet weak var descriptionTextView: UITextView!
@@ -39,15 +37,10 @@ class GigDetailViewController: UIViewController {
 		guard let title = jobTextField.text else { return }
 		guard let description = descriptionTextView.text else { return }
 		
-		gigController?.createGig(title: title, description: description, dueDate: date, completion: { (error) in
-			if error != nil {
-				NSLog("error")
-				return
-			} else {
+		gigController?.createGig(title: title, description: description, dueDate: date, completion: { (_) in
 				DispatchQueue.main.async {
 					self.navigationController?.popViewController(animated: true)
 				}
-			}
 		})
 	}
 	

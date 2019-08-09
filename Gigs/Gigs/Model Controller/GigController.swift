@@ -104,7 +104,7 @@ class GigController {
 	func gettingGigs(completion: @escaping (Error?) -> Void) {
 		
 		guard let bearer = bearer else {
-			completion(NSError())
+			completion(NSError(domain: "No bearer", code: -1, userInfo: nil))
 			return
 		}
 		
@@ -112,12 +112,12 @@ class GigController {
 		
 		var request = URLRequest(url: gigURL)
 		request.httpMethod = HTTPMethod.get.rawValue
-		request.addValue("Bearer: \(bearer.token)", forHTTPHeaderField: "Authorization")
+		request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
 		
 		URLSession.shared.dataTask(with: request) { (data, response, error) in
 			if let response = response as? HTTPURLResponse,
-				response.statusCode == 401 {
-				completion(NSError())
+				response.statusCode != 200 {
+				completion(NSError(domain: "Status code is not 200", code: -2, userInfo: nil))
 				return
 			}
 			
@@ -148,7 +148,7 @@ class GigController {
 	func createGig(title: String, description: String, dueDate: Date, completion: @escaping (Error?) -> Void) {
 		
 		guard let bearer = bearer else {
-			completion(NSError())
+			completion(NSError(domain: "No bearer", code: -1, userInfo: nil))
 			return
 		}
 		
@@ -165,7 +165,7 @@ class GigController {
 		URLSession.shared.dataTask(with: request) { (_, response, error) in
 			if let response = response as? HTTPURLResponse,
 				response.statusCode != 200 {
-				completion(NSError())
+				completion(NSError(domain: "Status code is not 200", code: -2, userInfo: nil))
 				return
 			}
 			
