@@ -61,10 +61,10 @@ class GigsTableViewController: UITableViewController {
 		if segue.identifier == "LoginModalSegue",
 			let loginVC = segue.destination as? LoginViewController {
 			loginVC.gigController = gigController
-		} else if segue.identifier == "AddGig",
+		} else if segue.identifier == "AddGigShowSegue",
 			let addVC = segue.destination as? GigDetailViewController {
 			addVC.gigController = gigController
-		} else if segue.identifier == "ShowGig",
+		} else if segue.identifier == "ShowGigSegue",
 			let viewVC = segue.destination as? GigDetailViewController {
 			if let index = tableView.indexPathForSelectedRow {
 				viewVC.gig = gigController.gigs[index.row]

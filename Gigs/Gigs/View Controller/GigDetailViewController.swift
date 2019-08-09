@@ -20,6 +20,7 @@ class GigDetailViewController: UIViewController {
 		}
 	}
 	
+
 	@IBOutlet weak var jobTextField: UITextField!
 	@IBOutlet weak var dueDatePicker: UIDatePicker!
 	@IBOutlet weak var descriptionTextView: UITextView!
@@ -42,6 +43,7 @@ class GigDetailViewController: UIViewController {
 					self.navigationController?.popViewController(animated: true)
 				}
 		})
+		print("Saved")
 	}
 	
 	func updateViews() {
