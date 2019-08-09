@@ -19,22 +19,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GigCell" textLabel="TNQ-5B-Iae" detailTextLabel="Zna-Ty-Vvh" rowHeight="69" style="IBUITableViewCellStyleSubtitle" id="rOb-U2-Re8">
-                                <rect key="frame" x="0.0" y="28" width="414" height="69"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GigCell" textLabel="TNQ-5B-Iae" detailTextLabel="Zna-Ty-Vvh" rowHeight="98" style="IBUITableViewCellStyleSubtitle" id="rOb-U2-Re8">
+                                <rect key="frame" x="0.0" y="28" width="414" height="98"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rOb-U2-Re8" id="oZA-tW-fQQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="68.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="97.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TNQ-5B-Iae">
-                                            <rect key="frame" x="20" y="14" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="20" y="29" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zna-Ty-Vvh">
-                                            <rect key="frame" x="20" y="37.5" width="33" height="14.5"/>
+                                            <rect key="frame" x="20" y="52.5" width="33" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -43,7 +43,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="KTp-Oj-NLK" kind="show" id="LfZ-Es-Gi5"/>
+                                    <segue destination="KTp-Oj-NLK" kind="show" identifier="ShowExistingGigSegue" id="LfZ-Es-Gi5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -55,7 +55,7 @@
                     <navigationItem key="navigationItem" title="Gigs" id="xlQ-AJ-9IP">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="zDD-Yc-1Ee">
                             <connections>
-                                <segue destination="KTp-Oj-NLK" kind="show" id="d2Y-GS-UZS"/>
+                                <segue destination="KTp-Oj-NLK" kind="show" identifier="ShowNewGigSegue" id="d2Y-GS-UZS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -127,7 +127,6 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="71A-se-icM">
                                                 <rect key="frame" x="0.0" y="35.5" width="373" height="287.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -155,6 +154,7 @@
                     <connections>
                         <outlet property="datePicker" destination="Ivx-5Z-u87" id="dSx-cv-K2D"/>
                         <outlet property="descriptionTextView" destination="71A-se-icM" id="2O8-Bz-bvf"/>
+                        <outlet property="saveBtn" destination="ave-9t-r2b" id="ud5-zD-MZt"/>
                         <outlet property="titleTextField" destination="gKy-aJ-pM5" id="b9g-sr-z6l"/>
                     </connections>
                 </viewController>
@@ -257,6 +257,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LfZ-Es-Gi5"/>
+        <segue reference="d2Y-GS-UZS"/>
     </inferredMetricsTieBreakers>
 </document>

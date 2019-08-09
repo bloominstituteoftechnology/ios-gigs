@@ -20,9 +20,11 @@ class GigsTableVC: UITableViewController {
 		guard let gigs = gigController?.gigs else { return [Gig]() }
 		return gigs
 	}
-//	private var dateFormatter: DateFormatter {
-//		let formatter = DateFormatter()
-//	}
+	private var dateFormatter: DateFormatter {
+		let formatter = DateFormatter()
+		formatter.dateStyle = .short
+		return formatter
+	}
 	
 	//MARK: - Life Cycle
 	
@@ -37,12 +39,19 @@ class GigsTableVC: UITableViewController {
 		
 		if gigController?.bearer == nil {
 			performSegue(withIdentifier: "LoginVCModalSegue", sender: nil)
+		} else {
+			fetchGigs()
 		}
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let loginVC = segue.destination as? LoginVC {
 			loginVC.gigController = gigController
+		} else if let gigDetailsVC = segue.destination as? GigDetailsVC {
+			if segue.identifier == "ShowExistingGigSegue", let indexPath = tableView.indexPathForSelectedRow {
+				gigDetailsVC.gigToDisplay = gigs[indexPath.row]
+			}
+			gigDetailsVC.gigController = gigController
 		}
 	}
 	
@@ -51,6 +60,15 @@ class GigsTableVC: UITableViewController {
 	
 	//MARK: - Helpers
 	
+	private func fetchGigs() {
+		gigController?.getAllGigs(completion: { (result) in
+			guard let _ = try? result.get() else { return }
+			
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
+			}
+		})
+	}
 
     // MARK: - Table view data source
 
@@ -64,7 +82,7 @@ class GigsTableVC: UITableViewController {
         let gig = gigs[indexPath.row]
 		
 		cell.textLabel?.text = gig.title
-		cell.detailTextLabel?.text = DateFormatter().string(from: gig.dueDate)
+		cell.detailTextLabel?.text = "Due: \(dateFormatter.string(from: gig.dueDate))"
 
         return cell
     }
