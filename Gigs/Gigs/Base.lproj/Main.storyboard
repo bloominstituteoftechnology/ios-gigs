@@ -66,17 +66,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HXA-7o-h2L">
-                                <rect key="frame" x="12" y="56" width="390" height="204.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HXA-7o-h2L">
+                                <rect key="frame" x="24" y="116" width="366" height="80"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fo4-cJ-NCh">
+                                        <rect key="frame" x="0.0" y="0.0" width="366" height="36"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pts-3D-p4B">
+                                        <rect key="frame" x="0.0" y="44" width="366" height="36"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="bva-He-lZR"/>
+                                </constraints>
                             </stackView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9kI-UF-8zg">
+                                <rect key="frame" x="103.5" y="60" width="207" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="wgn-ee-0If"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Sign In"/>
+                                    <segment title="Sign Up"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="HXA-7o-h2L" firstAttribute="top" secondItem="uBH-5U-zPE" secondAttribute="top" constant="12" id="SCS-0p-bA5"/>
+                            <constraint firstItem="HXA-7o-h2L" firstAttribute="top" secondItem="9kI-UF-8zg" secondAttribute="bottom" constant="16" id="4PH-Vi-vOM"/>
+                            <constraint firstItem="9kI-UF-8zg" firstAttribute="top" secondItem="uBH-5U-zPE" secondAttribute="top" constant="16" id="Dzj-It-w1m"/>
+                            <constraint firstItem="9kI-UF-8zg" firstAttribute="centerX" secondItem="MU2-6x-Q23" secondAttribute="centerX" id="XiD-qI-D6d"/>
                             <constraint firstItem="HXA-7o-h2L" firstAttribute="centerX" secondItem="MU2-6x-Q23" secondAttribute="centerX" id="aBH-FH-252"/>
-                            <constraint firstItem="uBH-5U-zPE" firstAttribute="trailing" secondItem="HXA-7o-h2L" secondAttribute="trailing" constant="12" id="jBt-rc-W1t"/>
-                            <constraint firstItem="HXA-7o-h2L" firstAttribute="height" secondItem="uBH-5U-zPE" secondAttribute="height" multiplier="1/4" id="o5o-1f-gfB"/>
-                            <constraint firstItem="HXA-7o-h2L" firstAttribute="leading" secondItem="uBH-5U-zPE" secondAttribute="leading" constant="12" id="p8s-Cf-Lz8"/>
+                            <constraint firstItem="uBH-5U-zPE" firstAttribute="trailing" secondItem="HXA-7o-h2L" secondAttribute="trailing" constant="24" id="jBt-rc-W1t"/>
+                            <constraint firstItem="HXA-7o-h2L" firstAttribute="leading" secondItem="uBH-5U-zPE" secondAttribute="leading" constant="24" id="p8s-Cf-Lz8"/>
+                            <constraint firstItem="9kI-UF-8zg" firstAttribute="width" secondItem="uBH-5U-zPE" secondAttribute="width" multiplier="1/2" id="zEs-0k-PX2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uBH-5U-zPE"/>
                     </view>
