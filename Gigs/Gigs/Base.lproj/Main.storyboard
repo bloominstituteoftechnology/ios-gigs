@@ -58,25 +58,25 @@
             </objects>
             <point key="canvasLocation" x="293" y="305"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="77O-ps-2fe">
             <objects>
-                <viewController id="P67-3h-jiN" sceneMemberID="viewController">
+                <viewController id="P67-3h-jiN" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MU2-6x-Q23">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HXA-7o-h2L">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HXA-7o-h2L" userLabel="TextFieldStackView">
                                 <rect key="frame" x="24" y="116" width="366" height="80"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fo4-cJ-NCh">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fo4-cJ-NCh" userLabel="UsernameTextField">
                                         <rect key="frame" x="0.0" y="0.0" width="366" height="36"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pts-3D-p4B">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pts-3D-p4B" userLabel="PasswordTextField">
                                         <rect key="frame" x="0.0" y="44" width="366" height="36"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
@@ -88,7 +88,14 @@
                                     <constraint firstAttribute="height" constant="80" id="bva-He-lZR"/>
                                 </constraints>
                             </stackView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9kI-UF-8zg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snz-XE-rCy" userLabel="SignInButton">
+                                <rect key="frame" x="24" y="212" width="366" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="K8W-Tq-IY3"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9kI-UF-8zg" userLabel="SignInButton">
                                 <rect key="frame" x="103.5" y="60" width="207" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="wgn-ee-0If"/>
@@ -97,20 +104,32 @@
                                     <segment title="Sign In"/>
                                     <segment title="Sign Up"/>
                                 </segments>
+                                <connections>
+                                    <action selector="signInTypeChanged:" destination="P67-3h-jiN" eventType="valueChanged" id="VxP-oY-DnH"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="HXA-7o-h2L" firstAttribute="top" secondItem="9kI-UF-8zg" secondAttribute="bottom" constant="16" id="4PH-Vi-vOM"/>
                             <constraint firstItem="9kI-UF-8zg" firstAttribute="top" secondItem="uBH-5U-zPE" secondAttribute="top" constant="16" id="Dzj-It-w1m"/>
+                            <constraint firstItem="snz-XE-rCy" firstAttribute="top" secondItem="HXA-7o-h2L" secondAttribute="bottom" constant="16" id="MzE-ve-IzQ"/>
                             <constraint firstItem="9kI-UF-8zg" firstAttribute="centerX" secondItem="MU2-6x-Q23" secondAttribute="centerX" id="XiD-qI-D6d"/>
                             <constraint firstItem="HXA-7o-h2L" firstAttribute="centerX" secondItem="MU2-6x-Q23" secondAttribute="centerX" id="aBH-FH-252"/>
                             <constraint firstItem="uBH-5U-zPE" firstAttribute="trailing" secondItem="HXA-7o-h2L" secondAttribute="trailing" constant="24" id="jBt-rc-W1t"/>
+                            <constraint firstItem="snz-XE-rCy" firstAttribute="width" secondItem="HXA-7o-h2L" secondAttribute="width" id="jK5-1j-Pct"/>
                             <constraint firstItem="HXA-7o-h2L" firstAttribute="leading" secondItem="uBH-5U-zPE" secondAttribute="leading" constant="24" id="p8s-Cf-Lz8"/>
+                            <constraint firstItem="snz-XE-rCy" firstAttribute="centerX" secondItem="MU2-6x-Q23" secondAttribute="centerX" id="q5d-JG-B07"/>
                             <constraint firstItem="9kI-UF-8zg" firstAttribute="width" secondItem="uBH-5U-zPE" secondAttribute="width" multiplier="1/2" id="zEs-0k-PX2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uBH-5U-zPE"/>
                     </view>
+                    <connections>
+                        <outlet property="loginTypeSegmentedControl" destination="9kI-UF-8zg" id="WBq-Sx-sqi"/>
+                        <outlet property="passwordTextField" destination="Pts-3D-p4B" id="LUP-0V-pC2"/>
+                        <outlet property="signInButton" destination="snz-XE-rCy" id="gFT-3T-5LL"/>
+                        <outlet property="usernameTextField" destination="fo4-cJ-NCh" id="em6-JC-qOl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hF-vd-bU4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
