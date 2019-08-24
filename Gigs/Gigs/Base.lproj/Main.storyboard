@@ -93,7 +93,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="K8W-Tq-IY3"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="signInButtonTapped:" destination="P67-3h-jiN" eventType="touchUpInside" id="Qe7-0S-qP1"/>
+                                </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9kI-UF-8zg" userLabel="SignInButton">
                                 <rect key="frame" x="103.5" y="60" width="207" height="41"/>

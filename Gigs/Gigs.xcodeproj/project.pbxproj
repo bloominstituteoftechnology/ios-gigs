@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A24983952311D77100FB9B8B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24983942311D77100FB9B8B /* LoginViewController.swift */; };
+		A25361852311F75400A6106A /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25361842311F75400A6106A /* Bearer.swift */; };
 		A2F3888323117074008DC971 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F3888223117074008DC971 /* AppDelegate.swift */; };
 		A2F3888823117074008DC971 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F3888623117074008DC971 /* Main.storyboard */; };
 		A2F3888A23117078008DC971 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2F3888923117078008DC971 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		A24983942311D77100FB9B8B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A25361842311F75400A6106A /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		A2F3887F23117074008DC971 /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F3888223117074008DC971 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2F3888723117074008DC971 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A25361832311F73E00A6106A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A25361842311F75400A6106A /* Bearer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A2F3887623117074008DC971 = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				A2F3888223117074008DC971 /* AppDelegate.swift */,
+				A25361832311F73E00A6106A /* Models */,
 				A2F388942311713C008DC971 /* View Controllers */,
 				A2F3888623117074008DC971 /* Main.storyboard */,
 				A2F3888923117078008DC971 /* Assets.xcassets */,
@@ -146,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A25361852311F75400A6106A /* Bearer.swift in Sources */,
 				A24983952311D77100FB9B8B /* LoginViewController.swift in Sources */,
 				A2F3888323117074008DC971 /* AppDelegate.swift in Sources */,
 				A2F388962311715C008DC971 /* GigsTableViewController.swift in Sources */,

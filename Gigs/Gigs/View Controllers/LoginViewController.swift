@@ -15,7 +15,7 @@ enum LoginType {
 
 class LoginViewController: UIViewController {
     
-    // Properties
+    // MARK: -  Properties
     
     @IBOutlet private weak var loginTypeSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var usernameTextField: UITextField!
@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
         signInButton.layer.cornerRadius = 6.0
     }
     
-    // Action Handlers
+    // MARK: - Action Handlers
     
     @IBAction func signInTypeChanged(_ sender: UISegmentedControl) {
         // switch UI between modes
@@ -55,6 +55,9 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func signInButtonTapped(_ sender: UIButton) {
+        
+    }
     
 
     /*
