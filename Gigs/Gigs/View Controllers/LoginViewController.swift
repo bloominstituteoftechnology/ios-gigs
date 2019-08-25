@@ -16,6 +16,7 @@ enum LoginType {
 class LoginViewController: UIViewController {
     
     // MARK: -  Properties
+    var gigController: GigController?
     
     @IBOutlet private weak var loginTypeSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var usernameTextField: UITextField!
@@ -34,7 +35,8 @@ class LoginViewController: UIViewController {
     }
     
     func setupViews(){
-        loginTypeSegmentedControl.backgroundColor = bgColor
+        loginTypeSegmentedControl.backgroundColor = .white
+        loginTypeSegmentedControl.tintColor = bgColor
         signInButton.backgroundColor = bgColor
         signInButton.tintColor = .white
         
