@@ -19,10 +19,8 @@ class GigsTableViewController: UITableViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("view did appear")
         // transition to login view if conditions require
         if gigController.bearer == nil {
-            print("no bearer")
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
         }
     }

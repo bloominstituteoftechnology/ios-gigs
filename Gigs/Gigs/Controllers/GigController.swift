@@ -72,7 +72,7 @@ class GigController {
             return
         }
         
-        URLSession.shared.dataTask(with: request) { (_, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
                 completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
@@ -80,6 +80,19 @@ class GigController {
             }
             
             if let error = error {
+                completion(error)
+                return
+            }
+            
+            guard let data = data else {
+                completion(NSError())
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                self.bearer = try decoder.decode(Bearer.self, from: data)
+            } catch {
                 completion(error)
                 return
             }
