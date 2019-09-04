@@ -50,6 +50,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="mbC-hs-PXq"/>
+                    <connections>
+                        <segue destination="Kql-fc-WeW" kind="presentation" identifier="ToLoginModalSegue" id="Ywd-uX-P3F"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qoU-TI-yXo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -69,6 +72,9 @@
                                     <segment title="Sign Up"/>
                                     <segment title="Sign In"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentControlToggle:" destination="Kql-fc-WeW" eventType="valueChanged" id="AiK-qv-lsO"/>
+                                </connections>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NNG-Gq-WNU">
                                 <rect key="frame" x="40" y="152" width="334" height="75"/>
@@ -97,6 +103,9 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signupButtonPressed:" destination="Kql-fc-WeW" eventType="touchUpInside" id="b6a-UN-jAe"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -111,6 +120,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eli-QI-vir"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="8Ib-1v-Hpi" id="1RS-yS-g7f"/>
+                        <outlet property="segmentedLabel" destination="ghR-gc-Hrr" id="aFj-JY-6LM"/>
+                        <outlet property="signUpButtonLabel" destination="KzZ-WD-0sa" id="3vt-GQ-3OW"/>
+                        <outlet property="usernameTextField" destination="ps4-TC-hd7" id="M4v-Tx-Waz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wOI-Dd-vlF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
