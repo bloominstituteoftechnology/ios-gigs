@@ -30,7 +30,7 @@ class GigController {
     
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
-    func signUP(with user: User, completion: @escaping (NetworkError?) -> Void ) {
+    func signUp(with user: User, completion: @escaping (NetworkError?) -> Void ) {
         
         let signUpURL = baseURL
             .appendingPathComponent("users")
