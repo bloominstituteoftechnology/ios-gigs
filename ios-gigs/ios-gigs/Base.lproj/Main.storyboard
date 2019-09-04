@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -49,10 +50,78 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Y4m-C3-T5t"/>
+                    <connections>
+                        <segue destination="cZX-iB-Lsj" kind="presentation" identifier="LoginViewModalSegue" id="PGR-B3-krm"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dZ9-uB-kgd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="959.4202898550725" y="45.535714285714285"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="ivw-I5-aAn">
+            <objects>
+                <viewController id="cZX-iB-Lsj" customClass="LoginViewController" customModule="ios_gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cLJ-1E-KKG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bwO-lW-64i">
+                                <rect key="frame" x="146.5" y="94" width="121" height="29"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentControlTapped:" destination="cZX-iB-Lsj" eventType="valueChanged" id="5zG-a3-UHF"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yPx-Ip-tQy">
+                                <rect key="frame" x="20" y="172" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="exD-ml-kRN">
+                                <rect key="frame" x="20" y="222" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jF-tk-4Rj">
+                                <rect key="frame" x="184" y="302" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="cZX-iB-Lsj" eventType="touchUpInside" id="u72-ee-7DH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="exD-ml-kRN" firstAttribute="top" secondItem="yPx-Ip-tQy" secondAttribute="bottom" constant="20" id="3hf-ny-x6B"/>
+                            <constraint firstItem="0jF-tk-4Rj" firstAttribute="top" secondItem="exD-ml-kRN" secondAttribute="bottom" constant="50" id="4XJ-jM-hXc"/>
+                            <constraint firstItem="0jF-tk-4Rj" firstAttribute="centerX" secondItem="cLJ-1E-KKG" secondAttribute="centerX" id="K3b-Uc-AUX"/>
+                            <constraint firstItem="yPx-Ip-tQy" firstAttribute="leading" secondItem="wdC-Ma-ugD" secondAttribute="leading" constant="20" id="WqY-9q-69d"/>
+                            <constraint firstItem="bwO-lW-64i" firstAttribute="centerX" secondItem="cLJ-1E-KKG" secondAttribute="centerX" id="dp3-aS-JFw"/>
+                            <constraint firstItem="exD-ml-kRN" firstAttribute="leading" secondItem="wdC-Ma-ugD" secondAttribute="leading" constant="20" id="egL-0x-KOn"/>
+                            <constraint firstItem="wdC-Ma-ugD" firstAttribute="trailing" secondItem="exD-ml-kRN" secondAttribute="trailing" constant="20" id="hng-Rv-Kdx"/>
+                            <constraint firstItem="wdC-Ma-ugD" firstAttribute="trailing" secondItem="yPx-Ip-tQy" secondAttribute="trailing" constant="20" id="kiF-nN-teb"/>
+                            <constraint firstItem="bwO-lW-64i" firstAttribute="top" secondItem="wdC-Ma-ugD" secondAttribute="top" constant="50" id="vio-Xe-6QE"/>
+                            <constraint firstItem="yPx-Ip-tQy" firstAttribute="top" secondItem="bwO-lW-64i" secondAttribute="bottom" constant="50" id="wCb-9A-fZ6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wdC-Ma-ugD"/>
+                    </view>
+                    <connections>
+                        <outlet property="buttonPressed" destination="0jF-tk-4Rj" id="VBx-5X-YU7"/>
+                        <outlet property="buttonText" destination="0jF-tk-4Rj" id="941-OP-KT1"/>
+                        <outlet property="loginSegmentControl" destination="bwO-lW-64i" id="EKW-dg-Fvz"/>
+                        <outlet property="passwordTextField" destination="exD-ml-kRN" id="JaU-RO-a3l"/>
+                        <outlet property="userNameTextField" destination="yPx-Ip-tQy" id="QNY-Uc-aXs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NQV-Ot-J5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1931" y="-201"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lnt-kC-OgS">
