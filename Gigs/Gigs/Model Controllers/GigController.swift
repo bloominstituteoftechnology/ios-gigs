@@ -26,7 +26,7 @@ enum NetworkError: Error {
 class GigController: Codable {
     var bearer: Bearer?
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
-    
+        
     func signUp(with user: User, completion: @escaping (NetworkError?) -> Void) {
         
         let signUpURL = baseURL.appendingPathComponent("users").appendingPathComponent("signup")

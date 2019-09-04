@@ -35,20 +35,20 @@
                                         <rect key="frame" x="0.0" y="48" width="334" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="username"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="16N-hd-JzW">
                                         <rect key="frame" x="0.0" y="98" width="334" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8c-yA-h5W">
                                         <rect key="frame" x="0.0" y="148" width="334" height="51"/>
                                         <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="15"/>
-                                        <state key="normal" title="Sign Up/In">
+                                        <state key="normal" title="Sign Up">
                                             <color key="titleColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -67,12 +67,9 @@
                         <viewLayoutGuide key="safeArea" id="jZh-vp-DHV"/>
                     </view>
                     <connections>
-                        <outlet property="password" destination="16N-hd-JzW" id="T9l-fP-a9x"/>
                         <outlet property="passwordTextField" destination="16N-hd-JzW" id="BxA-hV-s4L"/>
-                        <outlet property="signUpOrIn" destination="gqu-wr-xoF" id="N6M-Te-h7Y"/>
                         <outlet property="signUpOrInButton" destination="K8c-yA-h5W" id="Kd8-iJ-QRv"/>
                         <outlet property="signUpOrInSegCon" destination="gqu-wr-xoF" id="JZ4-ii-ErL"/>
-                        <outlet property="username" destination="zPw-jj-w8y" id="TLn-Xy-X39"/>
                         <outlet property="usernameTextField" destination="zPw-jj-w8y" id="wML-ZT-Y2s"/>
                     </connections>
                 </viewController>
@@ -121,7 +118,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="i1C-XJ-dGm"/>
                     <connections>
-                        <segue destination="Rml-kd-1cU" kind="presentation" id="h6X-Ac-KJi"/>
+                        <segue destination="Rml-kd-1cU" kind="presentation" identifier="LoginViewModalSegue" id="h6X-Ac-KJi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mq7-cB-gJ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
