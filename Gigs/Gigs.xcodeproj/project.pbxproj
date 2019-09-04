@@ -14,6 +14,8 @@
 		DD3DCF9F231FF89B00B8A3BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD3DCF9D231FF89B00B8A3BF /* LaunchScreen.storyboard */; };
 		DD3DCFAB231FFB3F00B8A3BF /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3DCFAA231FFB3F00B8A3BF /* GigsTableViewController.swift */; };
 		DD3DCFAD231FFE8300B8A3BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3DCFAC231FFE8300B8A3BF /* LoginViewController.swift */; };
+		DD3DCFAF2320020100B8A3BF /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3DCFAE2320020100B8A3BF /* Bearer.swift */; };
+		DD3DCFBB23204D6100B8A3BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3DCFBA23204D6100B8A3BF /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		DD3DCFA0231FF89B00B8A3BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD3DCFAA231FFB3F00B8A3BF /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		DD3DCFAC231FFE8300B8A3BF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DD3DCFAE2320020100B8A3BF /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		DD3DCFBA23204D6100B8A3BF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,12 +62,12 @@
 		DD3DCF93231FF89800B8A3BF /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				DD3DCFA9231FFB1F00B8A3BF /* View Controllers */,
-				DD3DCFA7231FFAB300B8A3BF /* Model Controllers */,
 				DD3DCFA6231FFAA900B8A3BF /* Models */,
+				DD3DCFA7231FFAB300B8A3BF /* Model Controllers */,
+				DD3DCFA9231FFB1F00B8A3BF /* View Controllers */,
+				DD3DCF98231FF89800B8A3BF /* Main.storyboard */,
 				DD3DCF94231FF89800B8A3BF /* AppDelegate.swift */,
 				DD3DCF96231FF89800B8A3BF /* ViewController.swift */,
-				DD3DCF98231FF89800B8A3BF /* Main.storyboard */,
 				DD3DCF9B231FF89B00B8A3BF /* Assets.xcassets */,
 				DD3DCF9D231FF89B00B8A3BF /* LaunchScreen.storyboard */,
 				DD3DCFA0231FF89B00B8A3BF /* Info.plist */,
@@ -74,6 +78,8 @@
 		DD3DCFA6231FFAA900B8A3BF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DD3DCFAE2320020100B8A3BF /* Bearer.swift */,
+				DD3DCFBA23204D6100B8A3BF /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -165,7 +171,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD3DCFAF2320020100B8A3BF /* Bearer.swift in Sources */,
 				DD3DCFAD231FFE8300B8A3BF /* LoginViewController.swift in Sources */,
+				DD3DCFBB23204D6100B8A3BF /* User.swift in Sources */,
 				DD3DCF97231FF89800B8A3BF /* ViewController.swift in Sources */,
 				DD3DCF95231FF89800B8A3BF /* AppDelegate.swift in Sources */,
 				DD3DCFAB231FFB3F00B8A3BF /* GigsTableViewController.swift in Sources */,
