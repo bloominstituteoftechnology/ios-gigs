@@ -8,11 +8,19 @@
 
 import UIKit
 
+enum LoginType {
+    case signUp
+    case signIn
+}
+
 class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var segmentController: UISegmentedControl!
     @IBOutlet weak var signInButton: UIButton!
+    
+    var gigController: GigController?
+    var loginType = LoginType.signUp
     
     
     override func viewDidLoad() {
