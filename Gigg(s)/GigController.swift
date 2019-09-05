@@ -18,17 +18,20 @@ enum HTTPMethod: String{
 enum NetworkError: Error{
     case ecodingError
     case responseError
-    case otherError
+    case otherError(Error)
     case noData
     case noDecode
+    case noToken
 }
 
 //Api controller
 class GigController {
     
-    let baseURL = URL(string: "https://lambdaanimalspotter.vapor.cloud/api")!
+    let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
     var bearer: Bearer?
+    
+    var gigs: [Gig] = []
     
     func signUp(with user: User, completion: @escaping (NetworkError?) -> Void){
         
@@ -66,7 +69,7 @@ class GigController {
             
             if let error = error{
                 NSLog("Error Creating User on Server: \(error)")
-                completion(.otherError)
+                completion(.otherError(error))
                 return
             }
             completion(nil)
@@ -116,7 +119,7 @@ class GigController {
             //Handle Errors
             if let error = error {
                 NSLog("Error \(error)")
-                completion(.otherError)
+                completion(.otherError(error))
                 return
             }
             
@@ -134,6 +137,108 @@ class GigController {
                 return
             }
             completion(nil)
+            
+            }.resume()
+    }
+    
+    func getAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent("gigs")
+            .appendingPathComponent("all")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request){(data,response,error) in
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.responseError))
+                return
+            }
+            
+            if let error = error {
+                NSLog("Error getting posting names: \(error)")
+                completion(.failure(.otherError(error)))
+                return
+            }
+            
+            
+            guard let data = data else{
+                completion(.failure(.noData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+                let names = try decoder.decode([String].self, from: data)
+                completion(.success(names))
+            } catch {
+                NSLog("Error decoding name: \(error)")
+                completion(.failure(.noDecode))
+                return
+                
+                
+            }
+            
+            }.resume()
+    }
+    
+    func addNewGig(title: String, dueDate: Date, description: String, completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent("gigs")
+            .appendingPathComponent("all")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request){(data,response,error) in
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.responseError))
+                return
+            }
+            
+            if let error = error {
+                NSLog("Error getting names: \(error)")
+                completion(.failure(.otherError(error)))
+                return
+            }
+            
+            
+            guard let data = data else{
+                completion(.failure(.noData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+                let animalNames = try decoder.decode([String].self, from: data)
+                completion(.success(animalNames))
+            } catch {
+                NSLog("Error decoding  name: \(error)")
+                completion(.failure(.noDecode))
+                return
+                
+                
+            }
             
             }.resume()
     }
