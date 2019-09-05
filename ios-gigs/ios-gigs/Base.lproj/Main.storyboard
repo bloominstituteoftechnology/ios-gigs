@@ -42,6 +42,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="fIB-85-aAT" kind="show" identifier="ShowGigSegue" id="Dkh-OM-Cv4"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -49,7 +52,13 @@
                             <outlet property="delegate" destination="rt7-uC-DWE" id="pWm-EO-xHL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Y4m-C3-T5t"/>
+                    <navigationItem key="navigationItem" id="Y4m-C3-T5t">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZQP-3w-My5">
+                            <connections>
+                                <segue destination="fIB-85-aAT" kind="show" identifier="AddGigSegue" id="HR0-sp-KQo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="cZX-iB-Lsj" kind="presentation" identifier="LoginViewModalSegue" id="PGR-B3-krm"/>
                     </connections>
@@ -57,6 +66,94 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dZ9-uB-kgd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="959.4202898550725" y="45.535714285714285"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="YmD-6v-x1Z">
+            <objects>
+                <viewController id="fIB-85-aAT" customClass="GigDetailViewController" customModule="ios_gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hbT-Ai-bEB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB TITLE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uch-wv-Kpe">
+                                <rect key="frame" x="20" y="138" width="85.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rC7-ra-T2Y">
+                                <rect key="frame" x="20" y="199" width="84.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lnp-A3-dKR">
+                                <rect key="frame" x="125.5" y="133" width="268.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="BCM-BT-rh6">
+                                <rect key="frame" x="0.0" y="228" width="414" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="589408982.81645095">
+                                    <!--2019-09-05 20:43:02 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAo-Ni-ewv">
+                                <rect key="frame" x="20" y="452" width="113.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HjD-o0-7z2">
+                                <rect key="frame" x="20" y="481" width="374" height="361"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Uch-wv-Kpe" firstAttribute="leading" secondItem="xPA-9s-9EW" secondAttribute="leading" constant="20" id="119-Dq-pCJ"/>
+                            <constraint firstItem="Uch-wv-Kpe" firstAttribute="leading" secondItem="xPA-9s-9EW" secondAttribute="leading" constant="20" id="9oM-VO-Xqw"/>
+                            <constraint firstItem="BCM-BT-rh6" firstAttribute="top" secondItem="rC7-ra-T2Y" secondAttribute="bottom" constant="8" id="B5A-OW-O2k"/>
+                            <constraint firstItem="Lnp-A3-dKR" firstAttribute="top" secondItem="xPA-9s-9EW" secondAttribute="top" constant="45" id="FGh-5A-T8m"/>
+                            <constraint firstItem="xPA-9s-9EW" firstAttribute="trailing" secondItem="HjD-o0-7z2" secondAttribute="trailing" constant="20" id="NMk-YQ-jOh"/>
+                            <constraint firstItem="BCM-BT-rh6" firstAttribute="leading" secondItem="xPA-9s-9EW" secondAttribute="leading" id="Pgx-SJ-apP"/>
+                            <constraint firstItem="rC7-ra-T2Y" firstAttribute="top" secondItem="Uch-wv-Kpe" secondAttribute="bottom" constant="40" id="Teo-GP-l2y"/>
+                            <constraint firstItem="Lnp-A3-dKR" firstAttribute="leading" secondItem="Uch-wv-Kpe" secondAttribute="trailing" constant="20" id="Un4-TA-nYg"/>
+                            <constraint firstItem="Uch-wv-Kpe" firstAttribute="top" secondItem="xPA-9s-9EW" secondAttribute="top" constant="50" id="Y5E-it-oaF"/>
+                            <constraint firstItem="LAo-Ni-ewv" firstAttribute="leading" secondItem="xPA-9s-9EW" secondAttribute="leading" constant="20" id="Ydy-nN-CsV"/>
+                            <constraint firstItem="HjD-o0-7z2" firstAttribute="leading" secondItem="xPA-9s-9EW" secondAttribute="leading" constant="20" id="ZJb-mz-5aF"/>
+                            <constraint firstItem="BCM-BT-rh6" firstAttribute="trailing" secondItem="xPA-9s-9EW" secondAttribute="trailing" id="bUP-BH-rOE"/>
+                            <constraint firstItem="LAo-Ni-ewv" firstAttribute="leading" secondItem="xPA-9s-9EW" secondAttribute="leading" constant="20" id="eR4-2z-bmH"/>
+                            <constraint firstItem="HjD-o0-7z2" firstAttribute="top" secondItem="LAo-Ni-ewv" secondAttribute="bottom" constant="8" id="hA9-G7-1SY"/>
+                            <constraint firstItem="xPA-9s-9EW" firstAttribute="trailing" secondItem="Lnp-A3-dKR" secondAttribute="trailing" constant="20" id="jMK-1K-avD"/>
+                            <constraint firstItem="HjD-o0-7z2" firstAttribute="top" secondItem="LAo-Ni-ewv" secondAttribute="bottom" constant="8" id="lIZ-e9-eFo"/>
+                            <constraint firstItem="xPA-9s-9EW" firstAttribute="bottom" secondItem="HjD-o0-7z2" secondAttribute="bottom" constant="20" id="lM0-eG-OTt"/>
+                            <constraint firstItem="rC7-ra-T2Y" firstAttribute="leading" secondItem="xPA-9s-9EW" secondAttribute="leading" constant="20" id="ltF-LB-ovB"/>
+                            <constraint firstItem="LAo-Ni-ewv" firstAttribute="top" secondItem="BCM-BT-rh6" secondAttribute="bottom" constant="8" id="qva-bK-HU2"/>
+                            <constraint firstItem="rC7-ra-T2Y" firstAttribute="leading" secondItem="xPA-9s-9EW" secondAttribute="leading" constant="20" id="tpP-fc-JjC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xPA-9s-9EW"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="hYw-LM-O39">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="biO-Zg-Zh9">
+                            <connections>
+                                <action selector="saveButton:" destination="fIB-85-aAT" id="eDY-36-OBH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="HjD-o0-7z2" id="lgl-wa-yvW"/>
+                        <outlet property="dueDateDatePicker" destination="BCM-BT-rh6" id="ONr-ej-ZEW"/>
+                        <outlet property="jobTitleTextField" destination="Lnp-A3-dKR" id="jVn-9B-0kV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yVB-u5-Jit" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1872" y="159"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="ivw-I5-aAn">
@@ -121,7 +218,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQV-Ot-J5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1931" y="-201"/>
+            <point key="canvasLocation" x="1822" y="-612"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lnt-kC-OgS">
@@ -142,4 +239,7 @@
             <point key="canvasLocation" x="47.826086956521742" y="45.535714285714285"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Dkh-OM-Cv4"/>
+    </inferredMetricsTieBreakers>
 </document>

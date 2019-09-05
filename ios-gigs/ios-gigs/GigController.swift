@@ -28,6 +28,8 @@ class GigController {
     
     var bearer: Bearer?
     
+    var gigs: [Gig] = []
+    
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
     func signUp(with user: User, completion: @escaping (NetworkError?) -> Void ) {
