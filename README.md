@@ -97,7 +97,10 @@ request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
     - Add a property with a new instance of `GigController`. This instance of `GigController` will be used to perform network calls to get the gigs from the API, and be passed to the other view controllers to perform whatever API calls they need to do as well.
     
-    - Call `viewDidAppear`. In it, check if the `GigController` property's `bearer` is nil. If it is, then perform the manual segue you made to the `LoginViewController`. If it isn't nil, call your method that fetches all gigs from the API.
+    - Call `viewDidAppear`. In it, check if the `GigController` property's `bearer` is nil. If it is, then perform the manual segue you made to the `LoginViewController`. We will deal with what happens if it isn't nil tomorrow. For now, just put this line in.
+        ```
+        // TODO: fetch gigs here
+        ```
     
     - Return 0 for the `numberOfRowsInSection` and use this as your implementation of `cellForRowAt` until tomorrow:
     
