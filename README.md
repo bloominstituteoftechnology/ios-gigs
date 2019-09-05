@@ -124,3 +124,6 @@ request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
     - In the button's action, based on the `loginType` property, perform the corresponding method in the `gigController` to either sign them up or log them in. If the **sign up** is successful, present an alert telling them they can log in. If the **log in** is successful, dismiss the view controller to take them back to the `GigsTableViewController`.
     
+
+**The API documentation only showed what was required for this module project. For the next module project, you will continue writing this project. The updated API documentation can be found in the day2 branch's README of this repo here: https://github.com/LambdaSchool/ios-gigs/blob/day2/APIDocumentation.md**
+
