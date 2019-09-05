@@ -22,6 +22,7 @@ enum NetworkError: Error {
     case otherError
     case noData
     case noDecode
+    case noToken
 }
 
 class GigController {
@@ -120,6 +121,53 @@ class GigController {
                 return
             }
             completion(nil)
+        }.resume()
+    }
+    
+    func getAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
+        
+        let requestURL = baseURL
+            .appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.responseError))
+                return
+            }
+            
+            if let error = error {
+                NSLog("Error getting gig: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+                let allGigs = try decoder.decode([String].self, from: data)
+                completion(.success(allGigs))
+            } catch {
+                NSLog("Error decoding gigs: \(error)")
+                completion(.failure(.noDecode))
+                return
+            }
         }.resume()
     }
 }
