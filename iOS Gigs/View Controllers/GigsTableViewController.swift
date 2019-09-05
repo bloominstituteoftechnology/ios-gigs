@@ -20,7 +20,7 @@ class GigsTableViewController: UITableViewController {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
         } else {
-            // Fetch all gigs from the API
+            // TODO: Fetch all gigs from the API
         }
     }
 
@@ -28,7 +28,7 @@ class GigsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1 // Should it be 1?
+        return 1 // TODO: Confirm if should be 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
