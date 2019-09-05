@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Igs Table View Controller-->
         <scene sceneID="qDM-Ov-7Nb">
             <objects>
-                <tableViewController id="uSj-H1-u5x" sceneMemberID="viewController">
+                <tableViewController id="uSj-H1-u5x" customClass="GIgsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="QlC-rY-EPy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,15 +50,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="suI-JM-aUk"/>
+                    <connections>
+                        <segue destination="61v-1B-Yt4" kind="presentation" identifier="LoginModalSegue" id="GeA-Ye-XeZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5G-NW-kgx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1881.1594202898552" y="250.44642857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="5lY-gr-OxW">
             <objects>
-                <viewController id="61v-1B-Yt4" sceneMemberID="viewController">
+                <viewController id="61v-1B-Yt4" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r9a-am-u61">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,7 +79,7 @@
                                         <rect key="frame" x="0.0" y="48" width="374" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -86,11 +89,17 @@
                                     <segment title="Signup"/>
                                     <segment title="Login"/>
                                 </segments>
+                                <connections>
+                                    <action selector="loginTypeSegmentControl:" destination="61v-1B-Yt4" eventType="valueChanged" id="s7u-va-Dae"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ddr-PW-CiG">
                                 <rect key="frame" x="160" y="211" width="94" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Sign up"/>
+                                <connections>
+                                    <action selector="signUpButton:" destination="61v-1B-Yt4" eventType="touchUpInside" id="NXh-q1-qtT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -109,6 +118,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mfj-2u-f3H"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextfield" destination="LSu-c2-9Zg" id="Pa6-rQ-del"/>
+                        <outlet property="signUpButton" destination="Ddr-PW-CiG" id="aA5-rd-6GK"/>
+                        <outlet property="signUpOrLogin" destination="1y3-h8-hdM" id="nO2-iE-t6b"/>
+                        <outlet property="usernameTextfield" destination="dT9-lS-agk" id="pry-Bn-dl2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLi-Rd-1qk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
