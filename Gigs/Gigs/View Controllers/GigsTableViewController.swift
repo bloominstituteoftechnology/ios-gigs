@@ -19,17 +19,17 @@ class GigsTableViewController: UITableViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-
 	}
 
 
-	override func viewWillAppear(_ animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		if gigController.bearer == nil {
 			performSegue(withIdentifier: "ToLoginModalSegue", sender: self)
 		}
 	}
+	// TODO: Call the method that fetches all gigs from the API
+	
 
 
 

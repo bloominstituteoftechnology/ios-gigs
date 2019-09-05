@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		DD3DCF95231FF89800B8A3BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3DCF94231FF89800B8A3BF /* AppDelegate.swift */; };
-		DD3DCF97231FF89800B8A3BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3DCF96231FF89800B8A3BF /* ViewController.swift */; };
 		DD3DCF9A231FF89800B8A3BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD3DCF98231FF89800B8A3BF /* Main.storyboard */; };
 		DD3DCF9C231FF89B00B8A3BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD3DCF9B231FF89B00B8A3BF /* Assets.xcassets */; };
 		DD3DCF9F231FF89B00B8A3BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD3DCF9D231FF89B00B8A3BF /* LaunchScreen.storyboard */; };
@@ -17,12 +16,12 @@
 		DD3DCFAF2320020100B8A3BF /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3DCFAE2320020100B8A3BF /* Bearer.swift */; };
 		DD3DCFBB23204D6100B8A3BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3DCFBA23204D6100B8A3BF /* User.swift */; };
 		DD3DCFBD23204F2000B8A3BF /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3DCFBC23204F2000B8A3BF /* GigController.swift */; };
+		DD577BA12321CAE30073F108 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD577BA02321CAE30073F108 /* GigDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DD3DCF91231FF89800B8A3BF /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD3DCF94231FF89800B8A3BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DD3DCF96231FF89800B8A3BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DD3DCF99231FF89800B8A3BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD3DCF9B231FF89B00B8A3BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD3DCF9E231FF89B00B8A3BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,6 +31,7 @@
 		DD3DCFAE2320020100B8A3BF /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		DD3DCFBA23204D6100B8A3BF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DD3DCFBC23204F2000B8A3BF /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		DD577BA02321CAE30073F108 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,6 @@
 				DD3DCFA9231FFB1F00B8A3BF /* View Controllers */,
 				DD3DCF98231FF89800B8A3BF /* Main.storyboard */,
 				DD3DCF94231FF89800B8A3BF /* AppDelegate.swift */,
-				DD3DCF96231FF89800B8A3BF /* ViewController.swift */,
 				DD3DCF9B231FF89B00B8A3BF /* Assets.xcassets */,
 				DD3DCF9D231FF89B00B8A3BF /* LaunchScreen.storyboard */,
 				DD3DCFA0231FF89B00B8A3BF /* Info.plist */,
@@ -99,6 +98,7 @@
 			children = (
 				DD3DCFAA231FFB3F00B8A3BF /* GigsTableViewController.swift */,
 				DD3DCFAC231FFE8300B8A3BF /* LoginViewController.swift */,
+				DD577BA02321CAE30073F108 /* GigDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -177,8 +177,8 @@
 				DD3DCFAF2320020100B8A3BF /* Bearer.swift in Sources */,
 				DD3DCFBD23204F2000B8A3BF /* GigController.swift in Sources */,
 				DD3DCFAD231FFE8300B8A3BF /* LoginViewController.swift in Sources */,
+				DD577BA12321CAE30073F108 /* GigDetailViewController.swift in Sources */,
 				DD3DCFBB23204D6100B8A3BF /* User.swift in Sources */,
-				DD3DCF97231FF89800B8A3BF /* ViewController.swift in Sources */,
 				DD3DCF95231FF89800B8A3BF /* AppDelegate.swift in Sources */,
 				DD3DCFAB231FFB3F00B8A3BF /* GigsTableViewController.swift in Sources */,
 			);
