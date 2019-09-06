@@ -9,7 +9,7 @@
 import Foundation
 
 struct Gig: Codable {
-    let title: String
-    let description: String
-    let dueDate: Date
+    var title: String
+    var description: String
+    var dueDate: Date
 }

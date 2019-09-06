@@ -80,9 +80,4 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         passwordTextField.isSecureTextEntry = true
     }
-    
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    }
 }
