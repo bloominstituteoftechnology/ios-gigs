@@ -25,8 +25,26 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setColors()
+    }
+    
+    func setColors() {
+        view.backgroundColor = UIColor(red: 0.52, green: 0.64, blue: 0.62, alpha: 1.00)
+        loginTypesSegmentedControl.tintColor = UIColor(red:0.40, green:0.41, blue:0.39, alpha:1.00)
+        usernameTextField.backgroundColor = UIColor(red: 0.40, green: 0.41, blue: 0.39, alpha: 1.00)
+        passwordTextField.backgroundColor = UIColor(red: 0.40, green: 0.41, blue: 0.39, alpha: 1.00)
+        loginButton.backgroundColor = UIColor(red:0.67, green:0.16, blue:0.25, alpha:1.00)
+        
+        loginButton.setTitleColor(UIColor(red:0.95, green:0.93, blue:0.93, alpha:1.00), for: .normal)
+        loginButton.layer.cornerRadius = 8
+        
+        usernameTextField.textColor = UIColor(red:0.95, green:0.93, blue:0.93, alpha:1.00)
+        usernameTextField.attributedPlaceholder = NSAttributedString(string: "Username:",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:0.78, green:0.76, blue:0.76, alpha:1.00)])
+        passwordTextField.textColor = UIColor(red:0.95, green:0.93, blue:0.93, alpha:1.00)
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password:",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(red:0.78, green:0.76, blue:0.76, alpha:1.00)])
     }
     
     @IBAction func loginTapped(_ sender: Any) {

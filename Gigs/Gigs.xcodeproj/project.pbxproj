@@ -16,6 +16,8 @@
 		0EA23E6D232052DD001F8AB0 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA23E6C232052DD001F8AB0 /* Bearer.swift */; };
 		0EA23E6F23205324001F8AB0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA23E6E23205324001F8AB0 /* User.swift */; };
 		0EA23E712320536D001F8AB0 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA23E702320536D001F8AB0 /* GigController.swift */; };
+		0EDF75F22321AC6B0073E7BA /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDF75F12321AC6B0073E7BA /* GigDetailViewController.swift */; };
+		0EDF75F42321ACF40073E7BA /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDF75F32321ACF40073E7BA /* Gig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		0EA23E6C232052DD001F8AB0 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		0EA23E6E23205324001F8AB0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0EA23E702320536D001F8AB0 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		0EDF75F12321AC6B0073E7BA /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		0EDF75F32321ACF40073E7BA /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,18 +66,52 @@
 		0EA23E5523204EDD001F8AB0 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				0EA23E5623204EDD001F8AB0 /* AppDelegate.swift */,
+				0EDF75EF2321A5EA0073E7BA /* Resources */,
 				0EA23E5A23204EDD001F8AB0 /* Main.storyboard */,
-				0EA23E5D23204EDE001F8AB0 /* Assets.xcassets */,
 				0EA23E5F23204EDE001F8AB0 /* LaunchScreen.storyboard */,
-				0EA23E6223204EDE001F8AB0 /* Info.plist */,
-				0EA23E6823204FD9001F8AB0 /* GigsTableViewController.swift */,
-				0EA23E6A23205239001F8AB0 /* LoginViewController.swift */,
-				0EA23E6C232052DD001F8AB0 /* Bearer.swift */,
-				0EA23E6E23205324001F8AB0 /* User.swift */,
-				0EA23E702320536D001F8AB0 /* GigController.swift */,
+				0EDF75F02321A6510073E7BA /* View Controllers */,
+				0EDF75ED2321A5130073E7BA /* Models */,
+				0EDF75EE2321A5860073E7BA /* Model Controllers */,
 			);
 			path = Gigs;
+			sourceTree = "<group>";
+		};
+		0EDF75ED2321A5130073E7BA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0EA23E6C232052DD001F8AB0 /* Bearer.swift */,
+				0EA23E6E23205324001F8AB0 /* User.swift */,
+				0EDF75F32321ACF40073E7BA /* Gig.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0EDF75EE2321A5860073E7BA /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0EA23E702320536D001F8AB0 /* GigController.swift */,
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		0EDF75EF2321A5EA0073E7BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0EA23E5623204EDD001F8AB0 /* AppDelegate.swift */,
+				0EA23E5D23204EDE001F8AB0 /* Assets.xcassets */,
+				0EA23E6223204EDE001F8AB0 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0EDF75F02321A6510073E7BA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0EA23E6823204FD9001F8AB0 /* GigsTableViewController.swift */,
+				0EA23E6A23205239001F8AB0 /* LoginViewController.swift */,
+				0EDF75F12321AC6B0073E7BA /* GigDetailViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,7 +186,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EA23E6D232052DD001F8AB0 /* Bearer.swift in Sources */,
+				0EDF75F22321AC6B0073E7BA /* GigDetailViewController.swift in Sources */,
 				0EA23E6B23205239001F8AB0 /* LoginViewController.swift in Sources */,
+				0EDF75F42321ACF40073E7BA /* Gig.swift in Sources */,
 				0EA23E5723204EDD001F8AB0 /* AppDelegate.swift in Sources */,
 				0EA23E6F23205324001F8AB0 /* User.swift in Sources */,
 				0EA23E6923204FD9001F8AB0 /* GigsTableViewController.swift in Sources */,
@@ -300,7 +340,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HFR8F4BT7E;
-				INFOPLIST_FILE = Gigs/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Gigs/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,7 +358,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HFR8F4BT7E;
-				INFOPLIST_FILE = Gigs/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Gigs/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
