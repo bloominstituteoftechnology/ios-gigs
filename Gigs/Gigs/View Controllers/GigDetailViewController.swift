@@ -47,8 +47,22 @@ class GigDetailViewController: UIViewController {
     
     func setUI() {
         view.backgroundColor = UIColor(red: 0.52, green: 0.64, blue: 0.62, alpha: 1.00)
+        titleTextField.backgroundColor = UIColor(red: 0.40, green: 0.41, blue: 0.39, alpha: 1.00)
+        descriptionTextView.backgroundColor =  UIColor(red: 0.40, green: 0.41, blue: 0.39, alpha: 1.00)
+        gigDatePicker.setValue(UIColor(red: 0.95, green: 0.93, blue: 0.93, alpha: 1.00), forKeyPath: "textColor")
         
+        descriptionTextView.textColor = UIColor(red: 0.95, green: 0.93, blue: 0.93, alpha: 1.00)
+        titleTextField.textColor = UIColor(red: 0.95, green: 0.93, blue: 0.93, alpha: 1.00)
+        titleTextField.attributedPlaceholder = NSAttributedString(string: "",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.78, green: 0.76, blue :0.76, alpha: 1.00)])
         
+        descriptionLabel.textColor = UIColor(red: 0.95, green: 0.93, blue: 0.93, alpha: 1.00)
+        dateLabel.textColor = UIColor(red: 0.95, green: 0.93, blue: 0.93, alpha: 1.00)
+        jobTitleLabel.textColor = UIColor(red: 0.95, green: 0.93, blue: 0.93, alpha: 1.00)
+        
+        descriptionTextView.layer.borderWidth = 0.5
+        descriptionTextView.layer.borderColor = UIColor(displayP3Red: 0.2, green: 0.2, blue: 0.2, alpha: 0.3).cgColor
+        descriptionTextView.layer.cornerRadius = 8
     }
     
     

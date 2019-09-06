@@ -189,7 +189,7 @@ class GigController {
             // Attach the user JSON to the URLRequest
             request.httpBody = gigData
         } catch {
-            NSLog("Error encoding user: \(error)")
+            NSLog("Error encoding gig: \(error)")
             completion(.encodingError)
             return
         }
@@ -203,7 +203,7 @@ class GigController {
             }
             
             if let error = error {
-                NSLog("Error creating user on server: \(error)")
+                NSLog("Error creating gig on server: \(error)")
                 completion(.otherError(error))
                 return
             }
