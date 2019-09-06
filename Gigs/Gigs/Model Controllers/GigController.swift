@@ -69,7 +69,7 @@ class GigController {
                 return
             }
             completion(nil)
-            }.resume()
+        }.resume()
     }
     
     func login(with user: User, completion: @escaping (NetworkError?) -> Void) {
@@ -173,41 +173,34 @@ class GigController {
     }
     
     func createGig(with gig: Gig, completion: @escaping (NetworkError?) -> Void) {
-        guard let bearer = bearer else { completion(.noToken); return }
+        guard let bearer = bearer else {completion(.noToken); return}
         let requestURL = baseURL.appendingPathComponent("gigs")
         
         var request = URLRequest(url: requestURL)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         do {
-            let encoder = JSONEncoder()
-            // Convert the User object into JSON data.
-            let gigData = try encoder.encode(gig)
-            // Attach the user JSON to the URLRequest
+            let gigData = try JSONEncoder().encode(gig)
             request.httpBody = gigData
         } catch {
-            NSLog("Error encoding gig: \(error)")
+            NSLog("Error encoding gig object to JSON")
             completion(.encodingError)
             return
         }
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                print("\(response.statusCode)")
+                NSLog("THIS RESPONSE SUCKS -> \(response.statusCode)")
                 completion(.responseError)
                 return
             }
             
             if let error = error {
-                NSLog("Error creating gig on server: \(error)")
                 completion(.otherError(error))
                 return
             }
-            completion(nil)
         }.resume()
     }
 }
