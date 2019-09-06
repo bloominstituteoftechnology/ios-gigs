@@ -21,12 +21,14 @@ enum NetworkError: Error {
     case otherError
     case noData
     case noDecode
+    case noToken
 }
 
 class GigController {
     
     var bearer: Bearer?
     var baseURL = URL(string:"https://lambdagigs.vapor.cloud/api")!
+    var gigs: [Gig] = []
     
     func signUp(with user: User, completion: @escaping (NetworkError?) -> Void) {
         
@@ -127,5 +129,16 @@ class GigController {
             }
             completion(nil)
         }.resume()
+    }
+    
+    func getAllGigNames(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
+        
+        let requestURL = baseURL
+        .appendingPathComponent("")
     }
 }

@@ -10,20 +10,77 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="UHY-1C-QX7">
             <objects>
-                <viewController id="iAg-Tf-8Mi" sceneMemberID="viewController">
+                <viewController id="iAg-Tf-8Mi" customClass="GigDetailViewController" customModule="iOS_Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mKb-8N-56j">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82b-Kx-H92">
+                                <rect key="frame" x="159" y="196" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="GRk-F3-eeu">
+                                <rect key="frame" x="0.0" y="307" width="414" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="589418400.95383203">
+                                    <!--2019-09-05 23:20:00 +0000-->
+                                </date>
+                            </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="e7y-Xf-l2v">
+                                <rect key="frame" x="87" y="612" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Job Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glD-ME-DHE">
+                                <rect key="frame" x="50" y="196" width="66" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="not-WK-rwA">
+                                <rect key="frame" x="36" y="278" width="72" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTN-qx-o27">
+                                <rect key="frame" x="30" y="573" width="88" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="hes-ls-Yrn"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="mw2-G2-smw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="HaU-Ef-Vwd">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="iAg-Tf-8Mi" id="TM7-2y-p6E"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="GRk-F3-eeu" id="cga-EX-gSg"/>
+                        <outlet property="descriptionTextView" destination="e7y-Xf-l2v" id="5al-tJ-Xf8"/>
+                        <outlet property="jobTitleTextField" destination="82b-Kx-H92" id="Dbd-HT-e9Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PmP-7l-ARI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-58" y="111"/>
+            <point key="canvasLocation" x="1658" y="-631"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="7eE-dU-qhL">
@@ -79,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jfm-9I-Qbe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1802.8985507246377" y="-631.47321428571422"/>
+            <point key="canvasLocation" x="1780" y="-1634"/>
         </scene>
         <!--Gigs Table View Controller-->
         <scene sceneID="a84-ng-4XI">
@@ -114,7 +171,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="XQz-Cu-Cpk" kind="presentation" identifier="LoginViewModalSegue" id="0df-SG-h2D"/>
+                                    <segue destination="iAg-Tf-8Mi" kind="show" identifier="ShowGig" id="nAO-uq-Jnq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -123,11 +180,20 @@
                             <outlet property="delegate" destination="nsD-xA-91B" id="YBQ-sh-uy1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="evk-yZ-lJt"/>
+                    <navigationItem key="navigationItem" id="evk-yZ-lJt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="HRi-Eo-wRy">
+                            <connections>
+                                <segue destination="iAg-Tf-8Mi" kind="show" identifier="AddGigDetail" id="mJR-Ym-MaY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="XQz-Cu-Cpk" kind="presentation" identifier="LoginViewModalSegue" id="wYS-3b-KnG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0WK-Ly-1nV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="850.72463768115949" y="-630.80357142857144"/>
+            <point key="canvasLocation" x="851" y="-631"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6RA-tJ-7hH">
@@ -148,4 +214,7 @@
             <point key="canvasLocation" x="-59.420289855072468" y="-631.47321428571422"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="mJR-Ym-MaY"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -13,7 +13,7 @@ enum LoginType {
     case signin
 }
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var loginTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     
     var gigController: GigController?
-    var loginType : LoginType = .signup
+    var loginType = LoginType.signup
     
     
     override func viewDidLoad() {
@@ -53,8 +53,8 @@ class LoginViewController: UIViewController {
         
         if loginType == .signup {
             
+            print("Before")
             gigController?.signUp(with: user, completion: { (networkError) in
-                
                 print("Alert")
                 if let error = networkError {
                     NSLog("Error occurred during sign up: \(error)")
