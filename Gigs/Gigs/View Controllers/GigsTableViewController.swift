@@ -66,9 +66,12 @@ class GigsTableViewController: UITableViewController {
         gigController.getAllGigs(completion: { (networkError) in
             if let error = networkError {
                 NSLog("There was an error fetching gigs: \(error)")
+            } else {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         })
-        tableView.reloadData()
     }
     
     // MARK: - Navigation

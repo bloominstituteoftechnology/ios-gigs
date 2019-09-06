@@ -177,15 +177,14 @@ class GigController {
         let requestURL = baseURL.appendingPathComponent("gigs")
         
         var request = URLRequest(url: requestURL)
-        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
-        
-        let encoder = JSONEncoder()
+        request.httpMethod = HTTPMethod.post.rawValue
         
         do {
+            let encoder = JSONEncoder()
             // Convert the User object into JSON data.
             let gigData = try encoder.encode(gig)
-            
             // Attach the user JSON to the URLRequest
             request.httpBody = gigData
         } catch {
@@ -198,6 +197,7 @@ class GigController {
             
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
+                print("\(response.statusCode)")
                 completion(.responseError)
                 return
             }

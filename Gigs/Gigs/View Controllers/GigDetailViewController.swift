@@ -21,10 +21,6 @@ class GigDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        titleTextField.text = "title textField"
-        descriptionTextView.text = "desc textView"
-        
         setUI()
         
         if let _ = gig {
@@ -42,11 +38,12 @@ class GigDetailViewController: UIViewController {
     }()
     
     func updateViews() {
-        guard let gig = gig else { return }
-        self.title = gig.title
-        titleTextField.text = gig.title
-//        gigDatePicker.date = gig.dueDate
-        descriptionTextView.text = gig.description
+        if let gig = gig {
+            self.title = gig.title
+            titleTextField.text = gig.title
+//            gigDatePicker.date = gig.dueDate
+            descriptionTextView.text = gig.description
+        }
     }
     
     func setUI() {
@@ -73,6 +70,13 @@ class GigDetailViewController: UIViewController {
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
         guard let gigController = gigController, let title = titleTextField.text,
             let desc = descriptionTextView.text else { return }
+        
+//        gigController.getAllGigs(completion: { (networkError) in
+//            if let error = networkError {
+//                NSLog("There was an error fetching gigs: \(error)")
+//            }
+//        })
+//        tableView.reloadData()
         
         gigController.createGig(with: Gig(dueDate: dateFormatter.string(from: gigDatePicker.date), description: desc, title: title), completion: { (networkError) in
             if let error = networkError {
