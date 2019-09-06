@@ -18,14 +18,16 @@ enum HTTPMethod: String {
 enum NetworkError: Error {
     case encodingError
     case responseError
-    case otherError
+    case otherError(Error)
     case noData
     case noDecode
+    case noToken
 }
 
-class GigController: Codable {
+class GigController {
     var bearer: Bearer?
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
+    var gigs: [Gig] = []
         
     func signUp(with user: User, completion: @escaping (NetworkError?) -> Void) {
         
@@ -56,7 +58,7 @@ class GigController: Codable {
             //Handle errors
             if let error = error {
                 NSLog("Error creating user on server: \(error)")
-                completion(.otherError)
+                completion(.otherError(error))
                 return
             }
             completion(nil)
@@ -91,7 +93,7 @@ class GigController: Codable {
             // Handle errors
             if let error = error {
                 NSLog("Error logging in: \(error)")
-                completion(.otherError)
+                completion(.otherError(error))
                 return
             }
             // (optionally) handle the data returned
@@ -109,4 +111,101 @@ class GigController: Codable {
             completion(nil)
         }.resume()
     }
+    
+    func getAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
+        
+        let requestURL = baseURL
+            .appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.responseError))
+                return
+            }
+            
+            if let error = error {
+                NSLog("Error getting all gigs: \(error)")
+                completion(.failure(.otherError(error)))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+                let allGigs = try decoder.decode([Gig].self, from: data)
+                completion(.success(allGigs))
+                self.gigs = allGigs
+            } catch let decodingError {
+                NSLog("Error decoding all gigs: \(decodingError)")
+                completion(.failure(.noDecode))
+                return
+            }
+            }.resume()
+    }
+    
+    func createGig(with name: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
+        
+        let requestURL = baseURL
+            .appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.responseError))
+                return
+            }
+            
+            if let error = error {
+                NSLog("Error creating gig: \(error)")
+                completion(.failure(.otherError(error)))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+                let gig = try decoder.decode(Gig.self, from: data)
+                completion(.success(gig))
+                self.gigs.append(gig)
+            } catch let decodingError {
+                NSLog("Error decoding gig: \(decodingError)")
+                completion(.failure(.noDecode))
+                return
+            }
+            }.resume()
+    }
+    
 }
