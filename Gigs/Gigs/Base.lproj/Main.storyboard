@@ -53,6 +53,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Gigs" id="ZNl-Ss-G0D">
+                        <barButtonItem key="leftBarButtonItem" title="Reload Data" id="YHd-11-GZT">
+                            <connections>
+                                <action selector="reloadDataTapped:" destination="H4e-s5-zGA" id="Htj-NM-9Wt"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="aQD-bm-whP">
                             <connections>
                                 <segue destination="ipv-Fu-Hok" kind="show" identifier="ShowNewGigSegue" id="BFF-Yo-6Yg"/>
@@ -76,10 +81,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="mY5-Kv-XOj">
-                                <rect key="frame" x="20" y="160" width="374" height="568"/>
+                                <rect key="frame" x="20" y="160" width="374" height="576"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rRS-6B-bR2">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="77"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFb-md-sqn">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
@@ -87,19 +92,19 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbb-Uf-5jL">
-                                                <rect key="frame" x="0.0" y="32" width="374" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="UlJ-fV-bMX"/>
-                                                </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                         </subviews>
                                     </stackView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="hdP-Pr-dTb">
+                                        <rect key="frame" x="0.0" y="40" width="374" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="gGB-96-Vow"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="f2R-kg-3ZN">
-                                        <rect key="frame" x="0.0" y="93" width="374" height="211"/>
+                                        <rect key="frame" x="0.0" y="101" width="374" height="211"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtP-JB-xkm">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
@@ -116,7 +121,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Nex-5p-6u0">
-                                        <rect key="frame" x="0.0" y="320" width="374" height="248"/>
+                                        <rect key="frame" x="0.0" y="328" width="374" height="248"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aen-Nn-d8h">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
@@ -154,10 +159,10 @@
                     <connections>
                         <outlet property="dateLabel" destination="aen-Nn-d8h" id="wTD-qd-vWb"/>
                         <outlet property="descriptionLabel" destination="QtP-JB-xkm" id="oeu-eG-Gq1"/>
-                        <outlet property="descriptionTextView" destination="FlV-HP-Hkx" id="2gc-TL-ZyD"/>
-                        <outlet property="gigDatePicker" destination="gWg-P8-ZdQ" id="cnx-hd-Lgq"/>
-                        <outlet property="jobTitleLabel" destination="MFb-md-sqn" id="FlI-yd-Aji"/>
-                        <outlet property="titleTextField" destination="xbb-Uf-5jL" id="DUV-Zq-Ury"/>
+                        <outlet property="descriptionTextView" destination="FlV-HP-Hkx" id="gUK-bw-adG"/>
+                        <outlet property="gigDatePicker" destination="gWg-P8-ZdQ" id="MxR-Z1-mbZ"/>
+                        <outlet property="jobTitleLabel" destination="MFb-md-sqn" id="jrt-US-e84"/>
+                        <outlet property="titleTextField" destination="hdP-Pr-dTb" id="GIJ-Y7-Fz9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IMI-6V-SFM" userLabel="First Responder" sceneMemberID="firstResponder"/>

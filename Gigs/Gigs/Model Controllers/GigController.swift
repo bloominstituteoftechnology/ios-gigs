@@ -158,9 +158,9 @@ class GigController {
                 return
             }
             
-            let decoder = JSONDecoder()
-            
             do {
+                let decoder = JSONDecoder()
+                
                 let gigResults = try decoder.decode([Gig].self, from: data)
                 self.gigs = gigResults
             } catch {

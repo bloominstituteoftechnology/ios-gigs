@@ -22,13 +22,6 @@ class GigsTableViewController: UITableViewController {
         
         if gigController.bearer == nil {
             performSegue(withIdentifier: "ShowLoginModalSegue", sender: self)
-        } else {
-            gigController.getAllGigs(completion: { (networkError) in
-                if let error = networkError {
-                    NSLog("There was an error fetching gigs: \(error)")
-                }
-            })
-            tableView.reloadData()
         }
     }
 
@@ -50,7 +43,12 @@ class GigsTableViewController: UITableViewController {
         let gig = gigController.gigs[indexPath.row]
         
         cell.textLabel?.text = gig.title
+        cell.textLabel?.textColor = UIColor(red: 0.95, green: 0.93, blue: 0.93, alpha: 1.00)
         cell.detailTextLabel?.text = gig.description
+        cell.detailTextLabel?.textColor = UIColor(red: 0.95, green: 0.93, blue: 0.93, alpha: 1.00)
+        
+        
+        cell.backgroundColor = UIColor(red: 0.52, green: 0.64, blue: 0.62, alpha: 1.00)
         
         return cell
     }
@@ -62,6 +60,15 @@ class GigsTableViewController: UITableViewController {
         navigationController?.navigationBar.barTintColor = UIColor(red: 0.52, green: 0.64, blue: 0.62, alpha: 1.00)
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(red:0.95, green:0.93, blue:0.93, alpha:1.00)]
         self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor(red:0.95, green:0.93, blue:0.93, alpha:1.00)]
+    }
+    
+    @IBAction func reloadDataTapped(_ sender: UIBarButtonItem) {
+        gigController.getAllGigs(completion: { (networkError) in
+            if let error = networkError {
+                NSLog("There was an error fetching gigs: \(error)")
+            }
+        })
+        tableView.reloadData()
     }
     
     // MARK: - Navigation

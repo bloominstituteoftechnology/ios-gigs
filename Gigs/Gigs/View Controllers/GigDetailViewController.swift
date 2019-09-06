@@ -11,25 +11,28 @@ import UIKit
 class GigDetailViewController: UIViewController {
     
     var gigController: GigController?
-    
-    var gig: Gig? {
-        didSet {
-            updateViews()
-        }
-    }
-    
+
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var gigDatePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var gigDatePicker: UIDatePicker!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var jobTitleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        titleTextField.text = "title textField"
+        descriptionTextView.text = "desc textView"
+        
         setUI()
+        
+        if let _ = gig {
+            updateViews()
+        }
     }
+    
+    var gig: Gig?
     
     let dateFormatter: DateFormatter = {
         var formatter = DateFormatter()
@@ -39,7 +42,8 @@ class GigDetailViewController: UIViewController {
     }()
     
     func updateViews() {
-        guard isViewLoaded, let gig = gig else { return }
+        guard let gig = gig else { return }
+        self.title = gig.title
         titleTextField.text = gig.title
 //        gigDatePicker.date = gig.dueDate
         descriptionTextView.text = gig.description
