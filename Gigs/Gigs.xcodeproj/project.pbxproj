@@ -11,6 +11,9 @@
 		37113B2C2327F2C8000BCF59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37113B2A2327F2C8000BCF59 /* Main.storyboard */; };
 		37113B2E2327F2C9000BCF59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37113B2D2327F2C9000BCF59 /* Assets.xcassets */; };
 		37113B312327F2C9000BCF59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37113B2F2327F2C9000BCF59 /* LaunchScreen.storyboard */; };
+		37113B3E2327FA22000BCF59 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37113B3D2327FA22000BCF59 /* GigsTableViewController.swift */; };
+		37113B402327FAEE000BCF59 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37113B3F2327FAEE000BCF59 /* LoginViewController.swift */; };
+		37113B422327FB1A000BCF59 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37113B412327FB1A000BCF59 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,9 @@
 		37113B2D2327F2C9000BCF59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37113B302327F2C9000BCF59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37113B322327F2C9000BCF59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37113B3D2327FA22000BCF59 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
+		37113B3F2327FAEE000BCF59 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		37113B412327FB1A000BCF59 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +42,7 @@
 		37113B1A2327F2C8000BCF59 = {
 			isa = PBXGroup;
 			children = (
+				37113B412327FB1A000BCF59 /* Default-568h@2x.png */,
 				37113B252327F2C8000BCF59 /* Gigs */,
 				37113B242327F2C8000BCF59 /* Products */,
 			);
@@ -97,6 +104,8 @@
 		37113B3C2327F331000BCF59 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				37113B3D2327FA22000BCF59 /* GigsTableViewController.swift */,
+				37113B3F2327FAEE000BCF59 /* LoginViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -160,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37113B312327F2C9000BCF59 /* LaunchScreen.storyboard in Resources */,
+				37113B422327FB1A000BCF59 /* Default-568h@2x.png in Resources */,
 				37113B2E2327F2C9000BCF59 /* Assets.xcassets in Resources */,
 				37113B2C2327F2C8000BCF59 /* Main.storyboard in Resources */,
 			);
@@ -172,7 +182,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37113B402327FAEE000BCF59 /* LoginViewController.swift in Sources */,
 				37113B272327F2C8000BCF59 /* AppDelegate.swift in Sources */,
+				37113B3E2327FA22000BCF59 /* GigsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,7 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Gigs/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Gigs/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -336,7 +348,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Gigs/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Gigs/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
