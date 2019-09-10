@@ -1,5 +1,5 @@
 //
-//  APIController.swift
+//  GigController.swift
 //  Gigs
 //
 //  Created by John Kouris on 9/9/19.
