@@ -13,6 +13,7 @@
 		E36CB83023281FED001F8878 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36CB82E23281FED001F8878 /* LaunchScreen.storyboard */; };
 		E36CB8392328212A001F8878 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36CB8382328212A001F8878 /* GigsTableViewController.swift */; };
 		E36CB83B2328216C001F8878 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36CB83A2328216C001F8878 /* LoginViewController.swift */; };
+		E36CB83E232824BF001F8878 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36CB83D232824BF001F8878 /* Bearer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E36CB83123281FED001F8878 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E36CB8382328212A001F8878 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		E36CB83A2328216C001F8878 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E36CB83D232824BF001F8878 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,8 @@
 		E36CB82423281FEC001F8878 /* iOS Gigs */ = {
 			isa = PBXGroup;
 			children = (
+				E36CB83F2328262D001F8878 /* Application */,
+				E36CB83C232823D8001F8878 /* Models */,
 				E36CB83723282103001F8878 /* View Controllers */,
 				E36CB82523281FEC001F8878 /* AppDelegate.swift */,
 				E36CB82923281FEC001F8878 /* Main.storyboard */,
@@ -73,6 +77,21 @@
 				E36CB83A2328216C001F8878 /* LoginViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		E36CB83C232823D8001F8878 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E36CB83D232824BF001F8878 /* Bearer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E36CB83F2328262D001F8878 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E36CB83E232824BF001F8878 /* Bearer.swift in Sources */,
 				E36CB83B2328216C001F8878 /* LoginViewController.swift in Sources */,
 				E36CB82623281FEC001F8878 /* AppDelegate.swift in Sources */,
 				E36CB8392328212A001F8878 /* GigsTableViewController.swift in Sources */,
