@@ -16,6 +16,7 @@
 		37113B422327FB1A000BCF59 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37113B412327FB1A000BCF59 /* Default-568h@2x.png */; };
 		37113B442327FCEC000BCF59 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37113B432327FCEC000BCF59 /* Bearer.swift */; };
 		37113B462327FD3C000BCF59 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37113B452327FD3C000BCF59 /* User.swift */; };
+		37113B482327FDCF000BCF59 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37113B472327FDCF000BCF59 /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		37113B412327FB1A000BCF59 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		37113B432327FCEC000BCF59 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		37113B452327FD3C000BCF59 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		37113B472327FDCF000BCF59 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				37113B3C2327F331000BCF59 /* View Controllers */,
-				37113B3B2327F32F000BCF59 /* Views */,
+				37113B3B2327F32F000BCF59 /* Application */,
 				37113B3A2327F32C000BCF59 /* Models */,
 				37113B392327F32A000BCF59 /* Storyboards */,
 				37113B382327F327000BCF59 /* Resources */,
@@ -75,7 +77,6 @@
 		37113B382327F327000BCF59 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				37113B262327F2C8000BCF59 /* AppDelegate.swift */,
 				37113B2D2327F2C9000BCF59 /* Assets.xcassets */,
 				37113B322327F2C9000BCF59 /* Info.plist */,
 			);
@@ -100,11 +101,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		37113B3B2327F32F000BCF59 /* Views */ = {
+		37113B3B2327F32F000BCF59 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				37113B262327F2C8000BCF59 /* AppDelegate.swift */,
+				37113B472327FDCF000BCF59 /* GigController.swift */,
 			);
-			path = Views;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		37113B3C2327F331000BCF59 /* View Controllers */ = {
@@ -193,6 +196,7 @@
 				37113B272327F2C8000BCF59 /* AppDelegate.swift in Sources */,
 				37113B462327FD3C000BCF59 /* User.swift in Sources */,
 				37113B3E2327FA22000BCF59 /* GigsTableViewController.swift in Sources */,
+				37113B482327FDCF000BCF59 /* GigController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

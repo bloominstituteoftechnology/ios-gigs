@@ -67,24 +67,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7yb-R7-qA3">
-                                <rect key="frame" x="80" y="304" width="254" height="68"/>
+                                <rect key="frame" x="20" y="304" width="374" height="68"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="72R-aD-GbP">
-                                        <rect key="frame" x="0.0" y="0.0" width="254" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PJG-6n-rm5">
-                                        <rect key="frame" x="0.0" y="38" width="254" height="30"/>
+                                        <rect key="frame" x="0.0" y="38" width="374" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NuK-86-MYm">
-                                <rect key="frame" x="147" y="242" width="125" height="29"/>
+                                <rect key="frame" x="140" y="242" width="134" height="29"/>
                                 <segments>
                                     <segment title="Sign Up"/>
                                     <segment title="Sign In"/>
@@ -94,7 +94,7 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbd-Oj-8oE">
-                                <rect key="frame" x="180" y="410" width="54" height="30"/>
+                                <rect key="frame" x="20" y="410" width="374" height="30"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="aQp-6b-LTa" eventType="touchUpInside" id="Ggr-qY-rC5"/>
@@ -103,23 +103,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="7yb-R7-qA3" firstAttribute="leading" secondItem="eLv-xH-eP4" secondAttribute="leading" constant="80" id="CBj-85-K25"/>
+                            <constraint firstItem="7yb-R7-qA3" firstAttribute="leading" secondItem="eLv-xH-eP4" secondAttribute="leading" constant="20" id="CBj-85-K25"/>
                             <constraint firstItem="7yb-R7-qA3" firstAttribute="top" secondItem="NuK-86-MYm" secondAttribute="bottom" constant="34" id="Fk9-y9-Cga"/>
-                            <constraint firstItem="eLv-xH-eP4" firstAttribute="trailing" secondItem="nbd-Oj-8oE" secondAttribute="trailing" constant="180" id="J9J-Iv-yhL"/>
+                            <constraint firstItem="eLv-xH-eP4" firstAttribute="trailing" secondItem="nbd-Oj-8oE" secondAttribute="trailing" constant="20" id="J9J-Iv-yhL"/>
                             <constraint firstItem="nbd-Oj-8oE" firstAttribute="top" secondItem="7yb-R7-qA3" secondAttribute="bottom" constant="38" id="NUa-gQ-wsn"/>
                             <constraint firstItem="NuK-86-MYm" firstAttribute="top" secondItem="eLv-xH-eP4" secondAttribute="top" constant="198" id="TID-dM-gEc"/>
-                            <constraint firstItem="nbd-Oj-8oE" firstAttribute="leading" secondItem="eLv-xH-eP4" secondAttribute="leading" constant="180" id="V8L-Bc-12A"/>
+                            <constraint firstItem="nbd-Oj-8oE" firstAttribute="leading" secondItem="eLv-xH-eP4" secondAttribute="leading" constant="20" id="V8L-Bc-12A"/>
                             <constraint firstItem="eLv-xH-eP4" firstAttribute="bottom" secondItem="nbd-Oj-8oE" secondAttribute="bottom" constant="422" id="Xta-7f-RGU"/>
-                            <constraint firstItem="eLv-xH-eP4" firstAttribute="trailing" secondItem="NuK-86-MYm" secondAttribute="trailing" constant="142" id="gc0-ON-RRJ"/>
-                            <constraint firstItem="NuK-86-MYm" firstAttribute="leading" secondItem="eLv-xH-eP4" secondAttribute="leading" constant="147" id="qi0-wc-asX"/>
-                            <constraint firstItem="eLv-xH-eP4" firstAttribute="trailing" secondItem="7yb-R7-qA3" secondAttribute="trailing" constant="80" id="xC1-vz-fKk"/>
+                            <constraint firstItem="eLv-xH-eP4" firstAttribute="trailing" secondItem="NuK-86-MYm" secondAttribute="trailing" constant="140" id="gc0-ON-RRJ"/>
+                            <constraint firstItem="NuK-86-MYm" firstAttribute="leading" secondItem="eLv-xH-eP4" secondAttribute="leading" constant="140" id="qi0-wc-asX"/>
+                            <constraint firstItem="eLv-xH-eP4" firstAttribute="trailing" secondItem="7yb-R7-qA3" secondAttribute="trailing" constant="20" id="xC1-vz-fKk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eLv-xH-eP4"/>
                     </view>
                     <connections>
-                        <outlet property="loginButton" destination="nbd-Oj-8oE" id="Hhq-bk-VDJ"/>
+                        <outlet property="loginTypeSegmentedControl" destination="NuK-86-MYm" id="hA8-Yu-613"/>
                         <outlet property="passwordTextField" destination="PJG-6n-rm5" id="ace-qa-gFm"/>
-                        <outlet property="segmentedControl" destination="NuK-86-MYm" id="hA8-Yu-613"/>
+                        <outlet property="signInButton" destination="nbd-Oj-8oE" id="Hhq-bk-VDJ"/>
                         <outlet property="usernameTextField" destination="72R-aD-GbP" id="FBv-s9-TEF"/>
                     </connections>
                 </viewController>
