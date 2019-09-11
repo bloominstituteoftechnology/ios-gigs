@@ -60,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="633" y="165"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="T3s-w4-MOV">
             <objects>
-                <viewController id="cCw-1b-TQU" sceneMemberID="viewController">
+                <viewController id="cCw-1b-TQU" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yhC-hF-p1D">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,8 +75,11 @@
                                         <rect key="frame" x="128.5" y="0.0" width="125" height="29"/>
                                         <segments>
                                             <segment title="Sign Up"/>
-                                            <segment title="Sign In"/>
+                                            <segment title="Log In"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="segmentedControlTypeChanged:" destination="cCw-1b-TQU" eventType="valueChanged" id="sYQ-39-UUB"/>
+                                        </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3mT-Xd-RI5">
                                         <rect key="frame" x="0.0" y="40" width="382" height="30"/>
@@ -93,6 +96,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63C-KI-zyo">
                                         <rect key="frame" x="168" y="124" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="logInButtonTapped:" destination="cCw-1b-TQU" eventType="touchUpInside" id="w5a-FZ-nB2"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -112,6 +118,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DxA-sT-4UV"/>
                     </view>
+                    <connections>
+                        <outlet property="logInButton" destination="63C-KI-zyo" id="EEU-SZ-O4f"/>
+                        <outlet property="loginTypeSegmentedControl" destination="a49-Is-46b" id="KSE-3G-9Bk"/>
+                        <outlet property="passwordTextField" destination="lkG-N6-nSg" id="i46-d7-aem"/>
+                        <outlet property="usernameTextField" destination="3mT-Xd-RI5" id="vVu-Te-2mj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhs-Dc-Tfe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
