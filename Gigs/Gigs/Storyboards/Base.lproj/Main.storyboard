@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Gigs-->
         <scene sceneID="NWG-E7-4QA">
             <objects>
                 <tableViewController id="T3Q-C0-7gW" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,11 +49,11 @@
                             <outlet property="delegate" destination="T3Q-C0-7gW" id="Ge3-Gx-gVR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Fyu-Fw-pLk">
+                    <navigationItem key="navigationItem" title="Gigs" id="Fyu-Fw-pLk">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="OWd-jg-F9w"/>
                     </navigationItem>
                     <connections>
-                        <segue destination="cCw-1b-TQU" kind="presentation" id="vXf-R9-Vgi"/>
+                        <segue destination="cCw-1b-TQU" kind="presentation" identifier="LoginViewModalSegue" id="vXf-R9-Vgi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Udn-F3-dj9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -69,7 +69,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="MGy-xB-1jx">
-                                <rect key="frame" x="16" y="84" width="382" height="154"/>
+                                <rect key="frame" x="16" y="84" width="382" height="174"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="a49-Is-46b">
                                         <rect key="frame" x="128.5" y="0.0" width="125" height="29"/>
@@ -77,6 +77,7 @@
                                             <segment title="Sign Up"/>
                                             <segment title="Log In"/>
                                         </segments>
+                                        <color key="tintColor" red="0.23999999999999999" green="0.7066666667" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="segmentedControlTypeChanged:" destination="cCw-1b-TQU" eventType="valueChanged" id="sYQ-39-UUB"/>
                                         </connections>
@@ -85,17 +86,20 @@
                                         <rect key="frame" x="0.0" y="40" width="382" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="username"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lkG-N6-nSg">
                                         <rect key="frame" x="0.0" y="82" width="382" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63C-KI-zyo">
-                                        <rect key="frame" x="168" y="124" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="40" y="124" width="302" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Tha-FT-FRJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Sign Up"/>
                                         <connections>
                                             <action selector="logInButtonTapped:" destination="cCw-1b-TQU" eventType="touchUpInside" id="w5a-FZ-nB2"/>
                                         </connections>
@@ -103,6 +107,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="3mT-Xd-RI5" firstAttribute="leading" secondItem="MGy-xB-1jx" secondAttribute="leading" id="LVw-ev-fBT"/>
+                                    <constraint firstAttribute="trailing" secondItem="63C-KI-zyo" secondAttribute="trailing" constant="40" id="Vee-hj-Akt"/>
                                     <constraint firstAttribute="trailing" secondItem="lkG-N6-nSg" secondAttribute="trailing" id="ZVR-tS-39v"/>
                                     <constraint firstAttribute="trailing" secondItem="3mT-Xd-RI5" secondAttribute="trailing" id="eIo-cv-V1S"/>
                                     <constraint firstItem="lkG-N6-nSg" firstAttribute="leading" secondItem="MGy-xB-1jx" secondAttribute="leading" id="zvh-zg-DE9"/>
