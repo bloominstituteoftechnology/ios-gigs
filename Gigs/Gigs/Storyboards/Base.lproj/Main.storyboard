@@ -73,20 +73,20 @@
                                     <segment title="Sign In"/>
                                 </segments>
                                 <connections>
-                                    <action selector="signUpInChanged:" destination="9Rt-Ib-weJ" eventType="valueChanged" id="FmG-Sn-12m"/>
+                                    <action selector="signUpInChanged:" destination="9Rt-Ib-weJ" eventType="valueChanged" id="YoP-iB-Jbr"/>
                                 </connections>
                             </segmentedControl>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e35-NB-5xj">
                                 <rect key="frame" x="20" y="135" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qpb-tq-py2">
                                 <rect key="frame" x="20" y="185" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNb-GA-kzi">
                                 <rect key="frame" x="180" y="263" width="54" height="30"/>
@@ -113,6 +113,7 @@
                     </view>
                     <connections>
                         <outlet property="btnSignUpIn" destination="LNb-GA-kzi" id="g82-Q3-LJO"/>
+                        <outlet property="segSignUpIn" destination="L6a-sI-iBJ" id="2D1-LW-s6T"/>
                         <outlet property="txtPassword" destination="Qpb-tq-py2" id="9B3-3g-IDE"/>
                         <outlet property="txtUsername" destination="e35-NB-5xj" id="V4a-FF-qs0"/>
                     </connections>
