@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
             if loginType == .signUp {
                 gigController.signUp(with: user) { (error) in
                     if let error = error {
-                        print("Erro occurred during sign up: \(error)")
+                        print("Error occurred during sign up: \(error)")
                     } else {
                         DispatchQueue.main.async {
                             let alertController = UIAlertController(title: "Sign Up Successful!",
