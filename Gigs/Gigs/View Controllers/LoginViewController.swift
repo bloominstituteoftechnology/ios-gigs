@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInSignUpButton: UIButton!
     
-    var gigController: GigController!
+    var gigController: GigController?
     var loginType: LoginType?
     
     
