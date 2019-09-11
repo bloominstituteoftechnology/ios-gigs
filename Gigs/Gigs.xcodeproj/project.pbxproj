@@ -13,6 +13,8 @@
 		92D6F87C232880F600862681 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D6F87A232880F600862681 /* LaunchScreen.storyboard */; };
 		92D6F8872328878200862681 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D6F8862328878200862681 /* GigsTableViewController.swift */; };
 		92D6F8892328888800862681 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D6F8882328888800862681 /* LoginViewController.swift */; };
+		92D6F88B23288A1400862681 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D6F88A23288A1400862681 /* Bearer.swift */; };
+		92D6F88D23288A6800862681 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D6F88C23288A6800862681 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		92D6F87D232880F600862681 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92D6F8862328878200862681 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		92D6F8882328888800862681 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		92D6F88A23288A1400862681 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		92D6F88C23288A6800862681 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 		92D6F8842328874800862681 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				92D6F88A23288A1400862681 /* Bearer.swift */,
+				92D6F88C23288A6800862681 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -162,8 +168,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D6F88B23288A1400862681 /* Bearer.swift in Sources */,
 				92D6F8892328888800862681 /* LoginViewController.swift in Sources */,
 				92D6F872232880F500862681 /* AppDelegate.swift in Sources */,
+				92D6F88D23288A6800862681 /* User.swift in Sources */,
 				92D6F8872328878200862681 /* GigsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
