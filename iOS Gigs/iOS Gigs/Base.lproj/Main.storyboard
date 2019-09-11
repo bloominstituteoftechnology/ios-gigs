@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="60n-70-nTg">
-                                <rect key="frame" x="0.0" y="84" width="414" height="208"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="222"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tco-Tz-Y0g">
                                         <rect key="frame" x="144.5" y="0.0" width="125" height="31"/>
@@ -30,8 +30,9 @@
                                             <segment title="Sign Up"/>
                                             <segment title="Log In"/>
                                         </segments>
+                                        <color key="tintColor" red="0.24000000000000005" green="0.70666666666666655" blue="0.80000000000000004" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <action selector="signInTypeChanged:" destination="pnh-e0-qZF" eventType="valueChanged" id="It4-Ak-nQI"/>
+                                            <action selector="signInTypeChanged:" destination="pnh-e0-qZF" eventType="valueChanged" id="SyM-dE-eZe"/>
                                         </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aCW-pV-jlE">
@@ -53,14 +54,18 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VI-cd-CEh">
-                                        <rect key="frame" x="180" y="178" width="54" height="30"/>
+                                        <rect key="frame" x="16" y="178" width="382" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="1kf-S3-l6o"/>
+                                        </constraints>
                                         <state key="normal" title="Sign Up"/>
                                         <connections>
-                                            <action selector="buttonTapped:" destination="pnh-e0-qZF" eventType="touchUpInside" id="HVu-h0-mbl"/>
+                                            <action selector="buttonTapped:" destination="pnh-e0-qZF" eventType="touchUpInside" id="ebT-qL-ArC"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="4VI-cd-CEh" firstAttribute="width" secondItem="bFP-WM-eV1" secondAttribute="width" id="1fc-81-YR5"/>
                                     <constraint firstAttribute="trailing" secondItem="aCW-pV-jlE" secondAttribute="trailing" constant="16" id="TjX-n8-xkI"/>
                                     <constraint firstItem="bFP-WM-eV1" firstAttribute="leading" secondItem="60n-70-nTg" secondAttribute="leading" constant="16" id="a8O-33-OFm"/>
                                     <constraint firstItem="aCW-pV-jlE" firstAttribute="leading" secondItem="60n-70-nTg" secondAttribute="leading" constant="16" id="dgK-i3-Rpf"/>
@@ -87,7 +92,7 @@
             </objects>
             <point key="canvasLocation" x="2277" y="183"/>
         </scene>
-        <!--Gigs Table View Controller-->
+        <!--Gigs-->
         <scene sceneID="bdd-1M-5o7">
             <objects>
                 <tableViewController id="ibp-zy-khh" customClass="GigsTableViewController" customModule="iOS_Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -126,7 +131,7 @@
                             <outlet property="delegate" destination="ibp-zy-khh" id="zzx-yy-mdF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ejr-kp-aXD"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="ejr-kp-aXD"/>
                     <connections>
                         <segue destination="pnh-e0-qZF" kind="presentation" identifier="LoginViewModalSegue" id="4dw-fo-GCJ"/>
                     </connections>
@@ -140,8 +145,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fSn-dz-dqm" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aD1-tw-Sgv">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="aD1-tw-Sgv">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
