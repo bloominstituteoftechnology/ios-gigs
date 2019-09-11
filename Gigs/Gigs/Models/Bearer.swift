@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct Bearer: Codable {
+    var id: Int
+    var token: String
+    var userId: Int
+}
