@@ -43,6 +43,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Gigs" id="GRk-5w-TBs"/>
+                    <connections>
+                        <outlet property="tableView" destination="b1M-82-txM" id="YVm-rF-aAg"/>
+                        <segue destination="dFQ-gP-tOb" kind="showDetail" identifier="login" id="C3S-q2-a2g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -71,7 +75,7 @@
                                 <rect key="frame" x="50" y="202" width="314" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W16-9a-O9t">
                                 <rect key="frame" x="50" y="147" width="314" height="30"/>

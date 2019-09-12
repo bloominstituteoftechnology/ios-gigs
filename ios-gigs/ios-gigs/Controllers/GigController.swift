@@ -25,6 +25,7 @@ class GigController {
         let jsonEncoder = JSONEncoder()
         do {
             let jsonData = try jsonEncoder.encode(user)
+            request.httpBody = jsonData
         } catch {
             print("There was an encoding error. \(error)")
             completion(error)

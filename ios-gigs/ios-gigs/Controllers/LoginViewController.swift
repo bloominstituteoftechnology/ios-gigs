@@ -30,25 +30,40 @@ class LoginViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? GigsTableViewController {
-            vc.delegate = myUser
-        }
-    }
+    
+
     
     @IBAction func buttonPressed(_ sender: Any) {
         guard let user = userTextField.text, let pass = passTextField.text else { return }
-        var myUser = User(username: user, password: pass)
+        let myUser = User(username: user, password: pass)
         if !user.isEmpty && !pass.isEmpty {
-            if mode == .signIn {
+            if mode == .signUp {
                 gigController.signUp(with: myUser) { (error) in
-                    
+                    if let error = error {
+                        print("Sign Up Error: \(error)")
+                    } else {
+                        DispatchQueue.main.async {
+                            self.alert(with: "Sign Up Successful", and: "Please Log In.")
+                                self.segmentControl.selectedSegmentIndex = 1
+                                self.mode = .signIn
+                                self.logInSignUpButton.setTitle("Sign In", for: .normal)
+                            }
+                        }
+                    }
+                } else {
+                    gigController.signIn(with: myUser, completion: { (error) in
+                        if let error = error {
+                            print("Sign In Error: \(error)")
+                        } else {
+                            DispatchQueue.main.async {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                    })
                 }
             }
-        }
-        
-    }
     
+    }
     
     @IBAction func segmentControllerToggled(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -60,6 +75,12 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func alert(with title: String, and message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(alertAction)
+        present(alert, animated: true)
+    }
  
 
 }
