@@ -42,6 +42,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Y2A-cg-lI0" kind="show" identifier="ShowGigSegue" id="Kye-Ah-hDh"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -50,7 +53,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Gigs" id="Fyu-Fw-pLk">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="OWd-jg-F9w"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="OWd-jg-F9w">
+                            <connections>
+                                <segue destination="Y2A-cg-lI0" kind="show" identifier="AddGigSegue" id="Cv9-FG-BrY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="cCw-1b-TQU" kind="presentation" identifier="LoginViewModalSegue" id="vXf-R9-Vgi"/>
@@ -132,7 +139,92 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhs-Dc-Tfe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1390" y="165"/>
+            <point key="canvasLocation" x="1516" y="-142"/>
+        </scene>
+        <!--New Gig-->
+        <scene sceneID="Slv-4f-98K">
+            <objects>
+                <viewController id="Y2A-cg-lI0" customClass="GigsDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eVM-Un-Rca">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HeO-KT-mbF">
+                                <rect key="frame" x="40" y="160" width="334" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB TITLE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8X-4m-xro">
+                                        <rect key="frame" x="0.0" y="0.0" width="73.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v0I-mg-6SY">
+                                        <rect key="frame" x="81.5" y="0.0" width="252.5" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vm6-K2-13y">
+                                <rect key="frame" x="40" y="210" width="334" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="AGr-zA-hbf">
+                                <rect key="frame" x="47" y="247" width="320" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="JL5-93-49P"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="589952902.44689798">
+                                    <!--2019-09-12 03:48:22 +0000-->
+                                </date>
+                            </datePicker>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rX2-aT-zVB">
+                                <rect key="frame" x="40" y="427" width="334" height="153"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PO-bP-hmh">
+                                        <rect key="frame" x="0.0" y="0.0" width="97.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="f8a-zp-KJx">
+                                        <rect key="frame" x="0.0" y="25" width="334" height="128"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="X5X-RU-kVl" firstAttribute="trailing" secondItem="AGr-zA-hbf" secondAttribute="trailing" constant="47" id="13h-3x-HOg"/>
+                            <constraint firstItem="AGr-zA-hbf" firstAttribute="top" secondItem="vm6-K2-13y" secondAttribute="bottom" constant="20" id="5RH-er-p8k"/>
+                            <constraint firstItem="HeO-KT-mbF" firstAttribute="top" secondItem="X5X-RU-kVl" secondAttribute="top" constant="20" id="5Y5-9x-zfJ"/>
+                            <constraint firstItem="vm6-K2-13y" firstAttribute="leading" secondItem="HeO-KT-mbF" secondAttribute="leading" id="9Y3-N5-ouP"/>
+                            <constraint firstItem="vm6-K2-13y" firstAttribute="trailing" secondItem="HeO-KT-mbF" secondAttribute="trailing" id="BMK-41-bPC"/>
+                            <constraint firstItem="HeO-KT-mbF" firstAttribute="leading" secondItem="X5X-RU-kVl" secondAttribute="leading" constant="40" id="D5g-Dr-TNB"/>
+                            <constraint firstItem="AGr-zA-hbf" firstAttribute="leading" secondItem="X5X-RU-kVl" secondAttribute="leading" constant="47" id="PuR-Ld-2HQ"/>
+                            <constraint firstItem="X5X-RU-kVl" firstAttribute="trailing" secondItem="HeO-KT-mbF" secondAttribute="trailing" constant="40" id="SOb-9L-2ol"/>
+                            <constraint firstItem="AGr-zA-hbf" firstAttribute="centerX" secondItem="eVM-Un-Rca" secondAttribute="centerX" id="U1c-IX-D1x"/>
+                            <constraint firstItem="X5X-RU-kVl" firstAttribute="trailing" secondItem="rX2-aT-zVB" secondAttribute="trailing" constant="40" id="VaJ-sj-1O5"/>
+                            <constraint firstItem="vm6-K2-13y" firstAttribute="top" secondItem="HeO-KT-mbF" secondAttribute="bottom" constant="20" id="VsS-3k-GE0"/>
+                            <constraint firstItem="rX2-aT-zVB" firstAttribute="leading" secondItem="X5X-RU-kVl" secondAttribute="leading" constant="40" id="cGx-OD-K1f"/>
+                            <constraint firstItem="rX2-aT-zVB" firstAttribute="top" secondItem="AGr-zA-hbf" secondAttribute="bottom" constant="20" id="iWA-JQ-OjY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="X5X-RU-kVl"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Gig" id="wws-ka-EgV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="IUV-36-eMs"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tWO-Xj-PtW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1516" y="573"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9si-FX-irx">
@@ -151,4 +243,7 @@
             <point key="canvasLocation" x="-171" y="166"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Cv9-FG-BrY"/>
+    </inferredMetricsTieBreakers>
 </document>
