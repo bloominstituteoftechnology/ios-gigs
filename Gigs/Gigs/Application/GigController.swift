@@ -16,9 +16,13 @@ enum HTTPMethod: String {
 class GigController {
     
     
+    //MARK: - Properties
     
     private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     var bearer: Bearer?
+    var gigs: [Gig] = []
+    
+    //MARK: - Methods
     
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         let signUpUrl = baseURL.appendingPathComponent("users/signup")

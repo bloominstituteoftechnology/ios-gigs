@@ -10,8 +10,12 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
     
+    //MARK: - Properties
+    
     var gigController = GigController()
 
+    //MARK: - Views
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

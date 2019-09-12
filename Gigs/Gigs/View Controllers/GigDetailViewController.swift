@@ -10,11 +10,14 @@ import UIKit
 
 class GigDetailViewController: UIViewController {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var gigTitleTextField: UITextField!
     @IBOutlet weak var gigDescriptionTextView: UITextView!
     @IBOutlet weak var gigDatePicker: UIDatePicker!
     
     
+    //MARK: - Views
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,8 @@ class GigDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //MARK: - Methods
     
     @IBAction func saveButtonTapped(_ sender: Any) {
     }

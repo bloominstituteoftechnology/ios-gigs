@@ -15,14 +15,20 @@ enum LoginType {
 
 class LoginViewController: UIViewController {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginTypeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var signInButton: UIButton!
     
+    //MARK: - Properties
+    
     var gigController: GigController?
     
     var loginType = LoginType.signUp
+    
+    //MARK: - Views
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +45,9 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    //MARK: - Methods
     
     @IBAction func changeSegmentedControl(_ sender: UISegmentedControl) {
         
