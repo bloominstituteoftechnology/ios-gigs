@@ -56,6 +56,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="UWa-aS-H6t">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="YxC-VX-RTf">
+                            <color key="tintColor" red="0.3538464308" green="0.7330009341" blue="0.81676071880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="quT-Zt-gT1" kind="show" identifier="AddGigSegue" id="bKp-qm-XYN"/>
                             </connections>
@@ -83,6 +84,7 @@
                                     <segment title="Sign Up"/>
                                     <segment title="Sign In"/>
                                 </segments>
+                                <color key="tintColor" red="0.35384643077850342" green="0.73300093412399292" blue="0.81676071882247925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="signUpInChanged:" destination="9Rt-Ib-weJ" eventType="valueChanged" id="YoP-iB-Jbr"/>
                                 </connections>
@@ -100,7 +102,11 @@
                                 <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNb-GA-kzi">
-                                <rect key="frame" x="180" y="263" width="54" height="30"/>
+                                <rect key="frame" x="77" y="263" width="260" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="a6k-2q-PaM"/>
+                                    <constraint firstAttribute="height" constant="50" id="syn-Fg-MTi"/>
+                                </constraints>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="signUpInButtonTapped:" destination="9Rt-Ib-weJ" eventType="touchUpInside" id="CkL-ok-V3g"/>
@@ -131,9 +137,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VrY-cT-C2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="913" y="-271"/>
+            <point key="canvasLocation" x="911.59420289855075" y="-271.20535714285711"/>
         </scene>
-        <!--Title-->
+        <!--Gig Detail View Controller-->
         <scene sceneID="KSN-A2-Fgc">
             <objects>
                 <viewController id="quT-Zt-gT1" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -201,8 +207,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ru8-RJ-1o6"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="2Nc-ej-Ntg">
+                    <navigationItem key="navigationItem" id="2Nc-ej-Ntg">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Fdt-bN-9u6">
+                            <color key="tintColor" red="0.3538464308" green="0.7330009341" blue="0.81676071880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="saveTapped:" destination="quT-Zt-gT1" id="xdy-Zx-dqj"/>
                             </connections>
@@ -227,6 +234,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="wow-Cf-36l">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.3538464308" green="0.7330009341" blue="0.81676071880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

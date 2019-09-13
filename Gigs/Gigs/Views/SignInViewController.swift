@@ -31,18 +31,13 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // customize button appearance
+        btnSignUpIn.backgroundColor = UIColor(hue: 190/360, saturation: 70/100, brightness: 80/100, alpha: 1)
+        btnSignUpIn.tintColor = .white
+        btnSignUpIn.layer.cornerRadius = 8.0
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: - Actions
     @IBAction func signUpInChanged(_ sender: UISegmentedControl) {

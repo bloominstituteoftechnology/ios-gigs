@@ -54,6 +54,7 @@ class GigDetailViewController: UIViewController {
     
     func updateViews() {
         if let gig = gig {
+            title = gig.title
             txtJobTitle.text = gig.title
             datePicker.date = gig.dueDate
             txtvJobDescription.text = gig.description
