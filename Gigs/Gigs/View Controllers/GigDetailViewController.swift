@@ -27,7 +27,6 @@ class GigDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
 
@@ -43,27 +42,24 @@ class GigDetailViewController: UIViewController {
     
     //MARK: - Methods
     
-    private func updateViews(with gig: Gig) {
-        //Need to figure out the if-else for when a gig doesnt exist.
-        title = gig.title
-        gigDescriptionTextView.text = gig.description
-        gigDatePicker.date = gig.dueDate
-        gigTitleTextField.text = gig.title
-    
+    private func updateViews(with gig: Gig?) {
+        
+        guard let gig = gig else {
+            title = "New Gig"
+            return
+        }
+        
+            title = gig.title
+            gigDescriptionTextView.text = gig.description
+            gigDatePicker.date = gig.dueDate
+            gigTitleTextField.text = gig.title
+        
+        
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let gigController = gigController, let gig = gig else {
-            return
-        }
-        gigController.createGig(with: gig) { (result) in
-            do {
-                let newGig = try result.get()
-                DispatchQueue.main.async {
-                    self.updateViews(with: newGig)
-                }
-            }
-        }
+        
+        
     }
     
 

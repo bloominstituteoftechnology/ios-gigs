@@ -13,7 +13,6 @@ class GigsTableViewController: UITableViewController {
     //MARK: - Properties
     
     var gigController = GigController()
-    var gigs: [Gig] = []
     let dateFormatter = DateFormatter()
     
 
@@ -41,14 +40,14 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return gigs.count
+        return gigController.gigs.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         
-        let gig = gigs[indexPath.row]
+        let gig = gigController.gigs[indexPath.row]
         cell.textLabel?.text = gig.title
         dateFormatter.dateStyle = .short
         cell.detailTextLabel?.text = dateFormatter.string(from: gig.dueDate)
@@ -105,9 +104,13 @@ class GigsTableViewController: UITableViewController {
         } else if segue.identifier == "ViewGigShowSegue" {
             if let detailVC = segue.destination as? GigDetailViewController {
                 if let indexPath = tableView.indexPathForSelectedRow {
-                    detailVC.gig = gigs[indexPath.row]
+                    detailVC.gig = gigController.gigs[indexPath.row]
                 }
                 detailVC.gigController = gigController
+            }
+        } else if segue.identifier == "AddGigShowSegue" {
+            if let addVC = segue.destination as? GigDetailViewController {
+                addVC.gigController = gigController
             }
         }
     }

@@ -30,10 +30,13 @@ class GigController {
     
     private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     var bearer: Bearer?
+    var gigs: [Gig] = []
     
     
     //MARK: - Methods
     
+    
+    // Sign Up
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         let signUpUrl = baseURL.appendingPathComponent("users/signup")
         
@@ -72,6 +75,7 @@ class GigController {
     
     
     
+    // Login
     
     func logIn(with user: User, completion: @escaping (Error?) -> Void) {
         let logInUrl = baseURL.appendingPathComponent("users/login")
@@ -125,7 +129,10 @@ class GigController {
     }
     
     
-    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+    
+    // Get all gigs
+    
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         guard let bearer = bearer else {
             completion(.failure(.noAuth))
             return
@@ -157,8 +164,9 @@ class GigController {
             let decoder = JSONDecoder()
             
             do {
-                let gigs = try decoder.decode([String].self, from: data)
+                let gigs = try decoder.decode([Gig].self, from: data)
                 completion(.success(gigs))
+                self.gigs = gigs
                 
             } catch {
                 print("Error decoding gigs: \(error)")
@@ -168,6 +176,8 @@ class GigController {
         }.resume()
     }
     
+    
+    // Create a Gig
     
     func createGig(with gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
         guard let bearer = bearer else {
@@ -215,6 +225,7 @@ class GigController {
             do {
                let newGig = try decoder.decode(Gig.self, from: data)
                 completion(.success(newGig))
+                self.gigs.append(newGig)
                 
             } catch {
                 print("Error decoding gig: \(error)")
