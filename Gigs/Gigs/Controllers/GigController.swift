@@ -171,6 +171,7 @@ class GigController {
                 return
             }
             
+            self.gigs.append(gig)
             completion(nil)
         }
     }
