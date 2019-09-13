@@ -32,8 +32,17 @@ class GigsTableViewController: UITableViewController {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginModalSegue", sender: self)
         } else {
-            // TODO: fetch gigs here
+            gigController.fetchAllGigs { (result) in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source

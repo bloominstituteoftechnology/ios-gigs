@@ -26,6 +26,7 @@ class GigDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateViews()
 
     }
     
@@ -42,22 +43,33 @@ class GigDetailViewController: UIViewController {
     
     //MARK: - Methods
     
-    private func updateViews(with gig: Gig?) {
-        
+    private func updateViews() {
         guard let gig = gig else {
             title = "New Gig"
             return
         }
         
-            title = gig.title
-            gigDescriptionTextView.text = gig.description
-            gigDatePicker.date = gig.dueDate
-            gigTitleTextField.text = gig.title
-        
+        title = gig.title
+        gigDescriptionTextView.text = gig.description
+        gigDatePicker.date = gig.dueDate
+        gigTitleTextField.text = gig.title
         
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let gigController = gigController, let description = gigDescriptionTextView.text, let title = gigTitleTextField.text else {
+            return
+        }
+        
+        let gigy = Gig(title: title, description: description, dueDate: gigDatePicker.date)
+        
+        gigController.createGig(with: gigy) { (result) in
+            DispatchQueue.main.async {
+                self.navigationController?.popToRootViewController(animated: true)
+                
+            }
+        }
+        
         
         
     }

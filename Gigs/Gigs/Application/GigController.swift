@@ -162,6 +162,7 @@ class GigController {
             }
             
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
             
             do {
                 let gigs = try decoder.decode([Gig].self, from: data)
@@ -190,8 +191,10 @@ class GigController {
         var request = URLRequest(url: gigURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
         
         do {
             let data = try encoder.encode(gig)
