@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3543367232ACA0000C58208 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3543366232ACA0000C58208 /* Gig.swift */; };
+		E3543369232B436C00C58208 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3543368232B436C00C58208 /* GigDetailViewController.swift */; };
 		E36CB82623281FEC001F8878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36CB82523281FEC001F8878 /* AppDelegate.swift */; };
 		E36CB82B23281FEC001F8878 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36CB82923281FEC001F8878 /* Main.storyboard */; };
 		E36CB82D23281FED001F8878 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E36CB82C23281FED001F8878 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E3543366232ACA0000C58208 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
+		E3543368232B436C00C58208 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
 		E36CB82223281FEC001F8878 /* iOS Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Gigs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E36CB82523281FEC001F8878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E36CB82A23281FEC001F8878 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 			children = (
 				E36CB8382328212A001F8878 /* GigsTableViewController.swift */,
 				E36CB83A2328216C001F8878 /* LoginViewController.swift */,
+				E3543368232B436C00C58208 /* GigDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -88,6 +93,7 @@
 			children = (
 				E36CB83D232824BF001F8878 /* Bearer.swift */,
 				E36CB84223282B0A001F8878 /* User.swift */,
+				E3543366232ACA0000C58208 /* Gig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -172,8 +178,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E36CB83E232824BF001F8878 /* Bearer.swift in Sources */,
+				E3543369232B436C00C58208 /* GigDetailViewController.swift in Sources */,
 				E36CB83B2328216C001F8878 /* LoginViewController.swift in Sources */,
 				E36CB84323282B0A001F8878 /* User.swift in Sources */,
+				E3543367232ACA0000C58208 /* Gig.swift in Sources */,
 				E36CB84123282A71001F8878 /* GigController.swift in Sources */,
 				E36CB82623281FEC001F8878 /* AppDelegate.swift in Sources */,
 				E36CB8392328212A001F8878 /* GigsTableViewController.swift in Sources */,

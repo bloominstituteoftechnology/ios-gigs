@@ -9,22 +9,24 @@
 import UIKit
 
 class GigsTableViewController: UITableViewController {
-    
+
     let gigController = GigController()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
+    
+    private lazy var formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        return formatter
+    }()
     
     override func viewDidAppear(_ animated: Bool) {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+        } else {
+            gigController.fetchAllGigs { (_) in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
         
         // TODO: fetch gigs here
@@ -34,13 +36,18 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
 
-        // Configure the cell...
+        let gig = gigController.gigs[indexPath.row]
+        
+        cell.textLabel?.text = gig.title
+        
+        cell.detailTextLabel?.text = "Due: \(formatter.string(from: gig.dueDate))"
+        
 
         return cell
     }
@@ -88,6 +95,18 @@ class GigsTableViewController: UITableViewController {
         // Inject dependancies
         if let loginVC = segue.destination as? LoginViewController {
             loginVC.gigController = gigController
+        }
+        
+        if segue.identifier == "AddGigSegue",
+            let detailVC = segue.destination as? GigDetailViewController {
+            detailVC.gigController = self.gigController
+        }
+        
+        if segue.identifier == "ShowGigSegue",
+            let detailVC = segue.destination as? GigDetailViewController{
+            guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
+            detailVC.gigController = self.gigController
+            detailVC.gig = gigController.gigs[indexPath.row]
         }
         
     }

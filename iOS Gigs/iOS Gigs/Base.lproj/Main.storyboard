@@ -152,7 +152,7 @@
         <!--Title-->
         <scene sceneID="JAn-mS-Nts">
             <objects>
-                <viewController id="3Sa-PE-E4m" sceneMemberID="viewController">
+                <viewController id="3Sa-PE-E4m" customClass="GigDetailViewController" customModule="iOS_Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DVH-tJ-Z7A">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -230,8 +230,17 @@
                         <viewLayoutGuide key="safeArea" id="7qv-sG-9Hg"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="kpZ-ws-soY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="rYQ-B4-K4J"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="rYQ-B4-K4J">
+                            <connections>
+                                <action selector="savePressed:" destination="3Sa-PE-E4m" id="kOu-aN-1fJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="E8K-D7-ygS" id="nHJ-6B-eFx"/>
+                        <outlet property="dueDatePicker" destination="G0H-gC-LOU" id="Icx-uZ-9b1"/>
+                        <outlet property="jobTitleLabel" destination="hPr-Xo-hwA" id="3d8-ON-emI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RKQ-Gr-r5V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
