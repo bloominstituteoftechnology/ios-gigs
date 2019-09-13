@@ -30,6 +30,26 @@ class GigDetailViewController: UIViewController {
     
 
     @IBAction func saveTapped(_ sender: Any) {
+        guard let title = txtJobTitle.text, !title.isEmpty,
+              let description = txtvJobDescription.text, !description.isEmpty
+            else { return }
+        let newGig = Gig(title: title, description: description, dueDate: datePicker.date)
+        
+        gigController.addGig(newGig) { (error) in
+            if let error = error {
+                print("Error adding gig: \(error)")
+                DispatchQueue.main.async {
+                    let ac = UIAlertController(title: "Error", message: "Unable to save gig. Please try again later.", preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(ac, animated: true, completion: nil)
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
     func updateViews() {

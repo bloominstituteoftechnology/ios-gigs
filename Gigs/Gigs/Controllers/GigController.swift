@@ -148,6 +148,7 @@ class GigController {
         var request = URLRequest(url: addGigUrl)
         request.httpMethod = HttpMethod.post.rawValue
         request.setValue(bearer.bearerString, forHTTPHeaderField: authHeader)
+        request.setValue(appJSON, forHTTPHeaderField: contentType)
         
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
@@ -159,6 +160,7 @@ class GigController {
             completion(error)
             return
         }
+        
         
         URLSession.shared.dataTask(with: request) { (_, res, err) in
             if let err = err {
@@ -173,6 +175,6 @@ class GigController {
             
             self.gigs.append(gig)
             completion(nil)
-        }
+        }.resume()
     }
 }
