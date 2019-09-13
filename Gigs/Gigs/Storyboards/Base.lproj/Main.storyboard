@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JobCell" textLabel="sUM-tO-oZt" detailTextLabel="6G6-Xj-DYu" style="IBUITableViewCellStyleValue1" id="UUJ-sG-gs9">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JobCell" textLabel="sUM-tO-oZt" detailTextLabel="6G6-Xj-DYu" style="IBUITableViewCellStyleValue1" id="UUJ-sG-gs9" customClass="GigsTableViewCell" customModule="Gigs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UUJ-sG-gs9" id="Ndh-Tg-1Jf" customClass="GigsTableViewCell" customModule="Gigs" customModuleProvider="target">
@@ -43,6 +43,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="lblGig" destination="sUM-tO-oZt" id="zbW-Fn-vLc"/>
+                                    <outlet property="lblGigDueDate" destination="6G6-Xj-DYu" id="f9Q-ng-dQh"/>
                                     <segue destination="quT-Zt-gT1" kind="show" identifier="ShowGigSegue" id="yEN-I9-2P4"/>
                                 </connections>
                             </tableViewCell>
@@ -140,7 +142,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GOW-hx-qm2">
-                                <rect key="frame" x="20" y="160" width="374" height="448"/>
+                                <rect key="frame" x="20" y="160" width="374" height="310"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="55" translatesAutoresizingMaskIntoConstraints="NO" id="dVM-Ma-fR4">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -165,7 +167,7 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="94U-6L-5PK">
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="94U-6L-5PK">
                                         <rect key="frame" x="0.0" y="67" width="374" height="216"/>
                                         <date key="date" timeIntervalSinceReferenceDate="590032559.50647604">
                                             <!--2019-09-13 01:55:59 +0000-->
@@ -177,22 +179,25 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nf9-NE-nLn">
-                                        <rect key="frame" x="0.0" y="320" width="374" height="128"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
                                 </subviews>
                             </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter a description here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nf9-NE-nLn">
+                                <rect key="frame" x="20" y="480" width="374" height="362"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ru8-RJ-1o6" firstAttribute="trailing" secondItem="GOW-hx-qm2" secondAttribute="trailing" constant="20" id="61Q-hB-xss"/>
                             <constraint firstItem="GOW-hx-qm2" firstAttribute="top" secondItem="ru8-RJ-1o6" secondAttribute="top" constant="20" id="AMc-Ys-qTH"/>
+                            <constraint firstItem="nf9-NE-nLn" firstAttribute="top" secondItem="GOW-hx-qm2" secondAttribute="bottom" constant="10" id="HXT-qX-nej"/>
                             <constraint firstItem="ru8-RJ-1o6" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GOW-hx-qm2" secondAttribute="bottom" constant="20" id="Lbs-bF-Yuf"/>
+                            <constraint firstItem="ru8-RJ-1o6" firstAttribute="trailing" secondItem="nf9-NE-nLn" secondAttribute="trailing" constant="20" id="Y6z-ky-CwF"/>
+                            <constraint firstItem="ru8-RJ-1o6" firstAttribute="bottom" secondItem="nf9-NE-nLn" secondAttribute="bottom" constant="20" id="Ylf-jP-BfL"/>
                             <constraint firstItem="GOW-hx-qm2" firstAttribute="leading" secondItem="ru8-RJ-1o6" secondAttribute="leading" constant="20" id="qmg-5u-yjA"/>
+                            <constraint firstItem="nf9-NE-nLn" firstAttribute="leading" secondItem="ru8-RJ-1o6" secondAttribute="leading" constant="20" id="tVf-sc-4aO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ru8-RJ-1o6"/>
                     </view>
@@ -204,6 +209,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnSave" destination="Fdt-bN-9u6" id="7LS-aT-bft"/>
                         <outlet property="datePicker" destination="94U-6L-5PK" id="Gdg-0q-LVs"/>
                         <outlet property="txtJobTitle" destination="7a1-NR-kTf" id="h2j-L6-Qky"/>
                         <outlet property="txtvJobDescription" destination="nf9-NE-nLn" id="rrF-eO-hfp"/>
@@ -233,6 +239,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bKp-qm-XYN"/>
+        <segue reference="yEN-I9-2P4"/>
     </inferredMetricsTieBreakers>
 </document>

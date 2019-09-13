@@ -13,8 +13,10 @@ class GigDetailViewController: UIViewController {
     @IBOutlet weak var txtJobTitle: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var txtvJobDescription: UITextView!
+    @IBOutlet weak var btnSave: UIBarButtonItem!
     
-    
+    var gigController: GigController!
+    var gig: Gig?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,17 +24,29 @@ class GigDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        updateViews()
     }
-    */
+    
 
     @IBAction func saveTapped(_ sender: Any) {
+    }
+    
+    func updateViews() {
+        if let gig = gig {
+            txtJobTitle.text = gig.title
+            datePicker.date = gig.dueDate
+            txtvJobDescription.text = gig.description
+            btnSave.isEnabled = false
+            txtJobTitle.isEnabled = false
+            datePicker.isEnabled = false
+            txtvJobDescription.isEditable = false
+        } else {
+            title = "New Gig"
+            btnSave.isEnabled = true
+            txtJobTitle.isEnabled = true
+            datePicker.isEnabled = true
+            txtvJobDescription.isEditable = true
+        }
     }
 }

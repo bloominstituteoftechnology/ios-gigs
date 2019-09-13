@@ -10,6 +10,10 @@ import UIKit
 
 class GigsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var lblGig: UILabel!
+    @IBOutlet weak var lblGigDueDate: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
