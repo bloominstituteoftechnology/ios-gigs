@@ -13,6 +13,16 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+    case noEncode
+   
+}
+
 class GigController {
     
     
@@ -20,7 +30,7 @@ class GigController {
     
     private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     var bearer: Bearer?
-    var gigs: [Gig] = []
+    
     
     //MARK: - Methods
     
@@ -113,4 +123,107 @@ class GigController {
         }.resume()
 
     }
+    
+    
+    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let allGigs = baseURL.appendingPathComponent("gigs/")
+        
+        var request = URLRequest(url: allGigs)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let _ = error {
+                completion(.failure(.otherError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+                let gigs = try decoder.decode([String].self, from: data)
+                completion(.success(gigs))
+                
+            } catch {
+                print("Error decoding gigs: \(error)")
+                completion(.failure(.noDecode))
+                return
+            }
+        }.resume()
+    }
+    
+    
+    func createGig(with gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let gigURL = baseURL.appendingPathComponent("gigs/")
+        
+        var request = URLRequest(url: gigURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let encoder = JSONEncoder()
+        
+        do {
+            let data = try encoder.encode(gig)
+            request.httpBody = data
+            
+        } catch {
+            print("Error encoding gig: \(error)")
+            completion(.failure(.badData))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data , response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let _ = error {
+                completion(.failure(.otherError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+               let newGig = try decoder.decode(Gig.self, from: data)
+                completion(.success(newGig))
+                
+            } catch {
+                print("Error decoding gig: \(error)")
+                completion(.failure(.noDecode))
+                return
+                
+            }
+        }.resume()
+    }
+    
+    
 }
