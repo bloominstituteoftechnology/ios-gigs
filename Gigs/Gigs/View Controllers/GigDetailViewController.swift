@@ -15,11 +15,7 @@ class GigDetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     
     var gigController: GigController?
-    var gig: Gig? {
-        didSet {
-            updateViews()
-        }
-    }
+    var gig: Gig? 
 
     override func viewDidLoad() {
         super.viewDidLoad()

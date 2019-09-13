@@ -23,26 +23,29 @@ class GigsTableViewController: UITableViewController {
         print("hello")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // transistion to login view if conditions require
-        if gigController.bearer == nil {
-            performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
-        } else {
-            gigController.fetchAllGigs { (result) in
-                //            self.gigs = result
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        }
-        
-        
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//        // transistion to login view if conditions require
+//        if gigController.bearer == nil {
+//            performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+//        } else {
+//            gigController.fetchAllGigs { (result) in
+//                //            self.gigs = result
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        }
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if gigController.bearer == nil {
+            performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+        }
+        
         gigController.fetchAllGigs { (result) in
             DispatchQueue.main.async {
                 self.tableView.reloadData()

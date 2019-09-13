@@ -151,8 +151,8 @@ class GigController {
             jsonDecoder.dateDecodingStrategy = .iso8601
             do {
                 let gigs = try jsonDecoder.decode([Gig].self, from: data)
-                self.gigs = gigs
                 completion(.success(gigs))
+                self.gigs = gigs
             } catch {
                 print("Error decoding gigs: \(error.localizedDescription)")
                 completion(.failure(.noDecode))
@@ -172,13 +172,14 @@ class GigController {
         
         var request = URLRequest(url: postGigUrl)
         request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
         do {
             let jsonData = try jsonEncoder.encode(gig)
             request.httpBody = jsonData
-            self.gigs.append(gig)
             print(gig)
         } catch {
             print("Error encoding gig object: \(error.localizedDescription)")
@@ -199,11 +200,6 @@ class GigController {
             }
             
             self.gigs.append(gig)
-            
-//            guard let data = data else {
-//                completion(.failure(.badData))
-//                return
-//            }
             
             completion(.success(gig))
             
