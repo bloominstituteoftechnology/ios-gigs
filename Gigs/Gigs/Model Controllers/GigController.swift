@@ -20,6 +20,7 @@ enum NetworkError: Error {
     case otherError
     case badData
     case noDecode
+    case noEncode
 }
 
 class GigController {
@@ -141,6 +142,7 @@ class GigController {
             }
             
             let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
             do {
                 let gigs = try jsonDecoder.decode([Gig].self, from: data)
                 self.gigs = gigs
@@ -150,6 +152,51 @@ class GigController {
                 completion(.failure(.noDecode))
                 return
             }
+        }.resume()
+    }
+    
+    // create function to post gig to the api
+    func createGig(with gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let postGigUrl = baseUrl.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: postGigUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let jsonEncoder = JSONEncoder()
+        do {
+            let jsonData = try jsonEncoder.encode(gig)
+            request.httpBody = jsonData
+        } catch {
+            print("Error encoding gig object: \(error.localizedDescription)")
+            completion(.failure(.noEncode))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let _ = error {
+                completion(.failure(.otherError))
+                return
+            }
+            
+//            guard let data = data else {
+//                completion(.failure(.badData))
+//                return
+//            }
+            
+            completion(.success(gig))
+            
         }.resume()
     }
     
