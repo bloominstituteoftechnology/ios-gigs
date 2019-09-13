@@ -42,6 +42,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="quT-Zt-gT1" kind="show" identifier="ShowGigSegue" id="yEN-I9-2P4"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -49,7 +52,13 @@
                             <outlet property="delegate" destination="Ujf-aj-4x6" id="QlW-fq-cQG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="UWa-aS-H6t"/>
+                    <navigationItem key="navigationItem" id="UWa-aS-H6t">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YxC-VX-RTf">
+                            <connections>
+                                <segue destination="quT-Zt-gT1" kind="show" identifier="AddGigSegue" id="bKp-qm-XYN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="9Rt-Ib-weJ" kind="presentation" identifier="segueSignIn" id="Hjb-eQ-PRJ"/>
                     </connections>
@@ -120,7 +129,89 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VrY-cT-C2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="909" y="-130"/>
+            <point key="canvasLocation" x="913" y="-271"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="KSN-A2-Fgc">
+            <objects>
+                <viewController id="quT-Zt-gT1" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1nr-ND-yOU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GOW-hx-qm2">
+                                <rect key="frame" x="20" y="160" width="374" height="448"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="55" translatesAutoresizingMaskIntoConstraints="NO" id="dVM-Ma-fR4">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB TITLE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxc-WE-blK">
+                                                <rect key="frame" x="0.0" y="0.0" width="73.5" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7a1-NR-kTf">
+                                                <rect key="frame" x="128.5" y="0.0" width="245.5" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnn-A6-tKF">
+                                        <rect key="frame" x="0.0" y="40" width="374" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="94U-6L-5PK">
+                                        <rect key="frame" x="0.0" y="67" width="374" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="590032559.50647604">
+                                            <!--2019-09-13 01:55:59 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYJ-fc-XJE">
+                                        <rect key="frame" x="0.0" y="293" width="374" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nf9-NE-nLn">
+                                        <rect key="frame" x="0.0" y="320" width="374" height="128"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ru8-RJ-1o6" firstAttribute="trailing" secondItem="GOW-hx-qm2" secondAttribute="trailing" constant="20" id="61Q-hB-xss"/>
+                            <constraint firstItem="GOW-hx-qm2" firstAttribute="top" secondItem="ru8-RJ-1o6" secondAttribute="top" constant="20" id="AMc-Ys-qTH"/>
+                            <constraint firstItem="ru8-RJ-1o6" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GOW-hx-qm2" secondAttribute="bottom" constant="20" id="Lbs-bF-Yuf"/>
+                            <constraint firstItem="GOW-hx-qm2" firstAttribute="leading" secondItem="ru8-RJ-1o6" secondAttribute="leading" constant="20" id="qmg-5u-yjA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ru8-RJ-1o6"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="2Nc-ej-Ntg">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Fdt-bN-9u6">
+                            <connections>
+                                <action selector="saveTapped:" destination="quT-Zt-gT1" id="xdy-Zx-dqj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="94U-6L-5PK" id="Gdg-0q-LVs"/>
+                        <outlet property="txtJobTitle" destination="7a1-NR-kTf" id="h2j-L6-Qky"/>
+                        <outlet property="txtvJobDescription" destination="nf9-NE-nLn" id="rrF-eO-hfp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BaT-SQ-dc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1552" y="344"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VKf-QX-4Mk">
@@ -141,4 +232,7 @@
             <point key="canvasLocation" x="-491.304347826087" y="88.392857142857139"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bKp-qm-XYN"/>
+    </inferredMetricsTieBreakers>
 </document>
