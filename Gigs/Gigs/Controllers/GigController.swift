@@ -9,11 +9,6 @@
 import Foundation
 import UIKit
 
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-}
-
 class GigController {
     
     private let baseUrl = URL(string: "https://lambdagigs.vapor.cloud/api")!

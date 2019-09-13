@@ -13,6 +13,9 @@
 		951B16EE23272EDB00EF9B13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 951B16EC23272EDB00EF9B13 /* LaunchScreen.storyboard */; };
 		951B16F9232732E600EF9B13 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951B16F8232732E600EF9B13 /* GigsTableViewController.swift */; };
 		952BB7F52329F9100023088F /* GigsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952BB7F42329F9100023088F /* GigsDetailViewController.swift */; };
+		95D28AD5232B2E2300BBE539 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D28AD4232B2E2300BBE539 /* HTTPMethod.swift */; };
+		95D28AD7232B2E4B00BBE539 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D28AD6232B2E4B00BBE539 /* NetworkError.swift */; };
+		95D28AD9232B2EA300BBE539 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D28AD8232B2EA300BBE539 /* Gig.swift */; };
 		95D74F1C23288D3B001AA08C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D74F1B23288D3B001AA08C /* LoginViewController.swift */; };
 		95D74F1E23288F41001AA08C /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D74F1D23288F41001AA08C /* Bearer.swift */; };
 		95D74F2023288F82001AA08C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D74F1F23288F82001AA08C /* User.swift */; };
@@ -28,6 +31,9 @@
 		951B16EF23272EDB00EF9B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		951B16F8232732E600EF9B13 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		952BB7F42329F9100023088F /* GigsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsDetailViewController.swift; sourceTree = "<group>"; };
+		95D28AD4232B2E2300BBE539 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		95D28AD6232B2E4B00BBE539 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		95D28AD8232B2EA300BBE539 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 		95D74F1B23288D3B001AA08C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		95D74F1D23288F41001AA08C /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		95D74F1F23288F82001AA08C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -90,6 +96,9 @@
 			children = (
 				95D74F1D23288F41001AA08C /* Bearer.swift */,
 				95D74F1F23288F82001AA08C /* User.swift */,
+				95D28AD4232B2E2300BBE539 /* HTTPMethod.swift */,
+				95D28AD6232B2E4B00BBE539 /* NetworkError.swift */,
+				95D28AD8232B2EA300BBE539 /* Gig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -186,9 +195,12 @@
 				952BB7F52329F9100023088F /* GigsDetailViewController.swift in Sources */,
 				95D74F1C23288D3B001AA08C /* LoginViewController.swift in Sources */,
 				951B16E423272ED900EF9B13 /* AppDelegate.swift in Sources */,
+				95D28AD5232B2E2300BBE539 /* HTTPMethod.swift in Sources */,
 				95D74F2023288F82001AA08C /* User.swift in Sources */,
+				95D28AD7232B2E4B00BBE539 /* NetworkError.swift in Sources */,
 				951B16F9232732E600EF9B13 /* GigsTableViewController.swift in Sources */,
 				95D74F232328901A001AA08C /* GigController.swift in Sources */,
+				95D28AD9232B2EA300BBE539 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
