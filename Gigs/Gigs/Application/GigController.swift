@@ -20,6 +20,7 @@ enum NetworkError: Error {
     case otherError
     case badData
     case noDecode
+    case noEncode
 }
 
 class GigController {
@@ -154,14 +155,56 @@ class GigController {
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .iso8601
             do {
-                let gig = try jsonDecoder.decode([Gig].self, from: data)
-                completion(.success(gig))
+                let gigs = try jsonDecoder.decode([Gig].self, from: data)
+                completion(.success(gigs))
+                self.gigs = gigs
             } catch {
                 print("Error decoding Gig data: \(error)")
                 completion(.failure(.noDecode))
                 return
             }
         }.resume()
+    }
+    
+    
+    // function to add Gig to api via POST request
+    
+    func addNewGig(with gig: Gig, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let allGigsURL = baseURL.appendingPathComponent("gigs/")
+        
+        var request = URLRequest(url: allGigsURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let _ = error {
+                completion(.failure(.otherError))
+                return
+            }
+            
+            let jsonEncoder = JSONEncoder()
+            do {
+                let gig = try jsonEncoder.encode(gig)
+                completion(.success(gig))
+                return
+            } catch {
+                print("Error adding gig: \(error)")
+                completion(.failure(.noEncode))
+                return
+            }
+        }.resume()
+        
     }
     
 }
