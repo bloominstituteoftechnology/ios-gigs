@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signInSignUpButton: UIButton!
     
     var gigController: GigController?
-    var loginType: LoginType?
+    var loginType = LoginType.signUp
     
     
     override func viewDidLoad() {
@@ -54,19 +54,32 @@ class LoginViewController: UIViewController {
             
             let user = User(username: username, password: password)
             
-            gigController.signUp(with: user) { (error) in
-                if let error = error {
-                    print("Error occured during sign up: \(error)")
-                } else {
-                    DispatchQueue.main.async {
-                        let alertController = UIAlertController(title: "Sign Up Successful", message: "Now please log in.", preferredStyle: .alert)
-                        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                        alertController.addAction(alertAction)
-                        self.present(alertController, animated: true, completion: {
-                            self.signInSignUpSelection.selectedSegmentIndex = 1
-                            self.loginType = .logIn
-                            self.signInSignUpButton.setTitle("Sign In", for: .normal)
-                        })
+            
+            if loginType == .signUp {
+                gigController.signUp(with: user) { (error) in
+                    if let error = error {
+                        print("Error occured during sign up: \(error)")
+                    } else {
+                        DispatchQueue.main.async {
+                            let alertController = UIAlertController(title: "Sign Up Successful", message: "Now please log in.", preferredStyle: .alert)
+                            let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                            alertController.addAction(alertAction)
+                            self.present(alertController, animated: true, completion: {
+                                self.signInSignUpSelection.selectedSegmentIndex = 1
+                                self.loginType = .logIn
+                                self.signInSignUpButton.setTitle("Sign In", for: .normal)
+                            })
+                        }
+                    }
+                }
+            } else {
+                gigController.signIn(with: user) { (error) in
+                    if let error = error {
+                        print("Error occured during sign in: \(error)")
+                    } else {
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                        }
                     }
                 }
             }

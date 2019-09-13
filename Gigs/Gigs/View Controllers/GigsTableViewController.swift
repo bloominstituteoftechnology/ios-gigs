@@ -23,6 +23,13 @@ class GigsTableViewController: UITableViewController {
             performSegue(withIdentifier: "SignUpLoginModalSegue", sender: self)
         } else {
             // TODO: fetch gigs here
+            gigController.fetchAllGigs { (result) in
+                if let _ = try? result.get() {
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
         }
     }
 
