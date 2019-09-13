@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
             let user = User(username: username, password: password)
             
             if loginType == .signUp {
-                gigController.signUp(with: user) { (error) in
+                gigController.signUp(with: user.username, password: user.password) { (error) in
                     if let error = error {
                         print("Error occurred during sign up: \(error)")
                     } else {
@@ -66,7 +66,7 @@ class LoginViewController: UIViewController {
                     }
                 }
             } else if loginType == .signIn {
-                gigController.signIn(with: user) { (error) in
+                gigController.signIn(with: user.username, password: user.password) { (error) in
                     if let error = error {
                         print("Error occurred during sign in: \(error)")
                     } else {

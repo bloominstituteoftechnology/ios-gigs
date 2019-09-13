@@ -18,6 +18,9 @@
 		CE5CD659232877B80011A4B2 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5CD658232877B80011A4B2 /* GigController.swift */; };
 		CE5CD65B232878720011A4B2 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5CD65A232878720011A4B2 /* HTTPMethod.swift */; };
 		CE5CD65D23287B940011A4B2 /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5CD65C23287B940011A4B2 /* LoginType.swift */; };
+		CE5CD665232B2BF60011A4B2 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5CD664232B2BF60011A4B2 /* GigDetailViewController.swift */; };
+		CE5CD667232B2C930011A4B2 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5CD666232B2C930011A4B2 /* Gig.swift */; };
+		CE5CD669232B2DFC0011A4B2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5CD668232B2DFC0011A4B2 /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		CE5CD658232877B80011A4B2 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 		CE5CD65A232878720011A4B2 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		CE5CD65C23287B940011A4B2 /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
+		CE5CD664232B2BF60011A4B2 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		CE5CD666232B2C930011A4B2 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
+		CE5CD668232B2DFC0011A4B2 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,10 +72,9 @@
 		CE5CD637232873A20011A4B2 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				CE5CD657232877A80011A4B2 /* Controllers */,
+				CE5CD657232877A80011A4B2 /* Application */,
 				CE5CD64F232876FA0011A4B2 /* Models */,
 				CE5CD64A2328740B0011A4B2 /* Views */,
-				CE5CD638232873A20011A4B2 /* AppDelegate.swift */,
 				CE5CD63C232873A20011A4B2 /* Main.storyboard */,
 				CE5CD63F232873A50011A4B2 /* Assets.xcassets */,
 				CE5CD641232873A50011A4B2 /* LaunchScreen.storyboard */,
@@ -83,6 +88,7 @@
 			children = (
 				CE5CD64B232874210011A4B2 /* GigsTableViewController.swift */,
 				CE5CD64D232875E20011A4B2 /* LoginViewController.swift */,
+				CE5CD664232B2BF60011A4B2 /* GigDetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -94,16 +100,19 @@
 				CE5CD6522328773A0011A4B2 /* User.swift */,
 				CE5CD65A232878720011A4B2 /* HTTPMethod.swift */,
 				CE5CD65C23287B940011A4B2 /* LoginType.swift */,
+				CE5CD666232B2C930011A4B2 /* Gig.swift */,
+				CE5CD668232B2DFC0011A4B2 /* NetworkError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		CE5CD657232877A80011A4B2 /* Controllers */ = {
+		CE5CD657232877A80011A4B2 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				CE5CD658232877B80011A4B2 /* GigController.swift */,
+				CE5CD638232873A20011A4B2 /* AppDelegate.swift */,
 			);
-			path = Controllers;
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,8 +192,11 @@
 				CE5CD6532328773A0011A4B2 /* User.swift in Sources */,
 				CE5CD65D23287B940011A4B2 /* LoginType.swift in Sources */,
 				CE5CD65B232878720011A4B2 /* HTTPMethod.swift in Sources */,
+				CE5CD665232B2BF60011A4B2 /* GigDetailViewController.swift in Sources */,
 				CE5CD639232873A20011A4B2 /* AppDelegate.swift in Sources */,
 				CE5CD64C232874210011A4B2 /* GigsTableViewController.swift in Sources */,
+				CE5CD669232B2DFC0011A4B2 /* NetworkError.swift in Sources */,
+				CE5CD667232B2C930011A4B2 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
