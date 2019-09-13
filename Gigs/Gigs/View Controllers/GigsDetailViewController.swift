@@ -16,6 +16,12 @@ class GigsDetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     
     // MARK: Properties
+    var gigController: GigController?
+    var gig: Gig? {
+        didSet {
+            updateViews()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +30,17 @@ class GigsDetailViewController: UIViewController {
     }
     
     @IBAction func saveGig(_ sender: Any) {
+    }
+    
+    private func updateViews() {
+        if let gig = gig {
+            title = "\(gig.title)"
+            //jobTitleTextField.text = gig.title
+            datePicker.date = gig.dueDate
+            descriptionTextView.text = gig.description
+        } else {
+            title = "New Gig"
+        }
     }
     
 }

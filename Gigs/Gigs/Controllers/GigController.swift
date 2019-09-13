@@ -93,7 +93,7 @@ class GigController {
         }.resume()
     }
     
-    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) { // uses GET
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) { // uses GET
         guard let bearer = bearer else {
             completion(.failure(.noAuth))
             return
@@ -125,7 +125,8 @@ class GigController {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             do {
-                let gigTitles = try decoder.decode([String].self, from: data)
+                let gigTitles = try decoder.decode([Gig].self, from: data)
+                self.gigs = gigTitles
                 completion(.success(gigTitles))
             } catch {
                 print("Arror decoding Gig titles: \(error)")
