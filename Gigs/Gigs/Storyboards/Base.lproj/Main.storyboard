@@ -99,7 +99,7 @@
                                         <rect key="frame" x="0.0" y="82" width="382" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63C-KI-zyo">
                                         <rect key="frame" x="40" y="124" width="302" height="50"/>
@@ -193,8 +193,8 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="f8a-zp-KJx">
                                         <rect key="frame" x="0.0" y="25" width="334" height="128"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labori</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -213,14 +213,24 @@
                             <constraint firstItem="AGr-zA-hbf" firstAttribute="centerX" secondItem="eVM-Un-Rca" secondAttribute="centerX" id="U1c-IX-D1x"/>
                             <constraint firstItem="X5X-RU-kVl" firstAttribute="trailing" secondItem="rX2-aT-zVB" secondAttribute="trailing" constant="40" id="VaJ-sj-1O5"/>
                             <constraint firstItem="vm6-K2-13y" firstAttribute="top" secondItem="HeO-KT-mbF" secondAttribute="bottom" constant="20" id="VsS-3k-GE0"/>
+                            <constraint firstItem="X5X-RU-kVl" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="rX2-aT-zVB" secondAttribute="bottom" id="aNl-at-f1M"/>
                             <constraint firstItem="rX2-aT-zVB" firstAttribute="leading" secondItem="X5X-RU-kVl" secondAttribute="leading" constant="40" id="cGx-OD-K1f"/>
                             <constraint firstItem="rX2-aT-zVB" firstAttribute="top" secondItem="AGr-zA-hbf" secondAttribute="bottom" constant="20" id="iWA-JQ-OjY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X5X-RU-kVl"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Gig" id="wws-ka-EgV">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="IUV-36-eMs"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="IUV-36-eMs">
+                            <connections>
+                                <action selector="saveGig:" destination="Y2A-cg-lI0" id="Ehv-km-O8Z"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="AGr-zA-hbf" id="rxw-lj-H7S"/>
+                        <outlet property="descriptionTextView" destination="f8a-zp-KJx" id="bQ1-5c-2Aj"/>
+                        <outlet property="jobTitleTextField" destination="v0I-mg-6SY" id="dZC-lp-0Lp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWO-Xj-PtW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
