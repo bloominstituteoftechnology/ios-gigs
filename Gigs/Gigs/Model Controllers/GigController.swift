@@ -14,10 +14,19 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+}
+
 class GigController {
     
     private let baseUrl = URL(string: "https://lambdagigs.vapor.cloud/api")!
     var bearer: Bearer?
+    var gigs = [Gig]()
     
     // create function for sign up
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
@@ -98,6 +107,49 @@ class GigController {
             }
             
             completion(nil)
+        }.resume()
+    }
+    
+    // create function to fetch all gigs
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let allGigsUrl = baseUrl.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: allGigsUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let _ = error {
+                completion(.failure(.otherError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                let gigs = try jsonDecoder.decode([Gig].self, from: data)
+                self.gigs = gigs
+                completion(.success(gigs))
+            } catch {
+                print("Error decoding gigs: \(error.localizedDescription)")
+                completion(.failure(.noDecode))
+                return
+            }
         }.resume()
     }
     
