@@ -195,8 +195,9 @@ class GigController {
             
             let jsonEncoder = JSONEncoder()
             do {
-                let gig = try jsonEncoder.encode(gig)
-                completion(.success(gig))
+                let newGig = try jsonEncoder.encode(gig)
+                completion(.success(newGig))
+                self.gigs.append(gig)
                 return
             } catch {
                 print("Error adding gig: \(error)")
@@ -204,7 +205,5 @@ class GigController {
                 return
             }
         }.resume()
-        
     }
-    
 }
