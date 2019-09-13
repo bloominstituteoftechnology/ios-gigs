@@ -126,7 +126,7 @@
         <!--Title-->
         <scene sceneID="s8W-cK-YCl">
             <objects>
-                <viewController id="SEo-nl-lab" sceneMemberID="viewController">
+                <viewController id="SEo-nl-lab" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KTy-CQ-Atd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -200,8 +200,17 @@
                         <viewLayoutGuide key="safeArea" id="yDF-G4-3VJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="mUD-6X-KTO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="fzd-xT-Xeq"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="fzd-xT-Xeq">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="SEo-nl-lab" id="Krh-yp-F4c"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="LLp-A2-TjQ" id="KUM-R3-aha"/>
+                        <outlet property="gigDescriptionTextView" destination="zml-gE-aaf" id="8m1-Wb-c1o"/>
+                        <outlet property="gigTitleTextField" destination="Ob5-h5-Sl2" id="gsW-dh-uvn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8de-B8-W3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
