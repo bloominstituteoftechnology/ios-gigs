@@ -12,4 +12,7 @@ struct Bearer: Codable {
     let id: Int
     let token: String
     let userId: Int
+    var bearerString: String {
+        return "Bearer \(token)"
+    }
 }

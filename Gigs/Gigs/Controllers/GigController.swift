@@ -99,11 +99,14 @@ class GigController {
     }
     
     func getAllGigs(completion: @escaping (Error?) -> Void) {
-        guard let bearer = bearer else { return }
+        guard let bearer = bearer else {
+            completion(NSError(domain: "", code: 4, userInfo: nil))
+            return
+        }
         let gigsUrl = baseURL.appendingPathComponent("gigs")
         var request = URLRequest(url: gigsUrl)
         request.httpMethod = HttpMethod.get.rawValue
-        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: authHeader)
+        request.setValue(bearer.bearerString, forHTTPHeaderField: authHeader)
         
         URLSession.shared.dataTask(with: request) { (data, res, err) in
             if let err = err {
@@ -134,5 +137,41 @@ class GigController {
             
             completion(nil)
         }.resume()
+    }
+    
+    func addGig(_ gig: Gig, completion: @escaping (Error?) -> Void) {
+        guard let bearer = bearer else {
+            completion(NSError(domain: "", code: 5, userInfo: nil))
+            return
+        }
+        let addGigUrl = baseURL.appendingPathComponent("gigs")
+        var request = URLRequest(url: addGigUrl)
+        request.httpMethod = HttpMethod.post.rawValue
+        request.setValue(bearer.bearerString, forHTTPHeaderField: authHeader)
+        
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        do {
+            let gigData = try encoder.encode(gig)
+            request.httpBody = gigData
+        } catch {
+            print("Error encoding gig: \(error)")
+            completion(error)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, res, err) in
+            if let err = err {
+                completion(err)
+                return
+            }
+            
+            if let res = res as? HTTPURLResponse, res.statusCode != 200 {
+                completion(NSError(domain: "", code: res.statusCode, userInfo: nil))
+                return
+            }
+            
+            completion(nil)
+        }
     }
 }
