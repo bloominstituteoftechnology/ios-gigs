@@ -80,7 +80,7 @@ class LoginViewController: UIViewController {
             signInButton.setTitle("Sign Up", for: .normal)
         } else {
             loginType = .signIn
-            signInButton.setTitle("Sing In", for: .normal)
+            signInButton.setTitle("Sign In", for: .normal)
         }
     }
     
