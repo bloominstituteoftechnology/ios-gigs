@@ -10,6 +10,7 @@ import Foundation
 
 let appJSON = "application/json"
 let contentType = "Content-Type"
+let authHeader = "Authorization"
 
 enum HttpMethod: String {
     case post = "POST"
@@ -19,6 +20,7 @@ enum HttpMethod: String {
 class GigController {
     var bearer: Bearer?
     var baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
+    var gigs: [Gig] = []
 
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         let signUpUrl = baseURL.appendingPathComponent("users/signup")
@@ -88,6 +90,44 @@ class GigController {
                 self.bearer = try decoder.decode(Bearer.self, from: data)
             } catch {
                 print("Error decoding bearer: \(error)")
+                completion(error)
+                return
+            }
+            
+            completion(nil)
+        }.resume()
+    }
+    
+    func getAllGigs(completion: @escaping (Error?) -> Void) {
+        guard let bearer = bearer else { return }
+        let gigsUrl = baseURL.appendingPathComponent("gigs")
+        var request = URLRequest(url: gigsUrl)
+        request.httpMethod = HttpMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: authHeader)
+        
+        URLSession.shared.dataTask(with: request) { (data, res, err) in
+            if let err = err {
+                print("Error getting gigs: \(err)")
+                completion(err)
+                return
+            }
+            
+            if let res = res as? HTTPURLResponse, res.statusCode != 200 {
+                completion(NSError(domain: "", code: res.statusCode, userInfo: nil))
+                return
+            }
+            
+            guard let data = data else {
+                completion(NSError(domain: "", code: 4, userInfo: nil))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            do {
+                self.gigs = try decoder.decode([Gig].self, from: data)
+            } catch {
+                print("Error decoding gigs: \(error)")
                 completion(error)
                 return
             }
