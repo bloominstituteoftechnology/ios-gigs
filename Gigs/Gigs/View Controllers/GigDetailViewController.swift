@@ -23,6 +23,7 @@ class GigDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateViews()
     }
     
     func updateViews() {
@@ -32,6 +33,7 @@ class GigDetailViewController: UIViewController {
             descriptionTextView.text = gig.description
         } else {
             title = "New Gig"
+            descriptionTextView.text = ""
         }
     }
     

@@ -119,6 +119,7 @@ class GigController {
         }
         
         let allGigsUrl = baseUrl.appendingPathComponent("gigs")
+        print(allGigsUrl)
         
         var request = URLRequest(url: allGigsUrl)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -128,18 +129,23 @@ class GigController {
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401 {
                 completion(.failure(.badAuth))
+                print("no response")
                 return
             }
             
             if let _ = error {
                 completion(.failure(.otherError))
+                print(error)
                 return
             }
             
             guard let data = data else {
                 completion(.failure(.badData))
+                print("no data")
+                
                 return
             }
+            print("No errors")
             
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .iso8601
@@ -173,6 +179,7 @@ class GigController {
             let jsonData = try jsonEncoder.encode(gig)
             request.httpBody = jsonData
             self.gigs.append(gig)
+            print(gig)
         } catch {
             print("Error encoding gig object: \(error.localizedDescription)")
             completion(.failure(.noEncode))
@@ -190,6 +197,8 @@ class GigController {
                 completion(.failure(.otherError))
                 return
             }
+            
+            self.gigs.append(gig)
             
 //            guard let data = data else {
 //                completion(.failure(.badData))
