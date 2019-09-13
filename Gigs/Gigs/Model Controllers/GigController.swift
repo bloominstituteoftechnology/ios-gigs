@@ -172,6 +172,7 @@ class GigController {
         do {
             let jsonData = try jsonEncoder.encode(gig)
             request.httpBody = jsonData
+            self.gigs.append(gig)
         } catch {
             print("Error encoding gig object: \(error.localizedDescription)")
             completion(.failure(.noEncode))
