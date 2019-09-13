@@ -17,16 +17,17 @@ class GigsDetailViewController: UIViewController {
     
     // MARK: Properties
     var gigController: GigController?
-    var gig: Gig? {
-        didSet {
-            updateViews()
-        }
-    }
+    var gig: Gig?
+//    {
+//        didSet {
+//            updateViews()
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        updateViews()
     }
     
     @IBAction func saveGig(_ sender: Any) {
@@ -35,7 +36,7 @@ class GigsDetailViewController: UIViewController {
     private func updateViews() {
         if let gig = gig {
             title = "\(gig.title)"
-            //jobTitleTextField.text = gig.title
+            jobTitleTextField.text = gig.title
             datePicker.date = gig.dueDate
             descriptionTextView.text = gig.description
         } else {
