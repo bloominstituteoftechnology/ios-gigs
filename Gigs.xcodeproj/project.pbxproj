@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A4812C02232B3C490095D754 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4812C01232B3C490095D754 /* GigDetailViewController.swift */; };
+		A4812C04232B3CC20095D754 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4812C03232B3CC20095D754 /* Gig.swift */; };
 		A4B48AB2232830E900603E14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B48AB1232830E900603E14 /* AppDelegate.swift */; };
 		A4B48AB7232830E900603E14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4B48AB5232830E900603E14 /* Main.storyboard */; };
 		A4B48AB9232830EA00603E14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4B48AB8232830EA00603E14 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A4812C01232B3C490095D754 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		A4812C03232B3CC20095D754 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 		A4B48AAE232830E900603E14 /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4B48AB1232830E900603E14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4B48AB6232830E900603E14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A4812C00232B39970095D754 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A4B48AB1232830E900603E14 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		A4B48AA5232830E800603E14 = {
 			isa = PBXGroup;
 			children = (
@@ -62,11 +74,11 @@
 		A4B48AB0232830E900603E14 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
+				A4812C00232B39970095D754 /* Application */,
 				A4B48AC72328312600603E14 /* Storyboards */,
 				A4B48AC52328310600603E14 /* Views */,
 				A4B48AC4232830FF00603E14 /* Models */,
 				A4B48AC3232830F600603E14 /* View Controllers */,
-				A4B48AB1232830E900603E14 /* AppDelegate.swift */,
 				A4B48AB8232830EA00603E14 /* Assets.xcassets */,
 				A4B48ABD232830EA00603E14 /* Info.plist */,
 			);
@@ -76,8 +88,9 @@
 		A4B48AC3232830F600603E14 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A4B48AC8232831C000603E14 /* GigsTableViewController.swift */,
 				A4B48ACA232887A400603E14 /* LoginViewController.swift */,
+				A4B48AC8232831C000603E14 /* GigsTableViewController.swift */,
+				A4812C01232B3C490095D754 /* GigDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -88,6 +101,7 @@
 				A4B48AC62328311200603E14 /* Model Controllers */,
 				A4B48ACC2328895000603E14 /* Bearer.swift */,
 				A4B48ACE2328899300603E14 /* User.swift */,
+				A4812C03232B3CC20095D754 /* Gig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -190,6 +204,8 @@
 				A4B48ACD2328895000603E14 /* Bearer.swift in Sources */,
 				A4B48ACB232887A400603E14 /* LoginViewController.swift in Sources */,
 				A4B48AB2232830E900603E14 /* AppDelegate.swift in Sources */,
+				A4812C04232B3CC20095D754 /* Gig.swift in Sources */,
+				A4812C02232B3C490095D754 /* GigDetailViewController.swift in Sources */,
 				A4B48ACF2328899300603E14 /* User.swift in Sources */,
 				A4B48AC9232831C000603E14 /* GigsTableViewController.swift in Sources */,
 				A4B48AD1232889C200603E14 /* GigController.swift in Sources */,
