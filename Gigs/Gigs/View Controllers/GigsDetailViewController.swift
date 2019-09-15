@@ -31,6 +31,18 @@ class GigsDetailViewController: UIViewController {
     }
     
     @IBAction func saveGig(_ sender: Any) {
+       
+        guard let jobTitle = jobTitleTextField.text, !jobTitle.isEmpty,
+            let description = descriptionTextView.text, !description.isEmpty else { return }
+        
+        let date = datePicker.date
+        
+        gigController?.createGig(title: jobTitle, dueDate: date, description: description, completion: { (_) in
+            DispatchQueue.main.async {
+                print("New gig created!")
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        })
     }
     
     private func updateViews() {
