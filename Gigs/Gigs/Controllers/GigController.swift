@@ -7,13 +7,18 @@
 //
 
 import Foundation
-import UIKit
 
 class GigController {
     
     private let baseUrl = URL(string: "https://lambdagigs.vapor.cloud/api")!
     var bearer: Bearer?
     var gigs: [Gig] = []
+    
+    private var gigUserLogin: URL? {
+        let fileManager = FileManager.default
+        guard let documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        return documents.appendingPathComponent("ReadingList.plist")
+    }
     
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         
@@ -129,16 +134,16 @@ class GigController {
                 self.gigs = gigTitles
                 completion(.success(gigTitles))
             } catch {
-                print("Arror decoding Gig titles: \(error)")
+                print("Error decoding Gig titles: \(error)")
                 completion(.failure(.noDecode))
                 return
             }
         }.resume()
     }
     
-    func createGig(title: String, dueDate: Date, description: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) { // uses POST
+    func createGig(title: String, dueDate: Date, description: String, completion: @escaping (NetworkError?) -> Void) { // uses POST
         guard let bearer = bearer else {
-            completion(.failure(.noAuth))
+            completion(.noAuth)
             return
         }
         
@@ -148,35 +153,37 @@ class GigController {
         
         var request = URLRequest(url: newGigUrl)
         request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         let encoder = JSONEncoder()
         do {
             let jsonData = try encoder.encode(newGig)
             request.httpBody = jsonData
-            
+            self.gigs.append(newGig)
+            print("New gig added to list")
         } catch {
             print("Error encoding gig object: \(error)")
-            completion(.failure(.noEncode))
+            completion(.noEncode)
             return
         }
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse, response.statusCode != 200 {
-                completion(.failure(.badAuth))
+                completion(.badAuth)
                 return
             }
             
             if let _ = error {
-                completion(.failure(.otherError))
+                completion(.otherError)
                 return
             }
             
             guard let data = data else {
-                completion(.failure(.badData))
+                completion(.badData)
                 return
             }
-            
+   
             let decoder = JSONDecoder()
             do {
                 let decodedGig = try decoder.decode(Gig.self, from: data)
@@ -184,9 +191,10 @@ class GigController {
                 print("New gig add successful")
             } catch {
                 print("Error decoding single gig: \(error)")
-                completion(.failure(.noDecode))
+                completion(.noDecode)
                 return
             }
+            completion(nil)
         
         }.resume()
     }

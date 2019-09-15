@@ -16,7 +16,6 @@ class GigsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,6 +66,10 @@ class GigsTableViewController: UITableViewController {
                 let indexPath = tableView.indexPathForSelectedRow {
                 detailVC.gigController = gigController
                 detailVC.gig = gigController.gigs[indexPath.row]
+            }
+        } else {
+            if let addGigVC = segue.destination as? GigsDetailViewController {
+                addGigVC.gigController = gigController
             }
         }
     }

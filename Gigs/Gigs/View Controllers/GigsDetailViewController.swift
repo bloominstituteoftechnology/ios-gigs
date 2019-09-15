@@ -18,11 +18,6 @@ class GigsDetailViewController: UIViewController {
     // MARK: Properties
     var gigController: GigController?
     var gig: Gig?
-//    {
-//        didSet {
-//            updateViews()
-//        }
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,15 +27,17 @@ class GigsDetailViewController: UIViewController {
     
     @IBAction func saveGig(_ sender: Any) {
        
-        guard let jobTitle = jobTitleTextField.text, !jobTitle.isEmpty,
+        guard let gigController = gigController,
+            let jobTitle = jobTitleTextField.text, !jobTitle.isEmpty,
             let description = descriptionTextView.text, !description.isEmpty else { return }
         
         let date = datePicker.date
         
-        gigController?.createGig(title: jobTitle, dueDate: date, description: description, completion: { (_) in
+        gigController.createGig(title: jobTitle, dueDate: date, description: description, completion: { (_) in
             DispatchQueue.main.async {
                 print("New gig created!")
-                self.navigationController?.popToRootViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
+                
             }
         })
     }
@@ -55,5 +52,4 @@ class GigsDetailViewController: UIViewController {
             title = "New Gig"
         }
     }
-    
 }
