@@ -10,7 +10,7 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
     
-    private var gigs: [String] = []
+    //private var gigs: [String] = []
     
     var gigController: GigController?
     //This instance of GigController will be used to perform network calls to get the gigs from the API, and be passed to the other view controllers to perform whatever API calls they need to do as well.
@@ -19,22 +19,19 @@ class GigsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if gigController?.bearer != nil {
+        
+        super.viewDidAppear(animated)
+        
+        if gigController?.bearer == nil {
             // TODO: - If it is, then perform the manual segue you made to the LoginViewController
-            
+            performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
 
-        } else {
+        } //else {
             // TODO: TOMORROW fetch gigs here
-        }
+        //}
     }
 
     // MARK: - Table view data source
@@ -51,7 +48,7 @@ class GigsTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         
         //This way this table view controller will build and run in the simulator so you can run the checks that segue to the LoginViewController if the user isn't logged in.
         
