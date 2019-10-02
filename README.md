@@ -31,7 +31,7 @@ In the "Main.storyboard":
     - Create a Cocoa Touch Subclass of `UITableViewController` called `GigsTableViewController` and set this table view controller scene's class to this new subclass you just created.
 
 3. Add a `UIViewController` scene for signing up/logging in:
-    - Create a modal **manual** segue from the `GigsTableViewController` scene to this new view controller scene.
+    - Create a modal **manual** segue from the `GigsTableViewController` scene to this new view controller scene. Click on the segue in the storyboard and change its "Presentation" to "Full Screen" in the Attributes Inspector.
     
     - Add two text fields; one for a username, and one for a password.
     
