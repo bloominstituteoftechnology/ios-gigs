@@ -24,6 +24,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loginTypeSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(red: 73.0/255.0, green: 199.0/255.0, blue: 188.0/255.0, alpha: 1.0)], for: UIControl.State.selected)
+        
+        loginTypeSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
+        
         // Do any additional setup after loading the view.
     }
     
