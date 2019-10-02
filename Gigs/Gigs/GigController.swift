@@ -23,7 +23,7 @@ class GigController {
         let requestURL = baseURL
             .appendingPathComponent("users")
             .appendingPathComponent("signup")
-        
+                
         // Build the request
         
         var request = URLRequest(url: requestURL)
@@ -54,7 +54,7 @@ class GigController {
                 completion(statusCodeError)
                 return
             }
-            
+
             completion(nil)
         }.resume()
     }
