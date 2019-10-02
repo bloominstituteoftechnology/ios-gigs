@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gigs Table View Controller-->
+        <!--Gigs-->
         <scene sceneID="m6w-57-auk">
             <objects>
                 <tableViewController id="48r-xJ-bDe" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,7 +49,7 @@
                             <outlet property="delegate" destination="48r-xJ-bDe" id="RFu-96-uAD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="7Ag-c6-FE1"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="7Ag-c6-FE1"/>
                     <connections>
                         <segue destination="5na-wG-a51" kind="presentation" identifier="LoginModalSegue" id="VVL-h8-gxr"/>
                     </connections>
@@ -70,13 +70,13 @@
                                 <rect key="frame" x="20" y="112" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="81p-XT-oMh">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="81p-XT-oMh">
                                 <rect key="frame" x="20" y="150" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AsG-KR-bH5">
                                 <rect key="frame" x="144.5" y="64" width="125" height="29"/>
@@ -84,14 +84,21 @@
                                     <segment title="Sign Up"/>
                                     <segment title="Sign In"/>
                                 </segments>
+                                <color key="tintColor" red="0.87450980389999999" green="0.30980392159999998" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="segmentChange:" destination="5na-wG-a51" eventType="valueChanged" id="Jgb-Vl-1sw"/>
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XhZ-dK-XJb">
-                                <rect key="frame" x="175" y="200" width="64" height="36"/>
+                                <rect key="frame" x="105" y="200" width="205" height="75"/>
+                                <color key="backgroundColor" red="0.87450980389999999" green="0.30980392159999998" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="EWa-Nv-V7s"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="buttonTapped:" destination="5na-wG-a51" eventType="touchUpInside" id="T9r-cy-Sii"/>
                                 </connections>
@@ -103,10 +110,11 @@
                             <constraint firstItem="jOZ-hR-C3z" firstAttribute="top" secondItem="AsG-KR-bH5" secondAttribute="bottom" constant="20" id="COd-EB-HpZ"/>
                             <constraint firstItem="81p-XT-oMh" firstAttribute="leading" secondItem="jOZ-hR-C3z" secondAttribute="leading" id="Ktj-Yf-y7x"/>
                             <constraint firstItem="AsG-KR-bH5" firstAttribute="centerX" secondItem="Bpk-OV-Q0g" secondAttribute="centerX" id="MGx-UX-ALb"/>
-                            <constraint firstItem="XhZ-dK-XJb" firstAttribute="centerX" secondItem="Bpk-OV-Q0g" secondAttribute="centerX" id="O1n-Tf-6Y5"/>
-                            <constraint firstItem="XhZ-dK-XJb" firstAttribute="top" secondItem="81p-XT-oMh" secondAttribute="bottom" constant="20" id="ifh-1C-8yg"/>
+                            <constraint firstItem="wS0-IB-zgN" firstAttribute="trailing" secondItem="XhZ-dK-XJb" secondAttribute="trailing" constant="104" id="TBf-zy-0Lx"/>
+                            <constraint firstItem="XhZ-dK-XJb" firstAttribute="leading" secondItem="wS0-IB-zgN" secondAttribute="leading" constant="105" id="faP-4b-NeO"/>
                             <constraint firstItem="81p-XT-oMh" firstAttribute="top" secondItem="jOZ-hR-C3z" secondAttribute="bottom" constant="8" id="lJZ-6h-5mQ"/>
                             <constraint firstItem="81p-XT-oMh" firstAttribute="trailing" secondItem="jOZ-hR-C3z" secondAttribute="trailing" id="nJS-fh-d6V"/>
+                            <constraint firstItem="XhZ-dK-XJb" firstAttribute="top" secondItem="81p-XT-oMh" secondAttribute="bottom" constant="20" id="rrd-YT-FES"/>
                             <constraint firstItem="AsG-KR-bH5" firstAttribute="top" secondItem="wS0-IB-zgN" secondAttribute="top" constant="20" id="vm6-Zl-Njj"/>
                             <constraint firstItem="wS0-IB-zgN" firstAttribute="trailing" secondItem="jOZ-hR-C3z" secondAttribute="trailing" constant="20" id="wzB-5O-eFY"/>
                         </constraints>
@@ -128,8 +136,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oyJ-o8-uvJ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Zs-5V-HUb">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="6Zs-5V-HUb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
