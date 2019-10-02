@@ -12,11 +12,11 @@
             <objects>
                 <viewController id="dZW-JW-NOB" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3mc-Wv-crh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Rmn-ve-ISN">
-                                <rect key="frame" x="100" y="15" width="214" height="32"/>
+                                <rect key="frame" x="100" y="59" width="214" height="32"/>
                                 <segments>
                                     <segment title="Sign Up"/>
                                     <segment title="Log In"/>
@@ -26,14 +26,14 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6I-Ql-kfO">
-                                <rect key="frame" x="75" y="154" width="264" height="30"/>
+                                <rect key="frame" x="75" y="198" width="264" height="30"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="logInButtonTapped:" destination="dZW-JW-NOB" eventType="touchUpInside" id="5sh-pm-5P0"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Fgl-uB-7VZ">
-                                <rect key="frame" x="8" y="61" width="398" height="78"/>
+                                <rect key="frame" x="8" y="105" width="398" height="78"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DTO-uu-bEv">
                                         <rect key="frame" x="0.0" y="0.0" width="398" height="34"/>
@@ -73,7 +73,7 @@
             </objects>
             <point key="canvasLocation" x="1828.985507246377" y="134.59821428571428"/>
         </scene>
-        <!--Gigs Table View Controller-->
+        <!--Gigs-->
         <scene sceneID="npw-vw-KDW">
             <objects>
                 <tableViewController id="mzp-Sf-SaQ" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -112,9 +112,9 @@
                             <outlet property="delegate" destination="mzp-Sf-SaQ" id="L45-iO-WcK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="OcJ-nA-H3s"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="OcJ-nA-H3s"/>
                     <connections>
-                        <segue destination="dZW-JW-NOB" kind="presentation" id="GG8-Dq-SF8"/>
+                        <segue destination="dZW-JW-NOB" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="GG8-Dq-SF8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVg-KH-SKf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -126,8 +126,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mRU-m1-L6j" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oDr-MJ-1XX">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="oDr-MJ-1XX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
