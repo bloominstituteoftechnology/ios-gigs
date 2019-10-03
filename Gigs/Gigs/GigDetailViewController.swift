@@ -49,16 +49,19 @@ class GigDetailViewController: UIViewController {
         
         let gig = Gig(title: title, dueDate: datePicker.date, description: description)
         
-        gigController.createGig(gig: gig) { (result) in
-            do {
-                let newGig = try result.get()
-                
-                DispatchQueue.main.async {
-                    self.gigController.gigs.append(newGig)
-                    self.navigationController?.popViewController(animated: true)
+        // Only add the gig if it doesn't already exist
+        if !gigController.gigs.contains(gig) {
+            gigController.createGig(gig: gig) { (result) in
+                do {
+                    let newGig = try result.get()
+                    
+                    DispatchQueue.main.async {
+                        self.gigController.gigs.append(newGig)
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                } catch {
+                    NSLog("Error getting new gig details: \(error)")
                 }
-            } catch {
-                NSLog("Error getting new gig details: \(error)")
             }
         }
     }
