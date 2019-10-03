@@ -23,7 +23,7 @@ class GigController {
     // MARK: Properties
     
     var bearer: Bearer?
-    let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")! // get URL from api documentation
+    let baseURL = URL(string: "http://lambdagigs.vapor.cloud/api")! // get URL from api documentation
     
     /** Array used for storing the fetched and created gigs, and be the data source for the table view */
     var gigs: [Gig] = []
@@ -62,6 +62,7 @@ class GigController {
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
                 completion(.failure(.unexpectedStatusCode))
+                return
             }
             
             guard let data = data else {
@@ -117,12 +118,13 @@ class GigController {
                 response.statusCode != 200 {
                 completion(.failure(.unexpectedStatusCode))
             }
-            //TO DO: Append successful post to local array
+            //Append successful post to local array
+            self.gigs.append(gig)
             completion(.success(gig))
             
         }.resume()
     }
-        
+    
     
     
     /** a function for sign up */
@@ -130,10 +132,10 @@ class GigController {
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         
         // Build the URL
-       
+        
         let requestURL = baseURL // request URL is the baseURL plus enpoints given in API Documentation
-        .appendingPathComponent("users") // request URL = baseURL/users
-        .appendingPathComponent("signup") // request URL = baseURL/users/signup
+            .appendingPathComponent("users") // request URL = baseURL/users
+            .appendingPathComponent("signup") // request URL = baseURL/users/signup
         
         // Build the request
         
@@ -143,7 +145,7 @@ class GigController {
         // Tell the API that the body is in JSON format
         
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                // request.setValue("insert value from insomnia", "insert header from insomnia")
+        // request.setValue("insert value from insomnia", "insert header from insomnia")
         let encoder = JSONEncoder()
         
         do {
@@ -156,23 +158,24 @@ class GigController {
         // Perform the request
         
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-        
-        // Handle errors
+            
+            // Handle errors
             if let error = error {
-            NSLog("Error signing up user: \(error)")
-            completion(error)
+                NSLog("Error signing up user: \(error)")
+                completion(error)
             }
-                // getting a response back from the data task
-        
+            // getting a response back from the data task
+            
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
                 
                 let statusCodeError = NSError(domain: "com.JonalynnMasters.gigs", code: response.statusCode, userInfo: nil)
                 completion(statusCodeError)
             }
-        completion(nil)
+            completion(nil)
             
-        } .resume()
+        }
+        dataTask.resume()
     }
     
     func signIn(with user: User, completion: @escaping (Error?) -> Void) {
@@ -180,8 +183,8 @@ class GigController {
         // Build the URL
         
         let requestURL = baseURL
-        .appendingPathComponent("users")
-        .appendingPathComponent("password")
+            .appendingPathComponent("users")
+            .appendingPathComponent("login")
         
         // Build the request
         
@@ -196,10 +199,10 @@ class GigController {
         } catch {
             NSLog("Error in encoding user for sign in: \(error)")
         }
-            
+        
         // Perform the request
         
-        URLSession.shared.dataTask(with: requestURL) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             // Handle errors
             if let error = error {
                 NSLog("Error signing in user: \(error)")
@@ -221,11 +224,11 @@ class GigController {
             do {
                 let bearer = try JSONDecoder().decode(Bearer.self, from: data)
                 self.bearer = bearer
+                completion(nil)
             } catch {
                 NSLog("Error decoding Bearer token: \(error)")
                 completion(error)
             }
-            completion(nil)
             
         } .resume()
     }
@@ -234,6 +237,6 @@ class GigController {
 // MARK: Helpers
 
 enum HTTPMethod: String {
-      case get = "GET"
-      case post = "POST"
-  }
+    case get = "GET"
+    case post = "POST"
+}
