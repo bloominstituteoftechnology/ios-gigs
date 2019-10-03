@@ -13,9 +13,65 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkingError: Error {
+    case noData
+    case noBearer
+    case serverError(Error)
+    case statusCode(Int)
+    case badDecode(Error)
+}
+
+enum HeaderNames: String {
+    case auth = "Authorization"
+    case contentType = "Content-Type"
+}
+
 class GigController {
     var bearer: Bearer?
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
+    
+    var gigs: [Gig] = []
+    
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkingError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noBearer))
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent("gigs")
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.auth.rawValue)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Error fetching gigs: \(error)")
+                completion(.failure(.serverError(error)))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.statusCode(response.statusCode)))
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                
+                let gigs = try decoder.decode([Gig].self, from: data)
+                completion(.success(gigs))
+            } catch {
+                NSLog("Error decoding gigs: \(error)")
+                completion(.failure(.badDecode(error)))
+            }
+        }.resume()
+    }
     
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         // Build the URL
