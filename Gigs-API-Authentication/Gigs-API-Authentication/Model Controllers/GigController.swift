@@ -8,15 +8,124 @@
 
 import Foundation
 
+enum NetworkingError: Error {
+    case noBearer
+    case serverError(Error)
+    case unexpectedStatusCode
+    case badDecode
+    case unauthorized
+    case noData
+    case unableToPost
+}
+
 class GigController {
     
     // MARK: Properties
+    
     var bearer: Bearer?
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")! // get URL from api documentation
     
+    /** Array used for storing the fetched and created gigs, and be the data source for the table view */
+    var gigs: [Gig] = []
+    
     // MARK: Methods
     
-    // create a function for sign up
+    /** a function to fetch all gigs */
+    func fetchAllGigs(completion: @escaping (Result<[String], NetworkingError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noBearer))
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) {(data, response, error) in
+            
+            if let error = error {
+                NSLog("Error fetching gigs: \(error)")
+                completion(.failure(.serverError(error)))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.unauthorized))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.unexpectedStatusCode))
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let gigNames = try JSONDecoder().decode([String].self, from: data)
+                
+                completion(.success(gigNames))
+            } catch {
+                NSLog("Error decoding gig names: \(error)")
+                completion(.failure(.badDecode))
+            }
+        }.resume()
+    }
+    
+    /** a function for creating a gig and adding it to the API via POST, if successful append the gig to your local array */
+    
+    func createGigAndAddToApi(with gig: Gig, completion: @escaping (Result<Gig, NetworkingError>) -> Void) {
+        
+        let requestURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let encoder = JSONEncoder()
+        
+        do {
+            let gigJSON = try encoder.encode(gig)
+            request.httpBody = gigJSON
+        } catch {
+            NSLog("Error encoding gig object: \(error)")
+        }
+        
+        URLSession.shared.dataTask(with: request) {(data, response, error) in
+            
+            if let error = error {
+                NSLog("Error posting gig: \(error)")
+                completion(.failure(.unableToPost))
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.unauthorized))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.unexpectedStatusCode))
+            }
+            //TO DO: Append successful post to local array
+            completion(.success(gig))
+            
+        }.resume()
+    }
+        
+    
+    
+    /** a function for sign up */
     
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         

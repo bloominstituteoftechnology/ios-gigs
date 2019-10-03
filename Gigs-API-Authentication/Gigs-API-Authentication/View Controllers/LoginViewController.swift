@@ -11,6 +11,7 @@ import UIKit
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
     //MARK: Properties
+    
     var gigController: GigController!
     var loginType = LoginType.signUp
     
