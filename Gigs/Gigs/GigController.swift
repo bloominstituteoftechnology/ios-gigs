@@ -19,6 +19,7 @@ enum NetworkingError: Error {
     case serverError(Error)
     case statusCode(Int)
     case badDecode(Error)
+    case badEncode(Error)
 }
 
 enum HeaderNames: String {
@@ -39,6 +40,7 @@ class GigController {
         }
         
         let requestURL = baseURL.appendingPathComponent("gigs")
+        
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.get.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.auth.rawValue)
@@ -68,6 +70,59 @@ class GigController {
                 completion(.success(gigs))
             } catch {
                 NSLog("Error decoding gigs: \(error)")
+                completion(.failure(.badDecode(error)))
+            }
+        }.resume()
+    }
+    
+    func createGig(gig: Gig, completion: @escaping (Result<Gig, NetworkingError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noBearer))
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.auth.rawValue)
+        request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
+        
+        do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            let gigJSON = try encoder.encode(gig)
+            request.httpBody = gigJSON
+        } catch {
+            NSLog("Error encoding gig data: \(error)")
+            completion(.failure(.badEncode(error)))
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Error adding gig: \(error)")
+                completion(.failure(.serverError(error)))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.statusCode(response.statusCode)))
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                
+                let gig = try decoder.decode(Gig.self, from: data)
+                completion(.success(gig))
+            } catch {
+                NSLog("Error decoding gig: \(error)")
                 completion(.failure(.badDecode(error)))
             }
         }.resume()
