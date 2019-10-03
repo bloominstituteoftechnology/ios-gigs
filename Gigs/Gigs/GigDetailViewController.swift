@@ -14,6 +14,9 @@ class GigDetailViewController: UIViewController {
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextField: UITextView!
     
+    var gigController: GigController!
+    
+    var gig: Gig?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +24,18 @@ class GigDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func updateViews() {
+        
+        title = gig?.title
+        jobTitleTextField.text = gig?.title
+        
+        dueDatePicker.date = gig!.dueDate
+        descriptionTextField.text = gig?.description
+        
+    }
+    
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
+        
     }
     
     /*

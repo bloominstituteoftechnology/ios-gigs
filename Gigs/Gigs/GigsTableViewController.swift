@@ -12,6 +12,12 @@ class GigsTableViewController: UITableViewController {
     
     let gigController = GigController()
     
+    private var gigTitles: [String] = []
+    
+//    let formatter = DateFormatter()
+//    formatter.dateStyle = .short
+//    formatter.timeStyle = .short
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +46,20 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigTitles.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigsCell", for: indexPath)
 
-        // Configure the cell...
+        cell.textLabel?.text = gigTitles[indexPath.row]
+        
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .short
+//        formatter.timeStyle = .short
+//        
+//        cell.detailTextLabel?.text = formatter.string(from: )
 
         return cell
     }
