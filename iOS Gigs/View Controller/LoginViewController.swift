@@ -10,7 +10,7 @@ import UIKit
 
 enum LoginType {
     case signUp
-    case LogIn
+    case signIn
 }
 
 class LoginViewController: UIViewController {
@@ -21,29 +21,17 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signUpLoginButton: UIButton!
     
     
-    var gigController: GigController!
+    var gigController: GigController?
     var loginType: LoginType = .signUp
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func signUpLoginButtonTapped(_ sender: Any) {
         
         // Creating a user
+        
         
         guard let username = usernameTextField.text,
             let password = passwordTextField.text,
@@ -51,9 +39,12 @@ class LoginViewController: UIViewController {
             !password.isEmpty else { return }
         
         let user = User(username: username, password: password)
+    
         
         if loginType == .signUp {
-            gigController.signUp(with: user, completion: { (error) in
+            
+            print(user)
+            gigController?.signUp(with: user, completion: { (error) in
                 
                 if let error = error {
                     NSLog("Error occurred during sign up: \(error)")
@@ -68,7 +59,7 @@ class LoginViewController: UIViewController {
                     
                     DispatchQueue.main.async {
                         self.present(alert, animated: true) {
-                            self.loginType = .LogIn
+                            self.loginType = .signIn
                             self.segmentedControl.selectedSegmentIndex = 1
                             self.signUpLoginButton.setTitle("Sign In", for: .normal)
                         }
@@ -76,7 +67,7 @@ class LoginViewController: UIViewController {
                 }
             })
         } else {
-            gigController.signIn(with: user) { (error) in
+            gigController?.signIn(with: user) { (error) in
                 if let error = error {
                     NSLog("Error occurred during sign in: \(error)")
                 } else {
@@ -94,8 +85,8 @@ class LoginViewController: UIViewController {
             loginType = .signUp
             signUpLoginButton.setTitle("Sign Up", for: .normal)
         } else {
-            loginType = .LogIn
-            signUpLoginButton.setTitle("Login", for: .normal)
+            loginType = .signIn
+            signUpLoginButton.setTitle("Sign In", for: .normal)
         }
     }
     

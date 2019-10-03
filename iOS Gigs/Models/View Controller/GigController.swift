@@ -20,6 +20,7 @@ class GigController {
     
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         
+        print("Inside signup function of gigcontroller")
         // Building the URL
         let requestURL = baseURL
         .appendingPathComponent("users")
