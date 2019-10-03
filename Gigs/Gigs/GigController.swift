@@ -32,6 +32,7 @@ class GigController {
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
     var gigs: [Gig] = []
+    let dateFormatter = DateFormatter()
     
     func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkingError>) -> Void) {
         guard let bearer = bearer else {
