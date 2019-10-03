@@ -51,7 +51,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="WSw-FZ-CbJ"/>
                     <connections>
-                        <segue destination="mTT-Nu-owc" kind="presentation" id="Zbf-6W-jS0"/>
+                        <segue destination="mTT-Nu-owc" kind="presentation" identifier="LoginViewModalSegue" id="Zbf-6W-jS0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CfE-rq-8IL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -98,6 +98,9 @@
                                 <rect key="frame" x="164" y="293" width="86" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="mTT-Nu-owc" eventType="touchUpInside" id="QZa-nf-v2q"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
