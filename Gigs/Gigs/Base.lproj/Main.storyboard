@@ -42,6 +42,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BOt-uK-pzG" kind="show" identifier="ShowGig" id="Zht-jH-sQ0"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -49,7 +52,13 @@
                             <outlet property="delegate" destination="48r-xJ-bDe" id="RFu-96-uAD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Gigs" id="7Ag-c6-FE1"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="7Ag-c6-FE1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LeP-JR-9gb">
+                            <connections>
+                                <segue destination="BOt-uK-pzG" kind="show" identifier="AddGig" id="Uzp-Rn-GKp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="5na-wG-a51" kind="presentation" identifier="LoginModalSegue" id="VVL-h8-gxr"/>
                     </connections>
@@ -57,6 +66,95 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jgb-2y-dfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="469.56521739130437" y="-6.0267857142857144"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="Y60-Rc-KLr">
+            <objects>
+                <viewController id="BOt-uK-pzG" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3d7-pl-MQY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="C50-Jc-LNZ">
+                                <rect key="frame" x="0.0" y="256" width="414" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="ITr-sz-QX6"/>
+                                    <constraint firstAttribute="height" constant="162" id="kz8-1X-7L4"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="591824150.89013803">
+                                    <!--2019-10-03 19:35:50 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMY-wu-I2A">
+                                <rect key="frame" x="20" y="180" width="85" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Job Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Td-j6-XHa">
+                                <rect key="frame" x="113" y="180" width="281" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ljf-Kd-3fP">
+                                <rect key="frame" x="20" y="224" width="91" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cde-Ok-Xp4">
+                                <rect key="frame" x="20" y="426" width="112" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="P8F-o1-OMd">
+                                <rect key="frame" x="20" y="458" width="374" height="404"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KMY-wu-I2A" firstAttribute="top" secondItem="R93-S7-NHj" secondAttribute="top" constant="40" id="62O-Qa-mrg"/>
+                            <constraint firstItem="R93-S7-NHj" firstAttribute="trailing" secondItem="P8F-o1-OMd" secondAttribute="trailing" constant="20" id="AGA-Ax-bsq"/>
+                            <constraint firstItem="C50-Jc-LNZ" firstAttribute="top" secondItem="Ljf-Kd-3fP" secondAttribute="bottom" constant="8" id="C5w-VM-Fwx"/>
+                            <constraint firstItem="P8F-o1-OMd" firstAttribute="bottom" secondItem="R93-S7-NHj" secondAttribute="bottom" id="FNW-VM-Fi1"/>
+                            <constraint firstItem="cde-Ok-Xp4" firstAttribute="top" secondItem="C50-Jc-LNZ" secondAttribute="bottom" constant="8" id="FW3-rN-obB"/>
+                            <constraint firstItem="8Td-j6-XHa" firstAttribute="leading" secondItem="KMY-wu-I2A" secondAttribute="trailing" constant="8" id="Hc7-9V-4nA"/>
+                            <constraint firstItem="R93-S7-NHj" firstAttribute="trailing" secondItem="Ljf-Kd-3fP" secondAttribute="trailing" constant="303" id="KUT-Hc-JkU"/>
+                            <constraint firstItem="R93-S7-NHj" firstAttribute="trailing" secondItem="cde-Ok-Xp4" secondAttribute="trailing" constant="282" id="Ra3-cN-ZFG"/>
+                            <constraint firstItem="R93-S7-NHj" firstAttribute="trailing" secondItem="8Td-j6-XHa" secondAttribute="trailing" constant="20" id="VS4-G2-Xzu"/>
+                            <constraint firstItem="P8F-o1-OMd" firstAttribute="leading" secondItem="R93-S7-NHj" secondAttribute="leading" constant="20" id="XcL-tS-MyC"/>
+                            <constraint firstItem="C50-Jc-LNZ" firstAttribute="centerX" secondItem="3d7-pl-MQY" secondAttribute="centerX" id="ZuX-dX-D4q"/>
+                            <constraint firstItem="cde-Ok-Xp4" firstAttribute="leading" secondItem="R93-S7-NHj" secondAttribute="leading" constant="20" id="fd2-QB-cmA"/>
+                            <constraint firstItem="Ljf-Kd-3fP" firstAttribute="top" secondItem="KMY-wu-I2A" secondAttribute="bottom" constant="20" id="gMX-Aq-Yh0"/>
+                            <constraint firstItem="Ljf-Kd-3fP" firstAttribute="leading" secondItem="KMY-wu-I2A" secondAttribute="leading" id="mLl-07-2VQ"/>
+                            <constraint firstItem="KMY-wu-I2A" firstAttribute="leading" secondItem="R93-S7-NHj" secondAttribute="leading" constant="20" id="t56-Si-Prx"/>
+                            <constraint firstItem="8Td-j6-XHa" firstAttribute="top" secondItem="KMY-wu-I2A" secondAttribute="top" id="xmU-A5-Cw7"/>
+                            <constraint firstItem="P8F-o1-OMd" firstAttribute="top" secondItem="cde-Ok-Xp4" secondAttribute="bottom" constant="8" id="z7E-IK-9js"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="R93-S7-NHj"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="dPG-ka-EEh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="LwN-Af-KZq">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="BOt-uK-pzG" id="z6C-Qx-Djs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="C50-Jc-LNZ" id="Pix-OK-5bf"/>
+                        <outlet property="descriptionTextView" destination="P8F-o1-OMd" id="h5Z-QR-Ncy"/>
+                        <outlet property="jobTitleText" destination="8Td-j6-XHa" id="lQJ-rK-C3D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MAk-4A-kzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1376.8115942028987" y="-6.0267857142857144"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="3gR-Ic-IbK">
@@ -150,4 +248,7 @@
             <point key="canvasLocation" x="-440.57971014492756" y="-6.0267857142857144"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Uzp-Rn-GKp"/>
+    </inferredMetricsTieBreakers>
 </document>
