@@ -12,8 +12,8 @@ class GigsTableViewController: UITableViewController {
     
     //private var gigs: [String] = []
     
-    var gigController: GigController?
-    //This instance of GigController will be used to perform network calls to get the gigs from the API, and be passed to the other view controllers to perform whatever API calls they need to do as well.
+    var gigController = GigController()
+    //TODO: - This instance of GigController will be used to perform network calls to get the gigs from the API, and be passed to the other view controllers to perform whatever API calls they need to do as well.
     
     
 
@@ -25,7 +25,7 @@ class GigsTableViewController: UITableViewController {
         
         super.viewDidAppear(animated)
         
-        if gigController?.bearer == nil {
+        if gigController.bearer == nil {
             // TODO: - If it is, then perform the manual segue you made to the LoginViewController
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
 
@@ -42,15 +42,21 @@ class GigsTableViewController: UITableViewController {
 //    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         
-        //This way this table view controller will build and run in the simulator so you can run the checks that segue to the LoginViewController if the user isn't logged in.
+        
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        //cell.detailTextLabel.text = gigController.gigs[indexPath].
+        
+//   TODO: - Use a DateFormatter to take the Gig's dueDate property and make it into a more user-friendly readable string and place it in the detail text label of the cell.
+//
+//           DateFormatters are "expensive" to create. It is better to just create a stored property of type DateFormatter on the GigsTableViewController rather than initializing a date formatter in the cellForRowAt and effectively making a new date formatter for every cell in your table view.
+
         
         return cell
     }
@@ -72,7 +78,7 @@ class GigsTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
@@ -100,6 +106,8 @@ class GigsTableViewController: UITableViewController {
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.gigController = gigController
             }
+            // TODO: Implement prepare(for segue to pass the necessary information to the destination view controller. You should have three segues you need to cover.
+            
         }
         
     }
