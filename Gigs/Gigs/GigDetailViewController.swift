@@ -50,7 +50,15 @@ class GigDetailViewController: UIViewController {
         let gig = Gig(title: title, dueDate: datePicker.date, description: description)
         
         // Only add the gig if it doesn't already exist
-        if !gigController.gigs.contains(gig) {
+        if gigController.gigs.contains(gig) {
+            let alert = UIAlertController(title: "Unable to create gig",
+                                          message: "This gig already exists",
+                                          preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        } else {
             gigController.createGig(gig: gig) { (result) in
                 do {
                     let newGig = try result.get()
