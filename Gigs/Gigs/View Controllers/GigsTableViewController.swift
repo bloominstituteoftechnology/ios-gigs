@@ -11,8 +11,11 @@ import UIKit
 class GigsTableViewController: UITableViewController {
     
     // MARK: - Properties
-    private var gigs: [String] = []
+    private var gigs: [Gig] = []
     let gigController = GigController()
+    var gig: Gig!
+    
+    let formatter = DateFormatter()
     
     // MARK: - View Life Cycle
     override func viewDidAppear(_ animated: Bool) {
@@ -20,8 +23,16 @@ class GigsTableViewController: UITableViewController {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginModalSegue", sender: self)
         } else {
-            // TODO: fetch gigs here
+            gigController.fetchAllGigs { ( error ) in
+                if let error = error {
+                    NSLog("Error \(error)")
+                }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+            }
+            //TODO: fetch gigs here
         }
+    }
     }
     
     override func viewDidLoad() {
@@ -31,14 +42,16 @@ class GigsTableViewController: UITableViewController {
     // MARK: - TableView DataSource
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
-        
-        cell.textLabel?.text = gigs[indexPath.row]
+        let gig = gigController.gigs[indexPath.row]
+        formatter.dateStyle = .short
+        cell.detailTextLabel?.text = formatter.string(from: gig.dueDate )
+        cell.textLabel?.text = gig.title
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return gigs.count
+        return gigController.gigs.count
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,6 +59,15 @@ class GigsTableViewController: UITableViewController {
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.gigController = gigController
             }
+        } else if segue.identifier == "AddGig" {
+            if let addGigVC = segue.destination as? GigDetailViewController {
+                addGigVC.gigController = gigController
+            }
+        } else if segue.identifier == "ShowGig" {
+            if let showGigVC = segue.destination as? GigDetailViewController {
+                showGigVC.gigController = gigController
+            }
         }
     }
 }
+
