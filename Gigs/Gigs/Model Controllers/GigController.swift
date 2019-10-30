@@ -1,5 +1,5 @@
 //
-//  Bearer.swift
+//  GigController.swift
 //  Gigs
 //
 //  Created by Jon Bash on 2019-10-30.
@@ -8,8 +8,6 @@
 
 import Foundation
 
-struct Bearer: Codable {
-    let id: Int
-    let token: String
-    let userID: Int
+class GigController {
+    
 }
