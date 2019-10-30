@@ -18,9 +18,9 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
-let callComponents: [CallType: (
-        url: String,
-        httpMethod: HTTPMethod
+fileprivate let callComponents: [CallType: (
+    url: String,
+    httpMethod: HTTPMethod
     )] = [
         .signUp: (
             url: "/users/signup",
@@ -37,11 +37,7 @@ class APIController {
     var bearer: Bearer?
     let baseURL: URL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
-    func handleAuth(
-        _ callType: CallType,
-        with user: User,
-        completion: @escaping (Error?) -> Void
-    ) {
+    func handleCall(_ callType: CallType, with user: User, completion: @escaping (Error?) -> Void) {
         let call = callComponents[callType]
         
         let authURLComponent = call?.url ?? "/users/login"
