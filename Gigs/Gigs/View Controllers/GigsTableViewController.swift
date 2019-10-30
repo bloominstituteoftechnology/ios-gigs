@@ -26,9 +26,9 @@ class GigsTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         if let bearer = apiController.bearer {
-            performSegue(withIdentifier: "LoginSegue", sender: self)
-        } else {
             // TODO: fetch gigs
+        } else {
+            performSegue(withIdentifier: "LoginSegue", sender: self)
         }
     }
 
