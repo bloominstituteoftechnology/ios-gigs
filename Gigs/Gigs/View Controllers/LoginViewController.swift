@@ -30,6 +30,17 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         signInButton.layer.cornerRadius = 8.0
+        passwordTextField.isSecureTextEntry = true
+    }
+    
+    // Function that converts the password if secureTextEntry for text field is on
+    private func passwordTextFieldSecureString(_ password: String) -> String {
+        if passwordTextField.isSecureTextEntry {
+            passwordTextField.attributedText = NSAttributedString(string: password)
+            return passwordTextField.attributedText?.string ?? ""
+        } else {
+            return password
+        }
     }
     
     @IBAction func signInChanged(_ sender: UISegmentedControl) {
@@ -50,7 +61,8 @@ class LoginViewController: UIViewController {
             let passwordText = passwordTextField.text,
             !passwordText.isEmpty else { return }
         
-        let user = User(username: usernameText, password: passwordText)
+        let password = passwordTextFieldSecureString(passwordText)
+        let user = User(username: usernameText, password: password)
         
         if loginType == .signUp {
             gigController.signUp(with: user) { error in

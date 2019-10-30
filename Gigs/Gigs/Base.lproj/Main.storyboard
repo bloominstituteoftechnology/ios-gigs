@@ -46,7 +46,9 @@
                             <outlet property="delegate" destination="4pP-lV-9HT" id="d7x-r6-H6i"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Gig" id="ff8-5R-P0V"/>
+                    <navigationItem key="navigationItem" title="Gig" id="ff8-5R-P0V">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="HnT-VJ-Ply"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="IAo-bp-Bcy" kind="presentation" identifier="LoginModalSegue" modalPresentationStyle="fullScreen" id="vLX-89-Ocf"/>
                     </connections>
