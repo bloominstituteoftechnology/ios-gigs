@@ -26,10 +26,18 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func buttonTapped(_ sender: Any) {
+        
     }
     
     @IBAction func SignInTypeChanged(_ sender: Any) {
-        
+        switch loginType {
+        case .signUp:
+            loginType = .signUp
+            loginButton.setTitle("Sign Up", for: .normal)
+        case .logIn:
+            loginType = .logIn
+            loginButton.setTitle("Sign In", for: .normal)
+        }
     }
     
 
