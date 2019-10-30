@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gigs Table View Controller-->
+        <!--Gigs App-->
         <scene sceneID="HlU-4r-fZx">
             <objects>
                 <tableViewController id="lyP-Oc-nVP" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,9 +39,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="PSK-Qj-T9N" kind="presentation" identifier="ManualSegue" trigger="accessoryAction" modalPresentationStyle="fullScreen" id="cy6-he-5WL"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -49,7 +46,10 @@
                             <outlet property="delegate" destination="lyP-Oc-nVP" id="rgI-5D-7yd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ejf-P1-xXg"/>
+                    <navigationItem key="navigationItem" title="Gigs App" id="ejf-P1-xXg"/>
+                    <connections>
+                        <segue destination="PSK-Qj-T9N" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="9JR-zo-mJa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q5K-w5-5iJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -73,7 +73,7 @@
                                             <segment title="Sign In"/>
                                         </segments>
                                         <connections>
-                                            <action selector="loginSegmentChanged:" destination="PSK-Qj-T9N" eventType="valueChanged" id="kkG-OS-b7a"/>
+                                            <action selector="loginSegmentChanged:" destination="PSK-Qj-T9N" eventType="valueChanged" id="uXK-Bg-Gd4"/>
                                         </connections>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="t3s-DG-eZu">
@@ -102,7 +102,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="enterButtonTapped:" destination="PSK-Qj-T9N" eventType="touchUpInside" id="E7j-JV-wcH"/>
+                                            <action selector="enterButtonTapped:" destination="PSK-Qj-T9N" eventType="touchUpInside" id="LKO-oG-pjG"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -152,8 +152,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7xy-ek-kjC" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DrQ-hr-6Gk">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="DrQ-hr-6Gk">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

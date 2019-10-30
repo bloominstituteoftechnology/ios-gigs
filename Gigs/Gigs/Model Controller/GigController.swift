@@ -24,7 +24,7 @@ class GigController {
     // Creating function for sign up
     
     func signUp(with user: User, completion: @escaping (Error?) -> Void ) {
-        let signUpURL = baseURL.appendingPathComponent("/users/signup") // see if slash is or isn't needed
+        let signUpURL = baseURL.appendingPathComponent("users/signup") // see if slash is or isn't needed
         
         var request = URLRequest(url: signUpURL)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -59,7 +59,7 @@ class GigController {
     // Creating function for sign in -- you encode & decode in this process
 
     func signIn(with user: User, completion: @escaping (Error?) -> Void ) {
-        let signInURL = baseURL.appendingPathComponent("/users/login") // see if slash is or isn't needed
+        let signInURL = baseURL.appendingPathComponent("users/login") // see if slash is or isn't needed
         
         var request = URLRequest(url: signInURL)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
