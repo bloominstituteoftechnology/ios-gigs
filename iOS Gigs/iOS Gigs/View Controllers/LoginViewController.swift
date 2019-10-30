@@ -8,7 +8,15 @@
 
 import UIKit
 
+enum LoginType {
+    case signUp
+    case signIn
+}
+
 class LoginViewController: UIViewController {
+    
+    var gigController: GigController!
+    var loginType = LoginType.signUp
 
     @IBOutlet weak var signInSegmentedControl: UISegmentedControl!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -19,6 +27,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        signInButton.backgroundColor = UIColor(hue: 195/360, saturation: 93/100, brightness: 44/100, alpha: 1.0)
+            signInButton.tintColor = .white
+            signInButton.layer.cornerRadius = 4.0
         // Do any additional setup after loading the view.
     }
     
