@@ -45,9 +45,9 @@ class LoginViewController: UIViewController {
     private func changeAuthType() {
         switch authTypeControl.selectedSegmentIndex {
         case 0:
-            authType = .signUp
-        case 1:
             authType = .logIn
+        case 1:
+            authType = .signUp
         default:
             break
         }
@@ -69,7 +69,7 @@ class LoginViewController: UIViewController {
                     )
                     alert.addAction(UIAlertAction(title: "OK", style: .default) { alertAction in
                         self.authType = .logIn
-                        self.authTypeControl.selectedSegmentIndex = 1
+                        self.authTypeControl.selectedSegmentIndex = 0
                         self.authButton.setTitle(self.authType.rawValue, for: .normal)
                     })
                     self.present(alert, animated: true, completion: nil)

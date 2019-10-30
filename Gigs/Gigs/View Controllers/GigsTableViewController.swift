@@ -60,5 +60,4 @@ class GigsTableViewController: UITableViewController {
             loginVC.apiController = apiController
         }
     }
-
 }
