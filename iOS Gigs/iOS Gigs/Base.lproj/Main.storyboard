@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,6 +51,69 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mwM-3o-zRo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="849.27536231884062" y="110.49107142857143"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="ubN-IE-XqY">
+            <objects>
+                <viewController id="Isa-Ct-NZs" customClass="LoginViewController" customModule="iOS_Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="USp-pi-VOA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WCp-VT-DeF">
+                                <rect key="frame" x="20" y="85" width="374" height="209"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XWK-Hs-X0J">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
+                                        <segments>
+                                            <segment title="Sign Up"/>
+                                            <segment title="Sign In"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segementedControlChanged:" destination="Isa-Ct-NZs" eventType="valueChanged" id="V3Z-9y-rOO"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x2W-J2-bcr">
+                                        <rect key="frame" x="0.0" y="51" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bb7-jE-jJT">
+                                        <rect key="frame" x="0.0" y="105" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o6k-GD-4Og">
+                                        <rect key="frame" x="0.0" y="159" width="374" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="YRx-qn-Uxa"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="signinButtonTapped:" destination="Isa-Ct-NZs" eventType="touchUpInside" id="3qt-GB-QNh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WCp-VT-DeF" firstAttribute="leading" secondItem="PvS-BE-UuD" secondAttribute="leading" constant="20" id="4mZ-HE-kry"/>
+                            <constraint firstItem="PvS-BE-UuD" firstAttribute="trailing" secondItem="WCp-VT-DeF" secondAttribute="trailing" constant="20" id="esE-Up-KtG"/>
+                            <constraint firstItem="WCp-VT-DeF" firstAttribute="top" secondItem="PvS-BE-UuD" secondAttribute="top" constant="41" id="nsS-Ep-sbq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PvS-BE-UuD"/>
+                    </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="bb7-jE-jJT" id="fMp-Du-AlM"/>
+                        <outlet property="signInButton" destination="o6k-GD-4Og" id="LxH-O8-aLK"/>
+                        <outlet property="signInSegmentedControl" destination="XWK-Hs-X0J" id="gpp-i3-xcU"/>
+                        <outlet property="userNameTextField" destination="x2W-J2-bcr" id="Ggi-dY-igC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Re-0r-UjG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1767" y="-64"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fsO-Kt-3sp">
