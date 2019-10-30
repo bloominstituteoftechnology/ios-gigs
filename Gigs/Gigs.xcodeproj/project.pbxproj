@@ -15,6 +15,7 @@
 		9934B74E236A1AEF0013EBE1 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9934B74D236A1AEF0013EBE1 /* GigsTableViewController.swift */; };
 		9934B750236A1C910013EBE1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9934B74F236A1C910013EBE1 /* LoginViewController.swift */; };
 		9934B752236A1D970013EBE1 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9934B751236A1D970013EBE1 /* Bearer.swift */; };
+		9934B754236A1DD80013EBE1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9934B753236A1DD80013EBE1 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		9934B74D236A1AEF0013EBE1 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		9934B74F236A1C910013EBE1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9934B751236A1D970013EBE1 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		9934B753236A1DD80013EBE1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +62,42 @@
 		9934B738236A1A660013EBE1 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				9934B739236A1A660013EBE1 /* AppDelegate.swift */,
-				9934B73B236A1A660013EBE1 /* SceneDelegate.swift */,
-				9934B73F236A1A660013EBE1 /* Main.storyboard */,
-				9934B751236A1D970013EBE1 /* Bearer.swift */,
-				9934B74D236A1AEF0013EBE1 /* GigsTableViewController.swift */,
-				9934B74F236A1C910013EBE1 /* LoginViewController.swift */,
+				9934B756236A1DE10013EBE1 /* View Controllers */,
+				9934B755236A1DDB0013EBE1 /* Models */,
+				9934B757236A1DF80013EBE1 /* App */,
 				9934B742236A1A680013EBE1 /* Assets.xcassets */,
-				9934B744236A1A680013EBE1 /* LaunchScreen.storyboard */,
 				9934B747236A1A680013EBE1 /* Info.plist */,
 			);
 			path = Gigs;
+			sourceTree = "<group>";
+		};
+		9934B755236A1DDB0013EBE1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9934B751236A1D970013EBE1 /* Bearer.swift */,
+				9934B753236A1DD80013EBE1 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9934B756236A1DE10013EBE1 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9934B74D236A1AEF0013EBE1 /* GigsTableViewController.swift */,
+				9934B74F236A1C910013EBE1 /* LoginViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		9934B757236A1DF80013EBE1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				9934B739236A1A660013EBE1 /* AppDelegate.swift */,
+				9934B73B236A1A660013EBE1 /* SceneDelegate.swift */,
+				9934B73F236A1A660013EBE1 /* Main.storyboard */,
+				9934B744236A1A680013EBE1 /* LaunchScreen.storyboard */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +173,7 @@
 			files = (
 				9934B752236A1D970013EBE1 /* Bearer.swift in Sources */,
 				9934B750236A1C910013EBE1 /* LoginViewController.swift in Sources */,
+				9934B754236A1DD80013EBE1 /* User.swift in Sources */,
 				9934B73A236A1A660013EBE1 /* AppDelegate.swift in Sources */,
 				9934B73C236A1A660013EBE1 /* SceneDelegate.swift in Sources */,
 				9934B74E236A1AEF0013EBE1 /* GigsTableViewController.swift in Sources */,
