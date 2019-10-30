@@ -10,13 +10,26 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var loginSegment: UISegmentedControl!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var enterButton: UIButton!
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        enterButton.layer.cornerRadius = 8.0
     }
     
-
+    @IBAction func loginSegmentChanged(_ sender: Any) {
+    }
+    
+    @IBAction func enterButtonTapped(_ sender: Any) {
+    }
+    
     /*
     // MARK: - Navigation
 
