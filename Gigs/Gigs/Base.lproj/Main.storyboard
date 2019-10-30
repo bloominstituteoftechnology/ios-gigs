@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gigs Table View Controller-->
+        <!--Gig-->
         <scene sceneID="t7v-NJ-Ae7">
             <objects>
                 <tableViewController id="4pP-lV-9HT" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                             <outlet property="delegate" destination="4pP-lV-9HT" id="d7x-r6-H6i"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ff8-5R-P0V"/>
+                    <navigationItem key="navigationItem" title="Gig" id="ff8-5R-P0V"/>
                     <connections>
                         <segue destination="IAo-bp-Bcy" kind="presentation" identifier="LoginModalSegue" modalPresentationStyle="fullScreen" id="vLX-89-Ocf"/>
                     </connections>
@@ -79,12 +79,12 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="CaF-Is-tjj"/>
                                 </constraints>
-                                <state key="normal" title="Log In">
+                                <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="logInButtonTapped:" destination="Ey7-Yg-Ni3" eventType="touchUpInside" id="N2G-dK-MzT"/>
-                                    <action selector="logInButtonTapped:" destination="IAo-bp-Bcy" eventType="touchUpInside" id="qfM-eM-7Cl"/>
+                                    <action selector="logInButtonTapped:" destination="IAo-bp-Bcy" eventType="touchUpInside" id="Qco-PD-jN9"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gHP-hI-xBc">
@@ -94,7 +94,7 @@
                                     <segment title="Sign In"/>
                                 </segments>
                                 <connections>
-                                    <action selector="signInChanged:" destination="IAo-bp-Bcy" eventType="valueChanged" id="bFg-Zv-dHn"/>
+                                    <action selector="signInChanged:" destination="IAo-bp-Bcy" eventType="valueChanged" id="RkW-cL-uD4"/>
                                     <action selector="signInChanged:" destination="Ey7-Yg-Ni3" eventType="valueChanged" id="gEB-I0-8JV"/>
                                 </connections>
                             </segmentedControl>
@@ -116,8 +116,8 @@
                         <viewLayoutGuide key="safeArea" id="Zc4-sh-h7S"/>
                     </view>
                     <connections>
-                        <outlet property="logInButton" destination="lsV-8E-tJe" id="5Ne-3W-ovN"/>
                         <outlet property="passwordTextField" destination="R76-dG-kSn" id="2hZ-i8-VPU"/>
+                        <outlet property="signInButton" destination="lsV-8E-tJe" id="5Ne-3W-ovN"/>
                         <outlet property="signUpInSegementedControl" destination="gHP-hI-xBc" id="UP4-yR-wGj"/>
                         <outlet property="usernameTextField" destination="tyH-1r-Wq2" id="11d-6R-8Mi"/>
                     </connections>
@@ -132,8 +132,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1aE-X2-QlW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CHC-94-F7b">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="CHC-94-F7b">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
