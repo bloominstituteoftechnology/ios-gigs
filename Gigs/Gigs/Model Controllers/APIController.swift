@@ -8,9 +8,9 @@
 
 import Foundation
 
-enum CallType {
-    case signUp
-    case logIn
+enum AuthType: String {
+    case signUp = "Sign up"
+    case logIn = "Log in"
 }
 
 enum HTTPMethod: String {
@@ -18,7 +18,7 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
-fileprivate let callComponents: [CallType: (
+fileprivate let callComponents: [AuthType: (
     url: String,
     httpMethod: HTTPMethod
     )] = [
@@ -33,11 +33,10 @@ fileprivate let callComponents: [CallType: (
 ]
 
 class APIController {
-    
     var bearer: Bearer?
     let baseURL: URL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
-    func handleCall(_ callType: CallType, with user: User, completion: @escaping (Error?) -> Void) {
+    func handleCall(_ callType: AuthType, with user: User, completion: @escaping (Error?) -> Void) {
         let call = callComponents[callType]
         
         let authURLComponent = call?.url ?? "/users/login"

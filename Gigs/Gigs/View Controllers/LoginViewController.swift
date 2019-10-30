@@ -9,33 +9,87 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    var authType: AuthType = .logIn
+    var apiController: APIController?
 
-    @IBOutlet weak var signInTypeControl: UISegmentedControl!
+    @IBOutlet weak var authTypeControl: UISegmentedControl!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var authButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    @IBAction func signInTypeChanged(_ sender: UISegmentedControl) {
+    @IBAction func authTypeChangeTapped(_ sender: UISegmentedControl) {
+        changeAuthType()
     }
     
-    @IBAction func signInButtonTapped(_ sender: UIButton) {
+    @IBAction func authButtonTapped(_ sender: UIButton) {
+        guard let username = usernameField.text, !username.isEmpty,
+            let password = passwordField.text, !password.isEmpty
+            else { return }
+        
+        let user = User(username: username, password: password)
+        
+        if authType == .signUp {
+            signUp(with: user)
+        } else if authType == .logIn {
+            logIn(with: user)
+        }
+    }
+    
+    private func changeAuthType() {
+        switch authTypeControl.selectedSegmentIndex {
+        case 0:
+            authType = .signUp
+        case 1:
+            authType = .logIn
+        default:
+            break
+        }
+        authButton.setTitle(authType.rawValue, for: .normal)
+    }
+    
+    private func signUp(with user: User) {
+        guard let apiController = apiController else { return }
+        
+        apiController.handleCall(.signUp, with: user) { error in
+            if let error = error {
+                print("Error occurred during sign up: \(error)")
+            } else {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(
+                        title: "Sign-up successful!",
+                        message: "You may now sign in.",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "OK", style: .default) { alertAction in
+                        self.authType = .logIn
+                        self.authTypeControl.selectedSegmentIndex = 1
+                        self.authButton.setTitle(self.authType.rawValue, for: .normal)
+                    })
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+    private func logIn(with user: User) {
+        guard let apiController = apiController else { return }
+        
+        apiController.handleCall(.logIn, with: user) { error in
+            if let error = error {
+                print("Error occurred during sign in: \(error)")
+            } else {
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
     }
     
 }
