@@ -107,7 +107,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ci6-E7-oQf"/>
                                         </constraints>
-                                        <state key="normal" title="Sign In"/>
+                                        <state key="normal" title="Sign Up"/>
                                         <connections>
                                             <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XdI-hE-kY1"/>
                                         </connections>
@@ -134,8 +134,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="loginButton" destination="T2p-3N-Gsp" id="ksN-hp-faA"/>
+                        <outlet property="loginTypeSegmentedControl" destination="H1P-lu-6ru" id="45I-al-hvW"/>
                         <outlet property="passwordTextField" destination="4jP-ct-pgD" id="FwY-Jz-KcT"/>
+                        <outlet property="signInButton" destination="T2p-3N-Gsp" id="ksN-hp-faA"/>
                         <outlet property="usernameTextField" destination="OvP-Hl-i9H" id="hvs-Q7-VTW"/>
                     </connections>
                 </viewController>
