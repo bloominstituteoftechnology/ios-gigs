@@ -41,7 +41,6 @@ class GigController {
         }
         
         URLSession.shared.dataTask(with: request) { _, response, error in
-            print(request)
             
             if let response = response as? HTTPURLResponse,
             response.statusCode != 200 {
