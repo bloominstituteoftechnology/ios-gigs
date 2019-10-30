@@ -47,10 +47,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Get-ZX-0rR"/>
+                    <connections>
+                        <segue destination="Isa-Ct-NZs" kind="show" id="jfv-7q-p56"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mwM-3o-zRo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="849.27536231884062" y="110.49107142857143"/>
+            <point key="canvasLocation" x="996" y="42"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="ubN-IE-XqY">
@@ -61,7 +64,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WCp-VT-DeF">
-                                <rect key="frame" x="20" y="85" width="374" height="209"/>
+                                <rect key="frame" x="20" y="129" width="374" height="209"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XWK-Hs-X0J">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
@@ -104,6 +107,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PvS-BE-UuD"/>
                     </view>
+                    <navigationItem key="navigationItem" id="BB4-0C-pOf"/>
                     <connections>
                         <outlet property="passwordTextField" destination="bb7-jE-jJT" id="fMp-Du-AlM"/>
                         <outlet property="signInButton" destination="o6k-GD-4Og" id="LxH-O8-aLK"/>

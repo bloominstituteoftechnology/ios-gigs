@@ -9,6 +9,8 @@
 import UIKit
 
 class GigsTableViewController: UITableViewController {
+    
+    let gigController = GigController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,10 @@ class GigsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     // MARK: - Table view data source
