@@ -135,4 +135,46 @@ class APIController {
             }
         }.resume()
     }
+    
+    func postNew(gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let gigURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: gigURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let error = error {
+                print("Error posting new Gig data: \(error)")
+                completion(.failure(.otherError))
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            do {
+                let gig = try decoder.decode(Gig.self, from: data)
+                completion(.success(gig))
+            } catch {
+                print("Error posting new Gig object: \(error)")
+                completion(.failure(.noDecode))
+                return
+            }
+        }.resume()
+    }
 }
