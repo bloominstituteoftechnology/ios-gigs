@@ -86,6 +86,9 @@ class LoginViewController: UIViewController {
                 print("Error occurred during sign in: \(error)")
             } else {
                 DispatchQueue.main.async {
+                    if let token = apiController.bearer?.token {
+                        print("BEARER TOKEN: \(token)")
+                    }
                     self.dismiss(animated: true, completion: nil)
                 }
             }
