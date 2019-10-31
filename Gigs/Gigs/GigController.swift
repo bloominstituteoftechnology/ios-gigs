@@ -13,13 +13,13 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
-enum NetworkError: Error {
-    case noAuth
-    case badAuth
-    case otherError
-    case badData
-    case noDecode
-    case noEncode
+enum NetworkError: String, Error {
+    case noAuth = "No bearer token exists"
+    case badAuth = "Bearer token invalid"
+    case otherError = "Other error occurred, see log"
+    case badData = "No data recieved, or data corrupted"
+    case noDecode = "JSON could not be decoded"
+    case noEncode = "JSON could not be encoded"
 }
 
 class GigController {
@@ -115,7 +115,7 @@ class GigController {
             return
         }
         
-        let allGigsURL = baseURL.appendingPathComponent("gigs/")
+        let allGigsURL = baseURL.appendingPathComponent("gigs")
         
         var request = URLRequest(url: allGigsURL)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -139,6 +139,7 @@ class GigController {
             }
             
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
             do {
                 self.gigs = try decoder.decode([Gig].self, from: data)
                 completion(nil)
@@ -155,13 +156,15 @@ class GigController {
             return
         }
         
-        let addGigURL = baseURL.appendingPathComponent("gigs/")
+        let createGigURL = baseURL.appendingPathComponent("gigs")
         
-        var request = URLRequest(url: addGigURL)
+        var request = URLRequest(url: createGigURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
         do {
             let jsonData = try jsonEncoder.encode(gig)
             request.httpBody = jsonData
@@ -178,26 +181,12 @@ class GigController {
                 return
             }
             
-            if let error = error {
-                print("Error receiving gig name data: \(error)")
+            if let _ = error {
                 completion(.otherError)
-            }
-            
-            guard let data = data else {
-                completion(.badData)
                 return
             }
             
-            let decoder = JSONDecoder()
-            do {
-                let createdGig = try decoder.decode(Gig.self, from: data)
-                self.gigs.append(createdGig)
-            } catch {
-                print("Error decoding gig object: \(error)")
-                completion(.noDecode)
-                return
-            }
-            
+            self.gigs.append(gig)
             completion(nil)
         }.resume()
     }
