@@ -17,14 +17,16 @@ class GigController {
         self.apiController = apiController
     }
     
-    func fetchGigsFromNetwork() {
+    func fetchGigsFromNetwork(completion creationSuccessful: @escaping (Bool) -> ()) {
         apiController.fetchAllGigs { (result) in
             do {
                 self.gigs = try result.get()
+                creationSuccessful(true)
             } catch {
                 if let error = error as? NetworkError {
                     print(error.rawValue)
                 }
+                creationSuccessful(false)
             }
         }
     }

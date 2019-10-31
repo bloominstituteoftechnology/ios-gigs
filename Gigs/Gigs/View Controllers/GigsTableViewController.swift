@@ -29,16 +29,13 @@ class GigsTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let bearer = apiController.bearer {
-            // TODO: fetch gigs
-            if let gigController = gigController {
-                
-            } else {
-                gigController = GigController(with: apiController)
-                
-            }
-        } else {
+        if apiController.bearer == nil {
             performSegue(withIdentifier: "LoginSegue", sender: self)
+        } else {
+            if gigController == nil {
+                gigController = GigController(with: apiController)
+                updateFromNetwork()
+            }
         }
     }
 
@@ -73,6 +70,27 @@ class GigsTableViewController: UITableViewController {
             guard let loginVC = segue.destination as? LoginViewController else { return }
             
             loginVC.apiController = apiController
+        } else if let detailVC = segue.destination as? GigDetailViewController {
+            detailVC.gigController = gigController
+            
+            if segue.identifier == "ShowGigSegue" {
+                guard let index = tableView.indexPathForSelectedRow?.row else { return }
+                detailVC.gig = gigController?.gigs[index]
+            }
+        }
+    }
+    
+    func updateFromNetwork() {
+        gigController?.fetchGigsFromNetwork() { success in
+            DispatchQueue.main.async {
+                if !success {
+                    let alert = UIAlertController(title: "Gig fetch failed.", message: "Please refer to console log for error details.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
 }

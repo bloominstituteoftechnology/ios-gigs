@@ -11,11 +11,7 @@ import UIKit
 class GigDetailViewController: UIViewController {
     
     var gigController: GigController!
-    var gig: Gig? {
-        didSet {
-            updateViews()
-        }
-    }
+    var gig: Gig?
     
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
@@ -25,6 +21,11 @@ class GigDetailViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateViews()
+    }
+    
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
         guard let title = titleField.text, !title.isEmpty,
             let description = descriptionView.text, !description.isEmpty
@@ -32,8 +33,8 @@ class GigDetailViewController: UIViewController {
         let date = dueDatePicker.date
         
         let gig = Gig(title: title, dueDate: date, description: description)
-        gigController.create(gig: gig) { (successful) in
-            if !successful {
+        gigController.create(gig: gig) { (success) in
+            if !success {
                 DispatchQueue.main.async {
                     // TODO: implement passing the error message back up to this level for more descriptive alert
                     let alert = UIAlertController(title: "Gig creation failed.", message: "Please refer to console log for error details.", preferredStyle: .alert)
