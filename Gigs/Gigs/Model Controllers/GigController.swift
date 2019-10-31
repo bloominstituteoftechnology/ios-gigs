@@ -154,6 +154,7 @@ class GigController {
             decoder.dateDecodingStrategy = .iso8601
             do {
                 let gigs = try decoder.decode([Gig].self, from: data)
+                self.gigs = gigs
                 completion(.success(gigs))
             } catch {
                 print("Error decoding [Gig] object: \(error)")

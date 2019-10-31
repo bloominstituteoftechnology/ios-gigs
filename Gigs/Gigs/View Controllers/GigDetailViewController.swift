@@ -19,17 +19,14 @@ class GigDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if gig != nil {
-            navigationItem.rightBarButtonItem?.isEnabled = false
-        }
+        
         updateViews()
     }
     
     func updateViews() {
         guard let gig = gig else {
-            saveButton.isEnabled = false
             return }
+        saveButton.isEnabled = false
         titleTextField.text = gig.title
         descriptionTextView.text = gig.description
         datePicker.date = gig.dueDate
