@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
     private func signUp(with user: User) {
         guard let apiController = apiController else { return }
         
-        apiController.handleCall(.signUp, with: user) { error in
+        apiController.handleAuth(.signUp, with: user) { error in
             if let error = error {
                 print("Error occurred during sign up: \(error)")
             } else {
@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
     private func logIn(with user: User) {
         guard let apiController = apiController else { return }
         
-        apiController.handleCall(.logIn, with: user) { error in
+        apiController.handleAuth(.logIn, with: user) { error in
             if let error = error {
                 print("Error occurred during sign in: \(error)")
             } else {

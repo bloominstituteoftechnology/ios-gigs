@@ -11,6 +11,7 @@ import UIKit
 class GigsTableViewController: UITableViewController {
     
     var apiController = APIController()
+    var gigController: GigController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,12 @@ class GigsTableViewController: UITableViewController {
         
         if let bearer = apiController.bearer {
             // TODO: fetch gigs
+            if let gigController = gigController {
+                
+            } else {
+                gigController = GigController(with: apiController)
+                
+            }
         } else {
             performSegue(withIdentifier: "LoginSegue", sender: self)
         }

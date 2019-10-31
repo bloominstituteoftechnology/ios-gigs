@@ -9,5 +9,23 @@
 import Foundation
 
 class GigController {
+    var gigs: [Gig] = []
     
+    var apiController: APIController
+    
+    init(with apiController: APIController) {
+        self.apiController = apiController
+    }
+    
+    func getGigs() {
+        apiController.fetchAllGigs { (result) in
+            do {
+                self.gigs = try result.get()
+            } catch {
+                if let error = error as? NetworkError {
+                    print(error.rawValue)
+                }
+            }
+        }
+    }
 }
