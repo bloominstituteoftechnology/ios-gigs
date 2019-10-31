@@ -18,18 +18,15 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
-fileprivate let callComponents: [AuthType: (
-    url: String,
-    httpMethod: HTTPMethod
-    )] = [
-        .signUp: (
-            url: "/users/signup",
-            httpMethod: .post
-        ),
-        .logIn: (
-            url: "/users/login",
-            httpMethod: .post
-        )
+fileprivate let callComponents: [AuthType: (url: String, httpMethod: HTTPMethod)] = [
+    .signUp: (
+        url: "/users/signup",
+        httpMethod: .post
+    ),
+    .logIn: (
+        url: "/users/login",
+        httpMethod: .post
+    )
 ]
 
 class APIController {
