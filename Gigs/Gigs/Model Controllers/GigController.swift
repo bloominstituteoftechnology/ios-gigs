@@ -17,10 +17,28 @@ class GigController {
         self.apiController = apiController
     }
     
-    func getGigs() {
+    func fetchGigsFromNetwork() {
         apiController.fetchAllGigs { (result) in
             do {
                 self.gigs = try result.get()
+            } catch {
+                if let error = error as? NetworkError {
+                    print(error.rawValue)
+                }
+            }
+        }
+    }
+    
+    func create(gig: Gig) {
+        if gigs.contains(where: { $0.title == gig.title }) {
+            print("Error attempting to save duplicate gig: gig already exists.")
+            return
+        }
+        
+        apiController.postNew(gig: gig) { (result) in
+            do {
+                let postedGig = try result.get()
+                self.gigs.append(postedGig)
             } catch {
                 if let error = error as? NetworkError {
                     print(error.rawValue)
