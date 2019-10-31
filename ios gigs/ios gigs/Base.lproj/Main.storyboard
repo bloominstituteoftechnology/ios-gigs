@@ -48,7 +48,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="snx-Og-LBh"/>
                     <connections>
-                        <segue destination="aiM-h2-Mhg" kind="presentation" modalPresentationStyle="fullScreen" id="nya-oW-k6R"/>
+                        <segue destination="aiM-h2-Mhg" kind="presentation" identifier="loginViewManualSegue" modalPresentationStyle="fullScreen" id="nya-oW-k6R"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yzF-yU-qrf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -72,6 +72,9 @@
                                             <segment title="sign up"/>
                                             <segment title="log in"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="signInTypeChanged1:" destination="aiM-h2-Mhg" eventType="valueChanged" id="Fz3-ZQ-prs"/>
+                                        </connections>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOn-rN-KBz">
                                         <rect key="frame" x="23.5" y="47" width="83.5" height="20.5"/>
@@ -103,6 +106,14 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNO-9b-GpO">
+                                <rect key="frame" x="180" y="371" width="54" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="buttonTapped1:" destination="aiM-h2-Mhg" eventType="touchUpInside" id="Tno-kk-mtw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -115,6 +126,7 @@
                     <connections>
                         <outlet property="passwordTextField" destination="rsn-MK-0qq" id="2YD-cV-kJY"/>
                         <outlet property="segmentedControl" destination="D5m-gp-hR1" id="Fnh-XX-zqJ"/>
+                        <outlet property="signInButton" destination="PNO-9b-GpO" id="VS3-VM-yLk"/>
                         <outlet property="usernameTextField" destination="pTd-eH-fC1" id="0Xy-0k-fCc"/>
                     </connections>
                 </viewController>
