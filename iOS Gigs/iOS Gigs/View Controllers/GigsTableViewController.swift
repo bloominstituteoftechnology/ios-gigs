@@ -87,7 +87,10 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LoginViewModalSegue" {
+        if segue.identifier == "LoginViewSegue" {
+            if let loginVC = segue.destination as? LoginViewController {
+                loginVC.gigController = gigController
+            }
             // inject dependencies
             // TODO: fetch gigs here
         }
