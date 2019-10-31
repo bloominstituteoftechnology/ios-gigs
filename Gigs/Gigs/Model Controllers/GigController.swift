@@ -29,20 +29,23 @@ class GigController {
         }
     }
     
-    func create(gig: Gig) {
+    func create(gig: Gig, completion creationSuccessful: @escaping (Bool) -> ()) {
         if gigs.contains(where: { $0.title == gig.title }) {
             print("Error attempting to save duplicate gig: gig already exists.")
+            creationSuccessful(false)
             return
         }
         
-        apiController.postNew(gig: gig) { (result) in
+        apiController.postNew(gig: gig) { result in
             do {
                 let postedGig = try result.get()
                 self.gigs.append(postedGig)
+                creationSuccessful(true)
             } catch {
                 if let error = error as? NetworkError {
                     print(error.rawValue)
                 }
+                creationSuccessful(false)
             }
         }
     }
