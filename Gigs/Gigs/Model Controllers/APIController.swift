@@ -143,26 +143,20 @@ class APIController {
             return
         }
         
-        let gigURL = baseURL.appendingPathComponent("gigs/")
-        print("Gig URL: \(gigURL)")
+        let gigURL = baseURL.appendingPathComponent("gigs")
         
-        let gigData: Data
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
-        do {
-            gigData = try encoder.encode(gig)
+        
+        var request = URLRequest(url: gigURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        do { request.httpBody = try encoder.encode(gig)
         } catch {
             completion(.failure(.badData))
             return
         }
-        if let gigDataRaw = String(data: gigData, encoding: .utf8) {
-            print("gig data:\n" + gigDataRaw)
-        }
-        
-        var request = URLRequest(url: gigURL)
-        request.httpMethod = HTTPMethod.post.rawValue
-        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
-        request.httpBody = gigData
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response as? HTTPURLResponse {
@@ -191,7 +185,7 @@ class APIController {
                 completion(.success(gig))
             } catch {
                 print("Error posting new Gig object: \(error)")
-                print("returned data:\t\(String(data: data, encoding: .utf8)!)")
+                print("returned data:\t\(String(data: data, encoding: .utf8) ?? "")")
                 completion(.failure(.noDecode))
                 return
             }
