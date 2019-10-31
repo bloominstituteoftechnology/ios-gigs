@@ -13,17 +13,31 @@ class GigsTableViewController: UITableViewController {
     struct PropertyKeys {
         static let cell = "GigCell"
         static let loginSegue = "SignInModalSegue"
+        static let detailSegue = "ShowDetailSegue"
+        static let addSegue = "ShowAddGigSegue"
     }
     
     let gigController = GigController()
+    var gigs: [Gig]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         if gigController.bearer == nil {
             performSegue(withIdentifier: PropertyKeys.loginSegue, sender: self)
         } else {
-            // TODO: Fetch gigs here
+            gigController.fetchGigs { result in
+                let theGigs = try? result.get()
+                
+                DispatchQueue.main.async {
+                    self.gigs = theGigs
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
 
@@ -36,14 +50,17 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return gigs?.count ?? 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PropertyKeys.cell, for: indexPath)
 
-        // Configure the cell...
+        guard let gigs = gigs else { return UITableViewCell() }
+        let gig = gigs[indexPath.row]
+        cell.textLabel?.text = gig.title
 
         return cell
     }
@@ -91,6 +108,17 @@ class GigsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == PropertyKeys.loginSegue {
             if let loginVC = segue.destination as? LoginViewController {
+                loginVC.gigController = gigController
+            }
+        } else if segue.identifier == PropertyKeys.detailSegue {
+            if let indexPath = tableView.indexPathForSelectedRow,
+                let gigs = gigs,
+                let loginVC = segue.destination as? GigDetailViewController {
+                loginVC.gig = gigs[indexPath.row]
+                loginVC.gigController = gigController
+            }
+        } else if segue.identifier == PropertyKeys.addSegue {
+            if let loginVC = segue.destination as? GigDetailViewController {
                 loginVC.gigController = gigController
             }
         }
