@@ -62,7 +62,9 @@
                         <viewLayoutGuide key="safeArea" id="WLD-bM-abB"/>
                     </view>
                     <connections>
-                        <outlet property="userNameTextFiled" destination="VRD-oL-W10" id="N4t-RW-37k"/>
+                        <outlet property="button" destination="PqE-e8-bCv" id="9ud-yP-KlK"/>
+                        <outlet property="logInTypeSegment" destination="mS5-IW-Pcb" id="P0t-V2-qym"/>
+                        <outlet property="userNameTextField" destination="VRD-oL-W10" id="N4t-RW-37k"/>
                         <outlet property="userPasswordTextField" destination="bXY-vN-ZBh" id="tIn-Ha-c70"/>
                     </connections>
                 </viewController>
@@ -111,7 +113,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="cQ7-VN-PxL"/>
                     <connections>
-                        <segue destination="DV7-Cl-UYy" kind="presentation" modalPresentationStyle="fullScreen" id="5Qi-By-VJV"/>
+                        <segue destination="DV7-Cl-UYy" kind="presentation" identifier="manualSegueIdentifier" modalPresentationStyle="fullScreen" id="5Qi-By-VJV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kwQ-RI-sis" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

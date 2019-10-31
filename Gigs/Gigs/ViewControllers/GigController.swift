@@ -16,7 +16,7 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
-class GigControlller{
+class GigController{
     
     var bearer: Bearer?
     private let baseURL =  URL(string:"https://lambdagigs.vapor.cloud/api")!

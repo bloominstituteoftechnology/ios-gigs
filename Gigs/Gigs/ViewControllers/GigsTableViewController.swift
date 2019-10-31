@@ -10,9 +10,20 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
 
+    
+    
+    var gigController = GigController()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if gigController.bearer == nil {
+            performSegue(withIdentifier: "manualSegueIdentifier", sender: self)
+            
+        } else {
+            // TODO: fetch gigs here
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -32,15 +43,14 @@ class GigsTableViewController: UITableViewController {
         return 0
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JobCell", for: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
