@@ -39,6 +39,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="0WQ-IS-eSY" kind="show" identifier="ShowDetailGigSegue" id="Vto-gh-sdP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -47,7 +50,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Gig" id="ff8-5R-P0V">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="HnT-VJ-Ply"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="HnT-VJ-Ply">
+                            <connections>
+                                <segue destination="0WQ-IS-eSY" kind="show" identifier="AddGigViewSegue" id="q5U-dV-UdS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="IAo-bp-Bcy" kind="presentation" identifier="LoginModalSegue" modalPresentationStyle="fullScreen" id="vLX-89-Ocf"/>
@@ -56,6 +63,90 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7fp-Zc-rFW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1038" y="88"/>
+        </scene>
+        <!--Gig Detail View Controller-->
+        <scene sceneID="ydD-OV-Wo9">
+            <objects>
+                <viewController id="0WQ-IS-eSY" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TzK-FB-SbZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vtZ-QS-LOO">
+                                <rect key="frame" x="20" y="511" width="374" height="351"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kaF-CH-wXa">
+                                <rect key="frame" x="0.0" y="244.5" width="414" height="216"/>
+                            </datePicker>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qUW-u4-0ET">
+                                <rect key="frame" x="20" y="160" width="374" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB TITLE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Dx-6P-tUi">
+                                        <rect key="frame" x="0.0" y="0.0" width="85.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zgc-Wp-uKy">
+                                        <rect key="frame" x="101.5" y="0.0" width="272.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttb-th-cgq">
+                                <rect key="frame" x="20" y="480.5" width="113.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bec-p0-XxT">
+                                <rect key="frame" x="20" y="214" width="84.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ttb-th-cgq" firstAttribute="top" secondItem="kaF-CH-wXa" secondAttribute="bottom" constant="20" id="0iN-Nt-uJN"/>
+                            <constraint firstItem="ttb-th-cgq" firstAttribute="leading" secondItem="Bec-p0-XxT" secondAttribute="leading" id="2dG-7W-UoZ"/>
+                            <constraint firstItem="LRY-zr-rvR" firstAttribute="trailing" secondItem="qUW-u4-0ET" secondAttribute="trailing" constant="20" id="2wA-x7-f9n"/>
+                            <constraint firstItem="qUW-u4-0ET" firstAttribute="leading" secondItem="LRY-zr-rvR" secondAttribute="leading" constant="20" id="3cu-7N-bt5"/>
+                            <constraint firstItem="kaF-CH-wXa" firstAttribute="trailing" secondItem="LRY-zr-rvR" secondAttribute="trailing" id="44p-CD-d7h"/>
+                            <constraint firstItem="vtZ-QS-LOO" firstAttribute="leading" secondItem="LRY-zr-rvR" secondAttribute="leading" constant="20" id="81I-Lu-GMW"/>
+                            <constraint firstItem="LRY-zr-rvR" firstAttribute="trailing" secondItem="vtZ-QS-LOO" secondAttribute="trailing" constant="20" id="K1a-1j-9g9"/>
+                            <constraint firstItem="kaF-CH-wXa" firstAttribute="top" secondItem="Bec-p0-XxT" secondAttribute="bottom" constant="10" id="K3g-OH-fOz"/>
+                            <constraint firstItem="Bec-p0-XxT" firstAttribute="leading" secondItem="1Dx-6P-tUi" secondAttribute="leading" id="Oll-pH-5cc"/>
+                            <constraint firstItem="vtZ-QS-LOO" firstAttribute="top" secondItem="ttb-th-cgq" secondAttribute="bottom" constant="10" id="TyW-Yk-1cD"/>
+                            <constraint firstItem="qUW-u4-0ET" firstAttribute="top" secondItem="LRY-zr-rvR" secondAttribute="top" constant="20" id="dip-fC-Z6q"/>
+                            <constraint firstItem="Bec-p0-XxT" firstAttribute="top" secondItem="qUW-u4-0ET" secondAttribute="bottom" constant="20" id="gmb-Ht-8Wd"/>
+                            <constraint firstItem="LRY-zr-rvR" firstAttribute="bottom" secondItem="vtZ-QS-LOO" secondAttribute="bottom" id="kXt-84-o5d"/>
+                            <constraint firstItem="kaF-CH-wXa" firstAttribute="leading" secondItem="LRY-zr-rvR" secondAttribute="leading" id="nhH-wW-6fN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LRY-zr-rvR"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wcJ-Ye-Yb1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="tO6-1c-cy7">
+                            <connections>
+                                <action selector="saveTapped:" destination="0WQ-IS-eSY" id="aWd-yr-h8u"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="vtZ-QS-LOO" id="Rud-xh-mXc"/>
+                        <outlet property="dueDateDatePicker" destination="kaF-CH-wXa" id="Q4z-RO-Lc6"/>
+                        <outlet property="jobTitleTextField" destination="Zgc-Wp-uKy" id="cQO-qv-yed"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KgF-y6-vXe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2087" y="88"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="JyT-At-GiB">
@@ -127,7 +218,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j0c-IA-N9c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Ey7-Yg-Ni3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2037.68115942029" y="87.723214285714278"/>
+            <point key="canvasLocation" x="1952" y="-674"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="scw-A7-62j">
@@ -148,4 +239,7 @@
             <point key="canvasLocation" x="205.79710144927537" y="88.392857142857139"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="q5U-dV-UdS"/>
+    </inferredMetricsTieBreakers>
 </document>
