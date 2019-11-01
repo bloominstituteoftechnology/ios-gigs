@@ -191,7 +191,7 @@ class GigController {
         }
         
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401 {
                 print("Error with authorization")
@@ -211,10 +211,10 @@ class GigController {
                 completion(.failure(.otherError))
             }
         
-            guard let data = data else {
-                completion(.failure(.badData))
-                return
-            }
+//            guard let data = data else {
+//                completion(.failure(.badData))
+//                return
+//            }
             self.gigs.append(gigName)
         }.resume()
         

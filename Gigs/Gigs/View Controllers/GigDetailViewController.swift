@@ -30,12 +30,12 @@ class GigDetailViewController: UIViewController {
     // MARK: - Methods
 
     private func updateViews() {
-       
+        
         if let gig = gig {
-        navigationItem.title = gig.title
-        jobTitle.text = gig.title
-        datePicker.date = gig.dueDate
-        descriptionTextField.text = gig.description
+            navigationItem.title = gig.title
+            jobTitle.text = gig.title
+            datePicker.date = gig.dueDate
+            descriptionTextField.text = gig.description
         } else {
             navigationItem.title = "New Gig"
         }
@@ -61,11 +61,11 @@ class GigDetailViewController: UIViewController {
                     if let gig = try? result.get() { // when is the try? result.get() used and when is it not?
                         DispatchQueue.main.async {
                             self.gig = gig
-                            self.navigationController?.popViewController(animated: true)
+                            self.navigationController?.popToRootViewController(animated: true)
                         }
                     }
             }
-        
+        dismiss(animated: true, completion: nil)
     }
     
     
