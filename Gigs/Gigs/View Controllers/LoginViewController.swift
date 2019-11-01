@@ -22,11 +22,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
@@ -41,10 +40,10 @@ class LoginViewController: UIViewController {
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         guard let gigController = gigController else { return }
-               guard let username = usernameTextField.text,
-                   !username.isEmpty,
-                   let password = passwordTextField.text,
-                   !password.isEmpty else { return }
+        guard let username = usernameTextField.text,
+            !username.isEmpty,
+            let password = passwordTextField.text,
+            !password.isEmpty else { return }
         let user = User(username: username, password: password)
         
         if loginType == .signUp {
@@ -76,15 +75,4 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

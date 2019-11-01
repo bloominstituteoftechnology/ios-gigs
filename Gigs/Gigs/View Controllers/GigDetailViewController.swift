@@ -12,11 +12,7 @@ class GigDetailViewController: UIViewController {
     
     var gigController: GigController?
     
-    var gig: Gig? {
-        didSet {
-            updateViews()
-        }
-    }
+    var gig: Gig?
     
     @IBOutlet weak var gigTextField: UITextField!
     @IBOutlet weak var gigDatePicker: UIDatePicker!
@@ -37,7 +33,10 @@ class GigDetailViewController: UIViewController {
         let gig = Gig(title: gigString, dueDate: gigDate, description: gigDescription)
         
         gigController?.createGig(gig: gig, completion: {
-            
+            DispatchQueue.main.async {
+                self.gig = gig
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         })
     }
     
@@ -50,6 +49,4 @@ class GigDetailViewController: UIViewController {
             self.title = "New Gig"
         }
     }
-
-
 }
