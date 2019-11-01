@@ -40,7 +40,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Dhx-QM-LJg" kind="show" identifier="ShowGigSegue" id="cyU-GD-JAP"/>
+                                    <segue destination="Hxl-LM-PSp" kind="show" identifier="ShowGigSegue" id="Aq6-Pw-pQC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -49,7 +49,13 @@
                             <outlet property="delegate" destination="lyP-Oc-nVP" id="rgI-5D-7yd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Gigs App" id="ejf-P1-xXg"/>
+                    <navigationItem key="navigationItem" title="Gigs App" id="ejf-P1-xXg">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="HHc-aZ-CxW">
+                            <connections>
+                                <segue destination="Hxl-LM-PSp" kind="show" identifier="AddSegue" id="tTQ-sK-uzc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="PSK-Qj-T9N" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="9JR-zo-mJa"/>
                     </connections>
@@ -57,28 +63,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q5K-w5-5iJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="684.05797101449275" y="-17.410714285714285"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="0dF-bb-ehv">
-            <objects>
-                <viewController id="Dhx-QM-LJg" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WDn-nu-ERe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="TtQ-aa-t9I"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="THH-nz-cGZ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="HHc-aZ-CxW">
-                            <connections>
-                                <segue destination="Hxl-LM-PSp" kind="show" identifier="AddSegue" id="tTQ-sK-uzc"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hmI-BT-Jjj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1561" y="-17"/>
         </scene>
         <!--Title-->
         <scene sceneID="bCw-JV-gON">
@@ -130,7 +114,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="251" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dhz-aR-vIq">
                                         <rect key="frame" x="0.0" y="435" width="374" height="128"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -155,12 +139,21 @@
                         <viewLayoutGuide key="safeArea" id="E6f-5t-3Mj"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="cb6-YE-BY9">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bL6-32-bJh"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bL6-32-bJh">
+                            <connections>
+                                <action selector="saveTapped:" destination="Hxl-LM-PSp" id="Sbc-L4-SCu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="ckY-7t-3JV" id="2sr-VA-vPj"/>
+                        <outlet property="descriptionTextField" destination="dhz-aR-vIq" id="INd-HL-tua"/>
+                        <outlet property="jobTitle" destination="9P0-BI-I1y" id="MOm-Q1-Q7c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NH8-3y-oFJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2499" y="-17"/>
+            <point key="canvasLocation" x="1577" y="-17"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="nfD-q7-I7d">
@@ -258,4 +251,7 @@
             <point key="canvasLocation" x="-226.08695652173915" y="-17.410714285714285"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Aq6-Pw-pQC"/>
+    </inferredMetricsTieBreakers>
 </document>

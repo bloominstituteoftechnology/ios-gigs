@@ -23,7 +23,7 @@ class GigsTableViewController: UITableViewController {
     
 
     
-    // MARK: - View Methods
+    // MARK: - View LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +35,33 @@ class GigsTableViewController: UITableViewController {
         // transition to login view if condition met
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+        } else {
+            // TODO: fetch gigs here
+            gigController.fetchGigs { (result) in
+                do {
+                    let gig = try result.get()
+                    DispatchQueue.main.async {
+                        self.gigController.gigs = gig
+                        self.tableView.reloadData()
+                    }
+                } catch {
+                    if let error = error as? NetworkError {
+                        switch error {
+                        case .noAuth:
+                            print("No bearer token exists")
+                        case .badAuth:
+                            print("Bearer token invalid")
+                        case .otherError:
+                            print("Other error occurred, see log")
+                        case .badData:
+                            print("No data received, or data corrupted")
+                        case .noDecode:
+                            print("JSON could not be decoded")
+                        }
+                    }
+                }
+            }
         }
-        
-        // TODO: fetch gigs here
-
-        
     }
     
     
@@ -71,6 +93,16 @@ class GigsTableViewController: UITableViewController {
         if segue.identifier == "LoginViewModalSegue" {
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.gigController = gigController
+            }
+        } else if segue.identifier == "AddSegue" {
+            if let gigDetailVC = segue.destination as? GigDetailViewController {
+                gigDetailVC.gigController = gigController
+            }
+        } else if segue.identifier == "ShowGigSegue" {
+            if let indexPath = tableView.indexPathForSelectedRow,
+                let detailVC = segue.destination as? GigDetailViewController {
+                detailVC.gigController = gigController
+                detailVC.gig = gigController.gigs[indexPath.row]
             }
         }
 

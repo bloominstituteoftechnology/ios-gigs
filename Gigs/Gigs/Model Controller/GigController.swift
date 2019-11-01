@@ -11,8 +11,7 @@ import Foundation
 enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
-    case put = "PUT"
-    case delete = "DELETE"
+   
 }
 
 enum NetworkError: Error {
@@ -28,6 +27,7 @@ class GigController {
     
     // MARK: - Properties
     private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
+    
     var bearer: Bearer?
     
     var gigs: [Gig] = []
@@ -38,9 +38,10 @@ class GigController {
     func signUp(with user: User, completion: @escaping (Error?) -> Void ) {
         let signUpURL = baseURL.appendingPathComponent("users/signup") // slash is already added when it is appending
         print(signUpURL)
+        
         var request = URLRequest(url: signUpURL)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let jsonEncoder = JSONEncoder()
         do {
@@ -53,7 +54,7 @@ class GigController {
         }
         
         // Following the API's documentation here, create methods that perform a URLSessionDataTask for:
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
                     completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
@@ -75,8 +76,8 @@ class GigController {
         let signInURL = baseURL.appendingPathComponent("users/login") // see if slash is or isn't needed
         
         var request = URLRequest(url: signInURL)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let jsonEncoder = JSONEncoder()
         do {
@@ -164,21 +165,44 @@ class GigController {
         }.resume()
     }
     
-    
-    func createGig(for gigName: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void? ) {
+    // you ENCODE to create a new Gig Object...
+    func createGig(for gigName: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void ) {
         guard let bearer = bearer else {
-                 completion(.failure(.noAuth))
-                 return
-             }
-             
-             let allGigs = baseURL.appendingPathComponent("gigs/")
-             var request = URLRequest(url: allGigs)
-             request.httpMethod = HTTPMethod.post.rawValue
-             request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let allGigs = baseURL.appendingPathComponent("gigs/")
+        
+        var request = URLRequest(url: allGigs)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let jsonEncoder = JSONEncoder()
+        do {
+            jsonEncoder.dateEncodingStrategy = .iso8601
+            let jsonData = try jsonEncoder.encode(gigName)
+            request.httpBody = jsonData
+        } catch {
+            print("Error encoding user object")
+            completion(.failure(.otherError))
+            return
+        }
+        
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let response = response as? HTTPURLResponse, response.statusCode == 401 {
-                completion(.failure(.badAuth))
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                print("Error with authorization")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                print("Error with response code (\(response.statusCode))")
+                completion(.failure(.otherError))
                 return
             }
         
@@ -191,17 +215,7 @@ class GigController {
                 completion(.failure(.badData))
                 return
             }
-            
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            do {
-                let decodedGigs = try decoder.decode(Gig.self, from: data)
-                self.gigs.append(decodedGigs) // is this right?
-                completion(.success(decodedGigs))
-            } catch {
-                print("Error decoding Gig object: \(error)")
-                completion(.failure(.noDecode))
-            }
+            self.gigs.append(gigName)
         }.resume()
         
     }
