@@ -17,7 +17,8 @@
 		4B4E883B236A2E9C005F441A /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4E883A236A2E9C005F441A /* Bearer.swift */; };
 		4B4E883D236A2EA7005F441A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4E883C236A2EA7005F441A /* User.swift */; };
 		4B4E8840236A30CE005F441A /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4E883F236A30CE005F441A /* GigController.swift */; };
-		4B4E8843236A3123005F441A /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4E8842236A3123005F441A /* AuthenticationController.swift */; };
+		4BBDEDBF236B8A32000318D8 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBDEDBE236B8A32000318D8 /* GigDetailViewController.swift */; };
+		4BBDEDC1236B8B75000318D8 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBDEDC0236B8B75000318D8 /* Gig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +34,8 @@
 		4B4E883A236A2E9C005F441A /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		4B4E883C236A2EA7005F441A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4B4E883F236A30CE005F441A /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
-		4B4E8842236A3123005F441A /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
+		4BBDEDBE236B8A32000318D8 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		4BBDEDC0236B8B75000318D8 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				4B4E8834236A2425005F441A /* GigsTableViewController.swift */,
+				4BBDEDBE236B8A32000318D8 /* GigDetailViewController.swift */,
 				4B4E8836236A2450005F441A /* LoginViewController.swift */,
 			);
 			path = "View Controllers";
@@ -99,8 +102,9 @@
 		4B4E883E236A2EAA005F441A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4B4E883A236A2E9C005F441A /* Bearer.swift */,
+				4BBDEDC0236B8B75000318D8 /* Gig.swift */,
 				4B4E883C236A2EA7005F441A /* User.swift */,
+				4B4E883A236A2E9C005F441A /* Bearer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -109,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				4B4E883F236A30CE005F441A /* GigController.swift */,
-				4B4E8842236A3123005F441A /* AuthenticationController.swift */,
 			);
 			path = "Model Controller";
 			sourceTree = "<group>";
@@ -189,10 +192,11 @@
 				4B4E8840236A30CE005F441A /* GigController.swift in Sources */,
 				4B4E8837236A2450005F441A /* LoginViewController.swift in Sources */,
 				4B4E883D236A2EA7005F441A /* User.swift in Sources */,
-				4B4E8843236A3123005F441A /* AuthenticationController.swift in Sources */,
 				4B4E8821236A1F83005F441A /* AppDelegate.swift in Sources */,
+				4BBDEDBF236B8A32000318D8 /* GigDetailViewController.swift in Sources */,
 				4B4E8823236A1F83005F441A /* SceneDelegate.swift in Sources */,
 				4B4E8835236A2425005F441A /* GigsTableViewController.swift in Sources */,
+				4BBDEDC1236B8B75000318D8 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

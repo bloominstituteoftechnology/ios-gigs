@@ -15,17 +15,29 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+}
+
 
 class GigController {
     
+    // MARK: - Properties
     private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     var bearer: Bearer?
     
-    // Creating function for sign up
+    var gigs: [Gig] = []
     
+    
+    // Creating function for sign up
+    // Authentication required = no
     func signUp(with user: User, completion: @escaping (Error?) -> Void ) {
-        let signUpURL = baseURL.appendingPathComponent("users/signup") // see if slash is or isn't needed
-        
+        let signUpURL = baseURL.appendingPathComponent("users/signup") // slash is already added when it is appending
+        print(signUpURL)
         var request = URLRequest(url: signUpURL)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = HTTPMethod.post.rawValue
@@ -57,7 +69,8 @@ class GigController {
     }
     
     // Creating function for sign in -- you encode & decode in this process
-
+    // Method: POST
+    // Authentication required = no
     func signIn(with user: User, completion: @escaping (Error?) -> Void ) {
         let signInURL = baseURL.appendingPathComponent("users/login") // see if slash is or isn't needed
         
@@ -79,12 +92,12 @@ class GigController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             // Passing in data now because login information exists:
             guard let data = data else {
-                completion(error)
+                completion(NSError())
                 return
             }
             
             let jsonDecoder = JSONDecoder()
-            do { // go over this again -- what is the bearer, and why are we decoding the JSON into that?
+            do {
                 self.bearer = try jsonDecoder.decode(Bearer.self, from: data)
             } catch {
                 print("Error decoding bearer object: \(error)")
@@ -105,6 +118,92 @@ class GigController {
             }
             completion(nil)
         }.resume()
+    }
+    
+    // Getting All Gigs from API:
+    // Method: GET
+    // Authentication required = yes
+    // Success Response - Code: 200 OK
+    func fetchGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void ) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let allGigs = baseURL.appendingPathComponent("gigs/")
+        var request = URLRequest(url: allGigs)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse, response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+        
+            if let error = error {
+                print("Error receiving Gig data: \(error)")
+                completion(.failure(.otherError))
+            }
+        
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            do {
+                let decodedGigs = try decoder.decode([Gig].self, from: data)
+                self.gigs = decodedGigs // is this right?
+                completion(.success(decodedGigs))
+            } catch {
+                print("Error decoding Gig object: \(error)")
+                completion(.failure(.noDecode))
+            }
+        }.resume()
+    }
+    
+    
+    func createGig(for gigName: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void? ) {
+        guard let bearer = bearer else {
+                 completion(.failure(.noAuth))
+                 return
+             }
+             
+             let allGigs = baseURL.appendingPathComponent("gigs/")
+             var request = URLRequest(url: allGigs)
+             request.httpMethod = HTTPMethod.post.rawValue
+             request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse, response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+        
+            if let error = error {
+                print("Error receiving Gig data: \(error)")
+                completion(.failure(.otherError))
+            }
+        
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            do {
+                let decodedGigs = try decoder.decode(Gig.self, from: data)
+                self.gigs.append(decodedGigs) // is this right?
+                completion(.success(decodedGigs))
+            } catch {
+                print("Error decoding Gig object: \(error)")
+                completion(.failure(.noDecode))
+            }
+        }.resume()
+        
     }
     
     

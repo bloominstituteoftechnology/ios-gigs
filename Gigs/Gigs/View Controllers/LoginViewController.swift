@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
     // MARK: - Properties
     
     var gigController: GigController?
-    var loginType: LoginType = .signIn // question why this would work here but not in a switch statement
+    var loginType: LoginType = .signUp // question why this would work here but not in a switch statement
     
     
     override func viewDidLoad() {
@@ -49,8 +49,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func enterButtonTapped(_ sender: UIButton) {
         guard let gigController = gigController else { return }
-        guard let username = usernameTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
+        guard let username = usernameTextField.text, !username.isEmpty else { return }
+        guard let password = passwordTextField.text, !password.isEmpty else { return }
         
         let user = User(username: username, password: password)
         
@@ -78,7 +78,8 @@ class LoginViewController: UIViewController {
             gigController.signIn(with: user) { (error) in
                 if let error = error {
                     print("Error occured during sign in: \(error)")
-                } else {
+                }
+                else {
                     DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: nil)
                     }

@@ -13,5 +13,3 @@ struct User: Codable {
     var password: String
     
 }
-
-

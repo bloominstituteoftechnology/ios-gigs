@@ -8,6 +8,7 @@
 
 import Foundation
 
+// will be many times stored in a Userdefaults
 struct Bearer: Codable {
     let token: String
 }

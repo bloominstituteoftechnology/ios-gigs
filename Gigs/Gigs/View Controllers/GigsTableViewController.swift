@@ -13,6 +13,14 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Properties
 
     var gigController = GigController()
+    
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, yyyy"
+        formatter.timeZone = .current
+        return formatter
+    }
+    
 
     
     // MARK: - View Methods
@@ -40,11 +48,18 @@ class GigsTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return gigController.gigs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigsCell", for: indexPath)
+        
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        
+        let gigDate = gigController.gigs[indexPath.row].dueDate
+        
+        cell.detailTextLabel?.text = dateFormatter.string(from: gigDate)
+        
 
         return cell
     }
