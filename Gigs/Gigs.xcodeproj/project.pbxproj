@@ -18,6 +18,7 @@
 		8306015A23713926006769CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8306015923713926006769CD /* LoginViewController.swift */; };
 		8306015D23713A12006769CD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8306015C23713A12006769CD /* User.swift */; };
 		8306015F23713A21006769CD /* BearerToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8306015E23713A21006769CD /* BearerToken.swift */; };
+		8306016223713B32006769CD /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8306016123713B32006769CD /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		8306015923713926006769CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8306015C23713A12006769CD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8306015E23713A21006769CD /* BearerToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BearerToken.swift; sourceTree = "<group>"; };
+		8306016123713B32006769CD /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				8306015B23713A04006769CD /* Models */,
-				830601562371384F006769CD /* ViewControllers */,
+				830601562371384F006769CD /* Views */,
+				8306016023713B14006769CD /* Controllers */,
 				8306012623713734006769CD /* AppDelegate.swift */,
 				8306012823713734006769CD /* SceneDelegate.swift */,
 				8306012C23713734006769CD /* Main.storyboard */,
@@ -135,13 +138,13 @@
 			path = GigsUITests;
 			sourceTree = "<group>";
 		};
-		830601562371384F006769CD /* ViewControllers */ = {
+		830601562371384F006769CD /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				8306015723713870006769CD /* GigsTableViewController.swift */,
 				8306015923713926006769CD /* LoginViewController.swift */,
 			);
-			path = ViewControllers;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8306015B23713A04006769CD /* Models */ = {
@@ -151,6 +154,14 @@
 				8306015E23713A21006769CD /* BearerToken.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8306016023713B14006769CD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8306016123713B32006769CD /* GigController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8306015F23713A21006769CD /* BearerToken.swift in Sources */,
+				8306016223713B32006769CD /* GigController.swift in Sources */,
 				8306015A23713926006769CD /* LoginViewController.swift in Sources */,
 				8306012723713734006769CD /* AppDelegate.swift in Sources */,
 				8306012923713734006769CD /* SceneDelegate.swift in Sources */,
