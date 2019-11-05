@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="YWC-05-0fh" detailTextLabel="aNI-1t-085" style="IBUITableViewCellStyleValue1" id="60K-OA-QJt">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" textLabel="YWC-05-0fh" detailTextLabel="aNI-1t-085" style="IBUITableViewCellStyleValue1" id="60K-OA-QJt">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="60K-OA-QJt" id="AvB-1p-11T">
@@ -58,7 +58,7 @@
         <!--Login View Controller-->
         <scene sceneID="cIS-I8-n3x">
             <objects>
-                <viewController id="rB9-VE-y3e" customClass="LoginViewController" customModule="AnimalSpotter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rB9-VE-y3e" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sPg-2C-Lmf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,22 +123,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pJF-zQ-vrM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1029" y="322"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="rcO-UB-DkG">
-            <objects>
-                <viewController id="omB-UN-hzp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ls8-Pr-76x">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="Xw6-Bz-5Iy"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="YnZ-eo-WH2"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Czu-Qc-jEd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="119" y="1116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4eT-gJ-dYs">
