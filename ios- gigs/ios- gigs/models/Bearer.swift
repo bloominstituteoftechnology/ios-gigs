@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  Bearer.swift
 //  ios- gigs
 //
 //  Created by Nicolas Rios on 11/5/19.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct User: Codable{
-    var userName:String
-    var passWord:String
-    
+struct Bearer: Codable {
+    let Id: Int
+    let token: String
+    let UserID :String
 }

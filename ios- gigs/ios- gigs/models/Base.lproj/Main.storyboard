@@ -10,7 +10,7 @@
         <!--Gigs-->
         <scene sceneID="pq5-F9-IVN">
             <objects>
-                <tableViewController id="26o-BN-hvf" customClass="GigsTableViewController" customModule="ios__gigs" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="26o-BN-hvf" customClass="GigsTableViewController" customModule="ios__gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zw1-vF-llv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,7 +49,7 @@
                     <navigationItem key="navigationItem" title="Gigs" id="Nrw-mz-nXX">
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="VCE-gq-lZQ">
                             <connections>
-                                <segue destination="6GQ-U2-6K5" kind="presentation" id="ynS-C5-MqS"/>
+                                <segue destination="6GQ-U2-6K5" kind="presentation" identifier="showGigsSegue" id="ynS-C5-MqS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -77,18 +77,14 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
+                                    <action selector="SignUpLogin:" destination="6GQ-U2-6K5" eventType="valueChanged" id="NJ2-ZT-cFk"/>
                                     <action selector="signuplogin:" destination="JRu-DD-IpJ" eventType="valueChanged" id="nXY-B9-Rse"/>
                                 </connections>
                             </segmentedControl>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pi5-tq-xTk">
-                                <rect key="frame" x="51" y="155" width="343" height="34"/>
+                                <rect key="frame" x="36" y="163" width="343" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pass Word" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kzw-kQ-qzl">
-                                <rect key="frame" x="51" y="214" width="343" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -102,18 +98,30 @@
                                 </state>
                                 <connections>
                                     <action selector="Login:" destination="JRu-DD-IpJ" eventType="touchUpInside" id="ND0-CU-lfd"/>
+                                    <action selector="UserTappedButton:" destination="6GQ-U2-6K5" eventType="touchUpInside" id="fKj-zW-Bww"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pass Word" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Avs-O3-sBe">
+                                <rect key="frame" x="36" y="222" width="343" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="esE-Us-KXp"/>
                     </view>
+                    <connections>
+                        <outlet property="UserNameTextField" destination="Pi5-tq-xTk" id="w03-rz-m6D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OMi-tQ-f4k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="JRu-DD-IpJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="612" y="-317"/>
+            <point key="canvasLocation" x="611.59420289855075" y="-317.41071428571428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AAI-9V-JnK">
