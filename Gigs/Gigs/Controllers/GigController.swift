@@ -141,13 +141,11 @@ class GigController {
         }.resume()
     }
     
-    func createGig(title: String, dueDate: Date, description: String, completion: @escaping (NetworkError?) -> Void) { // uses POST
+    func createGig(for gig: Gig, completion: @escaping (NetworkError?) -> Void) { // uses POST
         guard let bearer = bearer else {
             completion(.noAuth)
             return
         }
-        
-        let newGig = Gig(title: title, description: description, dueDate: dueDate)
         
         let newGigUrl = baseUrl.appendingPathComponent("gigs/")
         
@@ -158,44 +156,45 @@ class GigController {
         
         let encoder = JSONEncoder()
         do {
-            let jsonData = try encoder.encode(newGig)
+            let jsonData = try encoder.encode(gig)
             request.httpBody = jsonData
-            self.gigs.append(newGig)
-            print("New gig added to list")
+            self.gigs.append(gig)
+            print("New gig endcoded")
         } catch {
             print("Error encoding gig object: \(error)")
             completion(.noEncode)
             return
         }
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let response = response as? HTTPURLResponse, response.statusCode != 200 {
                 completion(.badAuth)
                 return
             }
-            
+
             if let _ = error {
                 completion(.otherError)
                 return
             }
-            
-            guard let data = data else {
-                completion(.badData)
-                return
-            }
-   
-            let decoder = JSONDecoder()
-            do {
-                let decodedGig = try decoder.decode(Gig.self, from: data)
-                self.gigs.append(decodedGig)
-                print("New gig add successful")
-            } catch {
-                print("Error decoding single gig: \(error)")
-                completion(.noDecode)
-                return
-            }
+
             completion(nil)
-        
+//            guard let data = data else {
+//                completion(.badData)
+//                return
+//            }
+//
+//            let decoder = JSONDecoder()
+//            do {
+//                let decodedGig = try decoder.decode(Gig.self, from: data)
+//                self.gigs.append(decodedGig)
+//                completion(nil)
+//                print("New gig add successful")
+//            } catch {
+//                print("Error decoding single gig: \(error)")
+//                completion(.noDecode)
+//                return
+//            }
+
         }.resume()
     }
 }
