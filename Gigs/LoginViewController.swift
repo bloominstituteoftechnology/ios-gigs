@@ -8,7 +8,16 @@
 
 import UIKit
 
+enum LoginType {
+    case signUp
+    case signIn
+}
+
 class LoginViewController: UIViewController {
+    
+    var gigController: GigController!
+    
+    var loginType = LoginType.signUp
     
     
     @IBOutlet weak var segmentedLoginSignUp: UISegmentedControl!
@@ -20,10 +29,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signUpSignInOutlet: UIButton!
     
     
-    @IBAction func segmentedLoginSignupAction(_ sender: UISegmentedControl) {
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +36,64 @@ class LoginViewController: UIViewController {
     }
     
 
+    
+    
+    @IBAction func signInSignUpAction(_ sender: UIButton) {
+        //Perform login or sign up operation based on loginType
+        guard let gigController = gigController else {return}
+        if let username = usernameOutlet.text,
+            !username.isEmpty,
+            let password = passwordOutlet.text,
+            !password.isEmpty {
+            let user = User(username: username, password: password)
+            
+            
+            if loginType == .signUp {
+                gigController.signUp(with: user) { (error) in
+                    if let error = error {
+                        print("Error occurred during sign up: \(error)")
+                    }else {
+                        DispatchQueue.main.async {
+                            let alertController = UIAlertController(title: "Sign Up Successful", message: "Now Please Log in", preferredStyle: .alert)
+                            let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                            alertController.addAction(alertAction)
+                            self.present(alertController, animated: true) {
+                                self.loginType = .signIn
+                                
+                                self.segmentedLoginSignUp.selectedSegmentIndex = 1
+                                self.signUpSignInOutlet.setTitle("Sign in", for: .normal)
+                            }
+                        }
+                    }
+                }
+            }else {
+                //Run Sign in API call
+                gigController.signIn(with: user) { (error) in
+                    if let error = error {
+                        print("Error occurred during sign up \(error)")
+                    }else {
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func segmentedLoginSignupAction(_ sender: UISegmentedControl) {
+        //Switch UI between login types:
+        if sender.selectedSegmentIndex == 0 {
+            loginType = .signUp
+            signUpSignInOutlet.setTitle("Sign Up", for: .normal)
+        }else {
+            loginType = .signIn
+            signUpSignInOutlet.setTitle("Sign In", for: .normal)
+        }
+    }
+    
+    
+   
     /*
     // MARK: - Navigation
 

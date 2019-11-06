@@ -7,11 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
-class GigController: Codable {
+enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+}
+
+class GigController {
     
     var bearer: Bearer?
-    let baseUrl: URL
+    let baseUrl = URL(string: "")!
     
     
     //Function for Sign Up and Sign In:
