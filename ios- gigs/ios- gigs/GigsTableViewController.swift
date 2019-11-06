@@ -19,14 +19,18 @@ class GigsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+       }
+          override func viewDidAppear(_ animated: Bool) {
+                 super.viewDidAppear(animated)
+            
+             // transition to login view if conditions require
+            
+            if gigController.bearer == nil {
+                    performSegue(withIdentifier: "showGigsSegue", sender: self)
+                }
+            }
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-
-    
+  
     
     
     // MARK: - Table view data source
@@ -38,13 +42,13 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "showGigsSegue", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+         
         // Configure the cell...
 
         return cell
