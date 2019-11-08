@@ -46,6 +46,9 @@ class GigDetailViewController: UIViewController {
 
         if ((gigController?.gigs.firstIndex(where: {$0.title == newGig.title})) != nil){
             print("job already exsists")
+            let alert = UIAlertController(title: "Gig already exists", message: "Please add a new Gig.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         } else {
         gigController?.createGigs(with: newGig, completion: { (Result) in
              DispatchQueue.main.async {
