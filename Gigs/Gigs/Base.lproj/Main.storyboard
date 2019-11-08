@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gigs Table View Controller-->
+        <!--Gigs-->
         <scene sceneID="4Fc-Aa-4oU">
             <objects>
                 <tableViewController id="ji6-vC-2CF" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,7 +49,7 @@
                             <outlet property="delegate" destination="ji6-vC-2CF" id="q9f-xK-7aU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="rjj-ri-f1C">
+                    <navigationItem key="navigationItem" title="Gigs" id="rjj-ri-f1C">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="zRe-vf-RGH">
                             <connections>
                                 <segue destination="iuP-EM-W8e" kind="show" identifier="AddGigSegue" id="Jpd-wb-Fyb"/>
@@ -151,7 +151,7 @@
             </objects>
             <point key="canvasLocation" x="118.84057971014494" y="-413.16964285714283"/>
         </scene>
-        <!--Gig Detail View Controller-->
+        <!--Create a Gig-->
         <scene sceneID="F0T-Ll-3gr">
             <objects>
                 <viewController id="iuP-EM-W8e" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -159,40 +159,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3d1-nt-P8i">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3d1-nt-P8i">
                                 <rect key="frame" x="114" y="157" width="280" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="JOB TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uc-ON-XH2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uc-ON-XH2">
                                 <rect key="frame" x="20" y="157" width="86" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDD-O7-VIE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDD-O7-VIE">
                                 <rect key="frame" x="20" y="199" width="86" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="7eP-Nf-OFV">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="7eP-Nf-OFV">
                                 <rect key="frame" x="0.0" y="241" width="414" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="IJo-0B-khS"/>
+                                </constraints>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DESCRIPTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Cb-ea-PtF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Cb-ea-PtF">
                                 <rect key="frame" x="20" y="411" width="122" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="ZKq-0H-Aci"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="I3F-59-MmK">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="I3F-59-MmK">
                                 <rect key="frame" x="20" y="447" width="374" height="226"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -200,9 +200,32 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="DWZ-hy-i1B" firstAttribute="bottom" secondItem="I3F-59-MmK" secondAttribute="bottom" constant="189" id="0mo-x9-H1c"/>
+                            <constraint firstItem="3uc-ON-XH2" firstAttribute="leading" secondItem="zec-vu-JxT" secondAttribute="leadingMargin" id="0uh-fd-Kep"/>
+                            <constraint firstItem="I3F-59-MmK" firstAttribute="top" secondItem="1Cb-ea-PtF" secondAttribute="bottom" constant="8" id="5FP-Hc-SVB"/>
+                            <constraint firstItem="bDD-O7-VIE" firstAttribute="top" secondItem="3uc-ON-XH2" secondAttribute="bottom" constant="8" id="67O-am-SOF"/>
+                            <constraint firstItem="3uc-ON-XH2" firstAttribute="top" secondItem="3d1-nt-P8i" secondAttribute="top" id="AKT-HF-hHF"/>
+                            <constraint firstItem="bDD-O7-VIE" firstAttribute="leading" secondItem="1Cb-ea-PtF" secondAttribute="leading" id="G6u-Vy-Sji"/>
+                            <constraint firstItem="3d1-nt-P8i" firstAttribute="leading" secondItem="3uc-ON-XH2" secondAttribute="trailing" constant="8" id="HBr-fr-SGg"/>
+                            <constraint firstItem="7eP-Nf-OFV" firstAttribute="top" secondItem="bDD-O7-VIE" secondAttribute="bottom" constant="8" id="IyZ-ye-1nJ"/>
+                            <constraint firstItem="7eP-Nf-OFV" firstAttribute="top" secondItem="3d1-nt-P8i" secondAttribute="bottom" constant="50" id="OKt-F7-KL6"/>
+                            <constraint firstItem="3uc-ON-XH2" firstAttribute="trailing" secondItem="bDD-O7-VIE" secondAttribute="trailing" id="Pel-w6-bXN"/>
+                            <constraint firstItem="7eP-Nf-OFV" firstAttribute="centerX" secondItem="I3F-59-MmK" secondAttribute="centerX" id="SCx-UZ-ZSZ"/>
+                            <constraint firstItem="3uc-ON-XH2" firstAttribute="bottom" secondItem="3d1-nt-P8i" secondAttribute="bottom" id="W6E-7B-Cw1"/>
+                            <constraint firstItem="3uc-ON-XH2" firstAttribute="top" secondItem="DWZ-hy-i1B" secondAttribute="top" constant="17" id="XIK-ju-Hff"/>
+                            <constraint firstItem="3d1-nt-P8i" firstAttribute="trailing" secondItem="zec-vu-JxT" secondAttribute="trailingMargin" id="aIc-U9-CB9"/>
+                            <constraint firstItem="3d1-nt-P8i" firstAttribute="trailing" secondItem="I3F-59-MmK" secondAttribute="trailing" id="bPZ-Zj-cK9"/>
+                            <constraint firstItem="1Cb-ea-PtF" firstAttribute="top" secondItem="7eP-Nf-OFV" secondAttribute="bottom" constant="8" id="fTo-X3-F6S"/>
+                            <constraint firstItem="3uc-ON-XH2" firstAttribute="leading" secondItem="bDD-O7-VIE" secondAttribute="leading" id="h7t-nh-xCJ"/>
+                            <constraint firstItem="DWZ-hy-i1B" firstAttribute="trailing" secondItem="1Cb-ea-PtF" secondAttribute="trailing" constant="272" id="hbc-j3-EqW"/>
+                            <constraint firstItem="DWZ-hy-i1B" firstAttribute="trailing" secondItem="bDD-O7-VIE" secondAttribute="trailing" constant="308" id="hhD-PZ-DjY"/>
+                            <constraint firstItem="1Cb-ea-PtF" firstAttribute="leading" secondItem="I3F-59-MmK" secondAttribute="leading" id="jFj-DN-aBP"/>
+                            <constraint firstItem="7eP-Nf-OFV" firstAttribute="leading" secondItem="DWZ-hy-i1B" secondAttribute="leading" id="mYf-Kt-dmA"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="DWZ-hy-i1B"/>
                     </view>
-                    <navigationItem key="navigationItem" id="GJT-F6-Xuj">
+                    <navigationItem key="navigationItem" title="Create a Gig" id="GJT-F6-Xuj">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="KHc-jb-6q0">
                             <connections>
                                 <action selector="saveTapped:" destination="iuP-EM-W8e" id="R0c-Qm-4AE"/>
