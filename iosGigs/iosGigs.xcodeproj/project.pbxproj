@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		125CFC0B2374F04F0027A108 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125CFC0A2374F04F0027A108 /* GigDetailViewController.swift */; };
 		12A21EE8237261C6007E7E2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A21EE7237261C6007E7E2E /* AppDelegate.swift */; };
 		12A21EEA237261C6007E7E2E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A21EE9237261C6007E7E2E /* SceneDelegate.swift */; };
 		12A21EEF237261C6007E7E2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12A21EED237261C6007E7E2E /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		125CFC0A2374F04F0027A108 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
 		12A21EE4237261C6007E7E2E /* iosGigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosGigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A21EE7237261C6007E7E2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12A21EE9237261C6007E7E2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		125CFC0C2374F1700027A108 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				12A21EFB2372641A007E7E2E /* GigsTableViewController.swift */,
+				12A21EFD23726655007E7E2E /* LoginViewController.swift */,
+				125CFC0A2374F04F0027A108 /* GigDetailViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		125CFC0D2374F1A00027A108 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				12A21EFF237270F9007E7E2E /* Bearer.swift */,
+				12A21F012372717A007E7E2E /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		125CFC0E2374F1DC0027A108 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				12A21EE9237261C6007E7E2E /* SceneDelegate.swift */,
+				12A21EE7237261C6007E7E2E /* AppDelegate.swift */,
+				12A21F03237271BC007E7E2E /* GigController.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		12A21EDB237261C6007E7E2E = {
 			isa = PBXGroup;
 			children = (
@@ -64,14 +95,10 @@
 		12A21EE6237261C6007E7E2E /* iosGigs */ = {
 			isa = PBXGroup;
 			children = (
-				12A21EE7237261C6007E7E2E /* AppDelegate.swift */,
-				12A21EE9237261C6007E7E2E /* SceneDelegate.swift */,
+				125CFC0E2374F1DC0027A108 /* Application */,
+				125CFC0C2374F1700027A108 /* View Controllers */,
+				125CFC0D2374F1A00027A108 /* Models */,
 				12A21EED237261C6007E7E2E /* Main.storyboard */,
-				12A21EFB2372641A007E7E2E /* GigsTableViewController.swift */,
-				12A21EFD23726655007E7E2E /* LoginViewController.swift */,
-				12A21F03237271BC007E7E2E /* GigController.swift */,
-				12A21EFF237270F9007E7E2E /* Bearer.swift */,
-				12A21F012372717A007E7E2E /* User.swift */,
 				12A21EF0237261C8007E7E2E /* Assets.xcassets */,
 				12A21EF2237261C8007E7E2E /* LaunchScreen.storyboard */,
 				12A21EF5237261C9007E7E2E /* Info.plist */,
@@ -151,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12A21F00237270F9007E7E2E /* Bearer.swift in Sources */,
+				125CFC0B2374F04F0027A108 /* GigDetailViewController.swift in Sources */,
 				12A21F04237271BC007E7E2E /* GigController.swift in Sources */,
 				12A21EFE23726655007E7E2E /* LoginViewController.swift in Sources */,
 				12A21F022372717A007E7E2E /* User.swift in Sources */,
