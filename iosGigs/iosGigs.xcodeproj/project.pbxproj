@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		125CFC0B2374F04F0027A108 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125CFC0A2374F04F0027A108 /* GigDetailViewController.swift */; };
+		125CFC102374F2F20027A108 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125CFC0F2374F2F20027A108 /* Gig.swift */; };
 		12A21EE8237261C6007E7E2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A21EE7237261C6007E7E2E /* AppDelegate.swift */; };
 		12A21EEA237261C6007E7E2E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A21EE9237261C6007E7E2E /* SceneDelegate.swift */; };
 		12A21EEF237261C6007E7E2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12A21EED237261C6007E7E2E /* Main.storyboard */; };
@@ -18,10 +19,12 @@
 		12A21F00237270F9007E7E2E /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A21EFF237270F9007E7E2E /* Bearer.swift */; };
 		12A21F022372717A007E7E2E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A21F012372717A007E7E2E /* User.swift */; };
 		12A21F04237271BC007E7E2E /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A21F03237271BC007E7E2E /* GigController.swift */; };
+		12D5FA2523750680002F2817 /* GigsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D5FA2423750680002F2817 /* GigsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		125CFC0A2374F04F0027A108 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		125CFC0F2374F2F20027A108 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 		12A21EE4237261C6007E7E2E /* iosGigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosGigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A21EE7237261C6007E7E2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12A21EE9237261C6007E7E2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +37,7 @@
 		12A21EFF237270F9007E7E2E /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		12A21F012372717A007E7E2E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		12A21F03237271BC007E7E2E /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		12D5FA2423750680002F2817 /* GigsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,7 @@
 				12A21EFB2372641A007E7E2E /* GigsTableViewController.swift */,
 				12A21EFD23726655007E7E2E /* LoginViewController.swift */,
 				125CFC0A2374F04F0027A108 /* GigDetailViewController.swift */,
+				12D5FA2423750680002F2817 /* GigsTableViewCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -62,6 +67,7 @@
 			children = (
 				12A21EFF237270F9007E7E2E /* Bearer.swift */,
 				12A21F012372717A007E7E2E /* User.swift */,
+				125CFC0F2374F2F20027A108 /* Gig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -180,11 +186,13 @@
 				12A21F00237270F9007E7E2E /* Bearer.swift in Sources */,
 				125CFC0B2374F04F0027A108 /* GigDetailViewController.swift in Sources */,
 				12A21F04237271BC007E7E2E /* GigController.swift in Sources */,
+				12D5FA2523750680002F2817 /* GigsTableViewCell.swift in Sources */,
 				12A21EFE23726655007E7E2E /* LoginViewController.swift in Sources */,
 				12A21F022372717A007E7E2E /* User.swift in Sources */,
 				12A21EE8237261C6007E7E2E /* AppDelegate.swift in Sources */,
 				12A21EEA237261C6007E7E2E /* SceneDelegate.swift in Sources */,
 				12A21EFC2372641A007E7E2E /* GigsTableViewController.swift in Sources */,
+				125CFC102374F2F20027A108 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
