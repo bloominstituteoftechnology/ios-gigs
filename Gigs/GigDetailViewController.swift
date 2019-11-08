@@ -9,7 +9,17 @@
 import UIKit
 
 class GigDetailViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var jobTitleOutlet: UITextField!
+    
+    @IBOutlet weak var descriptionTextViewOutlet: UITextView!
+    
+    @IBOutlet weak var datePickerOutlet: UIDatePicker!
+    
+    @IBOutlet weak var saveButtonTapped: UIBarButtonItem!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -122,7 +122,7 @@
         <!--Title-->
         <scene sceneID="LXX-2s-hSQ">
             <objects>
-                <viewController id="akU-CB-e4A" sceneMemberID="viewController">
+                <viewController id="akU-CB-e4A" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zL2-ke-7Jd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,11 +151,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Due date here!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IY3-X7-GmG">
-                                <rect key="frame" x="114" y="176" width="280" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDg-UP-h1E">
                                 <rect key="frame" x="20" y="183" width="89" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -182,21 +177,16 @@
                             <constraint firstItem="qUu-7J-C9L" firstAttribute="bottom" secondItem="RhY-P3-Wn7" secondAttribute="bottom" constant="32" id="XSS-e8-t2G"/>
                             <constraint firstItem="0kT-Xs-kzV" firstAttribute="leading" secondItem="p3n-ZA-nX9" secondAttribute="trailing" constant="2.5" id="YEP-GT-1Ie"/>
                             <constraint firstItem="KDg-UP-h1E" firstAttribute="leading" secondItem="qUu-7J-C9L" secondAttribute="leading" constant="20" id="ak3-xA-hNR"/>
-                            <constraint firstItem="qUu-7J-C9L" firstAttribute="trailing" secondItem="IY3-X7-GmG" secondAttribute="trailing" constant="20" id="bDl-ji-ad2"/>
                             <constraint firstItem="Vvi-rG-Nve" firstAttribute="leading" secondItem="p3n-ZA-nX9" secondAttribute="leading" id="fDt-Ag-rJa"/>
                             <constraint firstItem="p3n-ZA-nX9" firstAttribute="top" secondItem="qUu-7J-C9L" secondAttribute="top" constant="53" id="g9j-ni-QqT"/>
-                            <constraint firstItem="IY3-X7-GmG" firstAttribute="leading" secondItem="KDg-UP-h1E" secondAttribute="trailing" constant="5" id="gmd-7c-WC7"/>
                             <constraint firstItem="RhY-P3-Wn7" firstAttribute="centerX" secondItem="Par-eK-DXC" secondAttribute="centerX" id="hUU-Xa-eJJ"/>
                             <constraint firstItem="p3n-ZA-nX9" firstAttribute="leading" secondItem="qUu-7J-C9L" secondAttribute="leading" constant="20" id="lln-se-0Ad"/>
-                            <constraint firstItem="IY3-X7-GmG" firstAttribute="leading" secondItem="KDg-UP-h1E" secondAttribute="trailing" constant="5" id="mb8-W7-ibh"/>
                             <constraint firstItem="qUu-7J-C9L" firstAttribute="trailing" secondItem="RhY-P3-Wn7" secondAttribute="trailing" constant="20" id="ris-Dl-Je6"/>
                             <constraint firstItem="qUu-7J-C9L" firstAttribute="trailing" secondItem="0kT-Xs-kzV" secondAttribute="trailing" constant="20" id="sEc-FN-op0"/>
                             <constraint firstItem="0kT-Xs-kzV" firstAttribute="leading" secondItem="p3n-ZA-nX9" secondAttribute="trailing" constant="2.5" id="sLK-Hj-nh3"/>
-                            <constraint firstItem="IY3-X7-GmG" firstAttribute="top" secondItem="0kT-Xs-kzV" secondAttribute="bottom" constant="8" id="tNQ-Zf-t6i"/>
                             <constraint firstItem="Vvi-rG-Nve" firstAttribute="leading" secondItem="qUu-7J-C9L" secondAttribute="leading" constant="20" id="uch-y4-zJG"/>
                             <constraint firstItem="KDg-UP-h1E" firstAttribute="top" secondItem="p3n-ZA-nX9" secondAttribute="bottom" constant="21" id="ujW-Xh-40q"/>
                             <constraint firstItem="Par-eK-DXC" firstAttribute="leading" secondItem="qUu-7J-C9L" secondAttribute="leading" id="vbN-Ql-I3J"/>
-                            <constraint firstItem="Par-eK-DXC" firstAttribute="top" secondItem="IY3-X7-GmG" secondAttribute="bottom" constant="29" id="yN0-EA-Thn"/>
                             <constraint firstItem="qUu-7J-C9L" firstAttribute="trailing" secondItem="Vvi-rG-Nve" secondAttribute="trailing" constant="273" id="zDP-Uq-4fF"/>
                             <constraint firstItem="0kT-Xs-kzV" firstAttribute="top" secondItem="qUu-7J-C9L" secondAttribute="top" constant="46" id="zFv-Wa-o8u"/>
                         </constraints>
@@ -205,6 +195,12 @@
                     <navigationItem key="navigationItem" title="Title" id="JOV-MJ-jv8">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="AFq-cc-pZ9"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePickerOutlet" destination="Par-eK-DXC" id="PVD-kY-vrD"/>
+                        <outlet property="descriptionTextViewOutlet" destination="RhY-P3-Wn7" id="3Ug-tx-Z7A"/>
+                        <outlet property="jobTitleOutlet" destination="0kT-Xs-kzV" id="tlm-ej-bh1"/>
+                        <outlet property="saveButtonTapped" destination="AFq-cc-pZ9" id="RDi-4Q-YaT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baR-aj-bTs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
