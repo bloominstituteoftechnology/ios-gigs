@@ -44,7 +44,6 @@ class GigDetailViewController: UIViewController {
         let gig = Gig(title: title, description: description, dueDate: dueDate)
         gigController?.createGigs(with: gig, completion: { (Result) in
              DispatchQueue.main.async {
-                    self.gig = gig
                     self.navigationController?.popToRootViewController(animated: true)
             }
         })
