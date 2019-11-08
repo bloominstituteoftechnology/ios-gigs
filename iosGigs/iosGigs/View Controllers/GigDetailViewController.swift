@@ -41,12 +41,18 @@ class GigDetailViewController: UIViewController {
         else { return }
         let dueDate = dueDatePicker.date
         
-        let gig = Gig(title: title, description: description, dueDate: dueDate)
-        gigController?.createGigs(with: gig, completion: { (Result) in
+        
+        let newGig = Gig(title: title, description: description, dueDate: dueDate)
+
+        if ((gigController?.gigs.firstIndex(where: {$0.title == newGig.title})) != nil){
+            print("job already exsists")
+        } else {
+        gigController?.createGigs(with: newGig, completion: { (Result) in
              DispatchQueue.main.async {
                     self.navigationController?.popToRootViewController(animated: true)
             }
         })
+        }
         }
     
     
