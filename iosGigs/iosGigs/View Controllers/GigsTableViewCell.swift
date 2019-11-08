@@ -9,7 +9,7 @@
 import UIKit
 
 class GigsTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var gigsNameTitleLabel: UILabel!
     
     @IBOutlet weak var dueDateSubLabel: UILabel!

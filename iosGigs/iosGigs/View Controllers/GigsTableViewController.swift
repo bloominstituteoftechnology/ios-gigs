@@ -9,7 +9,7 @@
 import UIKit
 
 class GigsTableViewController: UITableViewController {
-
+    
     let gigController = GigController()
     var gigs:[Gig]? {
         didSet{
@@ -28,31 +28,32 @@ class GigsTableViewController: UITableViewController {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
         } else {
+            //fetch all gigs
             gigController.fetchAllGigs { (result) in
                 if let gigs = try? result.get() {
-                DispatchQueue.main.async {
-                    self.gigs = gigs
+                    DispatchQueue.main.async {
+                        self.gigs = gigs
+                    }
                 }
             }
         }
     }
-    }
-       
-
+    
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return gigController.gigs.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "gigTableViewCell", for: indexPath) as? GigsTableViewCell else { return UITableViewCell() }
-
+        
         // Configure the cell...
         let gig = gigController.gigs[indexPath.row]
         cell.gig = gig
@@ -66,20 +67,20 @@ class GigsTableViewController: UITableViewController {
                 loginVC.gigController = gigController
             }
         case "AddGigSegue":
-                if let addVC = segue.destination as? GigDetailViewController {
-                    addVC.gigController = gigController
+            if let addVC = segue.destination as? GigDetailViewController {
+                addVC.gigController = gigController
             }
         case "ViewGigSegue":
-                    
+            
             guard let detailVC = segue.destination as? GigDetailViewController,
-            let indexPath = tableView.indexPathForSelectedRow else { return }
+                let indexPath = tableView.indexPathForSelectedRow else { return }
             detailVC.gigController = gigController
             detailVC.gig = gigController.gigs[indexPath.row]
-    
-            default:
+            
+        default:
             return
         }
     }
-
+    
 }
 

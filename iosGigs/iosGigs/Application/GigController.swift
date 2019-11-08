@@ -217,7 +217,7 @@ class GigController{
                 completion(.failure(.noDecode))
                 return
             }
-            //completion(.success(true))
+
         } .resume()
         
         

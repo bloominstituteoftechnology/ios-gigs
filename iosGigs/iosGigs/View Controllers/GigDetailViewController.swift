@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class GigDetailViewController: UIViewController {
-
+    
     var gigController: GigController?
     var gig: Gig?
     
@@ -21,13 +21,13 @@ class GigDetailViewController: UIViewController {
         super.viewDidLoad()
         updateViews()
     }
-
+    
     func updateViews(){
         if let gig = gig {
-        title = gig.title
-        jobTitleTextField.text = gig.title
-        descriptionTextView.text = gig.description
-        dueDatePicker.date = gig.dueDate
+            title = gig.title
+            jobTitleTextField.text = gig.title
+            descriptionTextView.text = gig.description
+            dueDatePicker.date = gig.dueDate
         } else {
             title = "New Gig"
         }
@@ -35,31 +35,27 @@ class GigDetailViewController: UIViewController {
     
     @IBAction func saveAction(_ sender: Any) {
         guard let title = jobTitleTextField.text,
-        !title.isEmpty,
-        let description = descriptionTextView.text,
-        !description.isEmpty
-        else { return }
+            !title.isEmpty,
+            let description = descriptionTextView.text,
+            !description.isEmpty
+            else { return }
         let dueDate = dueDatePicker.date
         
         
         let newGig = Gig(title: title, description: description, dueDate: dueDate)
-
-        if ((gigController?.gigs.firstIndex(where: {$0.title == newGig.title})) != nil){
+        
+        if ((gigController?.gigs.firstIndex(where: {$0.title == newGig.title})) != nil) {
             print("job already exsists")
             let alert = UIAlertController(title: "Gig already exists", message: "Please add a new Gig.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-        gigController?.createGigs(with: newGig, completion: { (Result) in
-             DispatchQueue.main.async {
+            gigController?.createGigs(with: newGig, completion: { (Result) in
+                DispatchQueue.main.async {
                     self.navigationController?.popToRootViewController(animated: true)
-            }
-        })
+                }
+            })
         }
-        }
+    }
     
-    
-    
-
-
 }
