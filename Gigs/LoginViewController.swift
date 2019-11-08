@@ -15,7 +15,7 @@ enum LoginType {
 
 class LoginViewController: UIViewController {
     
-    var gigController: GigController!
+    var gigController: GigController?
     
     var loginType = LoginType.signUp
     
@@ -33,14 +33,20 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // if signed in before then just segue UserDefaults.standard.set(password )
+        segmentedLoginSignUp.selectedSegmentIndex = 0
+        signUpSignInOutlet.setTitle("SignUp", for: .normal)
+        //else
     }
     
 
     
     
     @IBAction func signInSignUpAction(_ sender: UIButton) {
+      
         //Perform login or sign up operation based on loginType
         guard let gigController = gigController else {return}
+          print("You Tapped me")
         if let username = usernameOutlet.text,
             !username.isEmpty,
             let password = passwordOutlet.text,
