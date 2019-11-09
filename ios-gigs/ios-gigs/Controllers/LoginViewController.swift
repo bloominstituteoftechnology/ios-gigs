@@ -54,6 +54,9 @@ class LoginViewController: UIViewController {
                     gigController.signIn(with: myUser, completion: { (error) in
                         if let error = error {
                             print("Sign In Error: \(error)")
+                            DispatchQueue.main.async {
+                                self.alert(with: "Login Error", and: "Username or password is incorrect, or the account doesn't exist. Try again. \(error)")
+                            }
                         } else {
                             DispatchQueue.main.async {
                                 self.dismiss(animated: true, completion: nil)
