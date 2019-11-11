@@ -23,8 +23,10 @@ class GigDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if detailGig != nil {
             saveButton.isEnabled = false
+            navigationController?.title = "Gig Details"
         } else {
             saveButton.isEnabled = true
+            navigationController?.title = "New Gig"
         }
     }
     
@@ -37,17 +39,19 @@ class GigDetailViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        var inout myGig: Gig?
-        myGig?.title = titleTextField.text
-        gig?.dueDate = datePicker.date
-        gig?.description = descriptionTextField.text
-        gigController.addGig(gig) { (error) in
-        if let error = error {
-            print("Add Error: \(error)")
-        } else {
-            self.dismiss(animated: true)
-                }
+        detailGig?.title = titleTextField.text ?? "blank"
+        detailGig?.dueDate = datePicker.date
+        detailGig?.description = descriptionTextField.text
+        guard let newGig = detailGig else {return}
+        
+        gigController.addGig(newGig, completion: { result in
+            switch result {
+                case .success(let newGig): print("New Gig has been added")
+                case .failure(let error): print("There was an error: \(error)")
             }
-        }
-  
+            
+        })
+        self.navigationController?.popViewController(animated: true)
+        
+    }
 }

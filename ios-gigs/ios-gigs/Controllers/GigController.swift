@@ -105,15 +105,15 @@ class GigController {
         
     }
     
-    func fetchGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+    func fetchGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         guard let baseURL = baseURL, let bearer = bearer else {
             completion(.failure(.noAuth))
             return
         }
-        let gigsURL = baseURL.appendingPathComponent("gigs")
+        let gigsURL = baseURL.appendingPathComponent("/gigs")
         var request = URLRequest(url: gigsURL)
         request.httpMethod = "GET"
-        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authentication")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse, response.statusCode == 401 {
@@ -130,7 +130,7 @@ class GigController {
             }
             let jsonDecoder = JSONDecoder()
             do {
-                let gigData = try jsonDecoder.decode([String].self, from: data)
+                let gigData = try jsonDecoder.decode([Gig].self, from: data)
                 completion(.success(gigData))
             } catch {
                 print("Error decoding data: \(error)")
@@ -145,7 +145,7 @@ class GigController {
             completion(.failure(.noAuth))
             return
         }
-        let gigsURL = baseURL.appendingPathComponent("gigs")
+        let gigsURL = baseURL.appendingPathComponent("/gigs")
         var request = URLRequest(url: gigsURL)
         request.httpMethod = "GET"
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
@@ -176,9 +176,9 @@ class GigController {
         }.resume()
     }
     
-    func addGig(_ gig: Gig, completion: @escaping (Error?) -> Void) {
+    func addGig(_ gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
             guard let baseURL = baseURL else { return }
-            let addGigURL = baseURL.appendingPathComponent("gigs")
+            let addGigURL = baseURL.appendingPathComponent("/gigs")
             
             var request = URLRequest(url: addGigURL)
             request.httpMethod = "POST"
@@ -186,27 +186,27 @@ class GigController {
             
             let jsonEncoder = JSONEncoder()
             do {
-                let jsonData = try jsonEncoder.encode(user)
+                let jsonData = try jsonEncoder.encode(gig)
                 request.httpBody = jsonData
             } catch {
                 print("There was an encoding error. \(error)")
-                completion(error)
+                completion(.failure(.badData))
                 return
             }
             
-            URLSession.shared.dataTask(with: request) { (_, response, error) in
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let response = response as? HTTPURLResponse, response.statusCode != 200 {
-                    completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                    completion(.failure(.badAuth))
                     return
                 }
             
             
-            if let error = error {
-                completion(error)
+                if error != nil {
+                completion(.failure(.otherError))
                 return
                 
                 }
-                completion(nil)
+                completion(.success(gig))
             
                 }.resume()
             

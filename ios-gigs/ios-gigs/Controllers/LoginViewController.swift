@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     
 
-    
+    // Triggers when Log In / Sign Up button is pressed
     @IBAction func buttonPressed(_ sender: Any) {
         guard let user = userTextField.text, let pass = passTextField.text else { return }
         let myUser = User(username: user, password: pass)
@@ -68,6 +68,7 @@ class LoginViewController: UIViewController {
     
     }
     
+    // Controls the Segment controller for the Sign in / Sign up modes.
     @IBAction func segmentControllerToggled(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             mode = .signUp
@@ -78,6 +79,7 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // Alert Function for various messages when logging in.
     func alert(with title: String, and message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -85,5 +87,4 @@ class LoginViewController: UIViewController {
         present(alert, animated: true)
     }
  
-
 }

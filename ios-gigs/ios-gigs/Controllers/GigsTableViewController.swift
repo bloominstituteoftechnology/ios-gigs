@@ -15,7 +15,7 @@ class GigsTableViewController: UIViewController {
     
     let gigController = GigController()
     var delegate: User?
-    
+//    var gigs: [Gig] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +23,8 @@ class GigsTableViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if gigController.bearer == nil {
-            performSegue(withIdentifier: "login", sender: self)
-        }
+     checkBearer()
+    runFetch()
     }
     
     // MARK: - Navigation
@@ -43,9 +42,24 @@ class GigsTableViewController: UIViewController {
         }
     }
     
-    
+    func checkBearer() {
+        if gigController.bearer == nil {
+                 performSegue(withIdentifier: "login", sender: self)
+             }
+    }
 
      //TODO: - Fetch Gigs Here
+    func runFetch() {
+        gigController.fetchGigs { result in
+            if let gigs = try? result.get() {
+                DispatchQueue.main.async {
+                    self.gigController.gigs = gigs
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
 
 }
     
