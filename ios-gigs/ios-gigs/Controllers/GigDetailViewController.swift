@@ -17,25 +17,28 @@ class GigDetailViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextField: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var navBar: UINavigationItem!
     
 
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if detailGig != nil {
             saveButton.isEnabled = false
-            navigationController?.title = "Gig Details"
+            navBar.title = "Gig Details"
+            updateViews()
         } else {
             saveButton.isEnabled = true
-            navigationController?.title = "New Gig"
+            navBar.title = "New Gig"
         }
     }
     
     func updateViews() {
         guard let gig = detailGig else {return}
-        titleTextField.text = gig.title
-        datePicker.date = gig.dueDate
-        descriptionTextField.text = gig.description
-        
+        DispatchQueue.main.async {
+                       self.titleTextField.text = gig.title
+                       self.datePicker.date = gig.dueDate
+                       self.descriptionTextField.text = gig.description
+                   }
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {

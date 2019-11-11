@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol loginViewControllerDelegate: AnyObject {
+    func loginSucessful(_ loginWasASuccess: Bool)
+}
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
@@ -18,6 +22,7 @@ class LoginViewController: UIViewController {
     var mode: Status = .signUp
     var gigController = GigController()
     var myUser: User?
+    weak var delegate: loginViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +64,7 @@ class LoginViewController: UIViewController {
                             }
                         } else {
                             DispatchQueue.main.async {
+                                self.delegate?.loginSucessful(true)
                                 self.dismiss(animated: true, completion: nil)
                             }
                         }

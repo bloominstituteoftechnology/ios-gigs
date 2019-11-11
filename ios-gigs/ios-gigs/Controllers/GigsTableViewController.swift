@@ -11,20 +11,33 @@ import UIKit
 class GigsTableViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
+    var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }()
     
     let gigController = GigController()
     var delegate: User?
-//    var gigs: [Gig] = []
-
+    //    var gigs: [Gig] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.dataSource = self
+        tableView.delegate = self
+        let loginVC = LoginViewController()
+        loginVC.delegate = self
+        if gigController.bearer == nil {
+            performSegue(withIdentifier: "login", sender: self)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-     checkBearer()
-    runFetch()
+        gigController.fetchGigs { _ in
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     // MARK: - Navigation
@@ -50,47 +63,39 @@ class GigsTableViewController: UIViewController {
             }
         }
     }
-    
-    func checkBearer() {
-        if gigController.bearer == nil {
-                 performSegue(withIdentifier: "login", sender: self)
-             }
-    }
-
-     //TODO: - Fetch Gigs Here
-    func runFetch() {
-        gigController.fetchGigs { result in
-            if let gigs = try? result.get() {
-                DispatchQueue.main.async {
-                    self.gigController.gigs = gigs
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
-    
-
 }
-    
-    extension GigsTableViewController: UITableViewDataSource {
-        
-        // MARK: - Table view data source
-        
 
+extension GigsTableViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    // MARK: - Table view data source
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return gigController.gigs.count
     }
     
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath) as? GigsTableViewCell else { return UITableViewCell()}
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         
         let gig = gigController.gigs[indexPath.row]
         
-        cell.gig = gig
+        cell.textLabel?.text = gig.title
+        cell.detailTextLabel?.text = dateFormatter.string(from: gig.dueDate)
         
         return cell
     }
-  
+}
+
+extension GigsTableViewController: loginViewControllerDelegate {
+    func loginSucessful(_ loginWasASuccess: Bool) {
+        if loginWasASuccess {
+            gigController.fetchGigs { _ in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
 }

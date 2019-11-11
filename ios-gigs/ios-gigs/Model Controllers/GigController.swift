@@ -34,6 +34,13 @@ class GigController {
         return encoder
     }()
     
+    var jsonDecoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return decoder
+    }()
+    
+    
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
     
         let signUpURL = baseURL.appendingPathComponent("users/signup")
@@ -136,7 +143,7 @@ class GigController {
             }
     
             do {
-                let gigData = try jsonDecoder.decode([Gig].self, from: data)
+                let gigData = try self.jsonDecoder.decode([Gig].self, from: data)
                 self.gigs = gigData
                 completion(.success(gigData))
             } catch {
@@ -152,7 +159,7 @@ class GigController {
             completion(.failure(.noAuth))
             return
         }
-        let gigsURL = baseURL.appendingPathComponent("/gigs")
+        let gigsURL = baseURL.appendingPathComponent("gigs")
         var request = URLRequest(url: gigsURL)
         request.httpMethod = "GET"
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
@@ -162,17 +169,17 @@ class GigController {
                 completion(.failure(.badAuth))
                 return
             }
-            if let _ = error {
+            if let error = error {
+                print("There was a fetch Error: \(error)")
                 completion(.failure(.otherError))
             }
             guard let data = data else {
                 completion(.failure(.badData))
                 return
             }
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.dateDecodingStrategy = .secondsSince1970
+            
             do {
-                let gig = try jsonDecoder.decode(Gig.self, from: data)
+                let gig = try self.jsonDecoder.decode(Gig.self, from: data)
                 completion(.success(gig))
                 return
             } catch {
