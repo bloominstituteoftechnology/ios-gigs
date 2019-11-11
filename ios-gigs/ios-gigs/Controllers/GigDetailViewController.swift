@@ -10,7 +10,7 @@ import UIKit
 
 class GigDetailViewController: UIViewController {
     
-    var gigController: GigController!
+    var gigController: GigController?
     var detailGig: Gig?
     
     @IBOutlet weak var titleTextField: UITextField!
@@ -31,27 +31,26 @@ class GigDetailViewController: UIViewController {
     }
     
     func updateViews() {
-        guard let date = detailGig?.dueDate else {return}
-        titleTextField.text = detailGig?.title
-        datePicker.date = date
-        descriptionTextField.text = detailGig?.description
+        guard let gig = detailGig else {return}
+        titleTextField.text = gig.title
+        datePicker.date = gig.dueDate
+        descriptionTextField.text = gig.description
         
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        detailGig?.title = titleTextField.text ?? "blank"
-        detailGig?.dueDate = datePicker.date
-        detailGig?.description = descriptionTextField.text
-        guard let newGig = detailGig else {return}
+        guard let controller = gigController,
+            let title = titleTextField.text,
+            !title.isEmpty,
+            let description = descriptionTextField.text,
+            !description.isEmpty else {return}
+//        let dueDate = datePicker.date
+        let newGig = Gig(title: title, dueDate: datePicker.date, description: description)
         
-        gigController.addGig(newGig, completion: { result in
-            switch result {
-                case .success(let newGig): print("New Gig has been added")
-                case .failure(let error): print("There was an error: \(error)")
+        controller.addGig(newGig, completion: { _ in
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
             }
-            
         })
-        self.navigationController?.popViewController(animated: true)
-        
     }
 }

@@ -33,11 +33,20 @@ class GigsTableViewController: UIViewController {
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.gigController = gigController
             }
-        } else if segue.identifier == "GigDetail" {
+        }
+        
+        if segue.identifier == "AddGig" {
+            if let detailVC = segue.destination as? GigDetailViewController {
+                detailVC.gigController = gigController
+            }
+        }
+        
+        if segue.identifier == "GigDetail" {
             if let detailVC = segue.destination as? GigDetailViewController {
                 guard let indexPath = tableView.indexPathForSelectedRow else {return}
                 let gig = gigController.gigs[indexPath.row]
                 detailVC.detailGig = gig
+                detailVC.gigController = gigController
             }
         }
     }
