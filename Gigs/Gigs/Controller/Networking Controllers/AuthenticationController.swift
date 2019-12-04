@@ -59,6 +59,52 @@ class AuthenticationController {
     
     /// Log In: /users/login
     func logIn(with user: User, completion: @escaping (Error?) -> ()) {
+        guard let url = baseURL else { return }
+        let loginURL = url.appendingPathComponent("users/login")
+        var request = URLRequest(url: loginURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        let encoder = JSONEncoder()
+        
+        do {
+            let data = try encoder.encode(user)
+            request.httpBody = data
+        } catch let encodeError {
+            print("Error encoding User object: \(encodeError)")
+            completion(encodeError)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error)
+                completion(error)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                return
+            }
+            
+            guard let data = data else {
+                completion(NSError())
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                self.bearer = try decoder.decode(Bearer.self, from: data)
+            } catch let decodeError {
+                print("Error decoding Bearer object: \(decodeError)")
+                completion(decodeError)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completion(nil)
+            }
+        }.resume()
     }
 }
