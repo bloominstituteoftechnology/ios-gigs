@@ -64,7 +64,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="xUa-vz-ccf"/>
                     <connections>
-                        <segue destination="ZRP-RY-GcX" kind="presentation" modalPresentationStyle="fullScreen" id="Uv9-Ev-2AT"/>
+                        <segue destination="ZRP-RY-GcX" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="Uv9-Ev-2AT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qd1-sB-Sdk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -92,13 +92,19 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="s1f-gq-GdF">
                                 <rect key="frame" x="114" y="71" width="135" height="32"/>
                                 <segments>
-                                    <segment title="Log In"/>
                                     <segment title="Sign Up"/>
+                                    <segment title="Log In"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentControlChanged:" destination="ZRP-RY-GcX" eventType="valueChanged" id="WaB-Lb-05V"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQo-Mh-JyP">
                                 <rect key="frame" x="103" y="209" width="176" height="30"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="ZRP-RY-GcX" eventType="touchUpInside" id="sO4-im-GSs"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -121,7 +127,7 @@
                     <connections>
                         <outlet property="button" destination="gQo-Mh-JyP" id="kVG-h5-tQU"/>
                         <outlet property="passwordText" destination="wHP-Xz-rFC" id="43a-RM-EA8"/>
-                        <outlet property="segmentedButton" destination="s1f-gq-GdF" id="DKe-3z-Fq3"/>
+                        <outlet property="segmentedButton" destination="s1f-gq-GdF" id="Sr1-gV-j2f"/>
                         <outlet property="usernameText" destination="g7G-bJ-cht" id="b3p-CW-7DT"/>
                     </connections>
                 </viewController>
