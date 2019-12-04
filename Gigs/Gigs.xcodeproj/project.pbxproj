@@ -17,6 +17,8 @@
 		6311F20A2398450D009B05A2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311F2092398450D009B05A2 /* LoginViewController.swift */; };
 		6311F20C239846A3009B05A2 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311F20B239846A3009B05A2 /* Bearer.swift */; };
 		6311F20E239846C1009B05A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311F20D239846C1009B05A2 /* User.swift */; };
+		6311F21023984791009B05A2 /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311F20F23984791009B05A2 /* AuthenticationController.swift */; };
+		6311F212239847A5009B05A2 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311F211239847A5009B05A2 /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		6311F2092398450D009B05A2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6311F20B239846A3009B05A2 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		6311F20D239846C1009B05A2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6311F20F23984791009B05A2 /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
+		6311F211239847A5009B05A2 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +71,6 @@
 				6311F2022398413B009B05A2 /* Model */,
 				6311F20123984134009B05A2 /* View */,
 				6311F2002398412D009B05A2 /* Controller */,
-				6311F1FF23984127009B05A2 /* Networking */,
 				6311F1FD239840E7009B05A2 /* Supporting Files */,
 			);
 			path = Gigs;
@@ -94,16 +97,19 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		6311F1FF23984127009B05A2 /* Networking */ = {
+		6311F1FF23984127009B05A2 /* Networking Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6311F20F23984791009B05A2 /* AuthenticationController.swift */,
+				6311F211239847A5009B05A2 /* GigController.swift */,
 			);
-			path = Networking;
+			path = "Networking Controllers";
 			sourceTree = "<group>";
 		};
 		6311F2002398412D009B05A2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6311F1FF23984127009B05A2 /* Networking Controllers */,
 				6311F206239842AB009B05A2 /* View Controllers */,
 			);
 			path = Controller;
@@ -216,9 +222,11 @@
 			files = (
 				6311F1EA239840D2009B05A2 /* AppDelegate.swift in Sources */,
 				6311F208239842C1009B05A2 /* GigsTableViewController.swift in Sources */,
+				6311F212239847A5009B05A2 /* GigController.swift in Sources */,
 				6311F20C239846A3009B05A2 /* Bearer.swift in Sources */,
 				6311F1EC239840D2009B05A2 /* SceneDelegate.swift in Sources */,
 				6311F20A2398450D009B05A2 /* LoginViewController.swift in Sources */,
+				6311F21023984791009B05A2 /* AuthenticationController.swift in Sources */,
 				6311F2052398414E009B05A2 /* Constants.swift in Sources */,
 				6311F20E239846C1009B05A2 /* User.swift in Sources */,
 			);
