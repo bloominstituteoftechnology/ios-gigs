@@ -17,11 +17,17 @@ enum HTTPMethod: String {
 
 class AuthenticationController {
     
+    // Bearer token created upon login
     var bearer: Bearer?
     
+    // Base URL for the API
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")
     
-    /// Sign Up : /users/signup
+    
+    /// Function to sign users up
+    /// - Parameters:
+    ///   - user: The user to be signed up
+    ///   - completion: Closure to notify the caller when the function has completed
     func signUp(with user: User, completion: @escaping (Error?) -> ()) {
         guard let url = baseURL else { return }
         let signInURL = url.appendingPathComponent("users/signup")
@@ -57,7 +63,11 @@ class AuthenticationController {
         }.resume()
     }
     
-    /// Log In: /users/login
+    
+    /// Function to log in users
+    /// - Parameters:
+    ///   - user: The user to be logged in
+    ///   - completion: Closure to notify the caller when the function has completed
     func logIn(with user: User, completion: @escaping (Error?) -> ()) {
         guard let url = baseURL else { return }
         let loginURL = url.appendingPathComponent("users/login")

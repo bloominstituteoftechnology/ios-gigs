@@ -10,8 +10,12 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
     
+    // --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    // MARK: - Properties
     let authController = AuthenticationController()
     
+    // --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,6 +27,8 @@ class GigsTableViewController: UITableViewController {
         }
     }
     
+    // --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ShowLoginSegue":
@@ -33,6 +39,8 @@ class GigsTableViewController: UITableViewController {
         }
     }
     
+    // --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    // MARK: - TableView DataSource
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
