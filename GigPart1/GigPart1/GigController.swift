@@ -59,10 +59,10 @@ class GigController {
     /// Log in: /user/login
     func login(with user: User, completion: @escaping (Error?) -> ()) {
         guard let url = baseURL else { return }
-        let loginURL = url.appendingPathComponent("users/loging")
+        let loginURL = url.appendingPathComponent("users/login")
         var request = URLRequest(url: loginURL)
         request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("application", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let encoder = JSONEncoder()
         do {
