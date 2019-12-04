@@ -1,17 +1,13 @@
 //
-//  Constants.swift
+//  GigsTableViewController.swift
 //  Gigs
 //
 //  Created by Chad Rutherford on 12/4/19.
 //  Copyright © 2019 lambdaschool.com. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-struct Segues {
+class GigsTableViewController: UITableViewController {
     
-}
-
-struct Cells {
-    static let gigCell = "GigCell"
 }
