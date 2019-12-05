@@ -25,6 +25,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        passwordTextField.isSecureTextEntry = true
+        
         signInButton.backgroundColor = .blue
         signInButton.tintColor = .white
         signInButton.layer.cornerRadius = 8.0

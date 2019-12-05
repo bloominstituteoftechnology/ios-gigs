@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Gigs Table View Controller-->
         <scene sceneID="AQV-Ly-anF">
             <objects>
-                <tableViewController id="8SL-es-Xfc" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="8SL-es-Xfc" customClass="GigsTableViewController" customModule="ios_Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sGk-Js-mTa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,7 +49,7 @@
                             <outlet property="delegate" destination="8SL-es-Xfc" id="z3k-OU-Uko"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="sNn-nm-TgS">
+                    <navigationItem key="navigationItem" id="sNn-nm-TgS">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ajD-7F-sXl">
                             <connections>
                                 <segue destination="Yyb-2q-OcX" kind="show" identifier="ShowAddGigSegue" id="hrr-Ic-m2E"/>
@@ -67,7 +67,7 @@
         <!--Gig Detail View Controller-->
         <scene sceneID="gGb-WW-gdA">
             <objects>
-                <viewController id="Yyb-2q-OcX" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Yyb-2q-OcX" customClass="GigDetailViewController" customModule="ios_Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="21W-IY-4BM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -182,13 +182,13 @@
         <!--Login View Controller-->
         <scene sceneID="qAi-Kq-42U">
             <objects>
-                <viewController id="ECh-S8-InM" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ECh-S8-InM" customClass="LoginViewController" customModule="ios_Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vTh-qF-UMn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rBO-P2-Agm">
-                                <rect key="frame" x="20" y="44" width="374" height="163"/>
+                                <rect key="frame" x="20" y="44" width="374" height="153"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RCh-Ws-cJP">
                                         <rect key="frame" x="119.5" y="0.0" width="135" height="32"/>
@@ -211,10 +211,8 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1f-Sk-nML">
-                                        <rect key="frame" x="40" y="123" width="294" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Ov4-np-4dK"/>
-                                        </constraints>
+                                        <rect key="frame" x="30" y="123" width="314" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Sign Up"/>
                                         <connections>
                                             <action selector="buttonTapped:" destination="ECh-S8-InM" eventType="touchUpInside" id="2IV-0b-xWz"/>
@@ -225,11 +223,11 @@
                                     <constraint firstItem="df5-wZ-v43" firstAttribute="leading" secondItem="rBO-P2-Agm" secondAttribute="leading" id="8og-Lf-Ww3"/>
                                     <constraint firstItem="xZF-Vg-2gc" firstAttribute="leading" secondItem="rBO-P2-Agm" secondAttribute="leading" id="ByG-of-rSC"/>
                                     <constraint firstItem="xZF-Vg-2gc" firstAttribute="top" secondItem="RCh-Ws-cJP" secondAttribute="bottom" constant="8" id="CwJ-pg-eXN"/>
+                                    <constraint firstItem="n1f-Sk-nML" firstAttribute="leading" secondItem="rBO-P2-Agm" secondAttribute="leading" constant="30" id="M7M-Ec-cDb"/>
                                     <constraint firstItem="df5-wZ-v43" firstAttribute="top" secondItem="xZF-Vg-2gc" secondAttribute="bottom" constant="8" id="RtN-4U-Xbc"/>
-                                    <constraint firstItem="n1f-Sk-nML" firstAttribute="leading" secondItem="rBO-P2-Agm" secondAttribute="leading" constant="40" id="coh-ls-NGV"/>
-                                    <constraint firstAttribute="trailing" secondItem="n1f-Sk-nML" secondAttribute="trailing" constant="40" id="fDK-hg-AJw"/>
                                     <constraint firstAttribute="trailing" secondItem="df5-wZ-v43" secondAttribute="trailing" id="ghG-9j-edL"/>
                                     <constraint firstAttribute="trailing" secondItem="xZF-Vg-2gc" secondAttribute="trailing" id="omf-FG-fe8"/>
+                                    <constraint firstAttribute="trailing" secondItem="n1f-Sk-nML" secondAttribute="trailing" constant="30" id="xQ3-zn-B8x"/>
                                 </constraints>
                             </stackView>
                         </subviews>

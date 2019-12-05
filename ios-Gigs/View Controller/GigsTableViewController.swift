@@ -52,7 +52,8 @@ class GigsTableViewController: UITableViewController {
         
         
         let gig = gigController.gigs[indexPath.row]
-        cell.textLabel?.text = gig.jobTitle
+        cell.textLabel?.text = gig.title
+        cell.detailTextLabel?.text = gig.description
         
         return cell
     }

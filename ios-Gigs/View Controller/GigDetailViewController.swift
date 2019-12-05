@@ -21,6 +21,8 @@ class GigDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        descriptionTextView.text = ""
+        
         updateViews()
         
     }
@@ -29,7 +31,7 @@ class GigDetailViewController: UIViewController {
         guard let gig = gig else {
             return }
         saveButton.isEnabled = false
-        titleTextField.text = gig.jobTitle
+        titleTextField.text = gig.title
         descriptionTextView.text = gig.description
         datePicker.date = gig.dueDate
         
@@ -41,7 +43,7 @@ class GigDetailViewController: UIViewController {
             !title.isEmpty,
             !description.isEmpty {
             let date = datePicker.date
-            let newGig = Gig(jobTitle: title, description: description, dueDate: date)
+            let newGig = Gig(title: title, description: description, dueDate: date)
             
             gigController?.add(gig: newGig, completion: { error in
                 if let error = error {
