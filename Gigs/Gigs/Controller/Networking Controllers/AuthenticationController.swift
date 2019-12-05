@@ -21,6 +21,7 @@ enum NetworkError: Error {
     case otherError
     case badData
     case noDecode
+    case noEncode
 }
 
 class AuthenticationController {
@@ -73,11 +74,50 @@ class AuthenticationController {
             } catch let decodeError {
                 print("Error decoding gigs from data: \(decodeError)")
                 completion(.failure(.noDecode))
-                return 
+                return
             }
         }.resume()
     }
+    
     // Post gigs /gigs/
+    func createNewGig(with gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> ()) {
+        guard let url = baseURL else { return }
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let postGigURL = url.appendingPathComponent("gigs")
+        var request = URLRequest(url: postGigURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { _, response, error in
+            if let response = response as? HTTPURLResponse, response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let error = error {
+                print("Error posting Gig: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            let encoder = JSONEncoder()
+            do {
+                let data = try encoder.encode(gig)
+                request.httpBody = data
+                completion(.success(gig))
+            } catch let encodeError {
+                print("Error encoding gig object: \(encodeError)")
+                completion(.failure(.noEncode))
+                return
+            }
+        }.resume()
+    }
+    
     
     
     /// Function to sign users up
