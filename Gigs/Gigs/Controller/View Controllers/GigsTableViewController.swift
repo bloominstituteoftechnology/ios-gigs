@@ -14,6 +14,13 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Properties
     let authController = AuthenticationController()
     
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter
+    }()
+    
     // --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
@@ -24,6 +31,16 @@ class GigsTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         if authController.bearer == nil {
             performSegue(withIdentifier: "ShowLoginSegue", sender: self)
+        } else {
+            fetchGigs()
+        }
+    }
+    
+    private func fetchGigs() {
+        authController.fetchAllGigs { error in
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -34,6 +51,13 @@ class GigsTableViewController: UITableViewController {
         case "ShowLoginSegue":
             guard let loginVC = segue.destination as? LoginViewController else { return }
             loginVC.authController = authController
+        case "ShowGigsSegue":
+            guard let gigDetailVC = segue.destination as? GigDetailViewController, let indexPath = tableView.indexPathForSelectedRow else { return }
+            gigDetailVC.authController = authController
+            gigDetailVC.gig = self.authController.gigs[indexPath.row]
+        case "AddGigsSegue":
+            guard let gigDetailVC = segue.destination as? GigDetailViewController else { return }
+            gigDetailVC.authController = authController
         default:
             break
         }
@@ -46,11 +70,14 @@ class GigsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return authController.gigs.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        let gig = authController.gigs[indexPath.row]
+        cell.textLabel?.text = gig.title
+        cell.detailTextLabel?.text = dateFormatter.string(from: gig.dueDate)
         return cell
     }
 }
