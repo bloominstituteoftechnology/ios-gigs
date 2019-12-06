@@ -10,23 +10,21 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
     
-    private var jobPosting: [String] = []
-    let gigController = GigController()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    super.viewDidAppear(animated)
+
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
             
             // TODO: fetch gigs here
             
-            
+        } else {
+            gigController.getAllGigs { (result) in
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
 
@@ -34,13 +32,16 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        let gig = gigController.gigs[indexPath.row]
+        
+        cell.textLabel?.text = gig.title
+        
+        cell.detailTextLabel?.text = "Due \(dateFormatter.string(from: gig.dueDate))"
         return cell
     }
 
@@ -57,12 +58,35 @@ class GigsTableViewController: UITableViewController {
             
             // Set a destination
             // Cast the destination as where we're going i.e. to which viewController
-            guard let loginVC = segue.destination as? LoginViewController else { return }
+            guard let destination = segue.destination as? LoginViewController else { return }
             
+           
             // Pass what we need in the viewController
-            loginVC.gigController = gigController
+            destination.gigController = gigController
+        } else if segue.identifier == "ShowGigDetail" {
+            
+            guard let destination = segue.destination as? GigDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow else { return }
+            let gig = gigController.gigs[indexPath.row]
+            
+            destination.gigController = gigController
+            destination.gig = gig
+            
+        } else if segue.identifier == "CreateGig" {
+            guard let destination = segue.destination as? GigDetailViewController
+                else { return }
+            
+            destination.gigController = gigController
         }
     }
     
-
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        
+        formatter.dateStyle = .short
+        
+        return formatter
+    }()
+    
+ let gigController = GigController()
 }
