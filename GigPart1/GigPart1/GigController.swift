@@ -146,6 +146,7 @@ class GigController {
             }
             
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
             do {
                 let results = try decoder.decode([Gig].self, from: data)
                 DispatchQueue.main.async {
@@ -189,7 +190,9 @@ class GigController {
             do {
                 let data = try encoder.encode(gig)
                 request.httpBody = data
+                DispatchQueue.main.async {
                 completion(.success(gig))
+                }
             } catch let encoderError {
                 print("Error encoding gig object: \(encoderError)")
                 completion(.failure(.noEncode))

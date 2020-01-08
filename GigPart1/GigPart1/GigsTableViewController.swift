@@ -11,10 +11,30 @@ import UIKit
 class GigsTableViewController: UITableViewController {
     
     let gigController = GigController()
+    var gigs: [Gig] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    let dateFormatter: DateFormatter = {
+       let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter
+    }()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchGigs()
+        
+    }
+    private func fetchGigs() {
+        gigController.getallGigs { results in
+            if let gigs = try? results.get() {
+                self.gigs = gigs
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,15 +53,15 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigs.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        let gig = gigs[indexPath.row]
+        cell.textLabel?.text = gig.title
+        cell.detailTextLabel?.text = dateFormatter.string(from: gig.dueDate)
         return cell
     }
     
@@ -56,11 +76,25 @@ class GigsTableViewController: UITableViewController {
         case "ShowLogingSegue":
             guard let loginVC = segue.destination as? LoginViewController else { return }
             loginVC.gigController = gigController
-            
+        case "ShowGigsSegue":
+            guard let gigDetialVC = segue.destination as? GigDetialViewController, let indexPath = tableView.indexPathForSelectedRow else { return }
+            gigDetialVC.gigController = gigController
+            gigDetialVC.gig = self.gigs[indexPath.row]
+        case "ButtonShowSegue":
+            guard let gigDetialVC = segue.destination as? GigDetialViewController else { return }
+            gigDetialVC.gigController = gigController
+            gigDetialVC.delegate = self
         default:
             break
         }
     }
     
 
+}
+extension GigsTableViewController: GigDelegate {
+    func didCreate(gig: Gig) {
+        self.gigs.append(gig)
+    }
+    
+    
 }
