@@ -95,8 +95,6 @@ class GigController {
                 return
             }
             
-            // request processed and successful
-            
             completion(nil) // no error
         }.resume()
     }
