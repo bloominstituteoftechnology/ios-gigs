@@ -1,5 +1,5 @@
 //
-//  Bearer.swift
+//  EncodingStatus.swift
 //  gigs
 //
 //  Created by Kenny on 1/15/20.
@@ -8,6 +8,7 @@
 
 import Foundation
 
-struct Bearer: Codable {
-    let token: String
+struct EncodingStatus {
+    let request: URLRequest?
+    let error: Error?
 }

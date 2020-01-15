@@ -9,6 +9,11 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    enum LoginType: String {
+        case signIn
+        case signUp
+    }
+    
     //MARK: IBOutlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -35,6 +40,15 @@ class LoginViewController: UIViewController {
         let user = User(username: usernameText, password: passwordText)
         if loginType == .signUp {
             gigController.signUp(with: user) { (error) in
+                if let error = error {
+                    print("Error signing up! \(error)")
+                    return
+                }
+                self.loginType = .signIn
+                DispatchQueue.main.async {
+                    self.segmentedControl.selectedSegmentIndex = 1
+                    self.loginButton.setTitle("Sign In", for: .normal)
+                }
                 
             }
         } else {
@@ -44,7 +58,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    
+    //MARK: Class Properties
     var gigController: GigController!
     var loginType: LoginType = .signUp //control defaults to 0 and change won't be called until the control is tapped, so default to the first control's value
     

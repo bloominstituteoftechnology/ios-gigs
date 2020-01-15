@@ -9,9 +9,11 @@
 import UIKit
 
 class GigsTableViewController: UITableViewController {
-    #warning("Should this be instantiated here")
+    //MARK: Class Properties
     var gigController = GigController()
     
+    
+    //MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,19 +26,19 @@ class GigsTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         // TODO: fetch gigs here
-        if gigController.bearer == nil {
+        if !gigController.isUserLoggedIn {
             self.performSegue(withIdentifier: "SignInSegue", sender: self)
         }
     }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        #warning("Incomplete implementation, return the number of sections")
         return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        #warning("Incomplete implementation, return the number of rows")
         return 0
     }
     
@@ -54,9 +56,7 @@ class GigsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SignInSegue" {
             guard let destination = segue.destination as? LoginViewController else {return}
-            #warning("DEV")
-            //TODO: you can pass data here if necessary
-            print(destination)
+            destination.gigController = gigController
         }
     }
 
