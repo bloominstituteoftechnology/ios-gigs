@@ -31,23 +31,7 @@ class GigController {
     
     func signUp(with user: User, completion: @escaping completionWithError) {
         let signUpUrl = baseUrl?.appendingPathComponent("users/signup")
-        guard let request = createRequest(url: signUpUrl, method: .post) else {
-            print("bad request")
-            completion(NSError(domain: "BadRequest", code: 400))
-            return
-        }
-        let encodingStatus = encodeUser(user: user, request: request)
-        if let encodingError = encodingStatus.error {
-            print("encoding error!")
-            completion(encodingError)
-            return
-        }
-        guard let postRequest = encodingStatus.request else {
-            print("post request error!")
-            completion(NSError())
-            return
-        }
-        
+        guard let postRequest = createRequestAndEncodeUser(user: user, url: signUpUrl, method: .post) else {return}
         URLSession.shared.dataTask(with: postRequest) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
             response.statusCode != 200 {
@@ -65,9 +49,27 @@ class GigController {
     
     func signIn(with user: User, complete: @escaping completionWithError) {
         let signInUrl = baseUrl?.appendingPathComponent("users/signin")
+        
     }
     
     //MARK: Helper Methods
+    private func createRequestAndEncodeUser(user: User, url: URL?, method: HttpMethod) -> URLRequest? {
+        guard let request = createRequest(url: url, method: method) else {
+            print(NSError(domain: "BadRequest", code: 400))
+            return nil
+        }
+        let encodingStatus = encodeUser(user: user, request: request)
+        if let encodingError = encodingStatus.error {
+            print(encodingError)
+            return nil
+        }
+        guard let postRequest = encodingStatus.request else {
+            print("post request error!")
+            return nil
+        }
+        return postRequest
+    }
+    
     private func createRequest(url: URL?, method: HttpMethod) -> URLRequest? {
         guard let requestUrl = url else {
             NSLog("request URL is nil")
