@@ -19,7 +19,7 @@ class GigController {
     typealias completionWithError = (Error?) -> ()
     
     private var bearer: Bearer?
-    private let baseUrl: URL? = URL(string: "https://lambdagigs.vapor.cloud/api")
+    private let baseUrl = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
     var isUserLoggedIn: Bool {
         if bearer == nil {
@@ -30,7 +30,7 @@ class GigController {
     }
     
     func signUp(with user: User, completion: @escaping completionWithError) {
-        let signUpUrl = baseUrl?.appendingPathComponent("users/signup")
+        let signUpUrl = baseUrl.appendingPathComponent("users/signup")
         guard let postRequest = createRequestAndEncodeUser(user: user, url: signUpUrl, method: .post) else {return}
         URLSession.shared.dataTask(with: postRequest) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
@@ -48,8 +48,38 @@ class GigController {
     }
     
     func signIn(with user: User, complete: @escaping completionWithError) {
-        let signInUrl = baseUrl?.appendingPathComponent("users/signin")
-        
+        print("signing In")
+        let signInUrl = baseUrl.appendingPathComponent("users/login")
+        guard let postRequest = createRequestAndEncodeUser(user: user, url: signInUrl, method: .post) else {
+            print("post request failed")
+            complete(NSError())
+            return
+        }
+        //baseUrl is nil??
+        URLSession.shared.dataTask(with: postRequest) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+            response.statusCode != 200 {
+                print("bad response code")
+                complete(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                return
+            }
+            if let error = error {
+                complete(error)
+                return
+            }
+            
+            guard let data = data else {
+                print("no data")
+                complete(NSError())
+                return
+            }
+            if let error = self.decodeUser(data: data) {
+                print("Error decoding user: \(error)")
+                complete(error)
+                return
+            }
+            complete(nil)
+        }.resume()
     }
     
     //MARK: Helper Methods
@@ -77,7 +107,7 @@ class GigController {
         }
         var request = URLRequest(url: requestUrl)
         request.httpMethod = method.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(contentValue, forHTTPHeaderField: httpHeaderType)
         return request
     }
     
@@ -93,8 +123,15 @@ class GigController {
         return EncodingStatus(request: localRequest, error: nil)
     }
     
-    private func decodeUser() {
-        
+    private func decodeUser(data: Data) -> Error? {
+        let decoder = JSONDecoder()
+        do {
+            self.bearer = try decoder.decode(Bearer.self, from: data)
+        } catch {
+            print("Error Decoding JSON into Bearer Object \(error)")
+            return error
+        }
+        return nil
     }
     
 }

@@ -22,16 +22,20 @@ class LoginViewController: UIViewController {
     
     //MARK: IBActions
     @IBAction func loginMethodWasChanged(_ sender: UISegmentedControl) {
+        print("changed")
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             loginType = .signUp
+            print(loginType.rawValue)
         case 1:
             loginType = .signIn
+            print(loginType.rawValue)
         default: fatalError("Only 2 segmented controls exist! Control #\(segmentedControl.selectedSegmentIndex) is out of range!")
         }
     }
     
     @IBAction func loginButtonWasTapped(_ sender: Any) {
+        print(self.loginType)
         guard let usernameText = usernameTextField.text,
             usernameText != "",
             let passwordText = passwordTextField.text,
@@ -44,8 +48,8 @@ class LoginViewController: UIViewController {
                     print("Error signing up! \(error)")
                     return
                 }
-                self.loginType = .signIn
                 DispatchQueue.main.async {
+                    self.loginType = .signIn
                     self.segmentedControl.selectedSegmentIndex = 1
                     self.loginButton.setTitle("Sign In", for: .normal)
                 }
@@ -53,14 +57,20 @@ class LoginViewController: UIViewController {
             }
         } else {
             gigController.signIn(with: user) { (error) in
-                
+                if let error = error {
+                    print(error)
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
     
     //MARK: Class Properties
     var gigController: GigController!
-    var loginType: LoginType = .signUp //control defaults to 0 and change won't be called until the control is tapped, so default to the first control's value
+    var loginType = LoginType.signUp
     
     //MARK: View Lifecycle
     override func viewDidLoad() {
