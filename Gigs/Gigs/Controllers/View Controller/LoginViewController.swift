@@ -8,7 +8,14 @@
 
 import UIKit
 
+enum LoginType {
+    case signUp
+    case signIn
+}
+
 class LoginViewController: UIViewController {
+    
+    var loginType = LoginType.signUp
     
     @IBOutlet private weak var usernameTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
@@ -19,10 +26,19 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        signInButton.backgroundColor = UIColor(hue: 190/360, saturation: 70/100, brightness: 80/100, alpha: 1.0)
+        signInButton.tintColor = .white
+        signInButton.layer.cornerRadius = 8.0
     }
     
-    @IBAction func logInTypeChanged(_ sender: Any) {
+    @IBAction func logInTypeChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            loginType = .signUp
+            signInButton.setTitle("Sign Up", for: .normal)
+        } else {
+            loginType = .signIn
+            signInButton.setTitle("Sign In", for: .normal)
+        }
     }
     
     @IBAction func signInButtonTapped(_ sender: Any) {
