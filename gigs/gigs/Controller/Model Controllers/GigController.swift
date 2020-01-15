@@ -55,7 +55,6 @@ class GigController {
             complete(NSError())
             return
         }
-        //baseUrl is nil??
         URLSession.shared.dataTask(with: postRequest) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
             response.statusCode != 200 {
