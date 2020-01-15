@@ -93,6 +93,7 @@
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="lvp-oX-6gL" eventType="touchUpInside" id="M3J-Hh-XYQ"/>
+                                    <action selector="loginButtonWasTapped:" destination="lvp-oX-6gL" eventType="touchUpInside" id="Pv4-4z-yGg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -111,8 +112,8 @@
                     <navigationItem key="navigationItem" id="9PI-gi-ANq"/>
                     <connections>
                         <outlet property="loginButton" destination="oTT-mk-DhA" id="A9n-zW-7P9"/>
+                        <outlet property="passwordTextField" destination="uWK-dD-1W8" id="jFB-es-qwY"/>
                         <outlet property="segmentedControl" destination="YOF-TZ-bZf" id="Xkp-Gv-a34"/>
-                        <outlet property="usernamePasswordField" destination="uWK-dD-1W8" id="jFB-es-qwY"/>
                         <outlet property="usernameTextField" destination="U5i-fY-dfa" id="Bry-OR-C19"/>
                     </connections>
                 </viewController>

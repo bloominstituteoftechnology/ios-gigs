@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum LoginType: String {
+    case signIn
+    case signUp
+}
 struct Bearer: Codable {
     let token: String
 }
