@@ -76,6 +76,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         signInButton.layer.cornerRadius = 8.0
+        //segmentLabel.selectedSegmentTintColor = .white
+        
         // Do any additional setup after loading the view.
     }
 }

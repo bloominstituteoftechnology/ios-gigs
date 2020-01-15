@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gigs Table View Controller-->
+        <!--Gigs-->
         <scene sceneID="zeS-bo-3UZ">
             <objects>
                 <tableViewController id="UEX-Xm-wdx" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                             <outlet property="delegate" destination="UEX-Xm-wdx" id="EqN-sZ-M63"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="OKU-zB-f9v"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="OKU-zB-f9v"/>
                     <connections>
                         <segue destination="zdA-DQ-gaJ" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="xfh-9h-NvH"/>
                     </connections>
@@ -72,6 +72,8 @@
                                             <segment title="Sign Up"/>
                                             <segment title="Sign In"/>
                                         </segments>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="selectedSegmentTintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="segmentTapped:" destination="zdA-DQ-gaJ" eventType="valueChanged" id="pyQ-cb-CgF"/>
                                         </connections>
@@ -90,7 +92,7 @@
                                         <rect key="frame" x="0.0" y="123" width="374" height="30"/>
                                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Sign Up"/>
                                         <connections>
                                             <action selector="signInButtonTapped:" destination="zdA-DQ-gaJ" eventType="touchUpInside" id="uM0-dy-xDL"/>
                                         </connections>
@@ -122,8 +124,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kMO-Gz-jy3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OkA-DZ-XxP">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="OkA-DZ-XxP">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
