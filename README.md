@@ -57,7 +57,7 @@ This date format in the JSON above is called "ISO 8601", which is another common
 
 1. Add a new variable called `var gigs: [Gig] = []` that will be used for storing the fetched and created gigs. This will also be the data source for the table view.
 
-2. Again following the API's documentation [here](https://github.com/LambdaSchool/ios-gigs/blob/master/APIDocumentation.md), create methods that perform a `URLSessionDataTask` for:
+2. Again following the API's documentation [here](https://github.com/LambdaSchool/ios-gigs/blob/day2/APIDocumentation.md), create methods that perform a `URLSessionDataTask` for:
 
     - Getting all the gigs the API has. Once you decode the `Gig`s, set the value of the array of `Gig`s property you made in this `GigController` to it, so the table view controller can have a data source.
     
