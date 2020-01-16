@@ -9,6 +9,6 @@
 import Foundation
 
 struct User: Codable {
-    let userName: String
+    let username: String
     let password: String
 }

@@ -32,7 +32,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="9oY-k0-Mdl"/>
                     <connections>
-                        <segue destination="rwm-gU-LlZ" kind="presentation" modalPresentationStyle="fullScreen" id="YCs-g6-Tbr"/>
+                        <segue destination="rwm-gU-LlZ" kind="presentation" identifier="LogInModalSegue" modalPresentationStyle="fullScreen" id="YCs-g6-Tbr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="540-GF-24z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -58,7 +58,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2pd-KA-ch1">
                                         <rect key="frame" x="0.0" y="44" width="374" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -73,11 +73,11 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbv-Jq-98e">
-                                <rect key="frame" x="60" y="235" width="294" height="40"/>
+                                <rect key="frame" x="50" y="235" width="314" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Rgu-zO-FuH"/>
+                                    <constraint firstAttribute="height" constant="50" id="Rgu-zO-FuH"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="signInButtonTapped:" destination="rwm-gU-LlZ" eventType="touchUpInside" id="TSG-kS-LRD"/>
                                 </connections>
@@ -88,10 +88,10 @@
                             <constraint firstItem="dnu-YC-grN" firstAttribute="centerX" secondItem="qXe-Xb-ROU" secondAttribute="centerX" id="7d7-zg-Xza"/>
                             <constraint firstItem="ODt-Xg-GNb" firstAttribute="trailing" secondItem="TRL-cd-DZB" secondAttribute="trailing" constant="20" id="BaR-Pv-59Z"/>
                             <constraint firstItem="TRL-cd-DZB" firstAttribute="top" secondItem="dnu-YC-grN" secondAttribute="bottom" constant="20" id="FKb-kE-T1i"/>
-                            <constraint firstItem="Fbv-Jq-98e" firstAttribute="leading" secondItem="ODt-Xg-GNb" secondAttribute="leading" constant="60" id="HIp-4Q-AKH"/>
+                            <constraint firstItem="Fbv-Jq-98e" firstAttribute="leading" secondItem="ODt-Xg-GNb" secondAttribute="leading" constant="50" id="HIp-4Q-AKH"/>
                             <constraint firstItem="dnu-YC-grN" firstAttribute="top" secondItem="ODt-Xg-GNb" secondAttribute="top" constant="42" id="MI6-RM-maM"/>
                             <constraint firstItem="Fbv-Jq-98e" firstAttribute="top" secondItem="TRL-cd-DZB" secondAttribute="bottom" constant="20" id="Tlq-Wv-fc5"/>
-                            <constraint firstItem="ODt-Xg-GNb" firstAttribute="trailing" secondItem="Fbv-Jq-98e" secondAttribute="trailing" constant="60" id="ZEZ-LC-k9O"/>
+                            <constraint firstItem="ODt-Xg-GNb" firstAttribute="trailing" secondItem="Fbv-Jq-98e" secondAttribute="trailing" constant="50" id="ZEZ-LC-k9O"/>
                             <constraint firstItem="TRL-cd-DZB" firstAttribute="leading" secondItem="ODt-Xg-GNb" secondAttribute="leading" constant="20" id="s6P-ii-wSY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ODt-Xg-GNb"/>

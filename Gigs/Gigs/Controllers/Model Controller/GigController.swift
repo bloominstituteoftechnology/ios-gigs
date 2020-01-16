@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum HTTPMethod: String {
     case get = "GET"
@@ -18,11 +19,17 @@ class GigController {
     var bearer: Bearer?
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
+    var isUserLoggedin: Bool {
+      if bearer == nil {
+        return false
+      } else {
+        return true
+      }
+    }
+    
     func signUp(with user: User, completion: @escaping (Error?) -> ()) {
-        let requestURL = baseURL
-        .appendingPathComponent("users")
-        .appendingPathComponent("signup")
-        
+        let requestURL = baseURL.appendingPathComponent("users/signup")
+
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -54,9 +61,7 @@ class GigController {
     }
     
     func signIn(with user: User, completion: @escaping (Error?) -> ()) {
-        let requestURL = baseURL
-        .appendingPathComponent("users")
-        .appendingPathComponent("login")
+        let requestURL = baseURL.appendingPathComponent("users/login")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -78,11 +83,16 @@ class GigController {
             
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                let statusCode = NSError(domain: "", code: -1, userInfo: nil)
+                let statusCode = NSError(domain: "", code: response.statusCode, userInfo: nil)
                 completion(statusCode)
             }
             
-            guard let data = data else { return }
+            guard let data = data else {
+                NSLog("no data returned from data task")
+                let noDataError = NSError(domain: "", code: -1, userInfo: nil)
+                completion(noDataError)
+                return
+            }
             
             let decoder = JSONDecoder()
             do {
