@@ -14,27 +14,36 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum HeaderKey: String {
+    case contentType = "Content-Type"
+    case authorization = "Authorization"
+}
+
+enum NetworkError: Error {
+    case noBearer
+    case requestError(Error)
+    case unexpectedStatusCode
+    case encodingError(Error)
+}
+
 class GigController {
     
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
+    var gigs: [Gig] = []
     var bearer: Bearer?
-    var isUserLoggedin: Bool {
-        if bearer == nil {
-            return false
-        } else {
-            return true
-        }
-    }
     
-    func signUp(with user: User, completion: @escaping (Error?) -> ()) {
+    typealias SignInCompletionHandler = (Error?) -> ()
+    typealias CreateGigCompletionHandler = (Result<Gig, NetworkError>) -> Void
+    
+    func signUp(with user: User, completion: @escaping SignInCompletionHandler) {
         let requestURL = baseURL
             .appendingPathComponent("users")
             .appendingPathComponent("signup")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: HeaderKey.contentType.rawValue)
         
         let encoder = JSONEncoder()
         do {
@@ -62,14 +71,14 @@ class GigController {
         }.resume()
     }
     
-    func signIn(with user: User, completion: @escaping (Error?) -> ()) {
+    func signIn(with user: User, completion: @escaping SignInCompletionHandler) {
         let requestURL = baseURL
             .appendingPathComponent("users")
             .appendingPathComponent("login")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: HeaderKey.contentType.rawValue)
         
         let encoder = JSONEncoder()
         do {
@@ -110,4 +119,41 @@ class GigController {
             completion(nil)
         }.resume()
     }
+    
+    func create(gig: Gig, completion: @escaping CreateGigCompletionHandler) {
+        guard let bearer = bearer else {
+            completion(.failure(.noBearer))
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderKey.authorization.rawValue)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(.requestError(error)))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.unexpectedStatusCode))
+                return
+            }
+            
+            let encoder = JSONEncoder()
+            do {
+                let newGig = try encoder.encode(gig)
+                request.httpBody = newGig
+            } catch {
+                NSLog("Error creating new gig: \(error)")
+                completion(.failure(.encodingError(error)))
+                return
+            }
+        }.resume()
+    }
+    
 }
