@@ -31,8 +31,6 @@ class Auth {
         do {
             let jsonData = try jsonEncoder.encode(user)
             request.httpBody = jsonData
-            // or we can do
-//            request.httpBody = try jsonEncoder.encode(user)
         } catch {
             print("Error encoding user object: \(error)")
             completion(error)
@@ -67,8 +65,6 @@ class Auth {
         do {
             let jsonData = try jsonEncoder.encode(user)
             request.httpBody = jsonData
-            // or we can do
-//            request.httpBody = try jsonEncoder.encode(user)
         } catch {
             print("Error encoding user object: \(error)")
             completion(error)
