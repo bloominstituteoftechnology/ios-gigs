@@ -14,9 +14,19 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+}
+
 class GigController {
     private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     var bearer: Bearer?
+    
+    var gigs: [Gig] = []
     
     // sign up function
     func signUp(user: User, completion: @escaping (Error?) -> Void) {
@@ -98,4 +108,78 @@ class GigController {
             completion(nil) // no error
         }.resume()
     }
+    
+    /*
+     Again following the API's documentation here, create methods that perform a URLSessionDataTask for:
+
+         -Getting all the gigs the API has. Once you decode the Gigs, set the value of the array of Gigs property you made in this GigController to it, so the table view controller can have a data source.
+
+         -Creating a gig and adding it to the API to the API via a POST request. If the request is successful, append the gig to your local array of Gigs.
+     */
+    
+    /*
+     Get All Gigs
+
+     Endpoint: /gigs/
+
+     Method: GET
+
+     Auth Required: YES
+
+     Required Header:
+     Key     Example Value     Description
+     Authorization     Bearer fsMd9aHpoJ62vo4OvLC79MDqd38oE2ihkx6A1KeFwek     "Bearer " + The token returned from logging in
+
+     Description: Returns an array of Gig JSON objects.
+     Success Response
+
+     Code: 200 OK
+     */
+
+    func fetchGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let allGigsUrl = baseURL.appendingPathComponent("gigs/")
+        
+        var request = URLRequest(url: allGigsUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse, response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let error = error {
+                print("Error receiving gig objects: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            do {
+                let gigsArray = try decoder.decode([Gig].self, from: data)
+                completion(.success(gigsArray))
+            } catch {
+                print("Error decoding gig objects: \(error)")
+                completion(.failure(.noDecode))
+            }
+            
+        }.resume()
+    }
+    
+    func createGig() {
+        
+    }
+    
 }

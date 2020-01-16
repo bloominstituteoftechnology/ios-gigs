@@ -11,6 +11,14 @@ import UIKit
 class GigsTableViewController: UITableViewController {
     
     let gigController = GigController()
+    
+    private var gigs: [Gig] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    //timeSeenLabel.text = dateFormatter.string(from: )
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +36,46 @@ class GigsTableViewController: UITableViewController {
         }
         
         // TODO: fetch gigs here
+        gigController.fetchGigs { (result) in
+            do {
+                let gigs = try result.get()
+                DispatchQueue.main.sync {
+                    self.gigs = gigs
+                }
+            } catch {
+                if let error = error as? NetworkError {
+                    switch error {
+                    case .noAuth:
+                        print("No bearer token exists")
+                    case .badAuth:
+                        print("Bearer token invalil")
+                    case .otherError:
+                        print("Other error occured, see log")
+                    case .badData:
+                        print("No data received, or data corrupted")
+                    case .noDecode:
+                        print("JSON could not be decoded")
+                    }
+                }
+            }
+        }
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        
+        cell.textLabel?.text = gigs[indexPath.row].title
+        cell.detailTextLabel?.text = "Due " + dateFormatter.string(from: gigs[indexPath.row].dueDate)
 
         return cell
     }
