@@ -24,6 +24,8 @@ enum NetworkError: Error {
     case requestError(Error)
     case unexpectedStatusCode
     case encodingError(Error)
+    case noData
+    case badData
 }
 
 class GigController {
@@ -33,8 +35,9 @@ class GigController {
     var gigs: [Gig] = []
     var bearer: Bearer?
     
-    typealias SignInCompletionHandler = (Error?) -> ()
+    typealias SignInCompletionHandler = (Error?) -> Void
     typealias CreateGigCompletionHandler = (Result<Gig, NetworkError>) -> Void
+    typealias GetAllGigsCompletionHandler = (Result<[Gig], NetworkError>) -> Void
     
     func signUp(with user: User, completion: @escaping SignInCompletionHandler) {
         let requestURL = baseURL
@@ -127,7 +130,6 @@ class GigController {
         }
         
         let requestURL = baseURL.appendingPathComponent("gigs")
-        
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderKey.authorization.rawValue)
@@ -156,4 +158,42 @@ class GigController {
         }.resume()
     }
     
+    func getAllGigs(completion: @escaping GetAllGigsCompletionHandler) {
+        guard let bearer = bearer else {
+            completion(.failure(.noBearer))
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent("gigs")
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderKey.authorization.rawValue)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(.requestError(error)))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.unexpectedStatusCode))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                let gigsJSON = try decoder.decode([Gig].self, from: data)
+                completion(.success(gigsJSON))
+            } catch {
+                NSLog("Error decoding gigs: \(error)")
+                completion(.failure(.badData))
+            }
+        }.resume()
+    }
 }
