@@ -22,7 +22,6 @@ class LoginViewController: UIViewController {
     
     //MARK: IBActions
     @IBAction func loginMethodWasChanged(_ sender: UISegmentedControl) {
-        print("changed")
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             loginType = .signUp
@@ -42,18 +41,20 @@ class LoginViewController: UIViewController {
             passwordText != ""
         else {return}
         let user = User(username: usernameText, password: passwordText)
+        
         if loginType == .signUp {
             gigController.signUp(with: user) { (error) in
                 if let error = error {
                     print("Error signing up! \(error)")
                     return
                 }
+                //update UI
                 DispatchQueue.main.async {
                     self.loginType = .signIn
                     self.segmentedControl.selectedSegmentIndex = 1
                     self.loginButton.setTitle("Sign In", for: .normal)
+                    Alert.show(title: "Success!", message: "Account Created. Please Login", vc: self)
                 }
-                
             }
         } else {
             gigController.signIn(with: user) { (error) in

@@ -12,6 +12,8 @@
 		B95CE07823CFA0B200B8F208 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CE07723CFA0B200B8F208 /* User.swift */; };
 		B95CE07A23CFA0E600B8F208 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CE07923CFA0E600B8F208 /* GigController.swift */; };
 		B95CE07C23CFC0B600B8F208 /* EncodingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CE07B23CFC0B600B8F208 /* EncodingStatus.swift */; };
+		B95CE07E23CFE4FE00B8F208 /* IBDesignable-UIView+roundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CE07D23CFE4FE00B8F208 /* IBDesignable-UIView+roundedCorners.swift */; };
+		B95CE08123CFE7C600B8F208 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CE08023CFE7C600B8F208 /* Alert.swift */; };
 		B99F15BD23CF9BB2003F424E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F15BC23CF9BB2003F424E /* AppDelegate.swift */; };
 		B99F15BF23CF9BB2003F424E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99F15BE23CF9BB2003F424E /* SceneDelegate.swift */; };
 		B99F15C423CF9BB2003F424E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99F15C223CF9BB2003F424E /* Main.storyboard */; };
@@ -45,6 +47,8 @@
 		B95CE07723CFA0B200B8F208 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B95CE07923CFA0E600B8F208 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 		B95CE07B23CFC0B600B8F208 /* EncodingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodingStatus.swift; sourceTree = "<group>"; };
+		B95CE07D23CFE4FE00B8F208 /* IBDesignable-UIView+roundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IBDesignable-UIView+roundedCorners.swift"; sourceTree = "<group>"; };
+		B95CE08023CFE7C600B8F208 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		B99F15B923CF9BB2003F424E /* gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B99F15BC23CF9BB2003F424E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B99F15BE23CF9BB2003F424E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +96,15 @@
 				B95CE07923CFA0E600B8F208 /* GigController.swift */,
 			);
 			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		B95CE07F23CFE7B700B8F208 /* Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B95CE07B23CFC0B600B8F208 /* EncodingStatus.swift */,
+				B95CE08023CFE7C600B8F208 /* Alert.swift */,
+			);
+			path = "Helper Classes";
 			sourceTree = "<group>";
 		};
 		B99F15B023CF9BB2003F424E = {
@@ -184,9 +197,10 @@
 		B99F15F023CF9BF5003F424E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B95CE07F23CFE7B700B8F208 /* Helper Classes */,
 				B95CE07523CFA08300B8F208 /* Bearer.swift */,
 				B95CE07723CFA0B200B8F208 /* User.swift */,
-				B95CE07B23CFC0B600B8F208 /* EncodingStatus.swift */,
+				B95CE07D23CFE4FE00B8F208 /* IBDesignable-UIView+roundedCorners.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -330,6 +344,8 @@
 				B99F15F223CF9C8F003F424E /* GigsTableViewController.swift in Sources */,
 				B99F15BD23CF9BB2003F424E /* AppDelegate.swift in Sources */,
 				B99F15BF23CF9BB2003F424E /* SceneDelegate.swift in Sources */,
+				B95CE08123CFE7C600B8F208 /* Alert.swift in Sources */,
+				B95CE07E23CFE4FE00B8F208 /* IBDesignable-UIView+roundedCorners.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

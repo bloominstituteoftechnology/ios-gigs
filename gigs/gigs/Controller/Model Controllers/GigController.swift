@@ -48,7 +48,6 @@ class GigController {
     }
     
     func signIn(with user: User, complete: @escaping completionWithError) {
-        print("signing In")
         let signInUrl = baseUrl.appendingPathComponent("users/login")
         guard let postRequest = createRequestAndEncodeUser(user: user, url: signInUrl, method: .post) else {
             print("post request failed")
@@ -72,7 +71,7 @@ class GigController {
                 complete(NSError())
                 return
             }
-            if let error = self.decodeUser(data: data) {
+            if let error = self.decodeToken(data: data) {
                 print("Error decoding user: \(error)")
                 complete(error)
                 return
@@ -82,6 +81,9 @@ class GigController {
     }
     
     //MARK: Helper Methods
+    /**
+        Unwraps createRequest() and encodeUser()
+     */
     private func createRequestAndEncodeUser(user: User, url: URL?, method: HttpMethod) -> URLRequest? {
         guard let request = createRequest(url: url, method: method) else {
             print(NSError(domain: "BadRequest", code: 400))
@@ -99,6 +101,9 @@ class GigController {
         return postRequest
     }
     
+    /**
+     Create a request given a URL and requestMethod (get, post, create, etc...)
+     */
     private func createRequest(url: URL?, method: HttpMethod) -> URLRequest? {
         guard let requestUrl = url else {
             NSLog("request URL is nil")
@@ -122,7 +127,8 @@ class GigController {
         return EncodingStatus(request: localRequest, error: nil)
     }
     
-    private func decodeUser(data: Data) -> Error? {
+    
+    private func decodeToken(data: Data) -> Error? {
         let decoder = JSONDecoder()
         do {
             self.bearer = try decoder.decode(Bearer.self, from: data)
