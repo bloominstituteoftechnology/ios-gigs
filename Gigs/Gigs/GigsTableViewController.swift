@@ -18,7 +18,11 @@ class GigsTableViewController: UITableViewController {
         }
     }
     
-    //timeSeenLabel.text = dateFormatter.string(from: )
+    var dateFormatter: DateFormatter = {
+       let formatter = DateFormatter()
+       formatter.dateStyle = .short
+       return formatter
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,9 +75,6 @@ class GigsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        
         cell.textLabel?.text = gigs[indexPath.row].title
         cell.detailTextLabel?.text = "Due " + dateFormatter.string(from: gigs[indexPath.row].dueDate)
 
@@ -85,6 +86,19 @@ class GigsTableViewController: UITableViewController {
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.gigController = gigController
             }
+        }
+        
+        else if segue.identifier == "DetailGigSegue" {
+            if let detailVC = segue.destination as? GigDetailViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    detailVC.gig = gigs[indexPath.row]
+                }
+                detailVC.gigController = gigController
+            }
+        }
+    
+        else if segue.identifier == "AddGigSegue" {
+            print("ADD SEGUE")
         }
     }
     
