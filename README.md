@@ -18,6 +18,10 @@ Use the project you worked on yesterday afternoon and continue where you left of
     
 4. Create another show segue from the bar button item to this new `UIViewController` scene. Again, give the segue a descriptive identifier. 
     
+    - Create a Cocoa Touch Subclass of `UITableViewController` called `GigsTableViewController` and set this table view controller scene's class to this new subclass you just created.
+
+3. Add a `UIViewController` scene for signing up/logging in:
+    - Create a modal **manual** segue from the `GigsTableViewController` scene to this new view controller scene. Click on the segue in the storyboard and change its "Presentation" to "Full Screen" in the Attributes Inspector.
 5. Add a text field to put the gig's title in.
     
 6. Add a date picker to allow the user to select the due date of the gig.
@@ -76,6 +80,10 @@ This date format in the JSON above is called "ISO 8601", which is another common
 
     - Add a `var gigController: GigController!` property that will be used to receive the `GigsTableViewController`'s `GigController` through the `prepare(for segue`.
     
+    - Call `viewDidAppear`. In it, check if the `GigController` property's `bearer` is nil. If it is, then perform the manual segue you made to the `LoginViewController`. We will deal with what happens if it isn't nil tomorrow. For now, just put this line in.
+        ```
+        // TODO: fetch gigs here
+        ```
     - Add a `var gig: Gig?` property that will be used to receive a `Gig` from the `GigsTableViewController`'s `prepare(for segue`if the user taps on a gig cell.
     
     - Create an `updateViews()` method. If a `Gig` passed to the view controller, put its values in the corresponding UI elements like the date picker, and text field/view. If there wasn't a gig, set the view controller's title to "New Gig".
@@ -85,6 +93,16 @@ This date format in the JSON above is called "ISO 8601", which is another common
 3. Back in `GigsTableViewController`:
     - Implement `prepare(for segue` to pass the necessary information to the destination view controller. You should have three segues you need to cover.
     
+  - Add a `var gigController: GigController!` property that will be used to receive the `GigsTableViewController`'s `GigController` through the `prepare(for segue`.
+  
+    - Add a property called `loginType` that lets you know which login type the user is trying to perform. (Logging in, or signing up). The best way to implement this is to create an enum with these two cases and have the property's type be that enum.
+    
+    - In the segmented control's action, based on the new selected segment, change the login type property that you just made, and change the button's title to match the login type.
+    
+    - In the button's action, based on the `loginType` property, perform the corresponding method in the `gigController` to either sign them up or log them in. If the **sign up** is successful, present an alert telling them they can log in. If the **log in** is successful, dismiss the view controller to take them back to the `GigsTableViewController`.
+    
+
+**The API documentation only showed what was required for this module project. For the next module project, you will continue writing this project. The updated API documentation can be found in the day2 branch's README of this repo here: https://github.com/LambdaSchool/ios-gigs/blob/day2/APIDocumentation.md**
 
 ## Go Further
 
