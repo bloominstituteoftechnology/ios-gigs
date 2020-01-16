@@ -26,12 +26,6 @@ class GigsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,10 +53,13 @@ class GigsTableViewController: UITableViewController {
                         print("No data received, or data corrupted")
                     case .noDecode:
                         print("JSON could not be decoded")
+                    case .noEncode:
+                        print("JSON could not be ENCODED")
                     }
                 }
             }
         }
+        print("CURRENT GIGS: \(gigs)")
     }
 
     // MARK: - Table view data source
@@ -99,6 +96,17 @@ class GigsTableViewController: UITableViewController {
     
         else if segue.identifier == "AddGigSegue" {
             print("ADD SEGUE")
+            let testGig = Gig(title: "TEST69", description: "des test", dueDate: Date())
+            gigController.createGig(gig: testGig) { (result) in
+                do {
+                    let newGig = try result.get()
+                    DispatchQueue.main.sync {
+                        self.gigController.gigs.append(newGig)
+                    }
+                } catch {
+                    print("Error creating gig in TVC: \(error)")
+                }
+            }
         }
     }
     

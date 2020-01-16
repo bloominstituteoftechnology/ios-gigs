@@ -20,6 +20,7 @@ enum NetworkError: Error {
     case otherError
     case badData
     case noDecode
+    case noEncode
 }
 
 class GigController {
@@ -108,12 +109,7 @@ class GigController {
             completion(nil) // no error
         }.resume()
     }
-    
-    /*
-         -Creating a gig and adding it to the API to the API via a POST request. If the request is successful, append the gig to your local array of Gigs.
-     */
-    
-
+        
     func fetchGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         guard let bearer = bearer else {
             completion(.failure(.noAuth))
@@ -156,8 +152,55 @@ class GigController {
         }.resume()
     }
     
-    func createGig() {
+    func createGig(gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let postGigUrl = baseURL.appendingPathComponent("gigs/")
+        
+        var request = URLRequest(url: postGigUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        print("TOKEN: \(bearer.token)")
+        
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
+        do {
+            request.httpBody = try jsonEncoder.encode(gig)
+        } catch {
+            print("Error encoding user object: \(error)")
+            completion(.failure(.noEncode))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                print("CODE: \(response.statusCode)")
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if let error = error {
+                completion(.failure(.otherError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            //self.gigs.append(gig)
+            completion(.success(gig))// no error
+            print("CREATED? \(gig)")
+        }.resume()
         
     }
     
 }
+
+
+     
+  
