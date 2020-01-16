@@ -8,22 +8,6 @@
 
 import Foundation
 
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-}
-
 class GigController {
-    
-    let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")
-    var bearer: Bearer?
-    
-    func signUp() {
-        
-    }
-    
-    func signIn() {
-        
-    }
     
 }

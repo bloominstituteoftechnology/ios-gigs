@@ -48,7 +48,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="SJx-c5-Ln0"/>
                     <connections>
-                        <segue destination="chp-Ss-0pj" kind="presentation" modalPresentationStyle="fullScreen" id="wpx-tC-jI4"/>
+                        <segue destination="chp-Ss-0pj" kind="presentation" identifier="LoginViewSegue" modalPresentationStyle="fullScreen" id="wpx-tC-jI4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMV-m5-3C1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -117,6 +117,9 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="signButtonTapped:" destination="chp-Ss-0pj" eventType="touchUpInside" id="gUB-3L-QsW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

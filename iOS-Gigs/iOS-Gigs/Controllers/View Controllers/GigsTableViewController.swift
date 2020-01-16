@@ -9,10 +9,19 @@
 import UIKit
 
 class GigsTableViewController: UITableViewController {
+    
+    let auth = Auth()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if auth.bearer == nil {
+            performSegue(withIdentifier: "LoginViewSegue", sender: self)
+        }
+        // TODO: fetch gigs here
     }
 
     // MARK: - Table view data source
@@ -27,15 +36,13 @@ class GigsTableViewController: UITableViewController {
         return 0
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
