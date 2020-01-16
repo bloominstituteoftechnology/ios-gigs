@@ -36,7 +36,7 @@ class GigsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
         let gig = gigController.gigs[indexPath.row]
         
         cell.textLabel?.text = gig.title
