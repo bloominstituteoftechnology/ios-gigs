@@ -24,7 +24,6 @@ class GigsTableViewController: UITableViewController {
         
         // TODO: fetch gigs here
     }
-    
 
     // MARK: - Table view data source
 

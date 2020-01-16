@@ -23,6 +23,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="2LQ-Zc-gu3" kind="show" identifier="ViewGigShowSegue" id="S8m-m5-VtS"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -30,7 +33,13 @@
                             <outlet property="delegate" destination="z2O-yb-MUE" id="nkX-PC-fjd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="9oY-k0-Mdl"/>
+                    <navigationItem key="navigationItem" id="9oY-k0-Mdl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="uF9-qk-JnJ">
+                            <connections>
+                                <segue destination="2LQ-Zc-gu3" kind="show" identifier="AddGigShowSegue" id="ZLx-gA-TSg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="rwm-gU-LlZ" kind="presentation" identifier="LogInModalSegue" modalPresentationStyle="fullScreen" id="YCs-g6-Tbr"/>
                     </connections>
@@ -105,7 +114,88 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N1w-2W-P7J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1962" y="212"/>
+            <point key="canvasLocation" x="1090" y="958"/>
+        </scene>
+        <!--Gig Detail View Controller-->
+        <scene sceneID="2KF-r6-fW7">
+            <objects>
+                <viewController id="2LQ-Zc-gu3" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OoO-FM-clb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2lC-Lt-zmE">
+                                <rect key="frame" x="20" y="177" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="phx-c8-v5k">
+                                <rect key="frame" x="20" y="620" width="374" height="242"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB TITLE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cb2-Wk-Lwf">
+                                <rect key="frame" x="157.5" y="127" width="99" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6g-Ss-xsz">
+                                <rect key="frame" x="141" y="581" width="132" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEl-Sr-D8j">
+                                <rect key="frame" x="158.5" y="259" width="97" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="dzN-0h-arb">
+                                <rect key="frame" x="0.0" y="310" width="414" height="216"/>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="phx-c8-v5k" firstAttribute="leading" secondItem="7hp-fJ-lTl" secondAttribute="leading" constant="20" id="1Hr-9H-6MZ"/>
+                            <constraint firstItem="dzN-0h-arb" firstAttribute="trailing" secondItem="7hp-fJ-lTl" secondAttribute="trailing" id="7JO-Md-o28"/>
+                            <constraint firstItem="k6g-Ss-xsz" firstAttribute="top" secondItem="dzN-0h-arb" secondAttribute="bottom" constant="55" id="7fx-hd-bhY"/>
+                            <constraint firstItem="2lC-Lt-zmE" firstAttribute="top" secondItem="cb2-Wk-Lwf" secondAttribute="bottom" constant="27" id="9NO-LG-eHS"/>
+                            <constraint firstItem="7hp-fJ-lTl" firstAttribute="trailing" secondItem="phx-c8-v5k" secondAttribute="trailing" constant="20" id="Dsw-is-Eff"/>
+                            <constraint firstItem="k6g-Ss-xsz" firstAttribute="centerX" secondItem="OoO-FM-clb" secondAttribute="centerX" id="Iaz-yx-SGN"/>
+                            <constraint firstItem="dzN-0h-arb" firstAttribute="top" secondItem="nEl-Sr-D8j" secondAttribute="bottom" constant="28" id="NUu-Vz-vqM"/>
+                            <constraint firstItem="phx-c8-v5k" firstAttribute="top" secondItem="k6g-Ss-xsz" secondAttribute="bottom" constant="16" id="P2K-x4-W7J"/>
+                            <constraint firstItem="cb2-Wk-Lwf" firstAttribute="centerX" secondItem="OoO-FM-clb" secondAttribute="centerX" id="P88-l4-Asd"/>
+                            <constraint firstItem="2lC-Lt-zmE" firstAttribute="leading" secondItem="7hp-fJ-lTl" secondAttribute="leading" constant="20" id="UG4-eV-oxx"/>
+                            <constraint firstItem="cb2-Wk-Lwf" firstAttribute="top" secondItem="7hp-fJ-lTl" secondAttribute="top" constant="39" id="ZHI-SZ-31H"/>
+                            <constraint firstItem="dzN-0h-arb" firstAttribute="leading" secondItem="7hp-fJ-lTl" secondAttribute="leading" id="ajc-m5-QLd"/>
+                            <constraint firstItem="7hp-fJ-lTl" firstAttribute="trailing" secondItem="2lC-Lt-zmE" secondAttribute="trailing" constant="20" id="k1Z-XN-YuF"/>
+                            <constraint firstItem="nEl-Sr-D8j" firstAttribute="centerX" secondItem="OoO-FM-clb" secondAttribute="centerX" id="koo-4P-VwQ"/>
+                            <constraint firstItem="nEl-Sr-D8j" firstAttribute="top" secondItem="2lC-Lt-zmE" secondAttribute="bottom" constant="48" id="pVw-An-W5W"/>
+                            <constraint firstItem="phx-c8-v5k" firstAttribute="bottom" secondItem="7hp-fJ-lTl" secondAttribute="bottom" id="x2j-gj-1cv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7hp-fJ-lTl"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="csG-Db-KZv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="k1b-gm-RHl">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="2LQ-Zc-gu3" id="sMi-yb-L9x"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="dzN-0h-arb" id="ecf-E5-dNZ"/>
+                        <outlet property="jobTextField" destination="2lC-Lt-zmE" id="w65-eh-muL"/>
+                        <outlet property="textView" destination="phx-c8-v5k" id="vl6-Br-eq2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cC8-W0-Pir" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1924.6376811594205" y="211.60714285714286"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VYs-gQ-sCA">
@@ -126,4 +216,7 @@
             <point key="canvasLocation" x="179.71014492753625" y="211.60714285714286"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZLx-gA-TSg"/>
+    </inferredMetricsTieBreakers>
 </document>

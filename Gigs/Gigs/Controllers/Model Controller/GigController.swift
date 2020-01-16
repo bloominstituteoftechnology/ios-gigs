@@ -16,20 +16,22 @@ enum HTTPMethod: String {
 
 class GigController {
     
-    var bearer: Bearer?
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
+    var bearer: Bearer?
     var isUserLoggedin: Bool {
-      if bearer == nil {
-        return false
-      } else {
-        return true
-      }
+        if bearer == nil {
+            return false
+        } else {
+            return true
+        }
     }
     
     func signUp(with user: User, completion: @escaping (Error?) -> ()) {
-        let requestURL = baseURL.appendingPathComponent("users/signup")
-
+        let requestURL = baseURL
+            .appendingPathComponent("users")
+            .appendingPathComponent("signup")
+        
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -61,7 +63,9 @@ class GigController {
     }
     
     func signIn(with user: User, completion: @escaping (Error?) -> ()) {
-        let requestURL = baseURL.appendingPathComponent("users/login")
+        let requestURL = baseURL
+            .appendingPathComponent("users")
+            .appendingPathComponent("login")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
