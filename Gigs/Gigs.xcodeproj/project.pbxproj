@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C6312C723D10CAF00884882 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6312C623D10CAF00884882 /* GigDetailViewController.swift */; };
+		4C6312C923D10D9000884882 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6312C823D10D9000884882 /* Gig.swift */; };
 		4CD3326923CF9DAC007EEEF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3326823CF9DAC007EEEF8 /* AppDelegate.swift */; };
 		4CD3326B23CF9DAC007EEEF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3326A23CF9DAC007EEEF8 /* SceneDelegate.swift */; };
 		4CD3327223CF9DAF007EEEF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CD3327123CF9DAF007EEEF8 /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C6312C623D10CAF00884882 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		4C6312C823D10D9000884882 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 		4CD3326523CF9DAC007EEEF8 /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CD3326823CF9DAC007EEEF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CD3326A23CF9DAC007EEEF8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 			children = (
 				4CD3328623CFA505007EEEF8 /* Bearer.swift */,
 				4CD3328823CFA53A007EEEF8 /* User.swift */,
+				4C6312C823D10D9000884882 /* Gig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -99,6 +104,7 @@
 			children = (
 				4CD3327F23CF9E97007EEEF8 /* GigsTableViewController.swift */,
 				4CD3328123CF9FD2007EEEF8 /* LoginViewController.swift */,
+				4C6312C623D10CAF00884882 /* GigDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -191,12 +197,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CD3328723CFA505007EEEF8 /* Bearer.swift in Sources */,
+				4C6312C723D10CAF00884882 /* GigDetailViewController.swift in Sources */,
 				4CD3328C23CFA5A1007EEEF8 /* GigController.swift in Sources */,
 				4CD3328223CF9FD2007EEEF8 /* LoginViewController.swift in Sources */,
 				4CD3328923CFA53A007EEEF8 /* User.swift in Sources */,
 				4CD3326923CF9DAC007EEEF8 /* AppDelegate.swift in Sources */,
 				4CD3326B23CF9DAC007EEEF8 /* SceneDelegate.swift in Sources */,
 				4CD3328023CF9E97007EEEF8 /* GigsTableViewController.swift in Sources */,
+				4C6312C923D10D9000884882 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

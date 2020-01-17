@@ -13,19 +13,18 @@ enum LoginType {
 }
 
 class LoginViewController: UIViewController {
-
-    @IBOutlet weak var signUpOrInSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var signUpOrInButton: UIButton!
     
     var gigController: GigController?
     
     var loginType = LoginType.signUp
     
+    @IBOutlet weak var signUpOrInSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signUpOrInButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
@@ -57,7 +56,7 @@ class LoginViewController: UIViewController {
                                 self.loginType = .signIn
                                 
                                 self.signUpOrInSegmentedControl.selectedSegmentIndex = 1
-                                self.signUpOrInButton.setTitle("Sign Up", for: .normal)
+                                self.signUpOrInButton.setTitle("Sign In", for: .normal)
                             }
                         }
                     }
@@ -72,7 +71,7 @@ class LoginViewController: UIViewController {
                         }
                     }
                 }
-            }
+            }      
         }
     }
     

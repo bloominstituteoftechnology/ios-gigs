@@ -12,21 +12,23 @@ class GigsTableViewController: UITableViewController {
 
     let gigController = GigController()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
+    let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateStyle = .short
+        df.timeStyle = .none
+        return df
+    }()
 
     override func viewDidAppear(_ animated: Bool) {
         if gigController.isUserLoggedIn == false {
             performSegue(withIdentifier: "SignUpOrInSegue", sender: self)
         } else {
             // TODO: fetch gigs here
+            gigController.fetchAllGigs { result in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -34,15 +36,19 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JobCell", for: indexPath)
-
+        let gig = gigController.gigs[indexPath.row]
+        
+        
+        
         // Configure the cell...
-
+        cell.textLabel?.text = gig.title
+        cell.detailTextLabel?.text = dateFormatter.string(from: gig.dueDate)
         return cell
     }
     
@@ -90,6 +96,13 @@ class GigsTableViewController: UITableViewController {
         if segue.identifier == "SignUpOrInSegue" {
             guard let loginVC = segue.destination as? LoginViewController else { return }
             loginVC.gigController = gigController
+        }else if segue.identifier == "ShowJobSegue" {
+            guard let gigDetailVC = segue.destination as? GigDetailViewController, let indexPath = tableView.indexPathForSelectedRow else { return }
+            gigDetailVC.gigController = gigController
+            gigDetailVC.gig = gigController.gigs[indexPath.row]
+        } else if segue.identifier == "AddJobSegue" {
+           guard let gigDetailVC2 = segue.destination as? GigDetailViewController else { return }
+            gigDetailVC2.gigController = gigController
         }
     }
 }
