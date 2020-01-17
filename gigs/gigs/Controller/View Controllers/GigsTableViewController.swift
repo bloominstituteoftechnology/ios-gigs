@@ -11,44 +11,50 @@ import UIKit
 class GigsTableViewController: UITableViewController {
     //MARK: Class Properties
     var gigController = GigController()
+    var gigs: [Gig] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     
     //MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        let customNavBarAppearance = NavBarAppearance.appearance()
+        navigationController?.navigationBar.standardAppearance = customNavBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = customNavBarAppearance
+        navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     override func viewDidAppear(_ animated: Bool) {
         // TODO: fetch gigs here
         if !gigController.isUserLoggedIn {
             self.performSegue(withIdentifier: "SignInSegue", sender: self)
+        } else if gigs.count == 0 {
+            gigController.getAllGigs { (error) in
+                print("done")
+                DispatchQueue.main.async {
+                    self.gigs = self.gigController.gigs
+                }
+                
+            }
         }
     }
 
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        #warning("Incomplete implementation, return the number of sections")
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        #warning("Incomplete implementation, return the number of rows")
-        return 0
+        return gigController.gigs.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //guard let cell = tableView.dequeueReusableCell(withIdentifier: "AnimalCell", for: indexPath) as? AnimalCell else {return UITableViewCell()}
-        #warning("Stage 1 only")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AnimalCell", for: indexPath)
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        let df = DateFormatter()
+        df.dateStyle = .short
+        df.timeStyle = .short
+        let date = df.string(from: gigController.gigs[indexPath.row].dueDate)
+        cell.detailTextLabel?.text = date
         return cell
     }
     
@@ -57,7 +63,15 @@ class GigsTableViewController: UITableViewController {
         if segue.identifier == "SignInSegue" {
             guard let destination = segue.destination as? LoginViewController else {return}
             destination.gigController = gigController
+        } else if segue.identifier == "ShowGig" {
+            guard let destination = segue.destination as? GigDetailViewController else {return}
+            guard let indexPath = tableView.indexPathForSelectedRow else {return}
+            destination.gig = gigs[indexPath.row]
+        } else if segue.identifier == "AddGig" {
+            guard let destination = segue.destination as? GigDetailViewController else {return}
+            destination.gigController = gigController
         }
+        
     }
 
 }

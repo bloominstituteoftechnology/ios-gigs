@@ -25,10 +25,10 @@ class LoginViewController: UIViewController {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             loginType = .signUp
-            print(loginType.rawValue)
+            loginButton.setTitle("Sign Up", for: .normal)
         case 1:
             loginType = .signIn
-            print(loginType.rawValue)
+            loginButton.setTitle("Sign In", for: .normal)
         default: fatalError("Only 2 segmented controls exist! Control #\(segmentedControl.selectedSegmentIndex) is out of range!")
         }
     }
@@ -76,8 +76,9 @@ class LoginViewController: UIViewController {
     //MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let customNavBarAppearance = NavBarAppearance.appearance()
+        navigationController?.navigationBar.standardAppearance = customNavBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = customNavBarAppearance
     }
     
     // MARK: - Navigation
