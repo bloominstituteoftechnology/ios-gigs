@@ -12,7 +12,7 @@
             <objects>
                 <viewController id="W9b-EF-dke" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ll3-XD-qGC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IfG-hc-L6I">
@@ -121,7 +121,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="W9b-EF-dke" kind="presentation" identifier="SignUpOrInSegue" id="pei-Ca-Ht6"/>
+                        <segue destination="W9b-EF-dke" kind="presentation" identifier="SignUpOrInSegue" modalPresentationStyle="fullScreen" id="pei-Ca-Ht6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cX1-ee-clO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
