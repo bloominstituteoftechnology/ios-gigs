@@ -133,6 +133,19 @@ class GigController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderKey.authorization.rawValue)
+        request.addValue("application/json", forHTTPHeaderField: HeaderKey.contentType.rawValue)
+        
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        do {
+            let newGig = try encoder.encode(gig)
+            request.httpBody = newGig
+            completion(.success(gig))
+        } catch {
+            NSLog("Error creating new gig: \(error)")
+            completion(.failure(.encodingError(error)))
+            return
+        }
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
@@ -143,18 +156,11 @@ class GigController {
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
                 completion(.failure(.unexpectedStatusCode))
+                print(response.statusCode)
                 return
             }
             
-            let encoder = JSONEncoder()
-            do {
-                let newGig = try encoder.encode(gig)
-                request.httpBody = newGig
-            } catch {
-                NSLog("Error creating new gig: \(error)")
-                completion(.failure(.encodingError(error)))
-                return
-            }
+            completion(.success(gig))
         }.resume()
     }
     
@@ -187,12 +193,15 @@ class GigController {
             }
             
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
             do {
                 let gigsJSON = try decoder.decode([Gig].self, from: data)
+                self.gigs = gigsJSON
                 completion(.success(gigsJSON))
             } catch {
                 NSLog("Error decoding gigs: \(error)")
                 completion(.failure(.badData))
+                return
             }
         }.resume()
     }
