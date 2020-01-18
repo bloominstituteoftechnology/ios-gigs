@@ -132,9 +132,8 @@ class GigController {
         }
         URLSession.shared.dataTask(with: postRequest) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
-            response.statusCode != 200 {
-                print("Bad response code")
-                complete(NSError(domain: "APIStatusNotOK", code: response.statusCode, userInfo: nil))
+                response.statusCode == 401 {
+                complete(NSError())
                 return
             }
             if let error = error {
@@ -142,6 +141,7 @@ class GigController {
                 return
             }
             self.gigs.append(gig)
+            print("complete")
             complete(nil)
         }.resume()
     }
@@ -187,14 +187,13 @@ class GigController {
     private func encode(from type: Any?, request: URLRequest) -> EncodingStatus {
         var localRequest = request
         let jsonEncoder = JSONEncoder()
-        
+        jsonEncoder.dateEncodingStrategy = .iso8601
         do {
             switch type {
             case is User:
                localRequest.httpBody = try jsonEncoder.encode(type as? User)
             case is Gig:
                localRequest.httpBody = try jsonEncoder.encode(type as? Gig)
-               print(localRequest.httpBody)
             default: fatalError("\(String(describing: type)) is not defined locally in encode function")
             }
         } catch {

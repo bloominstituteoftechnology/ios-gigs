@@ -31,7 +31,7 @@ class GigsTableViewController: UITableViewController {
         // TODO: fetch gigs here
         if !gigController.isUserLoggedIn {
             self.performSegue(withIdentifier: "SignInSegue", sender: self)
-        } else if gigs.count == 0 {
+        } else {
             gigController.getAllGigs { (error) in
                 print("done")
                 DispatchQueue.main.async {
@@ -44,6 +44,7 @@ class GigsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(gigController.gigs.count)
         return gigController.gigs.count
     }
     
