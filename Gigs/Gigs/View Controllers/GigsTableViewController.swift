@@ -10,6 +10,8 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
 
+    // MARK: - Properties
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
