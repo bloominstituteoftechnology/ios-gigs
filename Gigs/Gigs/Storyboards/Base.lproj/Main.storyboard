@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gigs Table View Controller-->
+        <!--Gigs-->
         <scene sceneID="i6w-1u-Vdu">
             <objects>
                 <tableViewController id="Jo2-wM-VzA" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,7 +46,9 @@
                             <outlet property="delegate" destination="Jo2-wM-VzA" id="E9k-pf-UCu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="EVX-R7-Q2c"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="EVX-R7-Q2c">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="vdL-hV-nCk"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="MMT-gm-6R9" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="zUp-zJ-h6h"/>
                     </connections>
@@ -134,8 +136,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mC5-jp-l1H" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yPm-cF-kVd">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="yPm-cF-kVd">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
