@@ -16,6 +16,7 @@
 		42DC0E3123D7B2D400922F59 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DC0E3023D7B2D400922F59 /* LoginViewController.swift */; };
 		42DC0E3423D7B56000922F59 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DC0E3323D7B56000922F59 /* Bearer.swift */; };
 		42DC0E3623D7B59300922F59 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DC0E3523D7B59300922F59 /* User.swift */; };
+		42DC0E3923D7B77800922F59 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DC0E3823D7B77800922F59 /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		42DC0E3023D7B2D400922F59 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		42DC0E3323D7B56000922F59 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		42DC0E3523D7B59300922F59 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		42DC0E3823D7B77800922F59 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		42DC0E1623D7B0CA00922F59 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
+				42DC0E3723D7B75200922F59 /* Model Controllers */,
 				42DC0E3223D7B54F00922F59 /* Model */,
 				42DC0E2D23D7B14A00922F59 /* View Controllers */,
 				42DC0E2C23D7B13B00922F59 /* Resources */,
@@ -106,6 +109,14 @@
 				42DC0E3523D7B59300922F59 /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		42DC0E3723D7B75200922F59 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				42DC0E3823D7B77800922F59 /* GigController.swift */,
+			);
+			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42DC0E3423D7B56000922F59 /* Bearer.swift in Sources */,
+				42DC0E3923D7B77800922F59 /* GigController.swift in Sources */,
 				42DC0E3123D7B2D400922F59 /* LoginViewController.swift in Sources */,
 				42DC0E3623D7B59300922F59 /* User.swift in Sources */,
 				42DC0E1823D7B0CA00922F59 /* AppDelegate.swift in Sources */,
