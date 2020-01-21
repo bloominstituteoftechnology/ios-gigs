@@ -56,9 +56,9 @@ class GigController {
     }
     
     func signIn(with user: User, completion: @escaping (Error?) -> ()) {
-        let signUpURL = baseUrl.appendingPathComponent("users/signup")
+        let signInURL = baseUrl.appendingPathComponent("users/login")
         
-        var request = URLRequest(url: signUpURL)
+        var request = URLRequest(url: signInURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
