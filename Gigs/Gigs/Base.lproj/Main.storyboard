@@ -89,6 +89,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vm-R1-fSv">
                                         <rect key="frame" x="40" y="123" width="318" height="30"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="SignUpLoginButtonPressed:" destination="hhI-jA-G0w" eventType="touchUpInside" id="BcQ-Pb-CfA"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -110,9 +113,9 @@
                         <viewLayoutGuide key="safeArea" id="zFt-hV-2hb"/>
                     </view>
                     <connections>
-                        <outlet property="SignOnLoginSegmentedControl" destination="Z4P-45-hZS" id="RhU-HO-eyc"/>
                         <outlet property="passwordTextField" destination="ekg-Tv-zcz" id="fKi-Bk-HDL"/>
-                        <outlet property="signOnLoginButton" destination="7vm-R1-fSv" id="S9W-On-8Xe"/>
+                        <outlet property="signUpLoginButton" destination="7vm-R1-fSv" id="S9W-On-8Xe"/>
+                        <outlet property="signUpLoginSegmenetedControl" destination="Z4P-45-hZS" id="RhU-HO-eyc"/>
                         <outlet property="usernameTextField" destination="wOJ-K8-ijv" id="xQc-3R-Yms"/>
                     </connections>
                 </viewController>

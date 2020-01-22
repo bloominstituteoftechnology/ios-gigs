@@ -11,11 +11,11 @@ import UIKit
 class LoginViewController: UIViewController {
 
     // MARK: - IBOutlets
-    @IBOutlet weak var SignOnLoginSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var signUpLoginSegmenetedControl: UISegmentedControl!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var signOnLoginButton: UIButton!
+    @IBOutlet weak var signUpLoginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +23,13 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    // MARK: - IBActions
+        // MARK: - IBActions
+
     @IBAction func loginSegementedState(_ sender: UISegmentedControl) {
     }
     
+    @IBAction func SignUpLoginButtonPressed(_ sender: UIButton) {
+    }
     
 
     /*
