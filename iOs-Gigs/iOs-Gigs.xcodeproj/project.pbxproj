@@ -14,6 +14,9 @@
 		E045EAC523D824C700C533EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E045EAC323D824C700C533EA /* LaunchScreen.storyboard */; };
 		E045EACD23D825CF00C533EA /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045EACC23D825CF00C533EA /* GigsTableViewController.swift */; };
 		E045EACF23D8264D00C533EA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045EACE23D8264D00C533EA /* LoginViewController.swift */; };
+		E045EAD123D829C400C533EA /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045EAD023D829C400C533EA /* Bearer.swift */; };
+		E045EAD423D82A4F00C533EA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045EAD323D82A4F00C533EA /* User.swift */; };
+		E045EAD923D82B2400C533EA /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045EAD823D82B2400C533EA /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		E045EAC623D824C700C533EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E045EACC23D825CF00C533EA /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		E045EACE23D8264D00C533EA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E045EAD023D829C400C533EA /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		E045EAD323D82A4F00C533EA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E045EAD823D82B2400C533EA /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +64,59 @@
 		E045EAB723D824C200C533EA /* iOs-Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				E045EACC23D825CF00C533EA /* GigsTableViewController.swift */,
-				E045EACE23D8264D00C533EA /* LoginViewController.swift */,
-				E045EAB823D824C200C533EA /* AppDelegate.swift */,
-				E045EABA23D824C200C533EA /* SceneDelegate.swift */,
+				E045EAD223D82A3F00C533EA /* Models */,
+				E045EADA23D82B3600C533EA /* Model Controller */,
+				E045EAD523D82A8A00C533EA /* Views */,
+				E045EAD623D82A9200C533EA /* Controllers */,
+				E045EAD723D82AAE00C533EA /* Resources */,
 				E045EABE23D824C200C533EA /* Main.storyboard */,
 				E045EAC123D824C700C533EA /* Assets.xcassets */,
 				E045EAC323D824C700C533EA /* LaunchScreen.storyboard */,
 				E045EAC623D824C700C533EA /* Info.plist */,
 			);
 			path = "iOs-Gigs";
+			sourceTree = "<group>";
+		};
+		E045EAD223D82A3F00C533EA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E045EAD023D829C400C533EA /* Bearer.swift */,
+				E045EAD323D82A4F00C533EA /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E045EAD523D82A8A00C533EA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E045EACE23D8264D00C533EA /* LoginViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E045EAD623D82A9200C533EA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E045EACC23D825CF00C533EA /* GigsTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E045EAD723D82AAE00C533EA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E045EAB823D824C200C533EA /* AppDelegate.swift */,
+				E045EABA23D824C200C533EA /* SceneDelegate.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E045EADA23D82B3600C533EA /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E045EAD823D82B2400C533EA /* GigController.swift */,
+			);
+			path = "Model Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +190,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E045EAD123D829C400C533EA /* Bearer.swift in Sources */,
+				E045EAD923D82B2400C533EA /* GigController.swift in Sources */,
 				E045EACF23D8264D00C533EA /* LoginViewController.swift in Sources */,
+				E045EAD423D82A4F00C533EA /* User.swift in Sources */,
 				E045EAB923D824C200C533EA /* AppDelegate.swift in Sources */,
 				E045EABB23D824C200C533EA /* SceneDelegate.swift in Sources */,
 				E045EACD23D825CF00C533EA /* GigsTableViewController.swift in Sources */,
