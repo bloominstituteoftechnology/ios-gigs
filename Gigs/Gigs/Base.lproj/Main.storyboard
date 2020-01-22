@@ -22,16 +22,69 @@
             </objects>
             <point key="canvasLocation" x="296" y="-623"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="b3A-bQ-cZh">
             <objects>
-                <viewController id="7bb-49-Gji" sceneMemberID="viewController">
+                <viewController id="7bb-49-Gji" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NCM-Yv-5sO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="jXR-fe-6gy">
+                                <rect key="frame" x="16" y="84" width="382" height="218"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xEK-WH-bnF">
+                                        <rect key="frame" x="123.5" y="0.0" width="135" height="32"/>
+                                        <segments>
+                                            <segment title="Sign Up"/>
+                                            <segment title="Sign In"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="signInTypeChanged:" destination="7bb-49-Gji" eventType="valueChanged" id="Tk7-Q0-gus"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DHu-qb-2ig">
+                                        <rect key="frame" x="0.0" y="54" width="382" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JG1-mI-cz0">
+                                        <rect key="frame" x="0.0" y="111" width="382" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2r-Iu-hMs">
+                                        <rect key="frame" x="40" y="168" width="302" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Vvt-Aa-TjU"/>
+                                        </constraints>
+                                        <state key="normal" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="7bb-49-Gji" eventType="touchUpInside" id="bbX-xL-EOd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="y2r-Iu-hMs" secondAttribute="trailing" constant="40" id="FIq-OW-Hbu"/>
+                                    <constraint firstAttribute="trailing" secondItem="JG1-mI-cz0" secondAttribute="trailing" id="g2A-tU-w1H"/>
+                                    <constraint firstAttribute="trailing" secondItem="DHu-qb-2ig" secondAttribute="trailing" id="h5B-zo-DkI"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="jXR-fe-6gy" firstAttribute="centerX" secondItem="NCM-Yv-5sO" secondAttribute="centerX" id="68f-qd-6Ai"/>
+                            <constraint firstItem="F7q-xI-Umd" firstAttribute="trailing" secondItem="jXR-fe-6gy" secondAttribute="trailing" constant="16" id="KE1-jd-GhQ"/>
+                            <constraint firstItem="jXR-fe-6gy" firstAttribute="top" secondItem="F7q-xI-Umd" secondAttribute="top" constant="40" id="fBG-Tw-b9M"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="F7q-xI-Umd"/>
                     </view>
+                    <connections>
+                        <outlet property="loginTypeSegmentedControl" destination="xEK-WH-bnF" id="Jem-R4-ihM"/>
+                        <outlet property="passwordTextField" destination="JG1-mI-cz0" id="N90-mn-Nmt"/>
+                        <outlet property="signInButton" destination="y2r-Iu-hMs" id="4Jo-3x-A4E"/>
+                        <outlet property="usernameTextField" destination="DHu-qb-2ig" id="aMt-OO-gwx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dsh-2v-loz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -77,6 +130,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="94i-rf-2Fr"/>
+                    <connections>
+                        <segue destination="7bb-49-Gji" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="HS3-go-0NO"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6YX-lI-gO6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
