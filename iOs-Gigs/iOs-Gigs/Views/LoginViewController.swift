@@ -8,8 +8,15 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+enum LoginType {
+    case signUp
+    case signIn
+}
 
+class LoginViewController: UIViewController, UITextFieldDelegate {
+
+    var gigController: GigController!
+    var loginType = LoginType.signUp
     //IB Outlets
     
     @IBOutlet weak var signInSegmentSwitch: UISegmentedControl!
@@ -19,7 +26,10 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        signinBtn.backgroundColor = UIColor(hue: 190/360, saturation: 70/100, brightness: 80/100, alpha: 1.0)
+                   signinBtn.tintColor = .white
+                   signinBtn.layer.cornerRadius = 8.0
         // Do any additional setup after loading the view.
     }
     
@@ -35,11 +45,59 @@ class LoginViewController: UIViewController {
     }
     */
     
-    //IB Actions
-    @IBAction func signInSegmentSwitched(_ sender: Any) {
-    }
+    //IB Actions\
     
-    @IBAction func loginBtnPressed(_ sender: Any) {
+       @IBAction func loginBtnPressed(_ sender: Any) {
+        // perform login or sign up operation based on loginType
+               guard let gigController = gigController else { return }
+               guard let username = usernameTxtFld.text,
+                   !username.isEmpty,
+                   let password = passwordTxtFld.text,
+                   !password.isEmpty else { return }
+              
+               let user = User(username: username, password: password)
+               
+               if loginType == .signUp {
+                   gigController.signUp(with: user) { (error) in
+                       if let error = error {
+                           print("Error Occured during signup: \(error)")
+                       } else {
+                           DispatchQueue.main.async {
+                               let alertController = UIAlertController(title: "Sign Up Successful", message: "Now please sign in", preferredStyle: .alert)
+                               let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                               alertController.addAction(alertAction)
+                               self.present(alertController, animated: true) {
+                                   self.loginType = .signIn
+                                   self.signInSegmentSwitch.selectedSegmentIndex = 1
+                                   self.signinBtn.setTitle("Sign In", for: .normal)
+                               }
+                           }
+                       }
+                   }
+               } else {
+                   gigController.signIn(with: user) { (error) in
+                       if let error = error {
+                           print("Error Occured during sign in: \(error)")
+                       } else {
+                           DispatchQueue.main.async {
+                               self.dismiss(animated: true, completion: nil)
+                           }
+                       }
+                   }
+               }
+       }
+    
+    
+    @IBAction func signInSegmentSwitched(_ sender: UISegmentedControl) {
+        // switch UI between login types
+               if sender.selectedSegmentIndex == 0 {
+                   loginType = .signUp
+                   signinBtn.setTitle("Sign Up", for: .normal)
+               } else {
+                   loginType = .signIn
+                   signinBtn.setTitle("Sign In", for: .normal)
+               }
     }
+   
     
 }
