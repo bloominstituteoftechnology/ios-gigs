@@ -10,11 +10,19 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    //IB Outlets
+    
+    @IBOutlet weak var signInSegmentSwitch: UISegmentedControl!
+    @IBOutlet weak var usernameTxtFld: UITextField!
+    @IBOutlet weak var passwordTxtFld: UITextField!
+    @IBOutlet weak var signinBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    
     
 
     /*
@@ -26,5 +34,12 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    //IB Actions
+    @IBAction func signInSegmentSwitched(_ sender: Any) {
+    }
+    
+    @IBAction func loginBtnPressed(_ sender: Any) {
+    }
+    
 }
