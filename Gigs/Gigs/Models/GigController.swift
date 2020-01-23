@@ -18,9 +18,9 @@ class GigController {
     
     // MARK: - Properties
 
-    private let baseUrl = URL(string: "https://lambdagigs.vapor.cloud/api")!
-    
+    var gigs: [Gig] = []
     var bearer: Bearer?
+    private let baseUrl = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
     func signUp(with user: User, completion: @escaping (Error?) -> ()) {
         let signUpURL = baseUrl.appendingPathComponent("users/signup")
