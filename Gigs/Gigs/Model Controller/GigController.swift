@@ -46,13 +46,12 @@ class GigController {
                 response.statusCode != 200 {
                 completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
             }
+            
             if let error = error {
                 completion(error)
                 return
             }
-            
             completion(nil)
-            
         }.resume()
     }
     

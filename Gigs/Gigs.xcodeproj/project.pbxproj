@@ -17,6 +17,7 @@
 		6341E4B023D826DC0026ACA5 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341E4AF23D826DC0026ACA5 /* Bearer.swift */; };
 		6341E4B323D827620026ACA5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341E4B223D827620026ACA5 /* User.swift */; };
 		6341E4B523D827D00026ACA5 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341E4B423D827D00026ACA5 /* GigController.swift */; };
+		6341E4BA23DA1E3C0026ACA5 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341E4B923DA1E3C0026ACA5 /* GigDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		6341E4AF23D826DC0026ACA5 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		6341E4B223D827620026ACA5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6341E4B423D827D00026ACA5 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		6341E4B923DA1E3C0026ACA5 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,14 +66,14 @@
 		6341E49523D80A500026ACA5 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
+				6341E4A423D80A5B0026ACA5 /* Info.plist */,
 				6341E49623D80A500026ACA5 /* AppDelegate.swift */,
 				6341E49823D80A500026ACA5 /* SceneDelegate.swift */,
-				6341E49C23D80A500026ACA5 /* Main.storyboard */,
 				6341E49F23D80A5B0026ACA5 /* Assets.xcassets */,
 				6341E4A123D80A5B0026ACA5 /* LaunchScreen.storyboard */,
-				6341E4A423D80A5B0026ACA5 /* Info.plist */,
-				6341E4B123D826EC0026ACA5 /* Models */,
+				6341E49C23D80A500026ACA5 /* Main.storyboard */,
 				6341E4B623D827DA0026ACA5 /* Model Controller */,
+				6341E4B123D826EC0026ACA5 /* Models */,
 				6341E4AE23D826BD0026ACA5 /* View Controllers */,
 			);
 			path = Gigs;
@@ -80,6 +82,7 @@
 		6341E4AE23D826BD0026ACA5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6341E4B923DA1E3C0026ACA5 /* GigDetailViewController.swift */,
 				6341E4AA23D81B9F0026ACA5 /* GigsTableViewController.swift */,
 				6341E4AC23D81E160026ACA5 /* LoginViewController.swift */,
 			);
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6341E4B023D826DC0026ACA5 /* Bearer.swift in Sources */,
+				6341E4BA23DA1E3C0026ACA5 /* GigDetailViewController.swift in Sources */,
 				6341E4B523D827D00026ACA5 /* GigController.swift in Sources */,
 				6341E4AD23D81E160026ACA5 /* LoginViewController.swift in Sources */,
 				6341E4B323D827620026ACA5 /* User.swift in Sources */,

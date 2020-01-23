@@ -13,7 +13,7 @@ enum LoginType {
     case signIn
 }
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - IBOutlets
     @IBOutlet weak var loginTypeSegmentedControl: UISegmentedControl!
@@ -58,7 +58,8 @@ class LoginViewController: UIViewController {
         let user = User(username: username, password: password)
         
         if loginType == .signUp {
-            gigController.signUp(with: user) { (error) in
+            gigController.signUp(with: user) { error in
+               
                 if let error = error {
                     print("Error occured during sign up: \(error)")
                 } else {
@@ -68,17 +69,17 @@ class LoginViewController: UIViewController {
                         alertController.addAction(alertAction)
                        
                         self.present(alertController, animated: true) {
+                           
                             self.loginType = .signIn
                             self.loginTypeSegmentedControl.selectedSegmentIndex = 1
                             self.signUpSignInButton.setTitle("Sign In", for: .normal)
-                            
                 }
             }
         }
         
     }
         } else {
-            gigController.signIn(with: user) { (error) in
+            gigController.signIn(with: user) { error in
                 if let error = error {
                 print("Error occured during sign in: \(error)")
             } else {
