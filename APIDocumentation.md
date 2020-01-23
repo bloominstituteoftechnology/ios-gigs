@@ -60,3 +60,107 @@ The `token` may be used to authenticate a request.
 }
 ```
 
+---
+### Get All Gigs
+
+
+**Endpoint:** `/gigs/`
+
+**Method:** `GET`
+
+**Auth Required:** YES
+
+**Required Header:** 
+
+| Key | Example Value | Description |
+|---|---|---|
+| `Authorization` | `Bearer fsMd9aHpoJ62vo4OvLC79MDqd38oE2ihkx6A1KeFwek` | "Bearer " + The token returned from logging in | 
+
+**Description:** Returns an array of `Gig` JSON objects.
+
+#### Success Response
+
+**Code:** `200 OK`
+
+**Response:** 
+
+``` JSON
+[
+  {
+    "title": "Test Gig",
+    "dueDate": "2019-05-10T05:29:01Z",
+    "description": "This is just a test"
+  },
+  ...
+]
+```
+
+#### Not Authenticated Response
+
+**Code:** `401 Unauthorized`
+
+**Description:** The user has not included their token in the `Authorization` header.
+
+**Response:**
+
+``` JSON
+{
+  "error": true,
+  "reason": "User not authenticated."
+}
+```
+
+---
+### Create a Gig
+
+**Endpoint:** `/gigs/`
+
+**Method:** `POST`
+
+**Auth Required:** YES
+
+**Required Header:** 
+
+| Key | Example Value | Description |
+|---|---|---|
+| `Authorization` | `Bearer fsMd9aHpoJ62vo4OvLC79MDqd38oE2ihkx6A1KeFwek` | "Bearer " + The token returned from logging in | 
+
+**Description:** Creates a Gig in the API. Your request body should be in the following format:
+
+``` JSON
+{
+  "title": "Test Gig",
+  "description": "This is just a test",
+  "dueDate": "2019-05-10T05:29:01Z"
+}
+```
+
+#### Success Response
+
+**Code:** `200 OK`
+
+**Response:** 
+
+``` JSON
+{
+  "title": "Test Gig",
+  "description": "This is just a test",
+  "dueDate": "2019-05-10T05:29:01Z"
+}
+```
+
+#### Not Authenticated Response
+
+**Code:** `401 Unauthorized`
+
+**Description:** The user has not included their token in the `Authorization` header.
+
+**Response:**
+
+``` JSON
+{
+  "error": true,
+  "reason": "User not authenticated."
+}
+```
+
