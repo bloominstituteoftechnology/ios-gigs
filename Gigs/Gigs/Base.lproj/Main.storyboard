@@ -64,13 +64,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zmH-Ce-Ym2">
-                                <rect key="frame" x="8" y="52" width="398" height="153"/>
+                                <rect key="frame" x="8" y="52" width="398" height="173"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Z4P-45-hZS">
-                                        <rect key="frame" x="133.5" y="0.0" width="131" height="32"/>
+                                        <rect key="frame" x="131.5" y="0.0" width="135" height="32"/>
                                         <segments>
-                                            <segment title="First"/>
-                                            <segment title="Second"/>
+                                            <segment title="Sign Up"/>
+                                            <segment title="Sign In"/>
                                         </segments>
                                         <connections>
                                             <action selector="loginSegementedState:" destination="hhI-jA-G0w" eventType="valueChanged" id="6CE-kh-zVa"/>
@@ -87,8 +87,11 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vm-R1-fSv">
-                                        <rect key="frame" x="40" y="123" width="318" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="40" y="123" width="318" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="JAo-5a-C8V"/>
+                                        </constraints>
+                                        <state key="normal" title="Sign Up"/>
                                         <connections>
                                             <action selector="SignUpLoginButtonPressed:" destination="hhI-jA-G0w" eventType="touchUpInside" id="BcQ-Pb-CfA"/>
                                         </connections>
@@ -113,9 +116,9 @@
                         <viewLayoutGuide key="safeArea" id="zFt-hV-2hb"/>
                     </view>
                     <connections>
+                        <outlet property="loginTypeSegmentedControl" destination="Z4P-45-hZS" id="RhU-HO-eyc"/>
                         <outlet property="passwordTextField" destination="ekg-Tv-zcz" id="fKi-Bk-HDL"/>
-                        <outlet property="signUpLoginButton" destination="7vm-R1-fSv" id="S9W-On-8Xe"/>
-                        <outlet property="signUpLoginSegmenetedControl" destination="Z4P-45-hZS" id="RhU-HO-eyc"/>
+                        <outlet property="signUpSignInButton" destination="7vm-R1-fSv" id="S9W-On-8Xe"/>
                         <outlet property="usernameTextField" destination="wOJ-K8-ijv" id="xQc-3R-Yms"/>
                     </connections>
                 </viewController>

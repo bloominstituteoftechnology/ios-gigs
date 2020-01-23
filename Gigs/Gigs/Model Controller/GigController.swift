@@ -56,7 +56,7 @@ class GigController {
         }.resume()
     }
     
-    func login(with user: User, completion: @escaping (Error?) -> ()) {
+    func signIn(with user: User, completion: @escaping (Error?) -> ()) {
         
         let loginURL = baseURL.appendingPathComponent("/users/login")
         
