@@ -2,7 +2,7 @@
 //  LoginViewController.swift
 //  iOS-Gigs
 //
-//  Created by Aaron Cleveland on 1/15/20.
+//  Created by Aaron Cleveland on 1/22/20.
 //  Copyright © 2020 Aaron Cleveland. All rights reserved.
 //
 
@@ -15,42 +15,42 @@ enum LoginType {
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var signButtonLabel: UIButton!
     @IBOutlet weak var segmentControl: UISegmentedControl!
+    @IBOutlet weak var usernameLabel: UITextField!
+    @IBOutlet weak var passwordLabel: UITextField!
+    @IBOutlet weak var buttonLabel: UIButton!
     
-    var auth: Auth?
+    var gigController: GigController!
     var loginType = LoginType.signUp
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        // Do any additional setup after loading the view.
     }
     
-    @IBAction func segmentControllerTapped(_ sender: UISegmentedControl) {
+    @IBAction func segmentControlTapped(_ sender: Any) {
         if segmentControl.selectedSegmentIndex == 0 {
             loginType = .signUp
-            signButtonLabel.setTitle("Sign Up", for: .normal)
+            buttonLabel.setTitle("Sign Up", for: .normal)
         } else {
             loginType = .signIn
-            signButtonLabel.setTitle("Sign In", for: .normal)
+            buttonLabel.setTitle("Sign In", for: .normal)
         }
     }
     
-    @IBAction func signButtonTapped(_ sender: UIButton) {
-        guard let auth = auth else { return }
-        if let username = usernameTextField.text,
+    @IBAction func buttonTapped(_ sender: Any) {
+        guard let gigController = gigController else { return }
+        if let username = usernameLabel.text,
             !username.isEmpty,
-            let password = passwordTextField.text,
+            let password = passwordLabel.text,
             !password.isEmpty {
             let user = User(username: username, password: password)
             
             if loginType == .signUp {
-                //perform sign up
-                auth.signUp(with: user) { error in
+                gigController.signUp(with: user) { (error) in
                     if let error = error {
-                        print("error occured during sign up: \(error)")
+                        print("Error occured during signup: \(error)")
                     } else {
                         DispatchQueue.main.async {
                             let alertController = UIAlertController(title: "Sign Up Successful", message: "Now please login.", preferredStyle: .alert)
@@ -59,14 +59,13 @@ class LoginViewController: UIViewController {
                             self.present(alertController, animated: true) {
                                 self.loginType = .signIn
                                 self.segmentControl.selectedSegmentIndex = 1
-                                self.signButtonLabel.setTitle("Sign In", for: .normal)
+                                self.buttonLabel.setTitle("Sign In", for: .normal)
                             }
                         }
                     }
                 }
             } else {
-                //perform sign in
-                auth.signIn(with: user) { error in
+                gigController.signIn(with: user) { (error) in
                     if let error = error {
                         print("Error occured \(error)")
                     } else {
@@ -78,15 +77,4 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
