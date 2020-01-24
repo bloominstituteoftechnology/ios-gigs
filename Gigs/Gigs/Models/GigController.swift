@@ -117,9 +117,9 @@ class GigController {
     
     // MARK: - Fetch All Gigs
 
-    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+    func fetchAllGigs(completion: @escaping (NetworkError?) -> Void) {
         guard let bearer = bearer else {
-            completion(.failure(.noAuth))
+            completion(.noAuth)
             return
         }
         
@@ -132,18 +132,18 @@ class GigController {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print("Error receiving gigs data: \(error)")
-                completion(.failure(.otherError))
+                completion(.otherError)
                 return
             }
             
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401 {
-                completion(.failure(.badAuth))
+                completion(.badAuth)
                 return
             }
             
             guard let data = data else {
-                completion(.failure(.badData))
+                completion(.badData)
                 return
             }
             
@@ -152,19 +152,19 @@ class GigController {
             do {
                 let allGigs = try decoder.decode([Gig].self, from: data)
                 self.gigs = allGigs
-                completion(.success(allGigs))
+                completion(nil)
             } catch {
                 print("Error decoding gig objects: \(error)")
-                completion(.failure(.decodingError))
+                completion(.decodingError)
             }
         }.resume()
     }
     
     // MARK: - Create Gig
 
-    func createGig(_ gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+    func createGig(_ gig: Gig, completion: @escaping (NetworkError?) -> Void) {
         guard let bearer = bearer else {
-            completion(.failure(.noAuth))
+            completion(.noAuth)
             return
         }
         
@@ -173,32 +173,34 @@ class GigController {
         var request = URLRequest(url: createGigUrl)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
         do {
             let jsonData = try jsonEncoder.encode(gig)
             request.httpBody = jsonData
         } catch {
-            print("Error encoding user object: \(error)")
-            completion(.failure(.encodingError))
+            print("Error encoding gig object: \(error)")
+            completion(.encodingError)
             return
         }
         
         URLSession.shared.dataTask(with: request) { _, response, error in
             if let error = error {
-                print("Error receiving gigs data: \(error)")
-                completion(.failure(.otherError))
+                print("Error posting gig data: \(error)")
+                completion(.otherError)
                 return
             }
             
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401 {
-                completion(.failure(.badAuth))
+                completion(.badAuth)
                 return
             }
             
             self.gigs.append(gig)
-            completion(.success(gig))
+            completion(nil)
         }.resume()
     }
 }

@@ -41,15 +41,12 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Private Methods
     
     private func fetchGigs() {
-        gigController.fetchAllGigs { result in
-            do {
-                let _ = try result.get()
+        gigController.fetchAllGigs { error in
+            if let error = error {
+                print("Error fetching gigs: \(error)")
+            } else {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                }
-            } catch {
-                if let error = error as? NetworkError {
-                    print("Error fetching gigs: \(error)")
                 }
             }
         }

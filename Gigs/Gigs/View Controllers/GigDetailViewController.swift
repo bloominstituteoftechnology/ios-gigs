@@ -30,15 +30,12 @@ class GigDetailViewController: UIViewController {
         let dueDate = datePicker.date
         let newGig = Gig(title: title, description: description, dueDate: dueDate)
         
-        gigController.createGig(newGig) { result in
-            do {
-                let _ = try result.get()
+        gigController.createGig(newGig) { error in
+            if let error = error {
+                print("Error creating gig: \(error)")
+            } else {
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
-                }
-            } catch {
-                if let error = error as? NetworkError {
-                    print("Error fetching gigs: \(error)")
                 }
             }
         }
@@ -48,6 +45,8 @@ class GigDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = ""
+        self.descriptionTextView.text = ""
         updateViews()
     }
     
@@ -56,12 +55,12 @@ class GigDetailViewController: UIViewController {
     private func updateViews() {
         DispatchQueue.main.async {
             if let gig = self.gig {
-                self.navigationController?.title = gig.title
+                self.navigationItem.title = gig.title
                 self.jobTitleTextField.text = gig.title
                 self.datePicker.date = gig.dueDate
                 self.descriptionTextView.text = gig.description
             } else {
-                self.navigationController?.title = "New Gig"
+                self.navigationItem.title = "New Gig"
             }
         }
     }
