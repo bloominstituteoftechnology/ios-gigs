@@ -12,33 +12,57 @@ class GigDetailViewController: UIViewController {
 
     // MARK: - Properties
 
+    var gigController: GigController!
+    var gig: Gig?
+    
     @IBOutlet weak var jobTitleTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextView: UITextView!
     
-    // MARK: - Properties
+    // MARK: - Actions
 
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        guard let title = jobTitleTextField.text,
+            !title.isEmpty,
+            let description = descriptionTextView.text,
+            !description.isEmpty else { return }
         
+        let dueDate = datePicker.date
+        let newGig = Gig(title: title, description: description, dueDate: dueDate)
+        
+        gigController.createGig(newGig) { result in
+            do {
+                let _ = try result.get()
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            } catch {
+                if let error = error as? NetworkError {
+                    print("Error fetching gigs: \(error)")
+                }
+            }
+        }
     }
     
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateViews()
     }
     
+    // MARK: - Update Views
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func updateViews() {
+        DispatchQueue.main.async {
+            if let gig = self.gig {
+                self.navigationController?.title = gig.title
+                self.jobTitleTextField.text = gig.title
+                self.datePicker.date = gig.dueDate
+                self.descriptionTextView.text = gig.description
+            } else {
+                self.navigationController?.title = "New Gig"
+            }
+        }
     }
-    */
-
 }
