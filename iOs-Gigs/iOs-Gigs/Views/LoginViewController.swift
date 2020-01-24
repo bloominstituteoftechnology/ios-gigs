@@ -13,7 +13,7 @@ enum LoginType {
     case signIn
 }
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController {
 
     var gigController: GigController!
     var loginType = LoginType.signUp

@@ -21,7 +21,6 @@ class GigController {
     var bearer: Bearer?
     
      // create function for sign up
-    //    func signUp(with user: User, completion: @escaping (Error?) -> ()) - () same as void
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         let signUpURL = baseUrl.appendingPathComponent("users/signup")
         
@@ -91,7 +90,7 @@ class GigController {
             do {
                 self.bearer = try decoder.decode(Bearer.self, from: data)
             } catch {
-                print("Error Decoding bearer object: \(error)")
+                print("Error decoding bearer object: \(error)")
                 completion(error)
                 return
             }
