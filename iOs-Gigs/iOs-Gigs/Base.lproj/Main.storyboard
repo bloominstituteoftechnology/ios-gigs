@@ -67,7 +67,7 @@
         <!--New Gig-->
         <scene sceneID="EcS-KY-TwA">
             <objects>
-                <viewController id="NpA-ih-IBO" customClass="DetailsViewController" customModule="iOs_Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NpA-ih-IBO" customClass="GigDetailViewController" customModule="iOs_Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TVO-4O-YGU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,7 +109,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fqI-FO-hQ4">
-                                <rect key="frame" x="0.0" y="259.5" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="260" width="414" height="216"/>
                             </datePicker>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -131,9 +131,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YZH-I5-Pp3"/>
                     </view>
-                    <navigationItem key="navigationItem" title="New Gig" id="iNC-bq-Ark">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="Dog-6L-tuy"/>
+                    <navigationItem key="navigationItem" title="New Gig" id="pvJ-CA-hfO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="b3a-Jh-mkC">
+                            <connections>
+                                <action selector="saveBtnWasPressed:" destination="NpA-ih-IBO" id="Br4-9V-T7m"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="fqI-FO-hQ4" id="z9x-wp-Sxg"/>
+                        <outlet property="descriptionTxtView" destination="Vgh-en-eXY" id="UIs-e2-7Px"/>
+                        <outlet property="jobTitleTxtField" destination="4Ft-yu-uSF" id="xzA-8g-FXA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ybd-j3-KJa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -174,7 +183,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHI-Zy-9rN">
                                         <rect key="frame" x="0.0" y="186" width="374" height="36"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                        <state key="normal" title="Signin Button"/>
+                                        <state key="normal" title="Sign Up"/>
                                         <connections>
                                             <action selector="loginBtnPressed:" destination="fdQ-Fx-gqI" eventType="touchUpInside" id="tvm-Ea-5YX"/>
                                         </connections>
