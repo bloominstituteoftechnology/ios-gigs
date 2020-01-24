@@ -84,7 +84,7 @@ class GigsTableViewController: UITableViewController {
                   loginVC.gigController = gigController
             }
         }
-        else if segue.identifier == "" {
+        else if segue.identifier == "ShowDetails" {
             if let indexPath = tableView.indexPathForSelectedRow,
             let gigs = gigs,
                 let loginVC = segue.destination as? GigDetailViewController {
