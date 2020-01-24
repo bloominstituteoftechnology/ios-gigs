@@ -13,9 +13,19 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case decodingError
+}
+
 class GigController {
     
     // MARK: - Properties
+    
+    var gigs: [Gig] = []
     
     var bearer: Bearer?
     
@@ -98,6 +108,41 @@ class GigController {
             
             completion(nil)
             
+        }.resume()
+    }
+    
+    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+           guard let bearer = bearer else {
+              //if you have a completion handler you must call it before the full scope.
+               completion(.failure(.noAuth))
+               return
+           }
+        
+        let allGigsUrl = baseURL.appendingPathComponent("/gigs/")
+        var request = URLRequest(url: allGigsUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+            }
+            guard error == nil else {
+                completion(.failure(.otherError))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            let decoder = JSONDecoder()
+            do {
+                let animalNames = try decoder.decode([String].self, from: data)
+                completion(.success(animalNames))
+            } catch {
+                completion(.failure(.decodingError))
+            }
         }.resume()
     }
 }
