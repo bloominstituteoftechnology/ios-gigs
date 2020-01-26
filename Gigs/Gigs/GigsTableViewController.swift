@@ -9,92 +9,105 @@
 import UIKit
 
 class GigsTableViewController: UITableViewController {
-     
+    
+    
     let gigController = GigController()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
-   override func viewDidAppear(_ animated: Bool) {
-         super.viewDidAppear(animated)
-         
-         // transition to login view if conditions require
-         if gigController.bearer == nil {
-             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
-         }
     
-    // TODO: fetch gigs here
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // transition to login view if conditions require
+        if gigController.bearer == nil {
+            performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+        }
+        
+        // TODO: fetch gigs here
+        gigController.fetchAllGigs { (result) in
+            do {
+                self.gigController.gigs = [try result.get()]
+            } catch {
+                if let error = error as? NetworkError {
+                    switch error {
+                    case .badAuth:
+                        print("Error: Bad authorization")
+                    case .badData:
+                        print("Error: Bad data")
+                    case .decodingError:
+                        print("Error: Decoding error")
+                    case .noAuth:
+                        print("Error: No authorization")
+                    case .otherError:
+                        print("Error: Other error")
+                    }
+                }
+            }
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
     
-     }
-
     // MARK: - Table view data source
-
-
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return gigController.gigs.count
+        
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        guard indexPath.row < gigController.gigs.count else {return cell}
+        
+        let gig = gigController.gigs[indexPath.row]
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        cell.textLabel?.text = gig.title
+        
+        cell.detailTextLabel?.text = dateFormatter.string(from: gig.dueDate)
+        
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      if segue.identifier == "LoginViewModalSegue" {
-                   // inject dependencies
-                   if let loginVC = segue.destination as? LoginViewController {
-                       loginVC.gigController = gigController
-                   }
-               }
+        if segue.identifier == "LoginViewModalSegue" {
+            // inject dependencies
+            if let loginVC = segue.destination as? LoginViewController {
+                loginVC.gigController = gigController
+            }
+        }
+        if segue.identifier == "ShowGig" {
+            guard let detailVC = segue.destination as? GigDetailViewController else {
+                return
+            }
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            
+            guard indexPath.row < gigController.gigs.count else {return}
+            detailVC.gig = gigController.gigs[indexPath.row]
+            detailVC.gigController = gigController
+        }
+        
+        if segue.identifier == "AddGig" {
+            guard let detailVC = segue.destination as? GigDetailViewController else {
+                return
+            }
+            
+            detailVC.gigController = gigController
+        }
+        
     }
-    
-
 }

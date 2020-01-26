@@ -7,20 +7,74 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="AF1-h3-ASV">
+        <!--Gig Detail View Controller-->
+        <scene sceneID="5zP-f7-3W0">
             <objects>
-                <viewController id="PG0-dt-hlb" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0CL-kF-b1N">
+                <viewController id="0yN-94-5pc" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JOV-WJ-aC7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YsU-Z8-Jx1">
+                                <rect key="frame" x="159" y="169" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="FTc-vo-TcX">
+                                <rect key="frame" x="0.0" y="298" width="414" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KOd-FZ-srL">
+                                <rect key="frame" x="87" y="626" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Job Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ak6-zM-bBF">
+                                <rect key="frame" x="174" y="140" width="67" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LvS-1f-wGy">
+                                <rect key="frame" x="161" y="597" width="92" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25J-ch-1xt">
+                                <rect key="frame" x="171" y="269" width="72" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="SoN-vb-6z2"/>
+                        <viewLayoutGuide key="safeArea" id="Bzo-ZZ-wcg"/>
                     </view>
+                    <navigationItem key="navigationItem" id="2Ep-Db-OuP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="0Ss-c6-eyy">
+                            <connections>
+                                <action selector="saveButton:" destination="0yN-94-5pc" id="SZl-fB-aeF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="FTc-vo-TcX" id="kBY-4m-CYk"/>
+                        <outlet property="desText" destination="KOd-FZ-srL" id="pBi-Aj-H7X"/>
+                        <outlet property="jobText" destination="YsU-Z8-Jx1" id="2c8-kf-3pz"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QEl-9z-EuY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lS8-uc-baM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="296" y="-623"/>
+            <point key="canvasLocation" x="296" y="-741"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="b3A-bQ-cZh">
@@ -122,6 +176,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="0yN-94-5pc" kind="show" identifier="ShowGig" id="8F3-YC-oeX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -129,7 +186,13 @@
                             <outlet property="delegate" destination="8Ga-UW-Ayg" id="an7-44-dSe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="94i-rf-2Fr"/>
+                    <navigationItem key="navigationItem" id="94i-rf-2Fr">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="31o-fF-WpP">
+                            <connections>
+                                <segue destination="0yN-94-5pc" kind="show" identifier="AddGig" id="ga4-2y-qfi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="7bb-49-Gji" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="HS3-go-0NO"/>
                     </connections>
@@ -157,4 +220,7 @@
             <point key="canvasLocation" x="-1552.1739130434785" y="-970.3125"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="8F3-YC-oeX"/>
+    </inferredMetricsTieBreakers>
 </document>
