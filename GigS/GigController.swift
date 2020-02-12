@@ -19,7 +19,7 @@ class GigController {
     var bearer: Bearer?
     
     
- private let baseURL = URL(string: " https://lambdagigs.vapor.cloud/api")!
+ private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
     //MARK: - Sign Up
     func signUp(with user:User,completion: @escaping (Error?) -> ()) {
@@ -102,11 +102,7 @@ class GigController {
             
         }.resume()
         
-        
-        
-        
-        
-        
+    
         
     }
     
