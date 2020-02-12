@@ -64,19 +64,35 @@
 		557D594A23F49639003BBAAF /* gigs */ = {
 			isa = PBXGroup;
 			children = (
+				557D596A23F4BF22003BBAAF /* View Controllers */,
+				557D596923F4BEF0003BBAAF /* Models */,
 				557D594B23F49639003BBAAF /* AppDelegate.swift */,
 				557D594D23F49639003BBAAF /* SceneDelegate.swift */,
 				557D595123F49639003BBAAF /* Main.storyboard */,
-				557D596323F4A059003BBAAF /* Bearer.swift */,
-				557D596523F4A0A5003BBAAF /* User.swift */,
-				557D596723F4A0EA003BBAAF /* GigController.swift */,
-				557D596123F49F63003BBAAF /* LoginViewController.swift */,
-				557D595F23F497A6003BBAAF /* GigsTableViewController.swift */,
 				557D595423F4963E003BBAAF /* Assets.xcassets */,
 				557D595623F4963E003BBAAF /* LaunchScreen.storyboard */,
 				557D595923F4963E003BBAAF /* Info.plist */,
 			);
 			path = gigs;
+			sourceTree = "<group>";
+		};
+		557D596923F4BEF0003BBAAF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				557D596523F4A0A5003BBAAF /* User.swift */,
+				557D596323F4A059003BBAAF /* Bearer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		557D596A23F4BF22003BBAAF /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				557D595F23F497A6003BBAAF /* GigsTableViewController.swift */,
+				557D596723F4A0EA003BBAAF /* GigController.swift */,
+				557D596123F49F63003BBAAF /* LoginViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

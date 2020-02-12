@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
@@ -118,8 +118,5 @@ class GigController {
             // if we get this far, the response contained no errors, so log in was successful
             completion(nil)
         }.resume()
-
-    
-    
-}
+    }
 }
