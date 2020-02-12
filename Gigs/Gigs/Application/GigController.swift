@@ -94,7 +94,7 @@ class GigController {
             completion(error)
             return
             }
-            completion(error!)
+            completion(nil)
          }.resume()
       }
   }

@@ -17,9 +17,9 @@ class GigsTableViewController: UITableViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModelSegue", sender: self)
+        // TODO: fetch gigs here
         }
     }
     
@@ -35,19 +35,18 @@ class GigsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigsCell", for: indexPath)
         
         return cell
     }
     
-    /*
+   
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+          if segue.identifier == "LoginViewModalSegue" {
+              guard let loginVC = segue.destination as? LoginViewController else { return }
+                  loginVC.gigController = gigController
+          }
 
+     }
 }
