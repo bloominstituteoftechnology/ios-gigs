@@ -13,10 +13,10 @@
 		D2CA094123F49F0800546CAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2CA094023F49F0800546CAF /* Assets.xcassets */; };
 		D2CA094423F49F0800546CAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2CA094223F49F0800546CAF /* LaunchScreen.storyboard */; };
 		D2CA095123F4A0E200546CAF /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CA095023F4A0E200546CAF /* GigsTableViewController.swift */; };
-		D2CA095323F4A65A00546CAF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CA095223F4A65A00546CAF /* LoginViewController.swift */; };
 		D2CA095523F4A98000546CAF /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CA095423F4A98000546CAF /* Bearer.swift */; };
 		D2CA095723F4A9AF00546CAF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CA095623F4A9AF00546CAF /* User.swift */; };
-		D2CA095923F4AA1200546CAF /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CA095823F4AA1200546CAF /* GigController.swift */; };
+		D2CA095D23F4BFDE00546CAF /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CA095C23F4BFDE00546CAF /* GigController.swift */; };
+		D2CA095F23F4C04100546CAF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CA095E23F4C04100546CAF /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +28,10 @@
 		D2CA094323F49F0800546CAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2CA094523F49F0800546CAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2CA095023F4A0E200546CAF /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
-		D2CA095223F4A65A00546CAF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Gigs/Resources/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		D2CA095423F4A98000546CAF /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		D2CA095623F4A9AF00546CAF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		D2CA095823F4AA1200546CAF /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigController.swift; path = Gigs/Models/GigController.swift; sourceTree = SOURCE_ROOT; };
+		D2CA095C23F4BFDE00546CAF /* GigController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		D2CA095E23F4C04100546CAF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +105,7 @@
 		D2CA094E23F4A05F00546CAF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D2CA095223F4A65A00546CAF /* LoginViewController.swift */,
+				D2CA095E23F4C04100546CAF /* LoginViewController.swift */,
 				D2CA095023F4A0E200546CAF /* GigsTableViewController.swift */,
 			);
 			path = "View Controllers";
@@ -114,7 +114,7 @@
 		D2CA094F23F4A06A00546CAF /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D2CA095823F4AA1200546CAF /* GigController.swift */,
+				D2CA095C23F4BFDE00546CAF /* GigController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -190,9 +190,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2CA095F23F4C04100546CAF /* LoginViewController.swift in Sources */,
 				D2CA095523F4A98000546CAF /* Bearer.swift in Sources */,
-				D2CA095923F4AA1200546CAF /* GigController.swift in Sources */,
-				D2CA095323F4A65A00546CAF /* LoginViewController.swift in Sources */,
+				D2CA095D23F4BFDE00546CAF /* GigController.swift in Sources */,
 				D2CA095723F4A9AF00546CAF /* User.swift in Sources */,
 				D2CA093823F49F0700546CAF /* AppDelegate.swift in Sources */,
 				D2CA093A23F49F0700546CAF /* SceneDelegate.swift in Sources */,
