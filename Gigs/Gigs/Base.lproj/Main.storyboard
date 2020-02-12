@@ -48,7 +48,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Gigs" id="ArF-Pn-O6f"/>
                     <connections>
-                        <segue destination="riO-6l-V2t" kind="presentation" identifier="LoginViewModelSegue" id="oTR-Jv-4VA"/>
+                        <segue destination="riO-6l-V2t" kind="presentation" identifier="LoginViewModelSegue" modalPresentationStyle="fullScreen" id="oTR-Jv-4VA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tXY-75-xPx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -60,24 +60,21 @@
             <objects>
                 <viewController id="riO-6l-V2t" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OOC-uH-OBs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UserName:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v1h-Qp-aNs">
-                                <rect key="frame" x="36" y="150" width="343" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UserName:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v1h-Qp-aNs">
+                                <rect key="frame" x="35" y="150" width="344" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4cI-IP-IKf">
-                                <rect key="frame" x="36" y="210" width="343" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4cI-IP-IKf">
+                                <rect key="frame" x="35" y="209" width="344" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hb0-Hc-yyu">
-                                <rect key="frame" x="99" y="81" width="217" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hb0-Hc-yyu">
+                                <rect key="frame" x="90" y="89" width="234" height="32"/>
                                 <segments>
                                     <segment title="Sign Up"/>
                                     <segment title="Sign In"/>
@@ -86,9 +83,8 @@
                                     <action selector="signInTypeChanged:" destination="riO-6l-V2t" eventType="valueChanged" id="8Ky-8N-2IY"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOz-tT-x6o">
-                                <rect key="frame" x="165" y="276" width="84" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOz-tT-x6o">
+                                <rect key="frame" x="139" y="283" width="136" height="30"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="signInButtonTapped:" destination="riO-6l-V2t" eventType="touchUpInside" id="56x-Yh-4uP"/>
@@ -96,6 +92,22 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dVp-s3-k6p" firstAttribute="trailing" secondItem="hb0-Hc-yyu" secondAttribute="trailing" constant="90" id="3dN-h0-ykz"/>
+                            <constraint firstItem="dVp-s3-k6p" firstAttribute="trailing" secondItem="LOz-tT-x6o" secondAttribute="trailing" constant="139" id="3iy-cE-DKb"/>
+                            <constraint firstItem="dVp-s3-k6p" firstAttribute="bottom" secondItem="LOz-tT-x6o" secondAttribute="bottom" constant="549" id="BVb-Rg-HrS"/>
+                            <constraint firstItem="4cI-IP-IKf" firstAttribute="top" secondItem="v1h-Qp-aNs" secondAttribute="bottom" constant="25" id="DeA-8y-Jqt"/>
+                            <constraint firstItem="dVp-s3-k6p" firstAttribute="trailing" secondItem="v1h-Qp-aNs" secondAttribute="trailing" constant="35" id="HFe-AC-Ff4"/>
+                            <constraint firstItem="LOz-tT-x6o" firstAttribute="leading" secondItem="dVp-s3-k6p" secondAttribute="leading" constant="139" id="NHK-Am-g3p"/>
+                            <constraint firstItem="4cI-IP-IKf" firstAttribute="leading" secondItem="dVp-s3-k6p" secondAttribute="leading" constant="35" id="Ts7-2C-OH6"/>
+                            <constraint firstItem="LOz-tT-x6o" firstAttribute="top" secondItem="4cI-IP-IKf" secondAttribute="bottom" constant="40" id="euv-hH-faF"/>
+                            <constraint firstItem="dVp-s3-k6p" firstAttribute="trailing" secondItem="4cI-IP-IKf" secondAttribute="trailing" constant="35" id="gJS-ZG-DR0"/>
+                            <constraint firstItem="hb0-Hc-yyu" firstAttribute="leading" secondItem="dVp-s3-k6p" secondAttribute="leading" constant="90" id="hNM-I3-o76"/>
+                            <constraint firstItem="hb0-Hc-yyu" firstAttribute="top" secondItem="dVp-s3-k6p" secondAttribute="top" constant="45" id="kjG-sT-LaV"/>
+                            <constraint firstItem="v1h-Qp-aNs" firstAttribute="top" secondItem="hb0-Hc-yyu" secondAttribute="bottom" constant="30" id="lC3-EJ-Afq"/>
+                            <constraint firstItem="v1h-Qp-aNs" firstAttribute="leading" secondItem="dVp-s3-k6p" secondAttribute="leading" constant="35" id="xBn-2j-aLO"/>
+                            <constraint firstItem="4cI-IP-IKf" firstAttribute="top" secondItem="v1h-Qp-aNs" secondAttribute="bottom" constant="25" id="xKE-rc-aNZ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="dVp-s3-k6p"/>
                     </view>
                     <connections>
@@ -107,7 +119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GzV-Hq-92F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884" y="-60"/>
+            <point key="canvasLocation" x="882.60869565217399" y="-60.267857142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="muc-jc-F0G">
