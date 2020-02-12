@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gigs Table View Controller-->
+        <!--Gigs-->
         <scene sceneID="ZIi-KA-1jQ">
             <objects>
                 <tableViewController id="TcH-fq-lcr" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                             <outlet property="delegate" destination="TcH-fq-lcr" id="7uv-1p-J3h"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Pj9-WL-6dS"/>
+                    <navigationItem key="navigationItem" title="Gigs" largeTitleDisplayMode="always" id="Pj9-WL-6dS"/>
                     <connections>
                         <segue destination="XCf-3B-zkO" kind="presentation" identifier="LoginModalSegue" modalPresentationStyle="fullScreen" id="QEb-J5-LFc"/>
                     </connections>
@@ -71,7 +71,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fYI-Qt-alW">
                                 <rect key="frame" x="50" y="201" width="314" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ysj-vE-A7u">
                                 <rect key="frame" x="100" y="104" width="214" height="32"/>
@@ -79,7 +79,7 @@
                                     <segment title="Sign Up"/>
                                     <segment title="Sign In"/>
                                 </segments>
-                                <color key="selectedSegmentTintColor" red="0.38171607260000001" green="0.69777256249999997" blue="0.78432613610000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="selectedSegmentTintColor" red="0.38171607259999996" green="0.69709395567499999" blue="0.78432613610000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="loginTypeChanged:" destination="XCf-3B-zkO" eventType="valueChanged" id="Czs-oy-re7"/>
                                 </connections>
@@ -89,7 +89,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Siq-Tb-0LF"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="signInTapped:" destination="XCf-3B-zkO" eventType="touchUpInside" id="vaH-3R-unH"/>
                                 </connections>
@@ -128,8 +128,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6wZ-fF-53Y" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="srq-tH-ogR">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="srq-tH-ogR">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
