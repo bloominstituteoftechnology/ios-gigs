@@ -48,7 +48,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="eYu-Yh-kCl"/>
                     <connections>
-                        <segue destination="e7P-Nb-LS4" kind="presentation" identifier="LoginViewModalSegue" id="wpT-7j-u18"/>
+                        <segue destination="e7P-Nb-LS4" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="wpT-7j-u18"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tH2-v2-BeA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -60,11 +60,11 @@
             <objects>
                 <viewController id="e7P-Nb-LS4" customClass="LoginViewController" customModule="GigS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xPE-WF-etW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="AEI-hQ-f02">
-                                <rect key="frame" x="16" y="40" width="382" height="330"/>
+                                <rect key="frame" x="16" y="84" width="382" height="330"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="bQf-hY-1Lt">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="60"/>
