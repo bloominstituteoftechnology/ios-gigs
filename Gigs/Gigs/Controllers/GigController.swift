@@ -104,6 +104,7 @@ class GigController {
                 return
             }
             
+            // Decode the JSON
             do {
                 self.bearer = try JSONDecoder().decode(Bearer.self, from: data)
             } catch {
