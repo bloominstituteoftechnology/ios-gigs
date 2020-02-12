@@ -56,4 +56,52 @@ class GigController {
             completion(nil)
         }.resume()
     }
+    
+    func signIn(with user: User, completion: @escaping (Error?) -> Void) {
+        let requestURL = baseURL
+        .appendingPathComponent("users")
+        .appendingPathComponent("login")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
+        
+        do {
+            request.httpBody = try JSONEncoder().encode(user)
+        } catch {
+            NSLog("Error encoding user for sign in: \(error)")
+            completion(error)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Error during sign in: \(error) ")
+                completion(error)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                NSLog("Unexpected status code:\(response.statusCode)")
+                completion(NSError())
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data during sign in")
+                completion(error)
+                return
+            }
+            
+            do {
+                let bearer = try JSONDecoder().decode(Bearer.self, from: data)
+                self.bearer = bearer
+            } catch {
+                NSLog("Error getting token during sign in: \(error)")
+                completion(error)
+                return
+            }
+        }
+    }
 }
