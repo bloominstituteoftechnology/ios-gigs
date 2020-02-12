@@ -14,6 +14,8 @@
 		72BB5A1F23F497590091215C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72BB5A1D23F497590091215C /* LaunchScreen.storyboard */; };
 		72BB5A2B23F498B20091215C /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BB5A2A23F498B20091215C /* GigsTableViewController.swift */; };
 		72BB5A2D23F49A380091215C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BB5A2C23F49A380091215C /* LogInViewController.swift */; };
+		72BB5A2F23F49B490091215C /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BB5A2E23F49B490091215C /* Bearer.swift */; };
+		72BB5A3123F49BCF0091215C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BB5A3023F49BCF0091215C /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		72BB5A2023F497590091215C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72BB5A2A23F498B20091215C /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		72BB5A2C23F49A380091215C /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogInViewController.swift; path = Gigs/LogInViewController.swift; sourceTree = SOURCE_ROOT; };
+		72BB5A2E23F49B490091215C /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Bearer.swift; path = Gigs/ViewControllers/Bearer.swift; sourceTree = SOURCE_ROOT; };
+		72BB5A3023F49BCF0091215C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 		72BB5A2723F4986C0091215C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				72BB5A2E23F49B490091215C /* Bearer.swift */,
+				72BB5A3023F49BCF0091215C /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,7 +179,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72BB5A2F23F49B490091215C /* Bearer.swift in Sources */,
 				72BB5A2D23F49A380091215C /* LogInViewController.swift in Sources */,
+				72BB5A3123F49BCF0091215C /* User.swift in Sources */,
 				72BB5A1323F497580091215C /* AppDelegate.swift in Sources */,
 				72BB5A1523F497580091215C /* SceneDelegate.swift in Sources */,
 				72BB5A2B23F498B20091215C /* GigsTableViewController.swift in Sources */,
