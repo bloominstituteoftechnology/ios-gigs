@@ -14,6 +14,9 @@
 		2C6F944D23F49F4A00F5A3F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C6F944B23F49F4A00F5A3F7 /* LaunchScreen.storyboard */; };
 		2C6F945C23F4A0BF00F5A3F7 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F945B23F4A0BF00F5A3F7 /* GigsTableViewController.swift */; };
 		2C6F945E23F4A38100F5A3F7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F945D23F4A38100F5A3F7 /* LoginViewController.swift */; };
+		2C6F946023F4A52100F5A3F7 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F945F23F4A52100F5A3F7 /* Bearer.swift */; };
+		2C6F946223F4A54D00F5A3F7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F946123F4A54D00F5A3F7 /* User.swift */; };
+		2C6F946423F4A58700F5A3F7 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F946323F4A58700F5A3F7 /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		2C6F944E23F49F4A00F5A3F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C6F945B23F4A0BF00F5A3F7 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		2C6F945D23F4A38100F5A3F7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2C6F945F23F4A52100F5A3F7 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		2C6F946123F4A54D00F5A3F7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2C6F946323F4A58700F5A3F7 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,8 @@
 		2C6F945723F49F8100F5A3F7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2C6F945F23F4A52100F5A3F7 /* Bearer.swift */,
+				2C6F946123F4A54D00F5A3F7 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -114,6 +122,7 @@
 		2C6F945A23F4A0A000F5A3F7 /* Model Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2C6F946323F4A58700F5A3F7 /* GigController.swift */,
 			);
 			name = "Model Controller";
 			sourceTree = "<group>";
@@ -189,7 +198,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6F946023F4A52100F5A3F7 /* Bearer.swift in Sources */,
+				2C6F946423F4A58700F5A3F7 /* GigController.swift in Sources */,
 				2C6F945E23F4A38100F5A3F7 /* LoginViewController.swift in Sources */,
+				2C6F946223F4A54D00F5A3F7 /* User.swift in Sources */,
 				2C6F944123F49F4900F5A3F7 /* AppDelegate.swift in Sources */,
 				2C6F944323F49F4900F5A3F7 /* SceneDelegate.swift in Sources */,
 				2C6F945C23F4A0BF00F5A3F7 /* GigsTableViewController.swift in Sources */,
