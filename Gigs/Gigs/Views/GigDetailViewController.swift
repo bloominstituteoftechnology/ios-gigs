@@ -47,6 +47,7 @@ class GigDetailViewController: UIViewController {
             textView.text != nil else {return}
             let gig = Gig(title: gigName, description: gigDescription, dueDate: datePicker.date)
             gigController.createGig(with: gig) { (_) in
+
             DispatchQueue.main.async {
                 self.navigationController?.popViewController(animated: true)
             }
