@@ -1,22 +1,29 @@
 //
-//  LoginViewController.swift
+//  GigDetailViewController.swift
 //  Gigs
 //
-//  Created by Ufuk Türközü on 15.01.20.
+//  Created by Ufuk Türközü on 16.01.20.
 //  Copyright © 2020 Ufuk Türközü. All rights reserved.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class GigDetailViewController: UIViewController {
 
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var descriptionTV: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func saveTapped(_ sender: Any) {
+        
+    }
+    
     /*
     // MARK: - Navigation
 
