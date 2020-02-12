@@ -23,12 +23,13 @@ class GigDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        updateViews()
     }
     
     //MARK: Actions
     
-    private func updateViews(with gig: Gig) {
-        if self.gig != nil {
+    private func updateViews() {
+        if let gig = gig {
         textField.text = gig.title
         datePicker.date = gig.dueDate
         textView.text = gig.description
@@ -39,21 +40,17 @@ class GigDetailViewController: UIViewController {
     
     
     @IBAction func saveTapped(_ sender: Any) {
-        guard var gig = gig,
-            let gigName = textField.text,
+        
+        guard let gigName = textField.text,
             let gigDescription = textView.text,
             textField.text != nil,
             textView.text != nil else {return}
-        gig.title = gigName
-        gig.description = gigDescription
-        gig.dueDate = datePicker.date
-        gigController.createGig(with: gig) { _ in
+            let gig = Gig(title: gigName, description: gigDescription, dueDate: datePicker.date)
+            gigController.createGig(with: gig) { (_) in
             DispatchQueue.main.async {
-                self.dismiss(animated: true, completion: nil)
-                self.updateViews(with: gig)
+                self.navigationController?.popViewController(animated: true)
             }
         }
-        
     }
     
 
@@ -61,9 +58,9 @@ class GigDetailViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//    }
     
 
 }

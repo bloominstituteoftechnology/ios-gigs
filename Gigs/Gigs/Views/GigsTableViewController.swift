@@ -12,12 +12,20 @@ class GigsTableViewController: UITableViewController {
     
     //MARK: Properties
     
-    private var gigs: [Gig] = []
     let gigController = GigController()
     var date: DateFormatter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if gigController.bearer == nil {
+                   performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+               } else {
+                   gigController.fetchAllGigs { result in
+                           DispatchQueue.main.async {
+                               self.tableView.reloadData()
+                           }
+                       }
+                   }
        
     }
     
@@ -29,29 +37,26 @@ class GigsTableViewController: UITableViewController {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
         } else {
             gigController.fetchAllGigs { result in
-                if let arrayOfGigs = try? result.get() {
                     DispatchQueue.main.async {
-                        self.gigs = arrayOfGigs
                         self.tableView.reloadData()
                     }
                 }
             }
-        }
-       
     }
     
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gigs.count
+        return gigController.gigs.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath)
         
-        cell.textLabel?.text = gigs[indexPath.row].title
-        cell.detailTextLabel?.text = gigs[indexPath.row].dueDate.description
+        let gig = gigController.gigs[indexPath.row]
+        cell.textLabel?.text = gig.title
+        cell.detailTextLabel?.text = gig.description
         return cell
     }
     
