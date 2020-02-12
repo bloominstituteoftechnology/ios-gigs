@@ -14,6 +14,8 @@
 		5CF48D5D23F4982B0064C937 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CF48D5B23F4982B0064C937 /* LaunchScreen.storyboard */; };
 		5CF48D6723F4994F0064C937 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF48D6623F4994F0064C937 /* GigsTableViewController.swift */; };
 		5CF48D6923F4A2C90064C937 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF48D6823F4A2C90064C937 /* LoginViewController.swift */; };
+		5CF48D6C23F4A5470064C937 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF48D6B23F4A5470064C937 /* Bearer.swift */; };
+		5CF48D6F23F4A64F0064C937 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF48D6E23F4A64F0064C937 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		5CF48D5E23F4982B0064C937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CF48D6623F4994F0064C937 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		5CF48D6823F4A2C90064C937 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5CF48D6B23F4A5470064C937 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		5CF48D6E23F4A64F0064C937 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +64,32 @@
 			children = (
 				5CF48D5023F4982A0064C937 /* AppDelegate.swift */,
 				5CF48D5223F4982A0064C937 /* SceneDelegate.swift */,
+				5CF48D6D23F4A54B0064C937 /* Model */,
+				5CF48D6A23F4A52D0064C937 /* View Controllers */,
 				5CF48D5623F4982A0064C937 /* Main.storyboard */,
-				5CF48D6823F4A2C90064C937 /* LoginViewController.swift */,
-				5CF48D6623F4994F0064C937 /* GigsTableViewController.swift */,
 				5CF48D5923F4982B0064C937 /* Assets.xcassets */,
 				5CF48D5B23F4982B0064C937 /* LaunchScreen.storyboard */,
 				5CF48D5E23F4982B0064C937 /* Info.plist */,
 			);
 			path = Gigs;
+			sourceTree = "<group>";
+		};
+		5CF48D6A23F4A52D0064C937 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5CF48D6823F4A2C90064C937 /* LoginViewController.swift */,
+				5CF48D6623F4994F0064C937 /* GigsTableViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		5CF48D6D23F4A54B0064C937 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5CF48D6B23F4A5470064C937 /* Bearer.swift */,
+				5CF48D6E23F4A64F0064C937 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +163,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CF48D6C23F4A5470064C937 /* Bearer.swift in Sources */,
 				5CF48D6923F4A2C90064C937 /* LoginViewController.swift in Sources */,
+				5CF48D6F23F4A64F0064C937 /* User.swift in Sources */,
 				5CF48D5123F4982A0064C937 /* AppDelegate.swift in Sources */,
 				5CF48D5323F4982A0064C937 /* SceneDelegate.swift in Sources */,
 				5CF48D6723F4994F0064C937 /* GigsTableViewController.swift in Sources */,
