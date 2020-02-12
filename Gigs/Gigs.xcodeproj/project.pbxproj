@@ -14,6 +14,8 @@
 		D2CA094423F49F0800546CAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2CA094223F49F0800546CAF /* LaunchScreen.storyboard */; };
 		D2CA095123F4A0E200546CAF /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CA095023F4A0E200546CAF /* GigsTableViewController.swift */; };
 		D2CA095323F4A65A00546CAF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CA095223F4A65A00546CAF /* LoginViewController.swift */; };
+		D2CA095523F4A98000546CAF /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CA095423F4A98000546CAF /* Bearer.swift */; };
+		D2CA095723F4A9AF00546CAF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CA095623F4A9AF00546CAF /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		D2CA094523F49F0800546CAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2CA095023F4A0E200546CAF /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		D2CA095223F4A65A00546CAF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Gigs/Resources/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		D2CA095423F4A98000546CAF /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		D2CA095623F4A9AF00546CAF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 		D2CA094C23F4A04C00546CAF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D2CA095423F4A98000546CAF /* Bearer.swift */,
+				D2CA095623F4A9AF00546CAF /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -181,7 +187,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2CA095523F4A98000546CAF /* Bearer.swift in Sources */,
 				D2CA095323F4A65A00546CAF /* LoginViewController.swift in Sources */,
+				D2CA095723F4A9AF00546CAF /* User.swift in Sources */,
 				D2CA093823F49F0700546CAF /* AppDelegate.swift in Sources */,
 				D2CA093A23F49F0700546CAF /* SceneDelegate.swift in Sources */,
 				D2CA095123F4A0E200546CAF /* GigsTableViewController.swift in Sources */,
