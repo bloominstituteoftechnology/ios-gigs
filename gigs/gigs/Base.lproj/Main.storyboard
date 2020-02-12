@@ -48,7 +48,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="m0J-Jl-HFi"/>
                     <connections>
-                        <segue destination="heD-9l-wli" kind="presentation" modalPresentationStyle="fullScreen" id="Iqy-TO-QHK"/>
+                        <segue destination="heD-9l-wli" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="Iqy-TO-QHK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pc5-kB-QN3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -87,10 +87,10 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMG-M7-4hJ">
-                                        <rect key="frame" x="44.5" y="138" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="40.5" y="138" width="54" height="30"/>
+                                        <state key="normal" title="Sign Up"/>
                                         <connections>
-                                            <action selector="signInsignUpButton:" destination="heD-9l-wli" eventType="touchUpInside" id="kLQ-6i-4w8"/>
+                                            <action selector="buttonTapped:" destination="heD-9l-wli" eventType="touchUpInside" id="abk-Jm-Od3"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -110,7 +110,7 @@
                         <viewLayoutGuide key="safeArea" id="9GS-KR-XFq"/>
                     </view>
                     <connections>
-                        <outlet property="button" destination="RMG-M7-4hJ" id="w6J-O1-33Y"/>
+                        <outlet property="button" destination="RMG-M7-4hJ" id="ge5-gs-ULQ"/>
                         <outlet property="passwordTextField" destination="zgQ-ma-YGn" id="xoo-5X-Xao"/>
                         <outlet property="segmentedControl" destination="gSd-fF-ZPt" id="GFw-EJ-fvd"/>
                         <outlet property="usernameTextfield" destination="uVV-x0-F3q" id="UBW-yh-gZu"/>
