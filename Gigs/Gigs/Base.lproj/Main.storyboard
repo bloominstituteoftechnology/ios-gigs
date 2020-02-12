@@ -54,6 +54,9 @@
                                     <segment title="Sign In"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="selectedSegmentChanged:" destination="pFQ-dV-U8L" eventType="valueChanged" id="mcx-9M-n4P"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Imp-xi-qWd">
                                 <rect key="frame" x="100" y="259" width="214" height="50"/>

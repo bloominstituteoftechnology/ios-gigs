@@ -35,4 +35,14 @@ class GigsTableViewController: UITableViewController {
 
         return cell
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LoginModalSegue" {
+            if let loginVC = segue.destination as? LoginViewController {
+                loginVC.gigController = gigController
+            }
+        }
+    }
 }
