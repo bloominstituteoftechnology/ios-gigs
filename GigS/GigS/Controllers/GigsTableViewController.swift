@@ -10,8 +10,9 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
 
-    let gigController = GigController()
+    private let gigController = GigController()
     
+    // MARK:- App Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,7 @@ class GigsTableViewController: UITableViewController {
     
     
     
-    // MARK: - Table view data source
+    // MARK: - Table View Data Source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
@@ -38,9 +39,18 @@ class GigsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-        
+        // This is for tomorrow
         return cell
     }
     
-
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LoginViewModalSegue" {
+            if let destVC = segue.destination as? LoginViewController {
+                destVC.gigController = gigController
+            }
+        }
+    }
 }

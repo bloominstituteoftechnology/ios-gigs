@@ -48,7 +48,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="eYu-Yh-kCl"/>
                     <connections>
-                        <segue destination="e7P-Nb-LS4" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="wpT-7j-u18"/>
+                        <segue destination="e7P-Nb-LS4" kind="presentation" identifier="LoginViewModalSegue" id="wpT-7j-u18"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tH2-v2-BeA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -60,11 +60,11 @@
             <objects>
                 <viewController id="e7P-Nb-LS4" customClass="LoginViewController" customModule="GigS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xPE-WF-etW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="AEI-hQ-f02">
-                                <rect key="frame" x="16" y="84" width="382" height="330"/>
+                                <rect key="frame" x="16" y="40" width="382" height="330"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="bQf-hY-1Lt">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="60"/>
@@ -81,7 +81,7 @@
                                                             <segment title="Sign Up" width="100"/>
                                                             <segment title="Sign In" width="100"/>
                                                         </segments>
-                                                        <color key="selectedSegmentTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="selectedSegmentTintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <action selector="segmentChanged:" destination="e7P-Nb-LS4" eventType="valueChanged" id="KUR-38-sqB"/>
                                                         </connections>
@@ -105,7 +105,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="frt-5Z-5GL">
                                         <rect key="frame" x="0.0" y="100" width="382" height="130"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CAD-q3-mNy">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Username" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CAD-q3-mNy">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="yfE-Hz-UGV"/>
@@ -113,7 +113,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="neS-0v-jAx">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="neS-0v-jAx">
                                                 <rect key="frame" x="0.0" y="70" width="382" height="60"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -126,6 +126,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="uqt-5W-QyJ"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
