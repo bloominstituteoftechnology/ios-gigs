@@ -31,9 +31,8 @@ class GigDetailViewController: UIViewController {
        } else {
       title = "New Gig"
       descriptionView.text = ""
-          
-        }
-      }
+    }
+ }
     
 @IBAction func saveTapped(_ sender: UIBarButtonItem) {
     
@@ -46,11 +45,10 @@ class GigDetailViewController: UIViewController {
 
     let gig = Gig(title: titleText, dueDate: dueDatePicker.date, description: descriptionText)
 
-               gigController?.createGig(with: gig, completion: { (result) in
-                   DispatchQueue.main.async {
-                       self.navigationController?.popViewController(animated: true)
-                   }
-               })
-           }
-    
+        gigController?.createGig(with: gig, completion: { (result) in
+         DispatchQueue.main.async {
+        self.navigationController?.popViewController(animated: true)
+        }
+      })
+    }
   }
