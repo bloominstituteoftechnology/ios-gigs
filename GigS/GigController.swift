@@ -207,20 +207,10 @@ class GigController {
             }
             completion(nil)
             
-            
-            
         }.resume()
-        
-        
-        
-        
-        
-        
-        
+    
     }
-        
-    
-    
+   
     }
     
   

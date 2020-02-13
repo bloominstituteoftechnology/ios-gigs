@@ -12,7 +12,7 @@ class GigDetailViewController: UIViewController {
     
     @IBOutlet weak var jobTitleTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
+     @IBOutlet weak var gigTextView: UITextView!
     var gigController : GigController!
     
     var gig: Gig? {
@@ -22,10 +22,19 @@ class GigDetailViewController: UIViewController {
     }
     
     
-    @IBOutlet weak var gigTextView: UITextView!
+   
     
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
-        
+        let newGig = Gig(title: jobTitleTextField.text ?? "", description: gigTextView.text, dueDate: datePicker.date)
+        gigController.createGigs(with: newGig) { (error) in
+            if let error = error {
+                NSLog("Error creating new gigs: \(error)")
+            } else {
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
     }
     
     
