@@ -10,7 +10,7 @@ import UIKit
 
 class GigDetailViewController: UIViewController {
     
-    var gigController: GigController!
+    var gigController: GigController?
     var gig: Gig?
     
     @IBOutlet weak var titleField: UITextField!
@@ -20,7 +20,6 @@ class GigDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
-        // Do any additional setup after loading the view.
     }
     
     func updateViews() {

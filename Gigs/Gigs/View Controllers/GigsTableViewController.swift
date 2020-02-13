@@ -20,14 +20,15 @@ class GigsTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
-        // TODO: fetch gigs here
+        }
+        gigController.fetchAllGigs { (result) in
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return gigController.gigs.count
@@ -44,12 +45,26 @@ class GigsTableViewController: UITableViewController {
         
         return cell
     }
-    
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-          if segue.identifier == "LoginViewModalSegue" {
-              guard let loginVC = segue.destination as? LoginViewController else { return }
-                  loginVC.gigController = gigController
-          }
-     }
-}
+       // MARK: - Navigation
+
+        // In a storyboard-based application, you will often want to do a little preparation before navigation
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "LoginViewModalSegue" {
+                if let destinationVC = segue.destination as? LoginViewController {
+                    destinationVC.gigController = gigController
+                }
+            } else if segue.identifier == "ShowGig" {
+                if let destinationVC = segue.destination as? GigDetailViewController {
+                    destinationVC.gigController = gigController
+                    if let indexPath = tableView.indexPathForSelectedRow {
+                        destinationVC.gig = gigController.gigs[indexPath.row]
+                    }
+                }
+            } else if segue.identifier == "AddGig" {
+                if let destinationVC = segue.destination as? GigDetailViewController {
+                    destinationVC.gigController = gigController
+                }
+            }
+        }
+
+    }
