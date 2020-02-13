@@ -25,10 +25,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
      @IBAction func signInButtonTapped(_ sender: UIButton) {
         guard let gigController = gigController else { return }
             
@@ -69,7 +66,6 @@ class LoginViewController: UIViewController {
      }
   }
 }
-    
     @IBAction func signInTypeChanged(_ sender: UISegmentedControl) {
           if sender.selectedSegmentIndex == 0 {
               signInButton.setTitle("Sign Up", for: .normal)

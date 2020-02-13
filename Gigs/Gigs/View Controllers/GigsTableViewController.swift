@@ -15,7 +15,6 @@ class GigsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if gigController.bearer == nil {
@@ -25,7 +24,6 @@ class GigsTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 0
     }
@@ -41,13 +39,11 @@ class GigsTableViewController: UITableViewController {
         return cell
     }
     
-   
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
           if segue.identifier == "LoginViewModalSegue" {
               guard let loginVC = segue.destination as? LoginViewController else { return }
                   loginVC.gigController = gigController
           }
-
      }
 }
