@@ -151,7 +151,7 @@ class GigController {
             }
             
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .secondsSince1970
+            decoder.dateDecodingStrategy = .iso8601
             
             do {
                 let gigs = try decoder.decode([Gig].self, from: data)
@@ -159,7 +159,7 @@ class GigController {
                 completion(.success(gigs))
             } catch {
                 NSLog("Error decoding gigs data: \(error)")
-                completion(.failure(.noDecode))
+                completion(.failure(.badData))
                 return
             }
         }.resume()
@@ -177,9 +177,10 @@ class GigController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
+        request.addValue("application/json", forHTTPHeaderField: HeaderNames.contentType.rawValue)
         
         let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .secondsSince1970
+        encoder.dateEncodingStrategy = .iso8601
         
         do {
             let newGig = try encoder.encode(gig)

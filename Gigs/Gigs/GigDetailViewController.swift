@@ -13,26 +13,41 @@ class GigDetailViewController: UIViewController {
     @IBOutlet weak var jobTitleTextField: UITextField!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     @IBOutlet weak var jobDetail: UITextView!
+    
+    var gigController: GigController!
+    var gig: Gig?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateViews()
     }
     
     @IBAction func save(_ sender: Any) {
+        guard let title = jobTitleTextField.text,
+            let description = jobDetail.text else { return }
         
+        let dueDate = dueDatePicker.date
+        let newGig = Gig(title: title, description: description, dueDate: dueDate)
+        
+        gigController.createGig(newGig) { (result) in
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func updateViews() {
+        guard let gig = gig else {
+            title = "New Gig"
+            jobDetail.text = ""
+            jobDetail.isEditable = true
+            return
+        }
+        
+        jobTitleTextField.borderStyle = .none
+        jobTitleTextField.text = gig.title
+        dueDatePicker.date = gig.dueDate
+        jobDetail.text = gig.description
+        jobDetail.isEditable = false
     }
-    */
-
 }
