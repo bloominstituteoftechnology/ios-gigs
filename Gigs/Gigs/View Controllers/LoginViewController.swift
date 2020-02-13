@@ -16,9 +16,9 @@ enum LoginType {
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var usernameTextField: UITextField!
-     @IBOutlet weak var passwordTextField: UITextField!
-     @IBOutlet weak var loginTypeSegmentedControl: UISegmentedControl!
-     @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var signInButton: UIButton!
     
      var gigController: GigController!
      var loginType = LoginType.signUp
@@ -54,11 +54,11 @@ class LoginViewController: UIViewController {
           }
        }
     }
-        } else {
+         } else {
                 gigController.signIn(with: user) { (error) in
                     if let error = error {
                  NSLog("Error logging in: \(error)")
-             } else {
+         } else {
                 DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
              }

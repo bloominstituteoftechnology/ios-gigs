@@ -29,7 +29,6 @@ class GigsTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return gigController.gigs.count
     }
@@ -41,7 +40,6 @@ class GigsTableViewController: UITableViewController {
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
         cell.detailTextLabel?.text = dateFormatter.string(from: gigController.gigs[indexPath.row].dueDate)
-        
         
         return cell
     }
@@ -62,9 +60,8 @@ class GigsTableViewController: UITableViewController {
                 }
             } else if segue.identifier == "AddGig" {
                 if let destinationVC = segue.destination as? GigDetailViewController {
-                    destinationVC.gigController = gigController
-                }
+            destinationVC.gigController = gigController
             }
         }
-
     }
+}

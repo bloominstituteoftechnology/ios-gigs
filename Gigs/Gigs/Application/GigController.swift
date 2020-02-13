@@ -178,7 +178,6 @@ class GigController {
             completion(.failure(.noEncode))
                 return
             }
-                
         URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
             response.statusCode == 401 {

@@ -14,14 +14,13 @@ class GigDetailViewController: UIViewController {
     var gig: Gig?
     
     @IBOutlet weak var titleField: UITextField!
-        @IBOutlet weak var dueDatePicker: UIDatePicker!
-        @IBOutlet weak var descriptionView: UITextView!
+    @IBOutlet weak var dueDatePicker: UIDatePicker!
+    @IBOutlet weak var descriptionView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
     }
-    
     func updateViews() {
           if let gig = gig {
           titleField.text = gig.title
@@ -41,7 +40,6 @@ class GigDetailViewController: UIViewController {
         !descriptionText.isEmpty else {
             return
     }
-
     let gig = Gig(title: titleText, dueDate: dueDatePicker.date, description: descriptionText)
 
         gigController?.createGig(with: gig, completion: { (result) in
