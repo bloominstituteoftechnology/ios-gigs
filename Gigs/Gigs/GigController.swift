@@ -22,6 +22,7 @@ enum NetworkError: Error {
     case badData
     case noDecode
     case badImage
+    case noEncode
 }
 
 class GigController {
@@ -172,6 +173,51 @@ class GigController {
                 completion(.failure(.noDecode))
                 return
             }
+            
+        }.resume()
+    }
+    
+    func pushGig(gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        // If failure, the bearer token doesn't exist
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let gigUrl = baseUrl.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: gigUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        // This provides authorization credentials to the server.
+        // Data here is case sensitve and you must follow the rules exactly.
+        request.addValue("Bearer \(bearer)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let encoder = JSONEncoder()
+        do {
+            request.httpBody = try encoder.encode(gig)
+        } catch {
+            NSLog("Error encoding gigs array: \(error)")
+            completion(.failure(.noEncode))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            // handle errors (like no internet connectivity,
+            // or anything that generates an Error object)
+            if let _ = error {
+                completion(.failure(.otherError))
+                return
+            }
+            
+            // Specifically, the bearer token is invalid or expired
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            self.gigs.append(gig)
             
         }.resume()
     }
