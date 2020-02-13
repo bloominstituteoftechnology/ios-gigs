@@ -174,15 +174,58 @@ class GigController {
         
  
         }
+    // MARK: - CreateGigs function
+    
+    func createGigs(with gigs: Gig, completion: @escaping (Error?) -> ()) {
+        //TODO:
+        let createGigsURL = baseURL.appendingPathComponent("/gigs/")
+        
+        
+        var request = URLRequest(url: createGigsURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+           request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonEncoder = JSONEncoder()
+        do {
+            let gigsData = try jsonEncoder.encode(gigs)
+            request.httpBody = gigsData
+        } catch let err {
+            NSLog("Error encoding gigs data: \(err)")
+            completion(err)
+            return
+        }
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let error = error {
+                completion(error)
+                return
+            }
+            
+            
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                completion(NSError(domain: "Unknown", code: response.statusCode, userInfo: nil))
+                return
+            }
+            completion(nil)
+            
+            
+            
+        }.resume()
+        
+        
+        
+        
+        
+        
+        
+    }
+        
+    
+    
     }
     
-    // MARK: - Add Gigs
+  
 
-func addGigs(with gigs: Gig, completion: @escaping (Error?) -> ()) {
-    //TODO:
-    
-}
-    
+
     
     
     
