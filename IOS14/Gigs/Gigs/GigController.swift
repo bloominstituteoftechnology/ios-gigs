@@ -16,23 +16,37 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case badData
+    case noDecode
+    case otherError
+}
+
 class GigController {
     
+    // MARK: - Properties
+    
+    private let baseURL = URL(string:"https://lambdagigs.vapor.cloud/api")!
+    
     var bearer: Bearer?
- 
-    private let baseUrl = URL(string:"https://lambdagigs.vapor.cloud/api")!
+    
+    var gigs: [Gig] = []
     
     var isUserLoggedin: Bool {
-           if bearer == nil {
-               return false
+        if bearer == nil {
+            return false
         } else {
             return true
         }
     }
     
+    // MARK: - Sign Up / Sign In
+    
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         
-        let requestURL = baseUrl.appendingPathComponent("users/signup")
+        let requestURL = baseURL.appendingPathComponent("users/signup")
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -63,7 +77,7 @@ class GigController {
     
     func signIn(with user: User, completion: @escaping (Error?) -> Void) {
         
-        let requestURL = baseUrl.appendingPathComponent("users/login")
+        let requestURL = baseURL.appendingPathComponent("users/login")
         var request = URLRequest(url: requestURL)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = HTTPMethod.post.rawValue
@@ -100,4 +114,84 @@ class GigController {
             completion(nil)
         } .resume()
     }
+    
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.badAuth))
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent("gigs/")
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                let gigs = try decoder.decode([Gig].self, from: data)
+                completion(.success(gigs))
+            } catch {
+                completion(.failure(.noDecode))
+                return
+            }
+        }.resume()
+    }
+    
+    func createGig(with title: String, dueDate: Date, description: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        
+        let gig = Gig(title: title, dueDate: dueDate, description: description)
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent("gigs")
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        do {
+            request.httpBody = try encoder.encode(gig)
+            self.gigs.append(gig)
+            completion(.success(gig))
+        } catch {
+            completion(.failure(.noDecode))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            if error != nil {
+                completion(.failure(.otherError))
+                return
+            }
+        }.resume()
+    }
+    
 }

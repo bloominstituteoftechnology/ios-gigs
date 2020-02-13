@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E166AAC523F5ED4A008D8AD3 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E166AAC423F5ED4A008D8AD3 /* GigDetailViewController.swift */; };
+		E166AAC723F5EEB9008D8AD3 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E166AAC623F5EEB9008D8AD3 /* Gig.swift */; };
 		E16F7D6E23F4A3B100A8EC63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F7D6D23F4A3B100A8EC63 /* AppDelegate.swift */; };
 		E16F7D7023F4A3B100A8EC63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F7D6F23F4A3B100A8EC63 /* SceneDelegate.swift */; };
 		E16F7D7523F4A3B100A8EC63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E16F7D7323F4A3B100A8EC63 /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E166AAC423F5ED4A008D8AD3 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		E166AAC623F5EEB9008D8AD3 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 		E16F7D6A23F4A3B100A8EC63 /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16F7D6D23F4A3B100A8EC63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E16F7D6F23F4A3B100A8EC63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 			isa = PBXGroup;
 			children = (
 				E16F7D7323F4A3B100A8EC63 /* Main.storyboard */,
+				E166AAC623F5EEB9008D8AD3 /* Gig.swift */,
+				E166AAC423F5ED4A008D8AD3 /* GigDetailViewController.swift */,
 				E16F7D8223F4A78A00A8EC63 /* GigsTableViewController.swift */,
 				E16F7D8423F4A7D500A8EC63 /* LoginViewController.swift */,
 				E16F7D8B23F4AEBC00A8EC63 /* GigController.swift */,
@@ -167,12 +173,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E16F7D8523F4A7D500A8EC63 /* LoginViewController.swift in Sources */,
+				E166AAC523F5ED4A008D8AD3 /* GigDetailViewController.swift in Sources */,
 				E16F7D8C23F4AEBC00A8EC63 /* GigController.swift in Sources */,
 				E16F7D6E23F4A3B100A8EC63 /* AppDelegate.swift in Sources */,
 				E16F7D8923F4ABA700A8EC63 /* Bearer.swift in Sources */,
 				E16F7D7023F4A3B100A8EC63 /* SceneDelegate.swift in Sources */,
 				E16F7D8723F4AA8D00A8EC63 /* User.swift in Sources */,
 				E16F7D8323F4A78A00A8EC63 /* GigsTableViewController.swift in Sources */,
+				E166AAC723F5EEB9008D8AD3 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
