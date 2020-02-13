@@ -36,4 +36,12 @@ class GigsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SignUpSegue" {
+            if let signUpVC = segue.destination as? LoginViewController {
+                signUpVC.gigController = gigController
+            }
+        }
+    }
 }

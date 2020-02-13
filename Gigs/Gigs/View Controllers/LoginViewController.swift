@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     
     //MARK: - Variables
-    var gigController: GigController!
+    var gigController: GigController?
     var loginType = LoginType.signUp
     
     override func viewDidLoad() {
