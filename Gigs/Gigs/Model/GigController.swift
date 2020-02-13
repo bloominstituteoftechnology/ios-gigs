@@ -24,9 +24,10 @@ class GigController {
     
     // MARK: - Methods
     
-    func createGig(gig: Gig){
+    func createGig(gig: Gig) -> Gig {
         let newGig = gig
         gigs.append(newGig)
+        return newGig
     }
     
     
@@ -157,9 +158,19 @@ class GigController {
         
         var request = URLRequest(url: gigUrl)
         request.httpMethod  = HTTPMethod.post.rawValue
-        request.setValue("Bearer  \(bearer)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer  \(bearer)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+           
+        let encoder = JSONEncoder()
+                    do{
+                        request.httpBody = try encoder.encode(gig)
+        //                self.gigs.append(gig)
+                    } catch {
+                        NSLog("Error encoding gigs array: \(error)")
+                        completion(Errors.networkErrors.noEncode)
+                    }
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let _ = error {
                 completion(Errors.networkErrors.otherError)
                 return
@@ -170,22 +181,7 @@ class GigController {
                 completion(Errors.networkErrors.networkError)
                 return
             }
-            
-            guard let data = data else {
-                completion(Errors.networkErrors.badData)
-                return
-            }
-            
-            let encoder = JSONEncoder()
-            do{
-                _ = try encoder.encode(data)
-                self.gigs.append(gig)
-            } catch {
-                NSLog("Error encoding gigs array: \(error)")
-                completion(Errors.networkErrors.noEncode)
-            }
+            self.gigs.append(gig)
         }.resume()
     }
-    
-    
 }

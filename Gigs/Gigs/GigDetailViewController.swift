@@ -10,7 +10,10 @@ import UIKit
 
 class GigDetailViewController: UIViewController {
 
+    // MARK: - Properties
     
+    var gigController: GigController?
+    var gig: Gig?
     
     // MARK: - Outlets
     
@@ -22,13 +25,26 @@ class GigDetailViewController: UIViewController {
     
 
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
+        
+        guard let gigController = gigController else { return }
+        guard let gigName = gigNameTextField.text,
+            !gigName.isEmpty,
+            let gigDescription = gigDescriptionTextView.text,
+            !gigDescription.isEmpty else { return }
+            let newGig = Gig(title: gigName, description: gigDescription, dueDate: datePicker.date)
+        let postGig = gigController.createGig(gig: newGig)
+        gigController.pushGig(gig: postGig, completion: { (_) in
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
+        })
     }
     
+    
     // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
 
