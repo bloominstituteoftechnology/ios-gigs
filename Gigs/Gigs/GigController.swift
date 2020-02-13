@@ -10,6 +10,7 @@ import Foundation
 
 enum HeaderNames: String {
     case contentType = "Content-Type"
+    case authorization = "Authorization"
 }
 
 enum HTTPMethod: String {
@@ -17,8 +18,18 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case badData
+    case noDecode
+    case noBearer
+    case serverError(Error)
+    case unexpectedStatusCode
+    case otherError
+}
+
 class GigController {
     
+    var gigs: [Gig] = []
     var bearer: Bearer?
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
 
@@ -103,6 +114,52 @@ class GigController {
                 return
             }
             completion(nil)
+        }.resume()
+    }
+    
+    func getAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            NSLog("Error logging in")
+            completion(.failure(.noBearer))
+            return
+        }
+        
+        let requestURL = baseURL
+        .appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Error fetching all gigs: \(error)")
+                completion(.failure(.serverError(error)))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                NSLog("Request returned a \(response.statusCode) code")
+                completion(.failure(.unexpectedStatusCode))
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data for gigs request")
+                completion(.failure(.badData))
+                return
+            }
+            
+            do {
+                let gigs = try JSONDecoder().decode([Gig].self, from: data)
+                self.gigs = gigs
+                completion(.success(gigs))
+            } catch {
+                NSLog("Error decoding gigs data: \(error)")
+                completion(.failure(.noDecode))
+                return
+            }
         }.resume()
     }
 }
