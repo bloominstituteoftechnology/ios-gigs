@@ -17,8 +17,9 @@ class GigsTableViewController: UITableViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if gigController.bearer == nil {
-            performSegue(withIdentifier: "LoginViewModelSegue", sender: self)
+            performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
         // TODO: fetch gigs here
         }
     }
