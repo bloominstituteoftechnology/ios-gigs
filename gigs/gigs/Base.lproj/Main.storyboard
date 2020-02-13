@@ -39,6 +39,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BHt-sM-vvn" kind="show" identifier="ShowGigSegue" id="XXD-SZ-t04"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -55,7 +58,6 @@
                     </navigationItem>
                     <connections>
                         <segue destination="heD-9l-wli" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="Iqy-TO-QHK"/>
-                        <segue destination="BHt-sM-vvn" kind="show" identifier="ShowGigSegue" id="zJ0-te-rj3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pc5-kB-QN3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -216,6 +218,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aA7-5u-yBW"/>
+        <segue reference="XXD-SZ-t04"/>
     </inferredMetricsTieBreakers>
 </document>
