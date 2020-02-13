@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		72718AF523F5E3810027CFE8 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72718AF423F5E3810027CFE8 /* GigDetailViewController.swift */; };
+		72718AF723F5E6680027CFE8 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72718AF623F5E6680027CFE8 /* Gig.swift */; };
 		72BB5A1323F497580091215C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BB5A1223F497580091215C /* AppDelegate.swift */; };
 		72BB5A1523F497580091215C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BB5A1423F497580091215C /* SceneDelegate.swift */; };
 		72BB5A1A23F497580091215C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72BB5A1823F497580091215C /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		72718AF423F5E3810027CFE8 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigDetailViewController.swift; path = Gigs/GigDetailViewController.swift; sourceTree = SOURCE_ROOT; };
+		72718AF623F5E6680027CFE8 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Gig.swift; path = Gigs/Gig.swift; sourceTree = SOURCE_ROOT; };
 		72BB5A0F23F497580091215C /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72BB5A1223F497580091215C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72BB5A1423F497580091215C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 		72BB5A2723F4986C0091215C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				72718AF623F5E6680027CFE8 /* Gig.swift */,
 				72BB5A2E23F49B490091215C /* Bearer.swift */,
 				72BB5A3023F49BCF0091215C /* User.swift */,
 			);
@@ -193,6 +196,7 @@
 				72BB5A1323F497580091215C /* AppDelegate.swift in Sources */,
 				72BB5A1523F497580091215C /* SceneDelegate.swift in Sources */,
 				72BB5A2B23F498B20091215C /* GigsTableViewController.swift in Sources */,
+				72718AF723F5E6680027CFE8 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
