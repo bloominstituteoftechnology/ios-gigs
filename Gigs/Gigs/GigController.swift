@@ -14,13 +14,24 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case badUrl
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+    case badImage
+}
+
 class GigController {
     
     var bearer: Bearer?
+    var gigs: [Gig] = []
     
     private let baseUrl = URL(string: "https://lambdagigs.vapor.cloud/api")!
-
-// create function for sign up
+    
+    // create function for sign up
     func signUp(with user: User, completion: @escaping (Error?) -> ()) {
         //create endpoint - specifit URL
         let signUpUrl = baseUrl.appendingPathComponent("users/signup")
@@ -113,6 +124,56 @@ class GigController {
         //creat function for fetching animal details
         
         // create function to fetch image
+    }
+    
+    func fetchGigDetails(for gigName: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        // If failure, the bearer token doesn't exist
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let gigUrl = baseUrl.appendingPathComponent("gigs/\(gigName)")
+        
+        var request = URLRequest(url: gigUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        // This provides authorization credentials to the server.
+        // Data here is case sensitve and you must follow the rules exactly.
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            // handle errors (like no internet connectivity,
+            // or anything that generates an Error object)
+            if let error = error {
+                NSLog("Error receiving gig detail data: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            // Specifically, the bearer token is invalid or expired
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .secondsSince1970
+            do {
+                let gig = try decoder.decode(Gig.self, from: data)
+                completion(.success(gig))
+            } catch {
+                NSLog("Error decoding gig object: \(error)")
+                completion(.failure(.noDecode))
+                return
+            }
+            
+        }.resume()
     }
 }
 
