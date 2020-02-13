@@ -13,10 +13,24 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case badUrl
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+    case badImage
+}
+
 class GigController {
     
     // MARK: - Properties
     var bearer: Bearer?
+    
+    var gigs: [Gig] = []
+    
+    
     var baseURL: URL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
     // MARK: - Methods
@@ -119,4 +133,110 @@ class GigController {
         }.resume()
     }
     
-}
+    
+    func addGig(gig: Gig, completion: @escaping (Error?) -> ()) {
+    guard let bearer = bearer else {
+            print("No Auth")
+            completion(nil)
+            return
+        }
+        
+        let gigURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: gigURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        // This provides authorization credentials to the server.
+        // Data here is case sensitve and you must follow the rules exactly.
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        do {
+            let newGig = try encoder.encode(gig)
+            request.httpBody = newGig
+        } catch {
+            NSLog("Error encoding gig object: \(error)")
+            completion(nil)
+            return
+        }
+        
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            // handle errors (like no internet connectivity,
+            // or anything that generates an Error object)
+          
+            // Specifically, the bearer token is invalid or expired
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                print("Bad Auth")
+                completion(nil)
+                return
+            }
+            if let error = error {
+                print("Error receiving gig data: \(error)")
+                completion(nil)
+                return
+            } else {
+                self.fetchAllGigTitles { result in
+                    
+                }
+            }
+            
+            
+        }.resume()
+    }
+    
+    
+    func fetchAllGigTitles(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        // If failure, the bearer token doesn't exist
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let allGigTitleURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: allGigTitleURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        // This provides authorization credentials to the server.
+        // Data here is case sensitve and you must follow the rules exactly.
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in if let error = error {
+                NSLog("Error receiving gig data: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            // Specifically, the bearer token is invalid or expired
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                let gigs = try decoder.decode([Gig].self, from: data)
+                    completion(.success(gigs))
+            } catch {
+                NSLog("Error decoding [gig] objects \(error)")
+                completion(.failure(.noDecode))
+                return
+            }
+            
+        }.resume()
+    }
+    
+    // create function for fetching animal details
+    
+    }
+
+

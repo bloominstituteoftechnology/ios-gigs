@@ -15,9 +15,7 @@ enum LoginType: String {
 
 class LoginViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+ 
     
     // MARK: - Properties
        
@@ -34,7 +32,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var logInSignUp: UISegmentedControl!
     
     @IBOutlet weak var logInSignInButton: UIButton!
-   
+    
+    
+  override func viewDidLoad() {
+       super.viewDidLoad()
+   }
+
     // MARK: - Actions
     
     @IBAction func pathChanged(_ sender: Any) {
@@ -44,7 +47,7 @@ class LoginViewController: UIViewController {
         }
         if logInSignUp.selectedSegmentIndex == 1 {
             loginType = .signUp
-            logInSignInButton.titleLabel!.text = "Sign Up"
+            logInSignInButton.titleLabel!.text = "Sign Up!"
         }
     }
     
