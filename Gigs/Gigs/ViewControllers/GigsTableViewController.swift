@@ -18,7 +18,20 @@ class GigsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        gigController.fetchGigs { (result) in
+            
+            do{
+                let gigs = try result.get()
+                DispatchQueue.main.async {
+                    self.gigController.gigs = gigs
+                    self.tableView.reloadData()
+                }
+            } catch {
+                
+            }
+            
+            
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
