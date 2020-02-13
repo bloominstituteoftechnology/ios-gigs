@@ -13,6 +13,16 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case badURL
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+    case badImage
+}
+
 class GigController {
     
     //MARK: - Variables
@@ -115,4 +125,6 @@ class GigController {
             completion(nil)
         }.resume()
     }
+    
+    //MARK: - Fetch Data Function
 }
