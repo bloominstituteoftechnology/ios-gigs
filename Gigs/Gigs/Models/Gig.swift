@@ -6,10 +6,10 @@
 //  Copyright © 2020 Lambda School. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Gig: Codable {
-    let title: String
-    let description: String
-    let dueDate: Date
+    var title: String
+    var dueDate: Date
+    var description: String
 }
