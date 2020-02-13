@@ -21,9 +21,21 @@ enum HTTPHeaderField: String {
     case contentType = "Content-Type"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case badData
+    case otherError
+    case noDecode
+    
+}
+
 class GigController {
+    
     var bearer: Bearer?
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
+    
+    var gigs: [Gig] = []
     
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         let signUpURL = baseURL.appendingPathComponent("users/signup")
@@ -113,5 +125,49 @@ class GigController {
         
         
     }
+    
+    func fetchGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let gigsURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: gigsURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = error else {
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                let gigs = try jsonDecoder.decode([Gig].self, from: data)
+                self.gigs = gigs
+                completion(.success(gigs))
+            } catch {
+                completion(.failure(.noDecode))
+            }
+            
+            
+        }.resume()
+        
+    }
+    
+    
     
 }
