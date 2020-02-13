@@ -73,7 +73,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="dNU-5e-P74">
-                                <rect key="frame" x="0.0" y="104" width="414" height="792"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="788"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Tittle:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaL-CL-Cjt">
                                         <rect key="frame" x="0.0" y="0.0" width="145.5" height="41"/>
@@ -82,7 +82,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gig Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qWI-Ll-RYO">
-                                        <rect key="frame" x="0.0" y="55" width="118.5" height="34"/>
+                                        <rect key="frame" x="0.0" y="55" width="394" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -93,7 +93,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="qPs-7y-EL6">
-                                        <rect key="frame" x="0.0" y="151" width="320" height="216"/>
+                                        <rect key="frame" x="0.0" y="150.5" width="320" height="216"/>
                                     </datePicker>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eED-MF-oer">
                                         <rect key="frame" x="0.0" y="380.5" width="145.5" height="33.5"/>
@@ -101,23 +101,28 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vw6-Jg-qDj">
-                                        <rect key="frame" x="0.0" y="428" width="374" height="364"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="Enter gig description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vw6-Jg-qDj">
+                                        <rect key="frame" x="0.0" y="428" width="360" height="360"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="vw6-Jg-qDj" secondAttribute="height" multiplier="1:1" id="Rci-5i-Pdr"/>
+                                        </constraints>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                     </textView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="qWI-Ll-RYO" secondAttribute="trailing" constant="20" id="3ge-PU-Wkh"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="dNU-5e-P74" firstAttribute="leading" secondItem="1Wa-J7-lqw" secondAttribute="leading" id="9pf-qJ-C0l"/>
-                            <constraint firstItem="dNU-5e-P74" firstAttribute="top" secondItem="1Wa-J7-lqw" secondAttribute="top" constant="16" id="B41-rg-FJ6"/>
-                            <constraint firstAttribute="bottom" secondItem="dNU-5e-P74" secondAttribute="bottom" id="Gxa-mg-sLl"/>
-                            <constraint firstItem="1Wa-J7-lqw" firstAttribute="trailing" secondItem="dNU-5e-P74" secondAttribute="trailing" id="Hfe-Wx-18Y"/>
+                            <constraint firstItem="dNU-5e-P74" firstAttribute="leading" secondItem="1Wa-J7-lqw" secondAttribute="leading" id="6hY-iA-XKE"/>
+                            <constraint firstItem="1Wa-J7-lqw" firstAttribute="trailing" secondItem="dNU-5e-P74" secondAttribute="trailing" id="DeG-Bs-pY8"/>
+                            <constraint firstItem="dNU-5e-P74" firstAttribute="top" secondItem="1Wa-J7-lqw" secondAttribute="top" id="JTj-Ty-EFt"/>
+                            <constraint firstAttribute="bottom" secondItem="dNU-5e-P74" secondAttribute="bottom" constant="20" symbolic="YES" id="Zd9-cJ-oCM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Wa-J7-lqw"/>
                     </view>
@@ -168,7 +173,7 @@
                                 <rect key="frame" x="100" y="524" width="214" height="32"/>
                                 <segments>
                                     <segment title="Sign Up"/>
-                                    <segment title="Sign In"/>
+                                    <segment title="Log In"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentSelected:" destination="fn4-cd-sFF" eventType="valueChanged" id="JSs-8A-foh"/>

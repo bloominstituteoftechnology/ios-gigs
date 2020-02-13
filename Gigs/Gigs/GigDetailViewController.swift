@@ -9,7 +9,7 @@
 import UIKit
 
 class GigDetailViewController: UIViewController {
-
+    
     // MARK: - Properties
     
     var gigController: GigController?
@@ -23,7 +23,7 @@ class GigDetailViewController: UIViewController {
     
     // MARK: - Actions
     
-
+    
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
         
         guard let gigController = gigController else { return }
@@ -31,7 +31,7 @@ class GigDetailViewController: UIViewController {
             !gigName.isEmpty,
             let gigDescription = gigDescriptionTextView.text,
             !gigDescription.isEmpty else { return }
-            let newGig = Gig(title: gigName, description: gigDescription, dueDate: datePicker.date)
+        let newGig = Gig(title: gigName, description: gigDescription, dueDate: datePicker.date)
         let postGig = gigController.createGig(gig: newGig)
         gigController.pushGig(gig: postGig, completion: { (_) in
             DispatchQueue.main.async {
@@ -40,22 +40,14 @@ class GigDetailViewController: UIViewController {
         })
     }
     
-    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let gig = gig {
+            gigNameTextField.text = gig.title
+            gigDescriptionTextView.text = gig.description
+            datePicker.date = gig.dueDate
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

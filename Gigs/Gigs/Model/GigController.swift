@@ -21,7 +21,6 @@ class GigController {
     var bearer: Bearer?
     var gigs: [Gig] = []
     
-    
     // MARK: - Methods
     
     func createGig(gig: Gig) -> Gig {
@@ -29,7 +28,6 @@ class GigController {
         gigs.append(newGig)
         return newGig
     }
-    
     
     func signUp(with user: User, completion: @escaping (Error?) -> ()) {
         
@@ -116,32 +114,30 @@ class GigController {
             completion(.failure(.badAuth))
             return
         }
-        
         var request = URLRequest(url: gigUrl)
         request.httpMethod  = HTTPMethod.get.rawValue
-        request.setValue("Bearer  \(bearer)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer  \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let _ = error {
                 completion(.failure(.otherError))
                 return
             }
-            
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401{
                 completion(.failure(.badAuth))
                 return
             }
-            
             guard let data = data else {
                 completion(.failure(.badData))
                 return
             }
-            
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            
             do{
-                let allGigs = try decoder.decode([Gig].self, from: data)
-                completion(.success(allGigs))
+                self.gigs = try decoder.decode([Gig].self, from: data)
+                completion(.success(self.gigs))
             } catch {
                 NSLog("Error decoding gigs array: \(error)")
                 completion(.failure(.noDecode))
@@ -158,24 +154,22 @@ class GigController {
         
         var request = URLRequest(url: gigUrl)
         request.httpMethod  = HTTPMethod.post.rawValue
-        request.addValue("Bearer  \(bearer)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer  \(bearer.token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-           
-        let encoder = JSONEncoder()
-                    do{
-                        request.httpBody = try encoder.encode(gig)
-        //                self.gigs.append(gig)
-                    } catch {
-                        NSLog("Error encoding gigs array: \(error)")
-                        completion(Errors.networkErrors.noEncode)
-                    }
         
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        do{
+            request.httpBody = try encoder.encode(gig)
+        } catch {
+            NSLog("Error encoding gigs array: \(error)")
+            completion(Errors.networkErrors.noEncode)
+        }
         URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let _ = error {
                 completion(Errors.networkErrors.otherError)
                 return
             }
-            
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401{
                 completion(Errors.networkErrors.networkError)

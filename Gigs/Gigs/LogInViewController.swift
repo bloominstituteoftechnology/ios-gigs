@@ -72,14 +72,6 @@ class LogInViewController: UIViewController {
         
     }
     
-    // MARK: - View Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-    }
-    
     // MARK: - Methods
     
     func signUpAlert(){
@@ -88,20 +80,9 @@ class LogInViewController: UIViewController {
             , handler: nil)
         signUpAlert.addAction(alertAction)
         self.present(signUpAlert, animated: true) {
-            self.loginType = .signUp
+            self.loginType = .login
             self.segmentedControl.selectedSegmentIndex = 1
             self.signInButton.setTitle("Sign In", for: .normal)
         }
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

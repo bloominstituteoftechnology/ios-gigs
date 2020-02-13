@@ -26,62 +26,60 @@ class GigsTableViewController: UITableViewController {
         return dateString
     }
     
-// MARK: - View Lifecycle
+    private func getGigs(){
+        gigController.fetchGigs { (result) in
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gigController.fetchGigs { (result) in
-            
-            do{
-                let gigs = try result.get()
-                DispatchQueue.main.async {
-                    self.gigController.gigs = gigs
-                    self.tableView.reloadData()
-                }
-            } catch {
-                
-            }
-            
-            
-        }
+        getGigs()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginModalSegue", sender: self)
-        // TODO: fetch gigs here
+            
+        } else {
+            getGigs()
         }
     }
-
+    
     // MARK: - Table view data source
-
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return gigController.gigs.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         let gig = gigController.gigs[indexPath.row]
-        cell.textLabel?.text = gig.description
+        cell.textLabel?.text = gig.title
         cell.detailTextLabel?.text = gigDateFormatter(gig: gig)
         return cell
     }
     
-
-
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LoginModalSegue" {
             guard let loginVC = segue.destination as? LogInViewController else { return }
-                loginVC.gigController = gigController
+            loginVC.gigController = gigController
         } else if segue.identifier == "AddGigSegue" {
-            guard let addVC = segue.destination as? GigDetailViewController, let indexPath = tableView.indexPathForSelectedRow else { return }
+            guard let addVC = segue.destination as? GigDetailViewController else { return }
             addVC.gigController = gigController
-            addVC.gig = gigController.gigs[indexPath.row]
+        } else if segue.identifier == "ShowGigSegue" {
+            guard let gigDetailVC = segue.destination as?
+                GigDetailViewController,
+                let indexpath = tableView.indexPathForSelectedRow else { return }
+            gigDetailVC.gigController = gigController
+            gigDetailVC.gig = gigController.gigs[indexpath.row]
         }
     }
 }
