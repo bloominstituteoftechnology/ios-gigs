@@ -28,6 +28,7 @@ class GigController {
     //MARK: - Variables
     var bearer: Bearer?
     private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
+    var gigs: [Gig] = []
     
     //MARK: - SignUp Function
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
@@ -127,4 +128,95 @@ class GigController {
     }
     
     //MARK: - Fetch Data Function
+    func fetchGig(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        
+        // If failure, the bearer token does not exist
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let gigUrl = baseURL.appendingPathComponent("gigs/")
+        var request = URLRequest(url: gigUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        //This provides authorization credentials to the server
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Error receiving gig data: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            // Specifically, the bearer toekn is invalid or expired
+            guard let response = response as? HTTPURLResponse, response.statusCode == 401 else {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            do {
+                self.gigs = try JSONDecoder().decode([Gig].self, from: data)
+                completion(.success(self.gigs))
+            } catch {
+                NSLog("Error decoding animal objects: \(error)")
+                completion(.failure(.noDecode))
+                return
+            }
+            
+        }.resume()
+    }
+    
+    //MARK: - CreateGig Function
+    func createGig(with gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        
+        // If failure, the bearer does not exist
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let createGigUrl = baseURL.appendingPathComponent("gigs/") // Possible to remove forward slash
+        
+        // Create a URLRequest from above
+        var request = URLRequest(url: createGigUrl)
+        
+        // Modify the request for POST, add proper headers
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Encode the user model to JSON, attach as request body
+        do {
+            let jsonData = try JSONEncoder().encode(gig)
+            request.httpBody = jsonData
+        } catch {
+            NSLog("Error encoding gig object: \(error)")
+            completion(.failure(.otherError))
+            return
+        }
+        
+        // Set up data task and handle response
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let error = error {
+                NSLog("Error creating gig data: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 401 else {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            self.gigs.append(gig)
+            completion(.success(gig))
+        }.resume()
+    }
 }
