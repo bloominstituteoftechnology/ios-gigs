@@ -14,6 +14,18 @@ class GigsTableViewController: UITableViewController {
     
     let gigController = GigController()
     
+    
+    
+    // MARK: - Methods
+    
+    func gigDateFormatter(gig: Gig) -> String{
+        var dateString = ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateString = dateFormatter.string(from: gig.dueDate)
+        return dateString
+    }
+    
 // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -43,21 +55,18 @@ class GigsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
-
-
+        let gig = gigController.gigs[indexPath.row]
+        cell.textLabel?.text = gig.description
+        cell.detailTextLabel?.text = gigDateFormatter(gig: gig)
         return cell
     }
     
