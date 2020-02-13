@@ -126,13 +126,11 @@ class GigController {
                         print("no response")
                     return
                 }
-
                   if let error = error {
                         completion(.failure(.otherError))
                     print(error)
                     return
                 }
-
                     guard let data = data else {
                         completion(.failure(.badData))
                         print("no data")
@@ -188,7 +186,6 @@ class GigController {
             completion(.failure(.otherError))
                 return
             }
-
                 self.gigs.append(gig)
             completion(.success(gig))
             }.resume()
