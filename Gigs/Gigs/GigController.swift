@@ -124,8 +124,7 @@ class GigController {
             return
         }
         
-        let requestURL = baseURL
-        .appendingPathComponent("gigs")
+        let requestURL = baseURL.appendingPathComponent("gigs")
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -151,8 +150,11 @@ class GigController {
                 return
             }
             
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .secondsSince1970
+            
             do {
-                let gigs = try JSONDecoder().decode([Gig].self, from: data)
+                let gigs = try decoder.decode([Gig].self, from: data)
                 self.gigs = gigs
                 completion(.success(gigs))
             } catch {
@@ -160,6 +162,49 @@ class GigController {
                 completion(.failure(.noDecode))
                 return
             }
+        }.resume()
+    }
+    
+    func createGig(_ gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            NSLog("Error logging in")
+            completion(.failure(.noBearer))
+            return
+        }
+        
+        let requestURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
+        
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .secondsSince1970
+        
+        do {
+            let newGig = try encoder.encode(gig)
+            request.httpBody = newGig
+            completion(.success(gig))
+        } catch {
+            NSLog("Error encoding new gig: \(error)")
+            completion(.failure(.otherError))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let error = error {
+                NSLog("Error creating gig: \(error)")
+                completion(.failure(.serverError(error)))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                NSLog("Got response status code \(response.statusCode) while creating a gid")
+                completion(.failure(.unexpectedStatusCode))
+                return
+            }
+            completion(.success(gig))
         }.resume()
     }
 }
