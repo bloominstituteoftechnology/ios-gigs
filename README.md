@@ -116,7 +116,7 @@ request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
 2. In `LoginViewController`:
 
-  - Add a `var gigController: GigController!` property that will be used to receive the `GigsTableViewController`'s `GigController` through the `prepare(for segue`.
+  - Add a `var gigController: GigController?` property that will be used to receive the `GigsTableViewController`'s `GigController` through the `prepare(for segue`.
   
     - Add a property called `loginType` that lets you know which login type the user is trying to perform. (Logging in, or signing up). The best way to implement this is to create an enum with these two cases and have the property's type be that enum.
     
