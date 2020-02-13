@@ -17,6 +17,8 @@
 		B6474CAD23F49B2C002F3687 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6474CAC23F49B2C002F3687 /* Bearer.swift */; };
 		B6474CB023F49B55002F3687 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6474CAF23F49B55002F3687 /* User.swift */; };
 		B6474CB223F49BAD002F3687 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6474CB123F49BAD002F3687 /* GigController.swift */; };
+		B69C2D0523F5F105008A2C66 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69C2D0423F5F105008A2C66 /* GigDetailViewController.swift */; };
+		B69C2D0723F5F19B008A2C66 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69C2D0623F5F19B008A2C66 /* Gig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		B6474CAC23F49B2C002F3687 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		B6474CAF23F49B55002F3687 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B6474CB123F49BAD002F3687 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		B69C2D0423F5F105008A2C66 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		B69C2D0623F5F19B008A2C66 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +52,7 @@
 		B6474C8423F49218002F3687 = {
 			isa = PBXGroup;
 			children = (
-				B6474CB323F49BB0002F3687 /* Model Controller */,
+				B6474CB323F49BB0002F3687 /* Networking */,
 				B6474CAE23F49B32002F3687 /* Model */,
 				B6474C8F23F49218002F3687 /* GigS */,
 				B6474C8E23F49218002F3687 /* Products */,
@@ -90,6 +94,7 @@
 			children = (
 				B6474CA523F492A2002F3687 /* GigsTableViewController.swift */,
 				B6474CAA23F49774002F3687 /* LoginViewController.swift */,
+				B69C2D0423F5F105008A2C66 /* GigDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -99,16 +104,17 @@
 			children = (
 				B6474CAC23F49B2C002F3687 /* Bearer.swift */,
 				B6474CAF23F49B55002F3687 /* User.swift */,
+				B69C2D0623F5F19B008A2C66 /* Gig.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		B6474CB323F49BB0002F3687 /* Model Controller */ = {
+		B6474CB323F49BB0002F3687 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				B6474CB123F49BAD002F3687 /* GigController.swift */,
 			);
-			name = "Model Controller";
+			name = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,12 +189,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6474CAD23F49B2C002F3687 /* Bearer.swift in Sources */,
+				B69C2D0523F5F105008A2C66 /* GigDetailViewController.swift in Sources */,
 				B6474CB223F49BAD002F3687 /* GigController.swift in Sources */,
 				B6474CAB23F49774002F3687 /* LoginViewController.swift in Sources */,
 				B6474CB023F49B55002F3687 /* User.swift in Sources */,
 				B6474C9123F49218002F3687 /* AppDelegate.swift in Sources */,
 				B6474CA623F492A2002F3687 /* GigsTableViewController.swift in Sources */,
 				B6474C9323F49218002F3687 /* SceneDelegate.swift in Sources */,
+				B69C2D0723F5F19B008A2C66 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

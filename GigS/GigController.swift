@@ -9,6 +9,18 @@
 import Foundation
 import UIKit
 
+
+enum NetworkError: Error {
+    case badUrl
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+    case badImage
+}
+
+
 enum HTTPMethod : String {
     case get = "GET"
     case post = "POST"
@@ -17,6 +29,9 @@ enum HTTPMethod : String {
 class GigController {
 
     var bearer: Bearer?
+    
+    var gigs : [Gig] = []
+    
     
     
  private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
@@ -112,5 +127,56 @@ class GigController {
                completion(nil)
            }.resume()
        }
+    
+    //MARK:- Fetch all gigs
+    
+    func fetchAllGigs(completion: @escaping (Result<[Gig],NetworkError>) -> Void ) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        let allGisURL = baseURL.appendingPathComponent("/gigs/")
+        var request = URLRequest(url: allGisURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
