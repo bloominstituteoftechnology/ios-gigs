@@ -140,43 +140,79 @@ class GigController {
         request.httpMethod = HTTPMethod.get.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Error receiving gigs: \(error.localizedDescription)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            guard let data = data else {
+                
+                completion(.failure(.badData))
+            return
+            
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            
+            do {
+                let gigsData = try jsonDecoder.decode([Gig].self, from: data)
+                completion(.success(gigsData))
+            } catch {
+                NSLog("Error decoding gigs object: \(error.localizedDescription)")
+                completion(.failure(.noDecode))
+                return
+            }
         
+        }.resume()
+        
+ 
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    // MARK: - Add Gigs
+
+func addGigs(with gigs: Gig, completion: @escaping (Error?) -> ()) {
+    //TODO:
     
 }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+

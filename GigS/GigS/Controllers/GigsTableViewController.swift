@@ -10,6 +10,17 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
 
+    var dateFormatter : DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeZone = .current
+        return dateFormatter
+    }
+    
+    
+    
+    
+    
     private let gigController = GigController()
     
     // MARK:- App Life Cycle
@@ -34,11 +45,17 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Table View Data Source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return gigController.gigs.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        let stringDate = dateFormatter.string(from: gigController.gigs[indexPath.row].dueDate)
+        cell.detailTextLabel?.text = stringDate
+        
+        
+        
         // This is for tomorrow
         return cell
     }
