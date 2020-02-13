@@ -17,6 +17,7 @@ class GigController {
    //MARK: Properties
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     var bearer: Bearer?
+    var gigs: [Gig] = []
     
     //MARK: Methods
     
