@@ -137,7 +137,9 @@ class GigController {
                   completion(.failure(.noAuth))
                   return
               }
-        let allGigsUrl = baseURL.appendingPathComponent("gigs") // dont need the /
+        let allGigsUrl = baseURL.appendingPathComponent("gigs")
+        print(allGigsUrl)
+        // dont need the /
         
         var request = URLRequest(url: allGigsUrl)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -159,15 +161,17 @@ class GigController {
                 completion(.failure(.badData))
                 return
             }
-            let decoder = JSONDecoder()
-            do {
-                let gigs = try decoder.decode([Gig].self, from: data)
-                completion(.success(gigs))
-            } catch {
-                NSLog("Error decoding gigs object: \(error)")
-                completion(.failure(.noDecode))
-                return
-            }
+            let jsonDecoder = JSONDecoder()
+                               jsonDecoder.dateDecodingStrategy = .iso8601
+                               do {
+                           let gigs = try jsonDecoder.decode([Gig].self, from: data)
+                               completion(.success(gigs))
+                               self.gigs = gigs
+                           } catch {
+                               print("Error decoding gigs: \(error.localizedDescription)")
+                               completion(.failure(.noDecode))
+                                   return
+                       }
         }.resume()
     }
     
