@@ -27,6 +27,7 @@ enum NetworkError: Error {
     case badData
     case otherError
     case noDecode
+    case noEncode
     
 }
 
@@ -139,7 +140,8 @@ class GigController {
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let _ = error else {
+            if let error = error {
+                NSLog("Error receiveing gigs data: \(error)")
                 completion(.failure(.otherError))
                 return
             }
@@ -155,16 +157,76 @@ class GigController {
             }
             
             let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
             do {
                 let gigs = try jsonDecoder.decode([Gig].self, from: data)
                 self.gigs = gigs
-                completion(.success(gigs))
+                
             } catch {
                 completion(.failure(.noDecode))
             }
             
+            completion(.success(self.gigs))
             
         }.resume()
+        
+    }
+    
+    func createGig(gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        let gigsURL = baseURL.appendingPathComponent("gigs")
+        var request = URLRequest(url: gigsURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        do {
+            let encodedData = try encoder.encode(gig)
+            request.httpBody = encodedData
+        } catch {
+            completion(.failure(.noEncode))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Error receiveing gig detail data: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            if let response = response as? HTTPURLResponse {
+                print(response.statusCode)
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
+            do {
+                let gig = try jsonDecoder.decode(Gig.self, from: data)
+                self.gigs.append(gig)
+            } catch {
+                completion(.failure(.noDecode))
+                return
+            }
+            
+            completion(.success(gig))
+            
+        }.resume()
+        
         
     }
     
