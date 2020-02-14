@@ -18,9 +18,6 @@ class GigsTableViewController: UITableViewController {
     }
     
     
-    
-    
-    
     private let gigController = GigController()
     
     // MARK:- App Life Cycle
@@ -37,10 +34,22 @@ class GigsTableViewController: UITableViewController {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
         } else {
             //TODO: Fetch gigs here
+            gigController.fetchAllGigs { result in
+                do {
+                    let gigs = try result.get()
+                    DispatchQueue.main.async {
+                         self.gigController.gigs = gigs // "A-ha 1" 
+                        self.tableView.reloadData()
+                       
+                    }
+                } catch {
+                    print("\(error)")
+                }
+                
+            }
         }
+        
     }
-    
-    
     
     // MARK: - Table View Data Source
 
@@ -59,13 +68,20 @@ class GigsTableViewController: UITableViewController {
         // This is for tomorrow
         return cell
     }
-    
-    
-    
-    
+   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LoginViewModalSegue" {
             if let destVC = segue.destination as? LoginViewController {
+                destVC.gigController = gigController
+            }
+        }  else if segue.identifier == "ShowGigSegue" {
+            if let destVC = segue.destination as? GigDetailViewController {
+                guard let index = tableView.indexPathForSelectedRow else { return }
+                destVC.gig = gigController.gigs[index.row]
+                destVC.gigController = gigController
+            }
+        } else if segue.identifier == "AddGigSegue" {
+            if let destVC = segue.destination as? GigDetailViewController {
                 destVC.gigController = gigController
             }
         }

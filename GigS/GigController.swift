@@ -129,88 +129,91 @@ class GigController {
        }
     
     //MARK:- Fetch all gigs
+ 
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+          guard let bearer = bearer else {
+                     completion(.failure(.noAuth))
+                     return
+                 }
+        
+           let allGigsUrl = baseURL.appendingPathComponent("gigs") // dont need the /
+           var request = URLRequest(url: allGigsUrl)
+           request.httpMethod = HTTPMethod.get.rawValue
+           request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+           URLSession.shared.dataTask(with: request) { (data, response, error) in
+               if let error = error {
+                   NSLog("Error receiving gigs data: \(error)")
+                   completion(.failure(.otherError))
+                   return
+               }
+               if let response = response as? HTTPURLResponse,
+                   response.statusCode == 401 {
+                   completion(.failure(.badAuth))
+                   return
+               }
+               guard let data = data else {
+                   completion(.failure(.badData))
+                   return
+               }
+               let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+               do {
+                   let gigs = try decoder.decode([Gig].self, from: data)
+                   completion(.success(gigs))
+               } catch {
+                   NSLog("Error decoding gigs object: \(error)")
+                   completion(.failure(.noDecode))
+                   return
+               }
+           }.resume()
+       }
     
-    func fetchAllGigs(completion: @escaping (Result<[Gig],NetworkError>) -> Void ) {
+// MARK: - Create Gig Function
+    
+    func createGig(with gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
         guard let bearer = bearer else {
             completion(.failure(.noAuth))
             return
         }
-        let allGisURL = baseURL.appendingPathComponent("/gigs/")
-        var request = URLRequest(url: allGisURL)
-        request.httpMethod = HTTPMethod.get.rawValue
+        
+        let postGigUrl = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: postGigUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                NSLog("Error receiving gigs: \(error.localizedDescription)")
-                completion(.failure(.otherError))
-                return
-            }
-            
-            if let response = response as? HTTPURLResponse, response.statusCode == 401 {
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
+        do {
+            let jsonData = try jsonEncoder.encode(gig)
+            request.httpBody = jsonData
+            print(gig)
+        } catch {
+            print("Error encoding gig object: \(error.localizedDescription)")
+            completion(.failure(.noDecode))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
                 completion(.failure(.badAuth))
                 return
             }
             
-            guard let data = data else {
-                
-                completion(.failure(.badData))
-            return
-            
-            }
-            
-            let jsonDecoder = JSONDecoder()
-            
-            do {
-                let gigsData = try jsonDecoder.decode([Gig].self, from: data)
-                completion(.success(gigsData))
-            } catch {
-                NSLog("Error decoding gigs object: \(error.localizedDescription)")
-                completion(.failure(.noDecode))
-                return
-            }
-        
-        }.resume()
-        
- 
-        }
-    // MARK: - CreateGigs function
-    
-    func createGigs(with gigs: Gig, completion: @escaping (Error?) -> ()) {
-        //TODO:
-        let createGigsURL = baseURL.appendingPathComponent("/gigs/")
-        
-        
-        var request = URLRequest(url: createGigsURL)
-        request.httpMethod = HTTPMethod.post.rawValue
-           request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let jsonEncoder = JSONEncoder()
-        do {
-            let gigsData = try jsonEncoder.encode(gigs)
-            request.httpBody = gigsData
-        } catch let err {
-            NSLog("Error encoding gigs data: \(err)")
-            completion(err)
-            return
-        }
-        URLSession.shared.dataTask(with: request) { (_, response, error) in
-            if let error = error {
-                completion(error)
+            if let _ = error {
+                completion(.failure(.otherError))
                 return
             }
             
+            self.gigs.append(gig)
             
-            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
-                completion(NSError(domain: "Unknown", code: response.statusCode, userInfo: nil))
-                return
-            }
-            completion(nil)
+            completion(.success(gig))
             
         }.resume()
-    
     }
-   
+  
     }
     
   

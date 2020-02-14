@@ -114,17 +114,8 @@ class LoginViewController: UIViewController , UITextFieldDelegate {
             loginType = .signIn
             signUpButton.setTitle("Sign In", for: .normal)
         }
-        
-        
-        
-        
-        
+ 
     }
     
-    
-    
-    
-    
-   
-    
+  
 }
