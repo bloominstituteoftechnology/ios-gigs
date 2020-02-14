@@ -22,16 +22,18 @@ class GigsTableViewController: UITableViewController {
     }()
     
     //MARK: - View Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // Transition to login view if conditions require
         if gigController.bearer == nil {
             performSegue(withIdentifier: "SignUpSegue", sender: self)
+        } else {
+            gigController.fetchGig { (result) in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -49,10 +51,19 @@ class GigsTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SignUpSegue" {
-            if let signUpVC = segue.destination as? LoginViewController {
-                signUpVC.gigController = gigController
-            }
+        switch segue.identifier {
+        case "SignUpSegue":
+            guard let signUpVC = segue.destination as? LoginViewController else { return }
+            signUpVC.gigController = gigController
+        case "AddGigSegue":
+            guard let addGigVC = segue.destination as? GigDetailViewController else { return }
+            addGigVC.gigController = gigController
+        case "ShowGigSegue":
+            guard let showGigVC = segue.destination as? GigDetailViewController, let indexPath = tableView.indexPathForSelectedRow else { return }
+            showGigVC.gigController = gigController
+            showGigVC.gig = gigController.gigs[indexPath.row]
+        default:
+            return
         }
     }
 }

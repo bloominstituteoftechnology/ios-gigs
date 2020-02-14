@@ -136,7 +136,7 @@ class GigController {
             return
         }
         
-        let gigUrl = baseURL.appendingPathComponent("gigs/")
+        let gigUrl = baseURL.appendingPathComponent("gigs")
         var request = URLRequest(url: gigUrl)
         request.httpMethod = HTTPMethod.get.rawValue
         
@@ -151,7 +151,7 @@ class GigController {
             }
             
             // Specifically, the bearer toekn is invalid or expired
-            guard let response = response as? HTTPURLResponse, response.statusCode == 401 else {
+            if let response = response as? HTTPURLResponse, response.statusCode == 401 {
                 completion(.failure(.badAuth))
                 return
             }
@@ -161,12 +161,15 @@ class GigController {
                 return
             }
             
+            // Decode the data
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
             do {
-                self.gigs = try JSONDecoder().decode([Gig].self, from: data)
-                JSONDecoder().dateDecodingStrategy = .iso8601
+                let allGigs = try decoder.decode([Gig].self, from: data)
+                self.gigs = allGigs
                 completion(.success(self.gigs))
             } catch {
-                NSLog("Error decoding animal objects: \(error)")
+                NSLog("Error decoding Gig Objects: \(error)")
                 completion(.failure(.noDecode))
                 return
             }
@@ -183,7 +186,7 @@ class GigController {
             return
         }
         
-        let createGigUrl = baseURL.appendingPathComponent("gigs/") // Possible to remove forward slash
+        let createGigUrl = baseURL.appendingPathComponent("gigs")
         
         // Create a URLRequest from above
         var request = URLRequest(url: createGigUrl)
@@ -207,11 +210,12 @@ class GigController {
         URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let error = error {
                 NSLog("Error creating gig data: \(error)")
+                print("Error: \(error)")
                 completion(.failure(.otherError))
                 return
             }
             
-            guard let response = response as? HTTPURLResponse, response.statusCode == 401 else {
+            if let response = response as? HTTPURLResponse, response.statusCode == 401  {
                 completion(.failure(.badAuth))
                 return
             }
