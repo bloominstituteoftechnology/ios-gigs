@@ -184,7 +184,7 @@ class GigController {
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         let jsonEncoder = JSONEncoder()
-        jsonEncoder.dateEncodingStrategy = .iso8601
+        jsonEncoder.dateEncodingStrategy = .iso8601 // "A-ha 3"
         do {
             let jsonData = try jsonEncoder.encode(gig)
             request.httpBody = jsonData
