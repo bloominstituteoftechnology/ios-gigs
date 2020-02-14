@@ -38,7 +38,7 @@ class GigController {
     func signUp(with user: User, completion: @escaping (Error?) -> ()) {
         // create endpoint-specific URL
         let signUpUrl = baseURL.appendingPathComponent("users/signup")
-        
+    
         // create a URLRequest from above
         var request = URLRequest(url: signUpUrl)
         
@@ -80,7 +80,6 @@ class GigController {
     func logIn(with user: User, completion: @escaping (Error?) -> ()) {
         // create endpoint-specific URL
         let logInUrl = baseURL.appendingPathComponent("users/login")
-        
         // create a URLRequest from above
         var request = URLRequest(url: logInUrl)
         

@@ -19,9 +19,9 @@ class LoginViewController: UIViewController {
     
     // MARK: - Properties
        
-    var gigController: GigController!
+    var gigController: GigController?
        
-    var loginType: LoginType = .logIn
+    var loginType: LoginType = .signUp
 
     // MARK: - Outlets
     
