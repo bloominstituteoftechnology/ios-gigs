@@ -1,6 +1,6 @@
 # Gigs API Documentation
 
-The base URL for this API is https://lambdagigs.vapor.cloud/api
+The base URL for this API is https://lambdagigapi.herokuapp.com
 
 --- 
 
