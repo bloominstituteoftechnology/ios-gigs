@@ -154,9 +154,7 @@ class GigController {
         }.resume()
     }
     
-    func createGig(with title: String, dueDate: Date, description: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
-        
-        let gig = Gig(title: title, dueDate: dueDate, description: description)
+    func createGig(with gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
         
         guard let bearer = bearer else {
             completion(.failure(.noAuth))

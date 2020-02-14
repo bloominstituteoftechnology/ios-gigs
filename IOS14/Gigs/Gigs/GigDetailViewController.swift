@@ -44,7 +44,9 @@ class GigDetailViewController: UIViewController {
         guard let title = jobTitleTF.text,
             let description = descriptionTV.text else { return }
         
-        gigController.createGig(with: title, dueDate: dueDP.date, description: description) { _ in
+        let gig = Gig(title: title, dueDate: dueDP.date, description: description)
+        
+        gigController.createGig(with: gig) { _ in
             DispatchQueue.main.async {
                 self.navigationController?.popViewController(animated: true)
             }
