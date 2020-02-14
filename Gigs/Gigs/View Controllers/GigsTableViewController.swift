@@ -13,6 +13,14 @@ class GigsTableViewController: UITableViewController {
     //MARK: - Variables
     var gigController = GigController()
     
+    //MARK: - DateFormatter
+    let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        return dateFormatter
+    }()
+    
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +37,14 @@ class GigsTableViewController: UITableViewController {
     
     //MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return gigController.gigs.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        let gig = gigController.gigs[indexPath.row]
+        cell.textLabel?.text = gig.title
+        cell.detailTextLabel?.text = dateFormatter.string(from: gig.dueDate)
         return cell
     }
     

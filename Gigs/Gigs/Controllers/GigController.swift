@@ -163,6 +163,7 @@ class GigController {
             
             do {
                 self.gigs = try JSONDecoder().decode([Gig].self, from: data)
+                JSONDecoder().dateDecodingStrategy = .iso8601
                 completion(.success(self.gigs))
             } catch {
                 NSLog("Error decoding animal objects: \(error)")
