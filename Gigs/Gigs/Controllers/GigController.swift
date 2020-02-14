@@ -173,7 +173,6 @@ class GigController {
                 completion(.failure(.noDecode))
                 return
             }
-            
         }.resume()
     }
     
@@ -210,7 +209,6 @@ class GigController {
         URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let error = error {
                 NSLog("Error creating gig data: \(error)")
-                print("Error: \(error)")
                 completion(.failure(.otherError))
                 return
             }

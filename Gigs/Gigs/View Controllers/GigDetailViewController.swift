@@ -9,7 +9,7 @@
 import UIKit
 
 class GigDetailViewController: UIViewController {
-
+    
     //MARK: - Variables
     var gigController: GigController!
     var gig: Gig?
@@ -49,5 +49,5 @@ class GigDetailViewController: UIViewController {
             self.navigationItem.title = "New Gig"
         }
     }
-
+    
 }
