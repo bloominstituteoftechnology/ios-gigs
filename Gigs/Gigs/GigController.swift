@@ -127,14 +127,14 @@ class GigController {
         // create function to fetch image
     }
     
-    func fetchGigDetails(for gigName: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+    func fetchGigDetails(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         // If failure, the bearer token doesn't exist
         guard let bearer = bearer else {
             completion(.failure(.noAuth))
             return
         }
         
-        let gigUrl = baseUrl.appendingPathComponent("gigs/\(gigName)")
+        let gigUrl = baseUrl.appendingPathComponent("gigs/")
         
         var request = URLRequest(url: gigUrl)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -166,8 +166,8 @@ class GigController {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .secondsSince1970
             do {
-                let gig = try decoder.decode(Gig.self, from: data)
-                completion(.success(gig))
+                self.gigs = try decoder.decode([Gig].self, from: data)
+                completion(.success(self.gigs))
             } catch {
                 NSLog("Error decoding gig object: \(error)")
                 completion(.failure(.noDecode))
