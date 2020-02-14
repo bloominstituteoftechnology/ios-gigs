@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gigs Table View Controller-->
+        <!--Find A Gig-->
         <scene sceneID="tTD-z1-ClJ">
             <objects>
                 <tableViewController id="R5e-xe-NCQ" customClass="GigsTableViewController" customModule="GigS" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,7 +49,7 @@
                             <outlet property="delegate" destination="R5e-xe-NCQ" id="S6k-fn-Fi8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="eYu-Yh-kCl">
+                    <navigationItem key="navigationItem" title="Find A Gig" id="eYu-Yh-kCl">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="MhS-WL-v65">
                             <connections>
                                 <segue destination="i7g-S8-jQd" kind="show" identifier="AddGigSegue" id="2ar-jU-wMu"/>
@@ -125,7 +125,7 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="neS-0v-jAx">
                                                 <rect key="frame" x="0.0" y="70" width="382" height="60"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                         </subviews>
                                     </stackView>

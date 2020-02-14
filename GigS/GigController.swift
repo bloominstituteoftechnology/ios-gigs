@@ -156,7 +156,7 @@ class GigController {
                    return
                }
                let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
+                 decoder.dateDecodingStrategy = .iso8601
                do {
                    let gigs = try decoder.decode([Gig].self, from: data)
                    completion(.success(gigs))

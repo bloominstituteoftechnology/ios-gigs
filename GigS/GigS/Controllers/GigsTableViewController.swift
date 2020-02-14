@@ -61,7 +61,7 @@ class GigsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         cell.textLabel?.text = gigController.gigs[indexPath.row].title
         let stringDate = dateFormatter.string(from: gigController.gigs[indexPath.row].dueDate)
-        cell.detailTextLabel?.text = stringDate
+        cell.detailTextLabel?.text = "Due date: \(stringDate)"
         
         
         
