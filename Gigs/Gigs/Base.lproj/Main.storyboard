@@ -113,9 +113,6 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="titleLabel.textAlignment">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="signupLoginButtonTapped:" destination="OvX-1T-MJ0" eventType="touchUpInside" id="hBV-Dt-oRA"/>
@@ -124,7 +121,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="WDf-TO-E4M" firstAttribute="leading" secondItem="m8Y-gv-ttH" secondAttribute="leading" constant="40" id="DXp-li-xvx"/>
-                                    <constraint firstAttribute="trailing" secondItem="WDf-TO-E4M" secondAttribute="trailing" constant="40" id="MVa-3h-EEm"/>
                                     <constraint firstItem="H6A-oo-IYQ" firstAttribute="leading" secondItem="m8Y-gv-ttH" secondAttribute="leading" id="NsM-Bb-Nbe"/>
                                     <constraint firstAttribute="trailing" secondItem="H6A-oo-IYQ" secondAttribute="trailing" id="TPX-aj-Eqp"/>
                                     <constraint firstAttribute="trailing" secondItem="dYU-80-Hy9" secondAttribute="trailing" id="feh-yL-Vyq"/>
@@ -150,6 +146,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiL-lV-sIq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="977" y="129"/>
+        </scene>
+        <!--Loading Screen View Controller-->
+        <scene sceneID="Ort-oo-50n">
+            <objects>
+                <viewController storyboardIdentifier="LoadingScreen" id="cph-zF-Btp" customClass="LoadingScreenViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" alpha="0.69999999999999996" contentMode="scaleToFill" id="bqW-Sj-8yA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="X97-7T-hsk">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Signing Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ziq-K4-Ds3">
+                                <rect key="frame" x="157" y="365.5" width="100.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ziq-K4-Ds3" firstAttribute="centerX" secondItem="bqW-Sj-8yA" secondAttribute="centerX" id="KEW-Pq-4ve"/>
+                            <constraint firstItem="X97-7T-hsk" firstAttribute="top" secondItem="ziq-K4-Ds3" secondAttribute="bottom" constant="40" id="QRd-Lk-MjT"/>
+                            <constraint firstItem="X97-7T-hsk" firstAttribute="centerX" secondItem="bqW-Sj-8yA" secondAttribute="centerX" id="m4a-1A-miW"/>
+                            <constraint firstItem="X97-7T-hsk" firstAttribute="centerY" secondItem="bqW-Sj-8yA" secondAttribute="centerY" id="ttv-pj-AQk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zNb-7h-A9p"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="X97-7T-hsk" id="04r-hh-P5n"/>
+                        <outlet property="messageLabel" destination="ziq-K4-Ds3" id="Gt5-17-f1T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w4q-Tp-vfc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1791" y="117"/>
         </scene>
     </scenes>
 </document>

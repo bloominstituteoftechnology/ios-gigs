@@ -26,13 +26,28 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginTypeSelected(_ sender: UISegmentedControl) {
         loginType = LoginType(rawValue: sender.selectedSegmentIndex) ?? .signup
-        signupLoginButton.titleLabel?.text = loginType == .signup ? "Sign Up" : "Log In"
+        signupLoginButton.setTitle(loginType == .signup ? "Sign Up" : "Log In", for: .normal)
     }
     
     @IBAction func signupLoginButtonTapped(_ sender: UIButton) {
-        // sign up or log in
-        /* In the button's action, based on the loginType property, perform the corresponding method in the gigController to either sign them up or log them in. If the sign up is successful, present an alert telling them they can log in. If the log in is successful, dismiss the view controller to take them back to the GigsTableViewController. */
+        guard let username = usernameTextField.text,
+            !username.isEmpty,
+            let password = passwordTextField.text,
+            !password.isEmpty else {
+                // We don't have a valid username and password
+                // We should prompt the user to enter them
+                return
+        }
+        
+        let user = User(username: username, password: password)
+        
+        if loginType == .signup {
+            signup(withUser: user)
+        } else {
+            login(withUser: user)
+        }
     }
+    
     
     //MARK: - Properties
     
@@ -43,24 +58,59 @@ class LoginViewController: UIViewController {
     
     private var loginType: LoginType = .signup
     
-    
-    //MARK: - View Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    private func signup(withUser user: User) {
+        // Let user know visually that we are signing up
+        presentLoadingScreen(withMessage: "Signing up for new account")
+        
+        gigController?.signup(withUser: user) { error in
+            DispatchQueue.main.async {
+                self.dismissLoadingScreen()
+                
+                if let error = error {
+                    // If there was an error, we should let the user know
+                    NSLog("Error signing up: \(error)")
+                }
+                // Let the user know that they were successfully signed up
+                
+                let successAlert = UIAlertController(title: "Success", message: "Your account was created successfully. You may now use the Gigs app", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                    // Automatically log in when they hit ok
+                    self.login(withUser: user)
+                }
+                successAlert.addAction(okAction)
+                self.present(successAlert, animated: true)
+            }
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func login(withUser user: User) {
+        // Let user know visually that we are logging in
+        presentLoadingScreen(withMessage: "Logging in")
+        gigController?.login(withUser: user) { error in
+            DispatchQueue.main.async {
+                self.dismissLoadingScreen()
+                
+                if let error = error {
+                    // If there was an error, we should let the user know
+                    NSLog("Error logging in: \(error)")
+                }
+                
+                self.dismiss(animated: true)
+            }
+        }
     }
-    */
+    
+    private lazy var loadingScreenVC: LoadingScreenViewController = (storyboard?.instantiateViewController(identifier: "LoadingScreen")) as! LoadingScreenViewController
+    
+    func presentLoadingScreen(withMessage message: String) {
+        loadingScreenVC.message = message
+        loadingScreenVC.modalPresentationStyle = .fullScreen
+        loadingScreenVC.modalTransitionStyle = .crossDissolve
+        present(loadingScreenVC, animated: true)
+    }
+    
+    func dismissLoadingScreen() {
+        loadingScreenVC.dismiss(animated: true)
+    }
 
 }
