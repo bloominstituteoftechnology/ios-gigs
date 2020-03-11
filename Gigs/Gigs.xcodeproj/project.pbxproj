@@ -14,6 +14,9 @@
 		156E301124197008007B22E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 156E300F24197008007B22E2 /* LaunchScreen.storyboard */; };
 		156E301B24197887007B22E2 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E301A24197887007B22E2 /* GigsTableViewController.swift */; };
 		156E301E24197B5A007B22E2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E301D24197B5A007B22E2 /* LoginViewController.swift */; };
+		156E302124197CFF007B22E2 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E302024197CFF007B22E2 /* Bearer.swift */; };
+		156E302324197D07007B22E2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E302224197D07007B22E2 /* User.swift */; };
+		156E302524197FD5007B22E2 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E302424197FD5007B22E2 /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		156E301224197008007B22E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		156E301A24197887007B22E2 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		156E301D24197B5A007B22E2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Gigs/ViewController/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		156E302024197CFF007B22E2 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		156E302224197D07007B22E2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		156E302424197FD5007B22E2 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigController.swift; path = "Gigs/New Group/GigController.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +64,10 @@
 		156E300324197005007B22E2 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				156E301C24197891007B22E2 /* ViewController */,
 				156E301824197029007B22E2 /* Storyboard */,
+				156E301F24197CEB007B22E2 /* Model */,
+				156E302624197FDB007B22E2 /* Model Controller */,
+				156E301C24197891007B22E2 /* ViewController */,
 				156E30192419703E007B22E2 /* Resources */,
 				156E301224197008007B22E2 /* Info.plist */,
 			);
@@ -92,6 +100,23 @@
 				156E301D24197B5A007B22E2 /* LoginViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		156E301F24197CEB007B22E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				156E302024197CFF007B22E2 /* Bearer.swift */,
+				156E302224197D07007B22E2 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		156E302624197FDB007B22E2 /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				156E302424197FD5007B22E2 /* GigController.swift */,
+			);
+			path = "Model Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,7 +190,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				156E302124197CFF007B22E2 /* Bearer.swift in Sources */,
+				156E302524197FD5007B22E2 /* GigController.swift in Sources */,
 				156E301E24197B5A007B22E2 /* LoginViewController.swift in Sources */,
+				156E302324197D07007B22E2 /* User.swift in Sources */,
 				156E300524197005007B22E2 /* AppDelegate.swift in Sources */,
 				156E300724197005007B22E2 /* SceneDelegate.swift in Sources */,
 				156E301B24197887007B22E2 /* GigsTableViewController.swift in Sources */,
