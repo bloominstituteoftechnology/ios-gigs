@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BBF7A5F224199A20003478A4 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7A5F124199A20003478A4 /* GigsTableViewController.swift */; };
+		BBF7A5F424199ACE003478A4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7A5F324199ACE003478A4 /* LoginViewController.swift */; };
+		BBF7A5F824199C03003478A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7A5F724199C03003478A4 /* User.swift */; };
+		BBF7A5FA24199C33003478A4 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7A5F924199C33003478A4 /* GigController.swift */; };
+		BBF7A5FC24199F3A003478A4 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7A5FB24199F3A003478A4 /* Bearer.swift */; };
 		BBF9DC5A2419803800161F02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF9DC592419803800161F02 /* AppDelegate.swift */; };
 		BBF9DC5C2419803800161F02 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF9DC5B2419803800161F02 /* SceneDelegate.swift */; };
 		BBF9DC612419803800161F02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBF9DC5F2419803800161F02 /* Main.storyboard */; };
@@ -15,6 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BBF7A5F124199A20003478A4 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
+		BBF7A5F324199ACE003478A4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BBF7A5F724199C03003478A4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BBF7A5F924199C33003478A4 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		BBF7A5FB24199F3A003478A4 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		BBF9DC562419803800161F02 /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBF9DC592419803800161F02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBF9DC5B2419803800161F02 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +45,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BBF7A5EE24199996003478A4 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BBF7A5F124199A20003478A4 /* GigsTableViewController.swift */,
+				BBF7A5F324199ACE003478A4 /* LoginViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		BBF7A5EF241999A2003478A4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BBF7A5F924199C33003478A4 /* GigController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BBF7A5F0241999AB003478A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BBF7A5F724199C03003478A4 /* User.swift */,
+				BBF7A5FB24199F3A003478A4 /* Bearer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		BBF9DC4D2419803800161F02 = {
 			isa = PBXGroup;
 			children = (
@@ -54,8 +90,11 @@
 		BBF9DC582419803800161F02 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
+				BBF7A5F0241999AB003478A4 /* Models */,
+				BBF9DC6E2419806900161F02 /* Views */,
+				BBF7A5EE24199996003478A4 /* View Controllers */,
+				BBF7A5EF241999A2003478A4 /* Controllers */,
 				BBF9DC6D2419804C00161F02 /* Resources */,
-				BBF9DC6E2419806900161F02 /* Vies */,
 				BBF9DC672419803D00161F02 /* Info.plist */,
 			);
 			path = Gigs;
@@ -72,12 +111,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		BBF9DC6E2419806900161F02 /* Vies */ = {
+		BBF9DC6E2419806900161F02 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				BBF9DC5F2419803800161F02 /* Main.storyboard */,
 			);
-			path = Vies;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,8 +190,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBF7A5F424199ACE003478A4 /* LoginViewController.swift in Sources */,
+				BBF7A5FA24199C33003478A4 /* GigController.swift in Sources */,
+				BBF7A5F824199C03003478A4 /* User.swift in Sources */,
+				BBF7A5FC24199F3A003478A4 /* Bearer.swift in Sources */,
 				BBF9DC5A2419803800161F02 /* AppDelegate.swift in Sources */,
 				BBF9DC5C2419803800161F02 /* SceneDelegate.swift in Sources */,
+				BBF7A5F224199A20003478A4 /* GigsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
