@@ -81,39 +81,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Fb-3Z-5zD">
-                                <rect key="frame" x="159" y="140" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gvf-IN-xLb">
-                                <rect key="frame" x="159" y="197" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VaZ-vK-1Jt">
-                                <rect key="frame" x="142" y="84" width="131" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Sign Up"/>
-                                    <segment title="Log In"/>
-                                </segments>
-                                <connections>
-                                    <action selector="segmentChange:" destination="U2n-d2-zHI" eventType="valueChanged" id="NyD-6d-YeQ"/>
-                                </connections>
-                            </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRq-5b-n9r">
-                                <rect key="frame" x="184" y="239" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="userSubmitTapped:" destination="U2n-d2-zHI" eventType="touchUpInside" id="KBz-ZS-Oe6"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="O8W-g0-JYw">
+                                <rect key="frame" x="50" y="104" width="314" height="183"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VaZ-vK-1Jt">
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="32"/>
+                                        <segments>
+                                            <segment title="Sign Up"/>
+                                            <segment title="Log In"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segmentChange:" destination="U2n-d2-zHI" eventType="valueChanged" id="NyD-6d-YeQ"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Fb-3Z-5zD">
+                                        <rect key="frame" x="0.0" y="49" width="314" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gvf-IN-xLb">
+                                        <rect key="frame" x="0.0" y="101" width="314" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRq-5b-n9r">
+                                        <rect key="frame" x="0.0" y="153" width="314" height="30"/>
+                                        <state key="normal" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="userSubmitTapped:" destination="U2n-d2-zHI" eventType="touchUpInside" id="KBz-ZS-Oe6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IrV-6e-n7v" firstAttribute="trailing" secondItem="O8W-g0-JYw" secondAttribute="trailing" constant="50" id="f5k-A2-8MJ"/>
+                            <constraint firstItem="O8W-g0-JYw" firstAttribute="top" secondItem="IrV-6e-n7v" secondAttribute="top" constant="60" id="ghT-rK-YXI"/>
+                            <constraint firstItem="O8W-g0-JYw" firstAttribute="leading" secondItem="IrV-6e-n7v" secondAttribute="leading" constant="50" id="mcH-Tv-yIf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="IrV-6e-n7v"/>
                     </view>
                     <connections>
