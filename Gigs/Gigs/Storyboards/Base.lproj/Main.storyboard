@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="agk-Nn-mQ5">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GigCell" id="agk-Nn-mQ5">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="agk-Nn-mQ5" id="KXg-Ew-RJR">
@@ -33,7 +33,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="y3r-yM-rr7"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="iMR-gs-HE8"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="CredentialsSegue" modalPresentationStyle="fullScreen" id="iMR-gs-HE8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qCl-Dv-ZRd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -73,6 +73,9 @@
                                             <segment title="Sign Up"/>
                                             <segment title="Sign In"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="selectModeButton:" destination="BYZ-38-t0r" eventType="valueChanged" id="kDT-R0-RFv"/>
+                                        </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="239-nQ-ovP">
                                         <rect key="frame" x="0.0" y="39" width="374" height="34"/>
@@ -87,6 +90,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhE-pm-5oO">
                                         <rect key="frame" x="0.0" y="123" width="374" height="30"/>
                                         <state key="normal" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="credentialsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ECJ-gq-EOP"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -99,6 +105,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="credentialsButtonLabel" destination="uhE-pm-5oO" id="27e-AL-MUt"/>
+                        <outlet property="credentialsMode" destination="VFM-B1-oo3" id="144-mJ-NSD"/>
+                        <outlet property="passwordTextField" destination="e8d-bF-Q9v" id="20N-6m-l0f"/>
+                        <outlet property="usernameTextField" destination="239-nQ-ovP" id="12B-Wy-6Sp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
