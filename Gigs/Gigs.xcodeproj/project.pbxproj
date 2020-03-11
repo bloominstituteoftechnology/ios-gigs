@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		04CBC30B241905B900A0E283 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC30A241905B900A0E283 /* AppDelegate.swift */; };
 		04CBC30D241905B900A0E283 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC30C241905B900A0E283 /* SceneDelegate.swift */; };
-		04CBC30F241905B900A0E283 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CBC30E241905B900A0E283 /* ViewController.swift */; };
 		04CBC312241905B900A0E283 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC310241905B900A0E283 /* Main.storyboard */; };
 		04CBC314241905BB00A0E283 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC313241905BB00A0E283 /* Assets.xcassets */; };
 		04CBC317241905BB00A0E283 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04CBC315241905BB00A0E283 /* LaunchScreen.storyboard */; };
@@ -24,7 +23,6 @@
 		04CBC307241905B900A0E283 /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CBC30A241905B900A0E283 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04CBC30C241905B900A0E283 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		04CBC30E241905B900A0E283 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		04CBC311241905B900A0E283 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04CBC313241905BB00A0E283 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04CBC316241905BB00A0E283 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -66,20 +64,35 @@
 		04CBC309241905B900A0E283 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				04CBC30A241905B900A0E283 /* AppDelegate.swift */,
-				04CBC30C241905B900A0E283 /* SceneDelegate.swift */,
-				04CBC30E241905B900A0E283 /* ViewController.swift */,
+				04CBC3282419159500A0E283 /* Resources */,
 				04CBC310241905B900A0E283 /* Main.storyboard */,
 				04CBC320241908DA00A0E283 /* LoginViewController.swift */,
-				04CBC32224190A6100A0E283 /* Bearer.swift */,
-				04CBC32424190AC800A0E283 /* User.swift */,
-				04CBC32624190B1C00A0E283 /* GigController.swift */,
 				04CBC31E2419066500A0E283 /* GigsTableViewController.swift */,
+				04CBC329241915C900A0E283 /* Model */,
+			);
+			path = Gigs;
+			sourceTree = "<group>";
+		};
+		04CBC3282419159500A0E283 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				04CBC313241905BB00A0E283 /* Assets.xcassets */,
+				04CBC30A241905B900A0E283 /* AppDelegate.swift */,
+				04CBC30C241905B900A0E283 /* SceneDelegate.swift */,
 				04CBC315241905BB00A0E283 /* LaunchScreen.storyboard */,
 				04CBC318241905BB00A0E283 /* Info.plist */,
 			);
-			path = Gigs;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		04CBC329241915C900A0E283 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04CBC32224190A6100A0E283 /* Bearer.swift */,
+				04CBC32424190AC800A0E283 /* User.swift */,
+				04CBC32624190B1C00A0E283 /* GigController.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,7 +166,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04CBC30F241905B900A0E283 /* ViewController.swift in Sources */,
 				04CBC32724190B1C00A0E283 /* GigController.swift in Sources */,
 				04CBC31F2419066500A0E283 /* GigsTableViewController.swift in Sources */,
 				04CBC32324190A6100A0E283 /* Bearer.swift in Sources */,
@@ -306,7 +318,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 94ZMA2MYR4;
-				INFOPLIST_FILE = Gigs/Info.plist;
+				INFOPLIST_FILE = Gigs/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,7 +336,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 94ZMA2MYR4;
-				INFOPLIST_FILE = Gigs/Info.plist;
+				INFOPLIST_FILE = Gigs/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

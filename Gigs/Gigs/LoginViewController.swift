@@ -43,6 +43,7 @@ class LoginViewController: UIViewController {
     
     private var loginType: LoginType = .signup
     
+    
     //MARK: - View Lifecycle
     
     override func viewDidLoad() {
