@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
     
     var gigController: GigController?
     var loginType = LoginType.signUp
@@ -29,16 +29,40 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func signInTypeChanged(_ sender: UISegmentedControl) {
+    @IBAction func loginTypeChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             loginType = .signUp
-            signInButton.setTitle("Sign Up", for: .normal)
+            loginButton.setTitle("Sign Up", for: .normal)
         } else {
             loginType = .login
+            loginButton.setTitle("Login", for: .normal)
         }
     }
 
-    @IBAction func signInTapped(_ sender: UIButton) {
+    @IBAction func loginTapped(_ sender: UIButton) {
+        if let username = usernameTextField.text,
+            !username.isEmpty,
+            let password = passwordTextField.text,
+            !password.isEmpty {
+            let user = User(username: username, password: password)
+            
+            if loginType == .signUp {
+                gigController?.signUp(with: user, completion: { error in
+                    if let error = error {
+                        NSLog("Error occured while signing up: \(error)")
+                    } else {
+                        let alertController = UIAlertController(title: "Sign Up Successful", message: "Now please log in", preferredStyle: .alert)
+                        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alertController.addAction(alertAction)
+                        self.present(alertController, animated: true) {
+                            self.loginType = .login
+                            self.loginSegmentedControl.selectedSegmentIndex = 1
+                            self.loginButton.setTitle("Login", for: .normal)
+                        }
+                    }
+                })
+            }
+        }
     }
     /*
     // MARK: - Navigation
