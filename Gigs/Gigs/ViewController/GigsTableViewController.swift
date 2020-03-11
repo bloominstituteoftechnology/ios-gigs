@@ -20,6 +20,7 @@ class GigsTableViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
             // TODO: fetch gigs here
@@ -90,7 +91,7 @@ class GigsTableViewController: UITableViewController {
            if segue.identifier == "LoginViewModalSegue" {
                // inject dependencies
                if let loginVC = segue.destination as? LoginViewController {
-//                   loginVC.apiController = apiController
+                   loginVC.gigController = gigController
                }
            }
        }
