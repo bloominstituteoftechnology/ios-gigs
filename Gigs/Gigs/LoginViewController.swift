@@ -64,21 +64,22 @@ class LoginViewController: UIViewController {
         
         gigController?.signup(withUser: user) { error in
             DispatchQueue.main.async {
-                self.dismissLoadingScreen()
-                
-                if let error = error {
-                    // If there was an error, we should let the user know
-                    NSLog("Error signing up: \(error)")
+                self.loadingScreenVC.dismiss(animated: true) {
+                    if let error = error {
+                        // If there was an error, we should let the user know
+                        NSLog("Error signing up: \(error)")
+                    } else {
+                        // Let the user know that they were successfully signed up
+                        
+                        let successAlert = UIAlertController(title: "Success", message: "Your account was created successfully. You may now use the Gigs app", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                            // Automatically log in when they hit ok
+                            self.login(withUser: user)
+                        }
+                        successAlert.addAction(okAction)
+                        self.present(successAlert, animated: true)
+                    }
                 }
-                // Let the user know that they were successfully signed up
-                
-                let successAlert = UIAlertController(title: "Success", message: "Your account was created successfully. You may now use the Gigs app", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                    // Automatically log in when they hit ok
-                    self.login(withUser: user)
-                }
-                successAlert.addAction(okAction)
-                self.present(successAlert, animated: true)
             }
         }
     }
@@ -86,16 +87,17 @@ class LoginViewController: UIViewController {
     private func login(withUser user: User) {
         // Let user know visually that we are logging in
         presentLoadingScreen(withMessage: "Logging in")
+        
         gigController?.login(withUser: user) { error in
             DispatchQueue.main.async {
-                self.dismissLoadingScreen()
-                
-                if let error = error {
-                    // If there was an error, we should let the user know
-                    NSLog("Error logging in: \(error)")
+                self.loadingScreenVC.dismiss(animated: true) {
+                    if let error = error {
+                        // If there was an error, we should let the user know
+                        NSLog("Error logging in: \(error)")
+                    } else {
+                        self.dismiss(animated: true)
+                    }
                 }
-                
-                self.dismiss(animated: true)
             }
         }
     }
@@ -107,10 +109,6 @@ class LoginViewController: UIViewController {
         loadingScreenVC.modalPresentationStyle = .fullScreen
         loadingScreenVC.modalTransitionStyle = .crossDissolve
         present(loadingScreenVC, animated: true)
-    }
-    
-    func dismissLoadingScreen() {
-        loadingScreenVC.dismiss(animated: true)
     }
 
 }
