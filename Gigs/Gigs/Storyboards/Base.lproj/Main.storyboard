@@ -36,7 +36,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XJy-iU-uil">
                                         <rect key="frame" x="0.0" y="81" width="374" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nd4-X1-d8K">
                                         <rect key="frame" x="0.0" y="123" width="374" height="30"/>
@@ -109,7 +109,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="fs9-Zc-MwB"/>
                     <connections>
-                        <segue destination="OG2-pW-P9M" kind="presentation" modalPresentationStyle="fullScreen" id="yOf-e8-u7Y"/>
+                        <segue destination="OG2-pW-P9M" kind="presentation" identifier="SignInSegue" modalPresentationStyle="fullScreen" id="yOf-e8-u7Y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P1Z-sM-0LN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
