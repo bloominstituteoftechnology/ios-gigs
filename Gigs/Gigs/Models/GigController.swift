@@ -63,5 +63,65 @@ class GigController {
         }.resume()
     }
     
+    // Gonna code LogIn from scratch for the sake of reps
+    func logIn(with user: User, completion: @escaping (Error?) -> ()) {
+        
+        let logInURL = baseURL.appendingPathComponent("users/login")
+        
+        var request = URLRequest(url: logInURL)
+        request.httpMethod = HTTPMethods.post.rawValue
+        
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonEncoder = JSONEncoder()
+        
+        do {
+            let jsonData = try jsonEncoder.encode(user)
+            request.httpBody = jsonData
+        } catch {
+            NSLog("Error encoding data for log in: \(error)")
+            completion(error)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(error)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                return
+            }
+            
+            guard let data = data else {
+                completion(NSError(domain: "Data couldn't be unqrapped", code: 99, userInfo: nil))
+                return
+            }
+            // If the data can be uwrapped, we'll then need to decode it.
+            let jsonDecoder = JSONDecoder()
+            
+            do {
+                // If data can be decoded into type Bearer, assign it to self's bearer property.
+                let jsonData = try jsonDecoder.decode(Bearer.self, from: data)
+                self.bearer = jsonData
+                // If everything goes well, just leave with completion as nil
+                completion(nil)
+                
+            } catch {
+                NSLog("Error decoding data from log in request: \(error)")
+                completion(error)
+            }
+            completion(nil)
+            
+        }.resume()
+        
+        
+        
+        
+    }
+    
     // Log in method
 }
