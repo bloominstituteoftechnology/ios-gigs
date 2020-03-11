@@ -42,8 +42,14 @@ class LoginViewController: UIViewController {
         let user = User(username: username, password: password)
         
         if loginType == .signup {
+            // Let user know visually that we are signing up
+            loadingScreenVC.message = "Signing Up..."
+            present(loadingScreenVC, animated: true)
             signup(withUser: user)
         } else {
+            // Let user know visually that we are logging in
+            loadingScreenVC.message = "Logging In..."
+            present(loadingScreenVC, animated: true)
             login(withUser: user)
         }
     }
@@ -56,38 +62,28 @@ class LoginViewController: UIViewController {
     
     //MARK: - Private
     
+    private lazy var loadingScreenVC = storyboard?.instantiateViewController(identifier: "LoadingScreen") as! LoadingScreenViewController
+    
     private var loginType: LoginType = .signup
     
     private func signup(withUser user: User) {
-        // Let user know visually that we are signing up
-        presentLoadingScreen(withMessage: "Signing up for new account")
-        
         gigController?.signup(withUser: user) { error in
             DispatchQueue.main.async {
-                self.loadingScreenVC.dismiss(animated: true) {
-                    if let error = error {
-                        // If there was an error, we should let the user know
-                        NSLog("Error signing up: \(error)")
-                    } else {
-                        // Let the user know that they were successfully signed up
-                        
-                        let successAlert = UIAlertController(title: "Success", message: "Your account was created successfully. You may now use the Gigs app", preferredStyle: .alert)
-                        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                            // Automatically log in when they hit ok
-                            self.login(withUser: user)
-                        }
-                        successAlert.addAction(okAction)
-                        self.present(successAlert, animated: true)
-                    }
+                if let error = error {
+                    self.loadingScreenVC.dismiss(animated: true)
+                    NSLog("Error signing up: \(error)")
+                    // Show alert to let user know of error
+                    
+                } else {
+                    // Let the user know that they were successfully signed up
+                    self.loadingScreenVC.message = "Sign Up Successful, \n Logging In..."
+                    self.login(withUser: user)
                 }
             }
         }
     }
     
     private func login(withUser user: User) {
-        // Let user know visually that we are logging in
-        presentLoadingScreen(withMessage: "Logging in")
-        
         gigController?.login(withUser: user) { error in
             DispatchQueue.main.async {
                 self.loadingScreenVC.dismiss(animated: true) {
@@ -102,13 +98,35 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private lazy var loadingScreenVC: LoadingScreenViewController = (storyboard?.instantiateViewController(identifier: "LoadingScreen")) as! LoadingScreenViewController
+    // MARK: - View Lifecycle
     
-    func presentLoadingScreen(withMessage message: String) {
-        loadingScreenVC.message = message
-        loadingScreenVC.modalPresentationStyle = .fullScreen
-        loadingScreenVC.modalTransitionStyle = .crossDissolve
-        present(loadingScreenVC, animated: true)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
     }
-
 }
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let username = usernameTextField.text, let password = passwordTextField.text else { return }
+        signupLoginButton.isEnabled = !username.isEmpty && !password.isEmpty
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === usernameTextField {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+            signupLoginButtonTapped(signupLoginButton)
+        }
+        return true
+    }
+}
+
+
+//let successAlert = UIAlertController(title: "Success", message: "Your account was created successfully. You may now use the Gigs app", preferredStyle: .alert)
+//let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+//}
+//successAlert.addAction(okAction)
+//self.present(successAlert, animated: true)
