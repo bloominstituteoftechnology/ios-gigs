@@ -9,11 +9,21 @@
 import UIKit
 
 class GigsTableViewController: UITableViewController {
+    
+    //Used to perform network calls to get gig listed on API to view controllers to call the API for whatever they need
+    var gigController = GigController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-     performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+     
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if gigController.bearer == nil {
+            performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+            // TODO: fetch gigs here
+        }
     }
 
     // MARK: - Table view data source
@@ -28,15 +38,15 @@ class GigsTableViewController: UITableViewController {
         return 0
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

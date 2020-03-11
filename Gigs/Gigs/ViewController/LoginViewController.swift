@@ -8,12 +8,20 @@
 
 import UIKit
 
+enum LoginType {
+    case signUp
+    case login
+}
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginSegmentedControl: UISegmentedControl!
     @IBOutlet weak var signInButton: UIButton!
+    
+    var gigController: GigController?
+    var loginType = LoginType.signUp
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +30,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signInTypeChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            loginType = .signUp
+            signInButton.setTitle("Sign Up", for: .normal)
+        } else {
+            loginType = .login
+        }
     }
 
     @IBAction func signInTapped(_ sender: UIButton) {
