@@ -63,21 +63,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bSs-OH-5qy">
-                                <rect key="frame" x="159" y="164" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wRK-f4-rHi">
-                                <rect key="frame" x="159" y="250" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6rP-th-9Nx">
-                                <rect key="frame" x="142" y="81" width="131" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sFR-r8-874">
+                                <rect key="frame" x="132" y="135" width="150" height="138"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bSs-OH-5qy">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="username"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wRK-f4-rHi">
+                                        <rect key="frame" x="0.0" y="54" width="150" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghk-e7-Pg0">
+                                        <rect key="frame" x="0.0" y="108" width="150" height="30"/>
+                                        <state key="normal" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="saveButtonTapped:" destination="Pic-sN-2vU" eventType="touchUpInside" id="Wa0-7j-A5n"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Y1H-AI-Jrg"/>
+                                </constraints>
+                            </stackView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6rP-th-9Nx">
+                                <rect key="frame" x="139.5" y="64" width="135" height="32"/>
                                 <segments>
                                     <segment title="Sign Up"/>
                                     <segment title="Log In"/>
@@ -86,16 +98,14 @@
                                     <action selector="loginTypeSegmentedControlChanged:" destination="Pic-sN-2vU" eventType="valueChanged" id="d1T-Yo-7Q5"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghk-e7-Pg0">
-                                <rect key="frame" x="173" y="372" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="saveButtonTapped:" destination="Pic-sN-2vU" eventType="touchUpInside" id="Wa0-7j-A5n"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="sFR-r8-874" firstAttribute="top" secondItem="6rP-th-9Nx" secondAttribute="bottom" constant="40" id="AAM-Ns-PNG"/>
+                            <constraint firstItem="6rP-th-9Nx" firstAttribute="top" secondItem="qKu-e8-ta5" secondAttribute="top" constant="20" id="H4K-cw-LQ7"/>
+                            <constraint firstItem="6rP-th-9Nx" firstAttribute="centerX" secondItem="r5c-lr-tP1" secondAttribute="centerX" id="HQC-E6-Dxd"/>
+                            <constraint firstItem="sFR-r8-874" firstAttribute="centerX" secondItem="r5c-lr-tP1" secondAttribute="centerX" id="py1-kB-gPC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qKu-e8-ta5"/>
                     </view>
                     <connections>

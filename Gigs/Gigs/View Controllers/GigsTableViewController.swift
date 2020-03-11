@@ -16,7 +16,6 @@ class GigsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -27,6 +26,7 @@ class GigsTableViewController: UITableViewController {
             // TODO: - fetch gigs here
         }
     }
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
@@ -40,14 +40,13 @@ class GigsTableViewController: UITableViewController {
         return cell
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "LoginModalSegue" {
+            if let loginVC = segue.destination as? LoginViewController {
+                loginVC.gigController = gigController
+            }
+        }
     }
-    */
 
 }
