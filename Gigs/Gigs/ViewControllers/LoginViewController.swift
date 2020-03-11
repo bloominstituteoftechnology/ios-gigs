@@ -34,8 +34,6 @@ class LoginViewController: UIViewController {
             !username.isEmpty,
             let password = passwordTextField.text,
             !password.isEmpty else {
-                // We don't have a valid username and password
-                // We should prompt the user to enter them
                 return
         }
         
@@ -72,10 +70,18 @@ class LoginViewController: UIViewController {
                 if let error = error {
                     self.loadingScreenVC.dismiss(animated: true)
                     NSLog("Error signing up: \(error)")
+                    
                     // Show alert to let user know of error
+                    let failureAlert = UIAlertController(title: "Ooops",
+                                                         message: "We were unable to make an account for you for some reason.",
+                                                         preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    failureAlert.addAction(okAction)
+                    
+                    self.present(failureAlert, animated: true)
                     
                 } else {
-                    // Let the user know that they were successfully signed up
+                    // Success
                     self.loadingScreenVC.message = "Sign Up Successful, \n Logging In..."
                     self.login(withUser: user)
                 }
@@ -87,10 +93,21 @@ class LoginViewController: UIViewController {
         gigController?.login(withUser: user) { error in
             DispatchQueue.main.async {
                 self.loadingScreenVC.dismiss(animated: true) {
+                    
                     if let error = error {
-                        // If there was an error, we should let the user know
                         NSLog("Error logging in: \(error)")
+                        
+                        // If there was an error, we should let the user know
+                        let failureAlert = UIAlertController(title: "Login Failed",
+                                                             message: "Check your username and password",
+                                                             preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default)
+                        failureAlert.addAction(okAction)
+                        
+                        self.present(failureAlert, animated: true)
+                        
                     } else {
+                        // Success
                         self.dismiss(animated: true)
                     }
                 }
@@ -125,8 +142,4 @@ extension LoginViewController: UITextFieldDelegate {
 }
 
 
-//let successAlert = UIAlertController(title: "Success", message: "Your account was created successfully. You may now use the Gigs app", preferredStyle: .alert)
-//let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-//}
-//successAlert.addAction(okAction)
-//self.present(successAlert, animated: true)
+

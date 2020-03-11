@@ -49,6 +49,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		049EC19E241988A2007A27C8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				049EC19C241981ED007A27C8 /* CustomButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		049EC19F241988B4007A27C8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				049EC19A24196B12007A27C8 /* LoadingScreenViewController.swift */,
+				04CBC320241908DA00A0E283 /* LoginViewController.swift */,
+				04CBC31E2419066500A0E283 /* GigsTableViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		04CBC2FE241905B900A0E283 = {
 			isa = PBXGroup;
 			children = (
@@ -70,11 +88,9 @@
 			children = (
 				04CBC3282419159500A0E283 /* Resources */,
 				04CBC310241905B900A0E283 /* Main.storyboard */,
-				049EC19A24196B12007A27C8 /* LoadingScreenViewController.swift */,
-				04CBC320241908DA00A0E283 /* LoginViewController.swift */,
-				049EC19C241981ED007A27C8 /* CustomButton.swift */,
-				04CBC31E2419066500A0E283 /* GigsTableViewController.swift */,
-				04CBC329241915C900A0E283 /* Model */,
+				049EC19F241988B4007A27C8 /* ViewControllers */,
+				049EC19E241988A2007A27C8 /* Views */,
+				04CBC329241915C900A0E283 /* Models */,
 			);
 			path = Gigs;
 			sourceTree = "<group>";
@@ -91,14 +107,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		04CBC329241915C900A0E283 /* Model */ = {
+		04CBC329241915C900A0E283 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				04CBC32224190A6100A0E283 /* Bearer.swift */,
 				04CBC32424190AC800A0E283 /* User.swift */,
 				04CBC32624190B1C00A0E283 /* GigController.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
