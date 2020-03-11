@@ -10,6 +10,12 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
 
+    // MARK: - Properties
+    
+    var gigController = GigController()
+    
+    // MARK: - Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +26,15 @@ class GigsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        // Show login view if conditions require
+        if gigController.bearer == nil {
+            performSegue(withIdentifier: "CredentialsSegue", sender: self)
+            
+            // TODO: fetch gigs here
+        }
+
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -32,15 +47,11 @@ class GigsTableViewController: UITableViewController {
         return 0
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
