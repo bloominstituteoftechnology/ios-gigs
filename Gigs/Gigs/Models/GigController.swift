@@ -13,9 +13,19 @@ enum HTTPMethods: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case badUrl
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+}
+
 class GigController {
     var bearer: Bearer?
-    let baseURL: URL = URL(fileURLWithPath: "https://lambdaanimalspotter.vapor.cloud/api")
+    let baseURL: URL = URL(fileURLWithPath: "https://lambdagigs.vapor.cloud/api")
+    var gigs: [Gig] = []
     
     // Sign up method
     func signUp(with user: User, completion: @escaping (Error?) -> ()) {
@@ -123,5 +133,105 @@ class GigController {
         
     }
     
-    // Log in method
+   // MARK: - Fetch all gigs
+    func fetchGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let gigURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: gigURL)
+        request.httpMethod = HTTPMethods.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                NSLog("Error receiving gigs data: \(error)")
+                completion(.failure(.otherError))
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
+            do {
+                let gigs = try jsonDecoder.decode([Gig].self, from: data)
+                self.gigs = gigs
+                completion(.success(gigs))
+            } catch {
+                NSLog("Error decoding animal name: \(error)")
+                completion(.failure(.noDecode))
+            }
+        }.resume()
+    }
+    
+    // MARK: - Add a gig
+    func postGig(for gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let gigURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: gigURL)
+        request.httpMethod = HTTPMethods.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        
+        // MARK: - Create payload
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
+        do {
+            let encodedGig = try jsonEncoder.encode(gig)
+            request.httpBody = encodedGig
+        } catch {
+            NSLog("Error encoding the passed in gig: \(error)")
+            completion(.failure(.otherError))
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                NSLog("Error sending gig data: \(error)")
+                completion(.failure(.otherError))
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            // MARK: - If we succeed, we'll get the gig back. We can then add it to the local array
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
+            do {
+                let gig = try jsonDecoder.decode(Gig.self, from: data)
+                self.gigs.append(gig)
+                completion(.success(gig))
+            } catch {
+                NSLog("Error decoding animal name: \(error)")
+                completion(.failure(.noDecode))
+            }
+        }.resume()
+    }
 }
