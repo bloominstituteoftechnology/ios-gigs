@@ -14,8 +14,18 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case badUrl
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+}
+
 class GigController {
     
+    var gigs: [Gig] = []
     private let baseUrl = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     
     var bearer: Bearer?
@@ -94,6 +104,50 @@ class GigController {
               completion(nil)
           }.resume()
       }
+    func gigsDetail(for gigName: String, completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+         guard let bearer = bearer else {
+             completion(.failure(.noAuth))
+             return
+         }
+         
+         let gigsUrl = baseUrl.appendingPathComponent("/gigs\(gigName)")
+         
+         var request = URLRequest(url: gigsUrl)
+         request.httpMethod = HTTPMethod.get.rawValue
+         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+         
+         URLSession.shared.dataTask(with: request) { data, response, error in
+             if let error = error {
+                 NSLog("Error receiving gig name data: \(error)")
+                 completion(.failure(.otherError))
+                 return
+             }
+             
+             if let response = response as? HTTPURLResponse,
+                 response.statusCode == 401 {
+                 // User is not authorized (no token or bad token)
+                 NSLog("Server responded with 401 status code (not authorized).")
+                 completion(.failure(.badAuth))
+                 return
+             }
+             
+             guard let data = data else {
+                 NSLog("Server responded with no data to decode.sup")
+                 completion(.failure(.badData))
+                 return
+             }
+             
+             let decoder = JSONDecoder()
+             decoder.dateDecodingStrategy = .secondsSince1970
+             do {
+                 let gig = try decoder.decode([Gig].self, from: data)
+                 completion(.success(gig))
+             } catch {
+                 NSLog("Error decoding gig object \(gigName): \(error)")
+                 completion(.failure(.noDecode))
+             }
+         }.resume()
+     }
       
     
     
