@@ -64,7 +64,9 @@ class GigsTableViewController: UITableViewController {
                if let loginVC = segue.destination as? LoginViewController {
                    loginVC.gigController = gigController
                }
-           }
+           } else {
+            if segue.identifier == ""
+        }
        }
 
 }
