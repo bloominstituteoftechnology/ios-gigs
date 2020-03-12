@@ -44,6 +44,16 @@ class GigsTableViewController: UITableViewController {
             performSegue(withIdentifier: "ShowLogin", sender: self)
         }
     }
+    
+    
+    // MARK: - Private
+    
+    private let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        return dateFormatter
+    }()
 
     //MARK: - Table View Data Source
 
@@ -56,8 +66,10 @@ class GigsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
 
         let gig = gigController.gigs[indexPath.row]
+        
         cell.textLabel?.text = gig.title
-
+        cell.detailTextLabel?.text = dateFormatter.string(from: gig.dueDate)
+        
         return cell
     }
 
