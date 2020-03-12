@@ -65,7 +65,7 @@ class LoginViewController: UIViewController {
     private var loginType: LoginType = .signup
     
     private func signup(withUser user: User) {
-        gigController?.signup(withUser: user) { error in
+        gigController?.newSignup(withUser: user) { error in
             DispatchQueue.main.async {
                 if let error = error {
                     self.loadingScreenVC.dismiss(animated: true)
@@ -90,7 +90,7 @@ class LoginViewController: UIViewController {
     }
     
     private func login(withUser user: User) {
-        gigController?.login(withUser: user) { error in
+        gigController?.newLogin(withUser: user) { error in
             DispatchQueue.main.async {
                 self.loadingScreenVC.dismiss(animated: true) {
                     
