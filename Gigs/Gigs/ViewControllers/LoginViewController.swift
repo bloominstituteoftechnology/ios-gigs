@@ -68,18 +68,18 @@ class LoginViewController: UIViewController {
         gigController?.newSignup(withUser: user) { error in
             DispatchQueue.main.async {
                 if let error = error {
-                    self.loadingScreenVC.dismiss(animated: true)
-                    NSLog("Error signing up: \(error)")
-                    
-                    // Show alert to let user know of error
-                    let failureAlert = UIAlertController(title: "Ooops",
-                                                         message: "We were unable to make an account for you for some reason.",
-                                                         preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default)
-                    failureAlert.addAction(okAction)
-                    
-                    self.present(failureAlert, animated: true)
-                    
+                    self.loadingScreenVC.dismiss(animated: true) {
+                        NSLog("Error signing up: \(error)")
+                        
+                        // Show alert to let user know of error
+                        let failureAlert = UIAlertController(title: "Ooops",
+                                                             message: "We were unable to make an account for you for some reason.",
+                                                             preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default)
+                        failureAlert.addAction(okAction)
+                        
+                        self.present(failureAlert, animated: true)
+                    }
                 } else {
                     // Success
                     self.loadingScreenVC.message = "Sign Up Successful, \n Logging In..."
