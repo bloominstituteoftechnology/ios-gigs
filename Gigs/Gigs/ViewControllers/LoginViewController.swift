@@ -40,12 +40,10 @@ class LoginViewController: UIViewController {
         let user = User(username: username, password: password)
         
         if loginType == .signup {
-            // Let user know visually that we are signing up
             loadingScreenVC.message = "Signing Up..."
             present(loadingScreenVC, animated: true)
             signup(withUser: user)
         } else {
-            // Let user know visually that we are logging in
             loadingScreenVC.message = "Logging In..."
             present(loadingScreenVC, animated: true)
             login(withUser: user)
@@ -67,11 +65,11 @@ class LoginViewController: UIViewController {
     private func signup(withUser user: User) {
         gigController?.newSignup(withUser: user) { error in
             DispatchQueue.main.async {
+                
                 if let error = error {
                     self.loadingScreenVC.dismiss(animated: true) {
                         NSLog("Error signing up: \(error)")
                         
-                        // Show alert to let user know of error
                         let failureAlert = UIAlertController(title: "Ooops",
                                                              message: "We were unable to make an account for you for some reason.",
                                                              preferredStyle: .alert)
@@ -97,7 +95,6 @@ class LoginViewController: UIViewController {
                     if let error = error {
                         NSLog("Error logging in: \(error)")
                         
-                        // If there was an error, we should let the user know
                         let failureAlert = UIAlertController(title: "Login Failed",
                                                              message: "Check your username and password",
                                                              preferredStyle: .alert)
@@ -114,6 +111,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
     
     // MARK: - View Lifecycle
     
