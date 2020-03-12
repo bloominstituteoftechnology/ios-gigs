@@ -17,7 +17,8 @@ class LoginViewController: UIViewController {
 
     // MARK: - Properites
     var gigController: GigController?
-    
+    var spinner : UIView?
+
     var loginType = LoginType.signUp {
         didSet {
             switch loginType {
@@ -59,8 +60,12 @@ class LoginViewController: UIViewController {
 
         let user = User(username: username, password: password)
         
+        showSpinner(onView: view)
+        
         if loginType == .signUp {
             gigController?.signUp(with: user, completion: { error in
+                self.removeSpinner()
+                
                 if let error = error {
                     NSLog("Error occurred during signup \(error)")
                 } else {
@@ -89,6 +94,8 @@ class LoginViewController: UIViewController {
             })
         } else { // .logIn
             gigController?.logIn(with: user, completion: { error in
+                self.removeSpinner()
+
                 if let error = error {
                     NSLog("Error occurred during sign in: \(error)")
                 } else {
@@ -115,5 +122,32 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+    }
+}
+
+extension LoginViewController {
+    func showSpinner(onView : UIView) {
+        
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(style: .large)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        spinner = spinnerView
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            if let spinner = self.spinner {
+                spinner.removeFromSuperview()
+                self.spinner = nil
+            }
+        }
     }
 }
