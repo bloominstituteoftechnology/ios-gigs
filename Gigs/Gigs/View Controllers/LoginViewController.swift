@@ -88,7 +88,7 @@ class LoginViewController: UIViewController {
                 }
             })
         } else { // .logIn
-            gigController?.signIn(with: user, completion: { error in
+            gigController?.logIn(with: user, completion: { error in
                 if let error = error {
                     NSLog("Error occurred during sign in: \(error)")
                 } else {

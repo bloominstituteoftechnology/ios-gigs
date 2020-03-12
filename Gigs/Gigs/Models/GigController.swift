@@ -21,85 +21,73 @@ class GigController {
     private let baseUrl = URL(string: "https://lambdagigapi.herokuapp.com/api")!
  
     // MARK: - Methods
+    
+    /// Call to endpoint to get data from to/from server
+    /// - Parameters:
+    ///   - endpoint: relative path on server for API call. e.g. users/signup/
+    ///   - user: User object with username and password properties set
+    ///   - completion: Whom to nofity when done
+    func credentials(endpoint: String,
+                     with user: User,
+                     completion: @escaping (Data?, Error?) -> Void) {
+        let credsUrl = baseUrl.appendingPathComponent(endpoint)
+        
+        var request = URLRequest(url: credsUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonEncoder = JSONEncoder()
+        
+        do {
+            let jsonData = try jsonEncoder.encode(user)
+            request.httpBody = jsonData
+        } catch {
+            NSLog("Error encoding user object: \(error)")
+            completion(nil, error)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
 
-    ///
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(nil, NSError(domain: response.description, code: response.statusCode, userInfo: nil))
+                return
+            }
+
+            completion(data, nil)
+            
+        }.resume()
+    }
+
     
     /// Make call to server to create user
     /// - Parameters:
     ///   - user: User object with username and password properties set
     ///   - completion: Whom to nofity when done.
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
-        let signUpUrl = baseUrl.appendingPathComponent("users/signup/")
-        
-        var request = URLRequest(url: signUpUrl)
-        request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let jsonEncoder = JSONEncoder()
-        
-        do {
-            let jsonData = try jsonEncoder.encode(user)
-            request.httpBody = jsonData
-        } catch {
-            NSLog("Error encoding user object: \(error)")
-            completion(error)
-            return
+        credentials(endpoint: "users/signup/",
+                    with: user) { _, error in
+                        completion(error)
         }
-        
-        URLSession.shared.dataTask(with: request) { (_, response, error) in
-            if let error = error {
-                completion(error)
-                return
-            }
-
-            if let response = response as? HTTPURLResponse,
-                response.statusCode != 200 {
-                completion(NSError(domain: response.description, code: response.statusCode, userInfo: nil))
-                return
-            }
-
-            completion(nil)
-            
-        }.resume()
     }
 
     
-    /// LogIn user to the server.
+    /// Log In user to the server.
     /// - Parameters:
     ///   - user: User object with username and password properties set
     ///   - completion: Whom to nofity when done
-    func signIn(with user: User, completion: @escaping (Error?) -> Void) {
-        let signInUrl = baseUrl.appendingPathComponent("users/login/")
+    func logIn(with user: User, completion: @escaping (Error?) -> Void) {
         
-        var request = URLRequest(url: signInUrl)
-        request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let jsonEncoder = JSONEncoder()
-        
-        do {
-            let jsonData = try jsonEncoder.encode(user)
-            request.httpBody = jsonData
-        } catch {
-            NSLog("Error encoding user object: \(error)")
-            completion(error)
-            return
-        }
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                completion(error)
-                return
-            }
-
-            if let response = response as? HTTPURLResponse,
-                response.statusCode != 200 {
-                completion(NSError(domain: response.description, code: response.statusCode, userInfo: nil))
-                return
-            }
+        credentials(endpoint: "users/login/",
+                    with: user) { data, error in
 
             guard let data = data else {
-                completion(NSError(domain: "Data not found", code: 99, userInfo: nil))
+                completion(NSError(domain: "Data not found", code: 0, userInfo: nil))
                 return
             }
             
@@ -112,7 +100,6 @@ class GigController {
                 NSLog("Error decoding bearer object: \(error)")
                 completion(error)
             }
-        }.resume()
+        }
     }
-
 }
