@@ -18,6 +18,8 @@
 		AEBEAD90241979F2007A95B8 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBEAD8F241979F2007A95B8 /* Bearer.swift */; };
 		AEBEAD9324197A3B007A95B8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBEAD9224197A3B007A95B8 /* User.swift */; };
 		AEBEAD9524197A8E007A95B8 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBEAD9424197A8E007A95B8 /* GigController.swift */; };
+		AEBEAD99241AC28D007A95B8 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBEAD98241AC28D007A95B8 /* GigDetailViewController.swift */; };
+		AEBEAD9C241AC35D007A95B8 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBEAD9B241AC35D007A95B8 /* Gig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		AEBEAD8F241979F2007A95B8 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		AEBEAD9224197A3B007A95B8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AEBEAD9424197A8E007A95B8 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		AEBEAD98241AC28D007A95B8 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		AEBEAD9B241AC35D007A95B8 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,10 +70,8 @@
 		AEBEAD71241974BE007A95B8 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				AEBEAD9424197A8E007A95B8 /* GigController.swift */,
-				AEBEAD8D241978EC007A95B8 /* LoginViewController.swift */,
+				AEBEAD9A241AC2A4007A95B8 /* VC */,
 				AEBEAD91241979FB007A95B8 /* Model */,
-				AEBEAD8B241976C5007A95B8 /* GigsTableViewController.swift */,
 				AEBEAD8A241974F9007A95B8 /* New Group */,
 				AEBEAD89241974E9007A95B8 /* SB */,
 				AEBEAD83241974C0007A95B8 /* Info.plist */,
@@ -100,10 +102,22 @@
 		AEBEAD91241979FB007A95B8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AEBEAD9B241AC35D007A95B8 /* Gig.swift */,
+				AEBEAD9424197A8E007A95B8 /* GigController.swift */,
 				AEBEAD8F241979F2007A95B8 /* Bearer.swift */,
 				AEBEAD9224197A3B007A95B8 /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		AEBEAD9A241AC2A4007A95B8 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				AEBEAD98241AC28D007A95B8 /* GigDetailViewController.swift */,
+				AEBEAD8B241976C5007A95B8 /* GigsTableViewController.swift */,
+				AEBEAD8D241978EC007A95B8 /* LoginViewController.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,8 +197,10 @@
 				AEBEAD90241979F2007A95B8 /* Bearer.swift in Sources */,
 				AEBEAD75241974BE007A95B8 /* SceneDelegate.swift in Sources */,
 				AEBEAD8E241978EC007A95B8 /* LoginViewController.swift in Sources */,
+				AEBEAD99241AC28D007A95B8 /* GigDetailViewController.swift in Sources */,
 				AEBEAD7D241974BE007A95B8 /* Gigs.xcdatamodeld in Sources */,
 				AEBEAD9324197A3B007A95B8 /* User.swift in Sources */,
+				AEBEAD9C241AC35D007A95B8 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

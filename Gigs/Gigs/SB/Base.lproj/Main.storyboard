@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gigs Table View Controller-->
+        <!--GIGS-->
         <scene sceneID="cqD-bp-pea">
             <objects>
                 <tableViewController id="CdK-Ah-S6x" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,6 +39,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="C20-1f-Lbp" kind="show" identifier="ShowGigsCellSegue" id="TCB-t9-TAx"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -46,7 +49,13 @@
                             <outlet property="delegate" destination="CdK-Ah-S6x" id="Q3b-B4-nvQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="skr-JY-Am2"/>
+                    <navigationItem key="navigationItem" title="GIGS" id="skr-JY-Am2">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dGi-EV-chd">
+                            <connections>
+                                <segue destination="C20-1f-Lbp" kind="show" identifier="AddSegue" id="6Lm-vU-PgP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="j05-JL-PKT" kind="presentation" identifier="SignUpSegue" modalPresentationStyle="fullScreen" id="qcE-QR-tLP"/>
                     </connections>
@@ -124,13 +133,104 @@
             </objects>
             <point key="canvasLocation" x="957.97101449275374" y="30.803571428571427"/>
         </scene>
+        <!--Title-->
+        <scene sceneID="Tey-Fa-PPB">
+            <objects>
+                <viewController id="C20-1f-Lbp" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H2o-JT-3QI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="1ZP-fm-LFc">
+                                <rect key="frame" x="0.0" y="275" width="414" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="w84-8s-W3F"/>
+                                </constraints>
+                            </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tFa-Yg-Cqt">
+                                <rect key="frame" x="30" y="517" width="354" height="345"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jk7-2U-sYi">
+                                <rect key="frame" x="30" y="190" width="354" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAC-qn-hXg">
+                                        <rect key="frame" x="0.0" y="0.0" width="74" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="58G-cU-bnO">
+                                        <rect key="frame" x="89" y="0.0" width="265" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHk-by-xxp">
+                                <rect key="frame" x="30" y="244" width="76" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhW-4L-nsx">
+                                <rect key="frame" x="30" y="486.5" width="92.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="tXV-P7-DVn" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IHk-by-xxp" secondAttribute="trailing" symbolic="YES" id="9Rx-oH-MZ5"/>
+                            <constraint firstItem="1ZP-fm-LFc" firstAttribute="leading" secondItem="tXV-P7-DVn" secondAttribute="leading" id="Afm-NU-4WI"/>
+                            <constraint firstItem="tXV-P7-DVn" firstAttribute="bottom" secondItem="tFa-Yg-Cqt" secondAttribute="bottom" id="COz-h9-KAk"/>
+                            <constraint firstItem="tFa-Yg-Cqt" firstAttribute="top" secondItem="zhW-4L-nsx" secondAttribute="bottom" constant="10" id="HAa-GA-csc"/>
+                            <constraint firstItem="jk7-2U-sYi" firstAttribute="top" secondItem="tXV-P7-DVn" secondAttribute="top" constant="50" id="KSD-R7-2Lk"/>
+                            <constraint firstItem="tXV-P7-DVn" firstAttribute="trailing" secondItem="1ZP-fm-LFc" secondAttribute="trailing" id="NVl-Lh-HGn"/>
+                            <constraint firstItem="1ZP-fm-LFc" firstAttribute="top" secondItem="IHk-by-xxp" secondAttribute="bottom" constant="10" id="NXt-AA-1yk"/>
+                            <constraint firstItem="tFa-Yg-Cqt" firstAttribute="leading" secondItem="tXV-P7-DVn" secondAttribute="leading" constant="30" id="OIT-aq-U7U"/>
+                            <constraint firstItem="IHk-by-xxp" firstAttribute="top" secondItem="jk7-2U-sYi" secondAttribute="bottom" constant="20" id="QPm-nP-wBT"/>
+                            <constraint firstItem="tXV-P7-DVn" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zhW-4L-nsx" secondAttribute="trailing" symbolic="YES" id="bUc-Uw-dQz"/>
+                            <constraint firstItem="tXV-P7-DVn" firstAttribute="trailing" secondItem="tFa-Yg-Cqt" secondAttribute="trailing" constant="30" id="gFJ-u6-v4V"/>
+                            <constraint firstItem="1ZP-fm-LFc" firstAttribute="centerX" secondItem="H2o-JT-3QI" secondAttribute="centerX" id="hu6-v1-Rio"/>
+                            <constraint firstItem="IHk-by-xxp" firstAttribute="leading" secondItem="tXV-P7-DVn" secondAttribute="leading" constant="30" id="jAX-fE-MPL"/>
+                            <constraint firstItem="tXV-P7-DVn" firstAttribute="trailing" secondItem="jk7-2U-sYi" secondAttribute="trailing" constant="30" id="kwV-i7-OqD"/>
+                            <constraint firstItem="zhW-4L-nsx" firstAttribute="top" secondItem="1ZP-fm-LFc" secondAttribute="bottom" constant="50" id="mAU-iO-CQe"/>
+                            <constraint firstItem="zhW-4L-nsx" firstAttribute="leading" secondItem="tXV-P7-DVn" secondAttribute="leading" constant="30" id="nDn-Td-xlK"/>
+                            <constraint firstItem="jk7-2U-sYi" firstAttribute="leading" secondItem="tXV-P7-DVn" secondAttribute="leading" constant="30" id="w6F-nP-8wz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tXV-P7-DVn"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="mwt-Et-CHJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="kpZ-z3-ULs">
+                            <connections>
+                                <action selector="saveTapped:" destination="C20-1f-Lbp" id="aJa-yI-cuI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="1ZP-fm-LFc" id="0wu-0L-O02"/>
+                        <outlet property="descriptionTextView" destination="tFa-Yg-Cqt" id="gXr-yR-VRk"/>
+                        <outlet property="jobTitleTextField" destination="58G-cU-bnO" id="DUu-Cw-IS2"/>
+                        <outlet property="titleText" destination="mwt-Et-CHJ" id="c4i-FB-6Fy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6eb-VW-6qm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1633.3333333333335" y="29.464285714285712"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="S3y-HI-Ful">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aVn-lp-RnW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xDA-xW-mhA">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="xDA-xW-mhA">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -143,4 +243,7 @@
             <point key="canvasLocation" x="-691.304347826087" y="28.794642857142854"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="6Lm-vU-PgP"/>
+    </inferredMetricsTieBreakers>
 </document>

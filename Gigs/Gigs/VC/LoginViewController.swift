@@ -45,13 +45,11 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func signButtonTapped(_ sender: UIButton) {
-        if let username = userName.text,
-            !username.isEmpty,
-            let password = passWord.text,
-            !password.isEmpty {
+        guard let gigController = gigController else { return }
+        if let username = userName.text,!username.isEmpty,let password = passWord.text,!password.isEmpty {
             let user = User(username: username, password: password)
             if loginType == .signUp {
-                gigController?.signUp(with: user, completion: { error in
+                gigController.signUp(with: user) { error in
                     if let error = error {
                         NSLog("Error occurred during sign up: \(error)")
                     } else {
@@ -66,17 +64,17 @@ class LoginViewController: UIViewController {
                             }
                         }
                     }
-                })
+                }
             } else {
-                gigController?.signIn(with: user, completion: { error in
+                gigController.signIn(with: user) { error in
                     if let error = error {
-                        NSLog("Error occurred during sign in: \(error)")
+                        NSLog("Error occured during sign in: \(error)")
                     } else {
                         DispatchQueue.main.async {
                             self.dismiss(animated: true, completion: nil)
                         }
                     }
-                })
+                }
             }
         }
         
