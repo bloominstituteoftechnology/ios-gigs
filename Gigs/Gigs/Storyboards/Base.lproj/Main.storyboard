@@ -128,7 +128,7 @@
         <!--New Gig-->
         <scene sceneID="rRH-Wk-d3M">
             <objects>
-                <viewController id="n4P-ej-Cyf" sceneMemberID="viewController">
+                <viewController id="n4P-ej-Cyf" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GN9-BM-3wz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -195,7 +195,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xId-3Z-7qf"/>
                     </view>
-                    <navigationItem key="navigationItem" title="New Gig" id="UP9-sy-Xfr"/>
+                    <navigationItem key="navigationItem" title="New Gig" id="UP9-sy-Xfr">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="IbY-5r-5ai"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ums-7l-cIg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
