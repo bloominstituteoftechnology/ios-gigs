@@ -124,6 +124,9 @@ class LoginViewController: UIViewController {
     }
 }
 
+
+// MARK: - Text Field Delegate
+
 extension LoginViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let username = usernameTextField.text, let password = passwordTextField.text else { return }
