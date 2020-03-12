@@ -133,20 +133,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="06b-9S-eIp">
-                                <rect key="frame" x="0.0" y="155" width="414" height="421"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="06b-9S-eIp">
+                                <rect key="frame" x="20" y="155" width="374" height="434.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="p66-xI-TfG">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YpW-Es-ZSs">
-                                                <rect key="frame" x="0.0" y="0.0" width="66.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="66.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OYQ-uT-uhB" userLabel="Title">
-                                                <rect key="frame" x="74.5" y="0.0" width="339.5" height="20.5"/>
+                                                <rect key="frame" x="74.5" y="0.0" width="299.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -158,22 +158,22 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pz6-dW-5wd">
-                                        <rect key="frame" x="0.0" y="28.5" width="71.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="42" width="71.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Rnr-l4-dkt">
-                                        <rect key="frame" x="0.0" y="57" width="320" height="216"/>
+                                        <rect key="frame" x="0.0" y="70.5" width="320" height="216"/>
                                     </datePicker>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eES-tw-ere">
-                                        <rect key="frame" x="0.0" y="281" width="88" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="294.5" width="88" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="B62-pa-mZz">
-                                        <rect key="frame" x="0.0" y="309.5" width="240" height="111.5"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="B62-pa-mZz">
+                                        <rect key="frame" x="0.0" y="323" width="240" height="111.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -188,9 +188,9 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="xId-3Z-7qf" firstAttribute="trailing" secondItem="06b-9S-eIp" secondAttribute="trailing" id="D6w-ax-sDU"/>
-                            <constraint firstItem="06b-9S-eIp" firstAttribute="leading" secondItem="xId-3Z-7qf" secondAttribute="leading" id="Pit-ps-VTF"/>
-                            <constraint firstItem="xId-3Z-7qf" firstAttribute="bottom" secondItem="06b-9S-eIp" secondAttribute="bottom" constant="286" id="qqF-XR-NFm"/>
+                            <constraint firstItem="xId-3Z-7qf" firstAttribute="trailing" secondItem="06b-9S-eIp" secondAttribute="trailing" constant="20" id="D6w-ax-sDU"/>
+                            <constraint firstItem="06b-9S-eIp" firstAttribute="leading" secondItem="xId-3Z-7qf" secondAttribute="leading" constant="20" id="Pit-ps-VTF"/>
+                            <constraint firstItem="xId-3Z-7qf" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="06b-9S-eIp" secondAttribute="bottom" id="qqF-XR-NFm"/>
                             <constraint firstItem="06b-9S-eIp" firstAttribute="top" secondItem="GN9-BM-3wz" secondAttribute="topMargin" constant="15" id="r8C-9X-Rke"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xId-3Z-7qf"/>
