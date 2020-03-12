@@ -11,6 +11,8 @@ import UIKit
 class GigsTableViewController: UITableViewController {
 
     let gigController = GigController()
+    let dateFormatter = DateFormatter()
+
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +61,9 @@ class GigsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
 
         cell.textLabel?.text = gigController.gigs[indexPath.row].title
-        #warning("add date")
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        cell.detailTextLabel?.text = "Due \(dateFormatter.string(from: gigController.gigs[indexPath.row].dueDate))"
         
         return cell
     }
@@ -74,6 +78,20 @@ class GigsTableViewController: UITableViewController {
             }
             
             SignInVC.gigController = gigController
+        } else if segue.identifier == "ShowGig" {
+            guard let ShowGigVC = segue.destination as? GigDetailViewController else {
+                return
+            }
+            
+            guard let selected = tableView.indexPathForSelectedRow else { return }
+            
+            ShowGigVC.gig = gigController.gigs[selected.row]
+        } else if segue.identifier == "ShowNewGig" {
+            guard let ShowNewGigVC = segue.destination as? GigDetailViewController else {
+                return
+            }
+            
+            ShowNewGigVC.gigController = gigController
         }
     }
 

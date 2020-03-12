@@ -68,7 +68,7 @@
             </objects>
             <point key="canvasLocation" x="832" y="143"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Gigs-->
         <scene sceneID="IsN-10-80S">
             <objects>
                 <tableViewController id="Kbf-5f-FZb" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -110,7 +110,7 @@
                             <outlet property="delegate" destination="Kbf-5f-FZb" id="jvo-Hn-lI7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="fs9-Zc-MwB">
+                    <navigationItem key="navigationItem" title="Gigs" id="fs9-Zc-MwB">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0cJ-3d-VeH">
                             <connections>
                                 <segue destination="aIO-ef-GFs" kind="show" identifier="ShowNewGig" id="13a-0A-VZc"/>
@@ -134,26 +134,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="PuO-yt-KPF">
-                                <rect key="frame" x="20" y="108" width="374" height="454"/>
+                                <rect key="frame" x="20" y="160" width="374" height="402"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Bfg-jb-ioj">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="33"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB TITLE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NsN-F1-EPG">
-                                                <rect key="frame" x="0.0" y="0.0" width="85.5" height="33"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="85.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BSQ-lh-xvg">
-                                                <rect key="frame" x="93.5" y="0.0" width="280.5" height="33"/>
+                                                <rect key="frame" x="93.5" y="0.0" width="280.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Gf-JL-76E">
-                                        <rect key="frame" x="0.0" y="51" width="374" height="236.5"/>
+                                        <rect key="frame" x="0.0" y="38.5" width="374" height="236.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAD-bk-dCM">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -167,7 +167,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GCp-E5-ChZ">
-                                        <rect key="frame" x="0.0" y="305.5" width="374" height="148.5"/>
+                                        <rect key="frame" x="0.0" y="293" width="374" height="109"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4a-Rj-vMu">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -176,7 +176,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LqZ-QT-GBg">
-                                                <rect key="frame" x="0.0" y="20.5" width="374" height="128"/>
+                                                <rect key="frame" x="0.0" y="20.5" width="374" height="88.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -218,8 +218,8 @@
         <scene sceneID="Hxj-HR-910">
             <objects>
                 <navigationController id="G2O-F0-x92" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PET-CY-y1M">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="PET-CY-y1M">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
