@@ -18,56 +18,52 @@ class GigsTableViewController: UITableViewController {
             performSegue(withIdentifier: "SignInSegue", sender: self)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        gigController.getAllGigs { (result) in
+            do {
+                let gigs = try result.get()
+                DispatchQueue.main.async {
+                    self.gigController.gigs = gigs
+                    self.tableView.reloadData()
+                }
+            } catch {
+                if let error = error as? NetworkError {
+                    switch error {
+                    case .noAuth: //You could make an alert controller for these
+                        NSLog("No bearer token exists") //These are developer facing but you could have one for user one for developer
+                    case .badAuth:
+                        NSLog("Bearer token invalid")
+                    case .otherError:
+                        NSLog("Other error occured, see log")
+                    case .badData:
+                        NSLog("No data received, or data corrupted")
+                    case .noDecode:
+                        NSLog("JSON could not be decoded")
+                    }
+                }
+            }
+        }
+    }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
 
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        #warning("add date")
+        
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
+  
 
     // MARK: - Navigation
 

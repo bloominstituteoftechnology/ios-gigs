@@ -13,6 +13,13 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+}
 
 class GigController {
     
@@ -20,6 +27,7 @@ class GigController {
     
     let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     
+    var gigs: [Gig] = []
     
     func signUp(with user: User, completion: @escaping (Error?) -> ()) {
         let signUpUrl = baseURL.appendingPathComponent("users/signup")
@@ -53,8 +61,6 @@ class GigController {
             completion(nil)
             
         }.resume()
-        
-        
     }
     
     func signIn(with user: User, completion: @escaping (Error?) -> ()) {
@@ -98,8 +104,90 @@ class GigController {
                 completion(error)
             }
         }.resume()
-        
-        
     }
     
+    func getAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let gigsUrl = baseURL.appendingPathComponent("gigs")
+        var request = URLRequest(url: gigsUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("\(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            do {
+                let arrayOfGigs = try decoder.decode([Gig].self, from: data)
+                completion(.success(arrayOfGigs))
+            } catch {
+                NSLog("Error decoding object: \(error)")
+                completion(.failure(.noDecode))
+            }
+        }.resume()
+    }
+    
+//    func createGig(with gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+//
+//        guard let bearer = bearer else {
+//            completion(.failure(.noAuth))
+//            return
+//        }
+//
+//        let gigsUrl = baseURL.appendingPathComponent("gigs")
+//        var request = URLRequest(url: gigsUrl)
+//        request.httpMethod = HTTPMethod.post.rawValue
+//        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+//
+//
+//
+//
+//        URLSession.shared.dataTask(with: request) { (data, response, error) in
+//            if let error = error {
+//                NSLog("\(error)")
+//                completion(.failure(.otherError))
+//                return
+//            }
+//
+//            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+//                completion(.failure(.badAuth))
+//                return
+//            }
+//
+//            guard let data = data else {
+//                completion(.failure(.badData))
+//                return
+//            }
+//
+//            let decoder = JSONDecoder()
+//            do {
+//                self.gigs = try decoder.decode([Gig].self, from: data)
+//                print(self.gigs)
+//                completion(.success(self.gigs))
+//            } catch {
+//                NSLog("Error decoding bearer object: \(error)")
+//                completion(.failure(.noDecode))
+//            }
+//        }.resume()
+//    }
 }
