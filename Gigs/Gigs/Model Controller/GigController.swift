@@ -13,9 +13,22 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case otherError
+    case badData
+    case noDecode
+    case badUrl
+    case noEncode
+}
+
 class GigController {
     
+    // MARK: - Variables
+    
     var bearer: Bearer?
+    var gigs: [Gig] = []
     
     private let baseUrl = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     
@@ -93,6 +106,102 @@ class GigController {
                 return
                 
             }
+        }.resume()
+    }
+    
+    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let allGigssUrl = baseUrl.appendingPathComponent("gigs/")
+        
+        var request = URLRequest(url: allGigssUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                NSLog("Error receiving gig data: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+    
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            do {
+                let gigTitles = try decoder.decode([String].self, from: data)
+                completion(.success(gigTitles))
+            } catch {
+                NSLog("Error decoding animal objects: \(error)")
+                completion(.failure(.noDecode))
+            }
+        }.resume()
+    }
+    
+    func createGig(with gig: Gig, completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let createGigUrl = baseUrl.appendingPathComponent("gigs/")
+        
+        var request = URLRequest(url: createGigUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let jsonEncoder = JSONEncoder()
+        do {
+            let jsonData = try jsonEncoder.encode(gig)
+            request.httpBody = jsonData
+        } catch {
+            NSLog("Error encoding gig object: \(error)")
+            completion(.failure(.noEncode))
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                NSLog("Error posting gig data: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+
+            
+            let decoder = JSONDecoder()
+                      decoder.dateDecodingStrategy = .iso8601
+                      do {
+                          let gigTitles = try decoder.decode([String].self, from: data)
+                          completion(.success(gigTitles))
+                      } catch {
+                          NSLog("Error decoding gig objects: \(error)")
+                          completion(.failure(.noDecode))
+                      }
         }.resume()
     }
 }
