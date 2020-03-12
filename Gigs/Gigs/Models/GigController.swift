@@ -102,7 +102,7 @@ class GigController {
             
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                completion(NSError(domain: "Boom at stastus", code: response.statusCode, userInfo: nil))
                 return
             }
             

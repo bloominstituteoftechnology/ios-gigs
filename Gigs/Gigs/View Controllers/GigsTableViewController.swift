@@ -24,7 +24,9 @@ class GigsTableViewController: UITableViewController {
             // TODO: fetch gigs here
             gigController.fetchGigs { result in
                 if let _ = try? result.get() {
-                    self.tableView.reloadData()
+                    DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                    }
                 }
             }
         }
