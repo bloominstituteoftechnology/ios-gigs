@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Gigs-->
         <scene sceneID="D2d-eu-ikf">
             <objects>
                 <tableViewController id="rNb-zx-5YY" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
@@ -24,6 +24,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="n4P-ej-Cyf" kind="show" identifier="editGig" id="DgT-z9-pWE"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -31,7 +34,13 @@
                             <outlet property="delegate" destination="rNb-zx-5YY" id="mZY-qH-7uf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="y3r-yM-rr7"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="y3r-yM-rr7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="py5-PR-crA">
+                            <connections>
+                                <segue destination="n4P-ej-Cyf" kind="show" identifier="addGig" id="VNE-wf-N5q"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="CredentialsSegue" modalPresentationStyle="fullScreen" id="iMR-gs-HE8"/>
                     </connections>
@@ -44,8 +53,8 @@
         <scene sceneID="u3s-Nq-VeG">
             <objects>
                 <navigationController id="Au7-4k-tBI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cYK-6F-6bv">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="cYK-6F-6bv">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -114,7 +123,83 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="365" y="60"/>
+            <point key="canvasLocation" x="506" y="-237"/>
+        </scene>
+        <!--New Gig-->
+        <scene sceneID="rRH-Wk-d3M">
+            <objects>
+                <viewController id="n4P-ej-Cyf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GN9-BM-3wz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="276" translatesAutoresizingMaskIntoConstraints="NO" id="p66-xI-TfG">
+                                <rect key="frame" x="20" y="125" width="374" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YpW-Es-ZSs">
+                                        <rect key="frame" x="0.0" y="0.0" width="66" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OYQ-uT-uhB">
+                                        <rect key="frame" x="342" y="0.0" width="32" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="YpW-Es-ZSs" firstAttribute="leading" secondItem="p66-xI-TfG" secondAttribute="leading" constant="20" symbolic="YES" id="0vN-fS-vrV"/>
+                                    <constraint firstItem="YpW-Es-ZSs" firstAttribute="centerY" secondItem="p66-xI-TfG" secondAttribute="centerY" id="3Op-MY-2aa"/>
+                                    <constraint firstItem="OYQ-uT-uhB" firstAttribute="centerY" secondItem="p66-xI-TfG" secondAttribute="centerY" id="5Vg-gV-18r"/>
+                                    <constraint firstAttribute="trailing" secondItem="OYQ-uT-uhB" secondAttribute="trailing" constant="20" symbolic="YES" id="BHj-lW-ysX"/>
+                                    <constraint firstItem="OYQ-uT-uhB" firstAttribute="leading" secondItem="YpW-Es-ZSs" secondAttribute="trailing" constant="8" symbolic="YES" id="x4C-6B-IDd"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pz6-dW-5wd">
+                                <rect key="frame" x="42" y="189" width="72" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Rnr-l4-dkt">
+                                <rect key="frame" x="0.0" y="218" width="414" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eES-tw-ere">
+                                <rect key="frame" x="42" y="388" width="88" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="B62-pa-mZz">
+                                <rect key="frame" x="87" y="491" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="p66-xI-TfG" firstAttribute="leading" secondItem="xId-3Z-7qf" secondAttribute="leading" constant="20" id="7a5-hW-mrx"/>
+                            <constraint firstItem="p66-xI-TfG" firstAttribute="top" secondItem="GN9-BM-3wz" secondAttribute="top" constant="125" id="v4c-eX-6kt"/>
+                            <constraint firstItem="xId-3Z-7qf" firstAttribute="trailing" secondItem="p66-xI-TfG" secondAttribute="trailing" constant="20" id="yU4-mT-b1P"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xId-3Z-7qf"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Gig" id="UP9-sy-Xfr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ums-7l-cIg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="505.79710144927537" y="441.96428571428572"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="VNE-wf-N5q"/>
+    </inferredMetricsTieBreakers>
 </document>
