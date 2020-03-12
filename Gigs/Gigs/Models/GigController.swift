@@ -158,8 +158,11 @@ class GigController {
         var request = URLRequest(url: gigsUrl)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let encoder = JSONEncoder()
+
+        encoder.dateEncodingStrategy = .iso8601
         do {
             let jsonData = try encoder.encode(gig)
             request.httpBody = jsonData
@@ -177,6 +180,7 @@ class GigController {
 
             if let response = response as? HTTPURLResponse, response.statusCode != 200 {
                 completion(.failure(.badAuth))
+                print(response.statusCode)
                 return
             }
 
