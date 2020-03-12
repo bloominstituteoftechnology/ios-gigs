@@ -21,8 +21,8 @@ class GigController {
     
     // MARK: - Properties
     
-    var bearer: Bearer?
-    var gigs: [Gig] = []
+    private(set) var bearer: Bearer?
+    private(set) var gigs: [Gig] = []
     
     // MARK: - API Calls
     
