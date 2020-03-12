@@ -104,7 +104,58 @@ class GigController {
               completion(nil)
           }.resume()
       }
-    func gigsDetail(for gigName: String, completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+    // fetching all the gigs in order to create a gig, whichh means to gather gigs.
+    
+    func fetchAllGigsNames(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let allGigsUrl = baseUrl.appendingPathComponent("/gigs")
+        
+        var request = URLRequest(url: allGigsUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                NSLog("Error receiving animal name data: \(error)")
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                // User is not authorized (no token or bad token)
+                NSLog("Server responded with 401 status code (not authorized).")
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("Server responded with no data to decode.sup")
+                completion(.failure(.badData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                let gigNames = try decoder.decode([String].self, from: data)
+                completion(.success(gigNames))
+            } catch {
+                NSLog("Error decoding animal objects: \(error)")
+                completion(.failure(.noDecode))
+            }
+        }.resume()
+    }
+    
+    
+    
+    
+    
+    // fetching one gig
+    func gigsDetail(for gigName: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
          guard let bearer = bearer else {
              completion(.failure(.noAuth))
              return
@@ -113,7 +164,7 @@ class GigController {
          let gigsUrl = baseUrl.appendingPathComponent("/gigs\(gigName)")
          
          var request = URLRequest(url: gigsUrl)
-         request.httpMethod = HTTPMethod.get.rawValue
+         request.httpMethod = HTTPMethod.post.rawValue
          request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
          
          URLSession.shared.dataTask(with: request) { data, response, error in
@@ -140,7 +191,7 @@ class GigController {
              let decoder = JSONDecoder()
              decoder.dateDecodingStrategy = .secondsSince1970
              do {
-                 let gig = try decoder.decode([Gig].self, from: data)
+                 let gig = try decoder.decode(Gig.self, from: data)
                  completion(.success(gig))
              } catch {
                  NSLog("Error decoding gig object \(gigName): \(error)")
