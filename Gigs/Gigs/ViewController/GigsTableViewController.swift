@@ -14,6 +14,11 @@ class GigsTableViewController: UITableViewController {
     //    @IBOutlet weak var gigTitleLabel: UILabel!
     //    @IBOutlet weak var dueDateLabel: UILabel!
     
+    private var gigNames: [String] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var gigController = GigController()
     var gig: Gig!
     let df = DateFormatter()
@@ -41,7 +46,7 @@ class GigsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return gigController.gigs.count
+        return gigNames.count
     }
     
     
@@ -49,7 +54,7 @@ class GigsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         
         // Configure the cell...
-        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        cell.textLabel?.text = gigNames[indexPath.row]
         df.dateStyle = .short
         cell.detailTextLabel?.text = df.string(from: gig.dueDate)
         
@@ -60,28 +65,26 @@ class GigsTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LoginViewModalSegue" {
-            // inject dependencies
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.gigController = gigController
             }
-        } else {
-            if segue.identifier == "AddGigSegue" {
+        } else if segue.identifier == "AddGigSegue" {
                 if let addGigVC = segue.destination as? GigDetailViewController {
                     addGigVC.gigController = gigController
-                    addGigVC.datePicker.date = gig.dueDate
-                    addGigVC.jobTitleTextField.text = gig.title
-                    addGigVC.jobDescriptionTextView.text = gig.description
-                } else {
-                    if segue.identifier == "ShowGigSegue" {
+//                    addGigVC.datePicker.date = gig.dueDate
+//                    addGigVC.jobTitleTextField.text = gig.title
+//                    addGigVC.jobDescriptionTextView.text = gig.description
+                } else if segue.identifier == "ShowGigSegue" {
                         if let gigDetailVC = segue.destination as? GigDetailViewController {
                             gigDetailVC.gigController = gigController
-                            gigDetailVC.datePicker.date = gig.dueDate
-                            gigDetailVC.jobDescriptionTextView.text = gig.description
-                            gigDetailVC.jobTitleTextField.text = gig.title
+//                            if let indexPath = tableview.indexPathforSelectedRow {
+//                                gigDetailVC.datePicker.date = gig.dueDate
+//                                gigDetailVC.jobDescriptionTextView.text = gig.description
+//                                gigDetailVC.jobTitleTextField.text = gig.title
+                            }
                         }
                     }
                 }
             }
-        }
-    }
-}
+        
+
