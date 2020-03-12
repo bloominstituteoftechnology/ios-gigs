@@ -202,6 +202,7 @@ class GigController {
                           NSLog("Error decoding gig objects: \(error)")
                           completion(.failure(.noDecode))
                       }
+            self.gigs.append(gig)
         }.resume()
     }
 }
