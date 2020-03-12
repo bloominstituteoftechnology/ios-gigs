@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        // Do any additional setup aft#FFBF00er loading the view.
     }
     
     @IBAction func loginTypeChanged(_ sender: UISegmentedControl) {
