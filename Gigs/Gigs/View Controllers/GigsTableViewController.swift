@@ -22,6 +22,11 @@ class GigsTableViewController: UITableViewController {
             performSegue(withIdentifier: "AuthenticateSegue", sender: self)
         } else {
             // TODO: fetch gigs here
+            gigController.fetchGigs { result in
+                if let _ = try? result.get() {
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -48,6 +53,15 @@ class GigsTableViewController: UITableViewController {
         if segue.identifier == "AuthenticateSegue" {
             guard let logInVC = segue.destination as? LoginViewController else { return }
             logInVC.gigController = gigController
+        } else if segue.identifier == "AddGigSegue" {
+            guard let detailVC = segue.destination as? GigDetailViewController else { return }
+            detailVC.gigController = gigController
+            
+        } else if segue.identifier == "ShowGigSegue" {
+            guard let detailVC = segue.destination as? GigDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow else { return }
+            detailVC.gigController = gigController
+            detailVC.gig = gigController.gigs[indexPath.row]
         }
     }
 
