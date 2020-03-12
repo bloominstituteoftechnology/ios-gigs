@@ -107,7 +107,7 @@ class GigController {
     
     
     
-    // MARK: - Generic Way to Reduce Copy/Paste
+    // MARK: - Use Endpoint to Reduce Copy/Paste
     
     enum Endpoint {
         case signup(user: User)
