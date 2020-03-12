@@ -41,8 +41,13 @@ class GigDetailViewController: UIViewController {
             let description = gigDescription.text,
             !description.isEmpty else { return }
         let newGig = Gig(title: title, description: description, dueDate: gigDatePicker.date)
+        if let _ = gigController.gigs.firstIndex(where: { $0 == newGig }) {
+            print("No duping")
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
         gigController.postGig(for: newGig) { result in
-            if let gig = try? result.get() {
+            if let _ = try? result.get() {
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
                 }
