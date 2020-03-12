@@ -6,6 +6,12 @@
 //  Copyright © 2020 Hector Ledesma. All rights reserved.
 //
 
+// MARK: -
+
+
+// MARK: - Nice here we go
+
+
 import UIKit
 
 enum LoginType {
@@ -14,7 +20,7 @@ enum LoginType {
 }
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
