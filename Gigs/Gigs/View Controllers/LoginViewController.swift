@@ -16,7 +16,8 @@ enum LoginType: Int {
 class LoginViewController: UIViewController {
 
     // MARK: - Properites
-
+    var gigController: GigController?
+    
     var loginType = LoginType.signUp {
         didSet {
             switch loginType {
@@ -50,6 +51,54 @@ class LoginViewController: UIViewController {
     
     /// User has pressed the action button to either Sign Up or Log In
     @IBAction func credentialsButton(_ sender: Any) {
+        // perform login or sign up operation based on loginType
+        guard let username = usernameTextField.text,
+            !username.isEmpty,
+            let password = passwordTextField.text,
+            !password.isEmpty else { return }
+
+        let user = User(username: username, password: password)
+        
+        if loginType == .signUp {
+            gigController?.signUp(with: user, completion: { error in
+                if let error = error {
+                    NSLog("Error occurred during signup \(error)")
+                } else {
+                    DispatchQueue.main.async {
+                        let alertController = UIAlertController(title: "Sign up successful",
+                                                                message: "Now please login",
+                                                                preferredStyle: .alert)
+                        
+                        let alertAction = UIAlertAction(title: "OK",
+                                                        style: .default) { _ in
+                            self.loginType = .logIn
+                            self.credentialsMode.selectedSegmentIndex = self.loginType.rawValue
+                            self.credentialsButtonLabel.setTitle("Log In", for: .normal)
+                            print("UIAlertAction closure has been called. Has OK been clicked? Yes!")
+                        }
+
+                        alertController.addAction(alertAction)
+
+                        print("Sign Up was successful.")
+
+                        self.present(alertController, animated: true) {
+                            print("present closure has been called. Has OK been clicked? No")
+                        }
+                    }
+                }
+            })
+        } else { // .logIn
+            gigController?.signIn(with: user, completion: { error in
+                if let error = error {
+                    NSLog("Error occurred during sign in: \(error)")
+                } else {
+                    DispatchQueue.main.async {
+                        print("Log In was successful.")
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            })
+        }
     }
     
     // MARK: - Methods
