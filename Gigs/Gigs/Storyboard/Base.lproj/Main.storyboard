@@ -137,7 +137,7 @@
         <!--Title-->
         <scene sceneID="EG1-Yn-5tP">
             <objects>
-                <viewController id="XN8-DC-ifL" sceneMemberID="viewController">
+                <viewController id="XN8-DC-ifL" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xh0-iH-vE0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -187,8 +187,17 @@
                         <viewLayoutGuide key="safeArea" id="jcA-cW-CdW"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Eoa-0p-BG8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jv0-11-iOH"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jv0-11-iOH">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="XN8-DC-ifL" id="eaE-Ne-u9i"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="pfl-60-myE" id="NX2-Yh-taa"/>
+                        <outlet property="jobDescriptionTextView" destination="Lfj-SS-NNW" id="5Mn-N4-EWH"/>
+                        <outlet property="jobTitleTextField" destination="zDU-7F-nA1" id="Zgf-3m-QBs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="242-gx-9df" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
