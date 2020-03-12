@@ -144,10 +144,10 @@
             </objects>
             <point key="canvasLocation" x="1931.8840579710147" y="123.88392857142857"/>
         </scene>
-        <!--View Controller-->
+        <!--Gigs Detail View Controller-->
         <scene sceneID="ABj-QV-TNw">
             <objects>
-                <viewController id="d47-dP-7uy" sceneMemberID="viewController">
+                <viewController id="d47-dP-7uy" customClass="GigsDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HJg-bo-QSJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -197,8 +197,17 @@
                         <viewLayoutGuide key="safeArea" id="XnH-8C-O6T"/>
                     </view>
                     <navigationItem key="navigationItem" id="lRR-sm-gbH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="M83-pl-zXf"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="M83-pl-zXf">
+                            <connections>
+                                <action selector="saveGig:" destination="d47-dP-7uy" id="q0s-zF-RsM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="5zi-EZ-iVr" id="TWu-sc-ubQ"/>
+                        <outlet property="gigTextView" destination="Lvd-L1-WsW" id="QaH-gS-DUb"/>
+                        <outlet property="jobTextField" destination="csm-lg-zMj" id="E4Y-Cw-kdk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bcM-5r-1v5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
