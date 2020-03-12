@@ -39,6 +39,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="QfX-3X-8Pt" kind="show" identifier="ShowGigSegue" id="A0w-4G-K5G"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -46,7 +49,13 @@
                             <outlet property="delegate" destination="hYf-8O-dR0" id="929-S1-Ctf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="nAq-dk-uao"/>
+                    <navigationItem key="navigationItem" id="nAq-dk-uao">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6bT-PI-keV">
+                            <connections>
+                                <segue destination="QfX-3X-8Pt" kind="show" identifier="AddGigSegue" id="zv9-4D-PkX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="U2n-d2-zHI" kind="presentation" identifier="AuthenticateSegue" modalPresentationStyle="fullScreen" id="UqP-tX-957"/>
                     </connections>
@@ -54,6 +63,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gTW-wI-V0r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="97.767857142857139"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="cMd-HZ-xOS">
+            <objects>
+                <viewController id="QfX-3X-8Pt" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MbT-gT-0wd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oRo-4w-dpv">
+                                <rect key="frame" x="40" y="128" width="334" height="459"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="3OM-1D-LTK">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB TITLE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efu-nK-867">
+                                                <rect key="frame" x="0.0" y="0.0" width="85.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hui-UV-4Qg">
+                                                <rect key="frame" x="111.5" y="0.0" width="222.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEF-v4-dsa">
+                                        <rect key="frame" x="0.0" y="44" width="334" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="28E-Ls-Gnz">
+                                        <rect key="frame" x="0.0" y="74.5" width="334" height="216"/>
+                                    </datePicker>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHQ-Mv-LzC">
+                                        <rect key="frame" x="0.0" y="300.5" width="334" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ljB-hz-zdK">
+                                        <rect key="frame" x="0.0" y="331" width="334" height="128"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="oRo-4w-dpv" firstAttribute="top" secondItem="psY-qx-kRl" secondAttribute="top" constant="40" id="3gl-iw-Cyy"/>
+                            <constraint firstItem="psY-qx-kRl" firstAttribute="bottom" secondItem="oRo-4w-dpv" secondAttribute="bottom" constant="275" id="DO3-xJ-hfA"/>
+                            <constraint firstItem="psY-qx-kRl" firstAttribute="trailing" secondItem="oRo-4w-dpv" secondAttribute="trailing" constant="40" id="EdB-RQ-ffe"/>
+                            <constraint firstItem="oRo-4w-dpv" firstAttribute="leading" secondItem="psY-qx-kRl" secondAttribute="leading" constant="40" id="HHf-fF-OtN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="psY-qx-kRl"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="GM4-AS-gqu">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="sZN-vg-l2l">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="QfX-3X-8Pt" id="Gou-Mg-A9y"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="gigDatePicker" destination="28E-Ls-Gnz" id="PnM-se-2Gz"/>
+                        <outlet property="gigDescription" destination="ljB-hz-zdK" id="0wW-nb-K0f"/>
+                        <outlet property="gigField" destination="hui-UV-4Qg" id="jgp-66-GYS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HRV-OZ-J8z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1897" y="98"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZGF-2v-gcq">
@@ -134,4 +222,7 @@
             <point key="canvasLocation" x="1878" y="-575"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="zv9-4D-PkX"/>
+    </inferredMetricsTieBreakers>
 </document>
