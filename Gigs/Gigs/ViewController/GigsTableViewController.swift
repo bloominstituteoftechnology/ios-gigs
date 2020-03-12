@@ -10,7 +10,14 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
     
+//
+//    @IBOutlet weak var gigTitleLabel: UILabel!
+//    @IBOutlet weak var dueDateLabel: UILabel!
+    
     var gigController = GigController()
+    var gig: Gig!
+    let df = DateFormatter()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,15 +41,18 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
 
         // Configure the cell...
-
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        df.dateStyle = .short
+        cell.detailTextLabel?.text = df.string(from: gig.dueDate)
+   
         return cell
     }
     
