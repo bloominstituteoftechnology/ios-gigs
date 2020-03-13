@@ -93,15 +93,33 @@ class LoginViewController: UIViewController {
                 }
             })
         } else { // .logIn
-            gigController?.logIn(with: user, completion: { error in
+            gigController?.logIn(with: user, completion: { result in
                 self.removeSpinner()
-
-                if let error = error {
-                    NSLog("Error occurred during sign in: \(error)")
-                } else {
+                
+                do {
+                    let _ = try result.get()
                     DispatchQueue.main.async {
                         print("Log In was successful.")
                         self.dismiss(animated: true, completion: nil)
+                    }
+                } catch {
+                    if let error = error as? NetworkError {
+                        switch error {
+//                        case .noAuth:
+//                            NSLog("No bearer token exists")
+//                        case .badAuth:
+//                            NSLog("Bearer token invalid")
+//                        case .otherNetworkError:
+//                            NSLog("Other error occurred, see log")
+//                        case .badData:
+//                            NSLog("No data received, or data corrupted")
+                        case .noDecode:
+                            NSLog("JSON could not be decoded")
+                        case .noData:
+                            NSLog("Data object not received")
+//                        case .badUrl:
+//                            NSLog("URL invalid")
+                        }
                     }
                 }
             })

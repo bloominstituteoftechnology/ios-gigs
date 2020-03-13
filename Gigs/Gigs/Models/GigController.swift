@@ -13,6 +13,15 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+//    case noAuth
+//    case badAuth
+//    case otherNetworkError
+    case noData
+    case noDecode
+//    case badUrl
+}
+
 class GigController {
     
     // MARK: - Properties
@@ -88,13 +97,15 @@ class GigController {
     /// - Parameters:
     ///   - user: User object with username and password properties set
     ///   - completion: Whom to nofity when done
-    func logIn(with user: User, completion: @escaping (Error?) -> Void) {
+    func logIn(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         
         credentials(endpoint: "users/login/",
                     with: user) { data, error in
 
             guard let data = data else {
-                completion(NSError(domain: "Data not found", code: 0, userInfo: nil))
+                // TODO: What to do with this when using Result?
+                // NSError(domain: "Data not found", code: 0, userInfo: nil)
+                completion(.failure(.noData))
                 return
             }
             
@@ -102,11 +113,57 @@ class GigController {
             
             do {
                 self.bearer = try decoder.decode(Bearer.self, from: data)
-                completion(nil)
+                completion(.success(true))
             } catch {
                 NSLog("Error decoding bearer object: \(error)")
-                completion(error)
+                completion(.failure(.noDecode))
             }
         }
     }
+    
+    // create function for fetching all gigs
+//    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+//        guard let bearer = bearer else {
+//            completion(.failure(.noAuth))
+//            return
+//        }
+//
+//        let allAnimalsUrl = baseUrl.appendingPathComponent("animals/all")
+//
+//        var request = URLRequest(url: allAnimalsUrl)
+//        request.httpMethod = HTTPMethod.get.rawValue
+//        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+//
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            if let error = error {
+//                NSLog("Error receiving animal name data: \(error)")
+//                completion(.failure(.otherNetworkError))
+//                return
+//            }
+//
+//            if let response = response as? HTTPURLResponse,
+//                response.statusCode == 401 {
+//                // User is not authorize (no token or bad token)
+//                completion(.failure(.badAuth))
+//                return
+//            }
+//
+//            guard let data = data else {
+//                completion(.failure(.badData))
+//                return
+//            }
+//
+//            let decoder = JSONDecoder()
+//            decoder.dateDecodingStrategy = .secondsSince1970
+//
+//            do {
+//                let animalNames = try decoder.decode([String].self, from: data)
+//                completion(.success(animalNames))
+//            } catch {
+//                completion(.failure(.noDecode))
+//            }
+//
+//        }.resume()
+//    }
+    
 }
