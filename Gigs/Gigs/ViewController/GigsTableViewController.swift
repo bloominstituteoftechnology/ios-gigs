@@ -14,13 +14,14 @@ class GigsTableViewController: UITableViewController {
     //    @IBOutlet weak var gigTitleLabel: UILabel!
     //    @IBOutlet weak var dueDateLabel: UILabel!
     
-    private var gigNames: [String] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    var gigController = GigController()
-    var gig: Gig!
+//    private var gigTitles: [String] = [] {
+//        didSet {
+//            tableView.reloadData()
+//        }
+//    }
+    
+    private(set) var gigController = GigController()
+    //var gig: Gig!
     let df = DateFormatter()
     
     
@@ -34,19 +35,47 @@ class GigsTableViewController: UITableViewController {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
             // TODO: fetch gigs here
+        } else {
+            gigController.fetchAllGigs { result in
+                do {
+                    let gigsListed = try result.get()
+                    DispatchQueue.main.async {
+                        self.gigController.gigs = gigsListed
+                        self.tableView.reloadData()
+                    }
+                } catch {
+                    if let error = error as? NetworkError {
+                        switch error {
+                        case .noAuth:
+                            NSLog("No bearer token exists")
+                        case .badAuth:
+                            NSLog("Bearer token invalid")
+                        case .otherError:
+                            NSLog("Other error occurred, see log")
+                        case .badData:
+                            NSLog("No data received, or data corrupted")
+                        case .noDecode:
+                            NSLog("JSON could not be decoded")
+                        case .badUrl:
+                            NSLog("URL invalid")
+                        case .noEncode:
+                            NSLog("Error with encoding data")
+                        }
+                    }
+                }
+                //
+                ////                do-try-catch result.get
+                ////                dispatch main - tableView.reload
+            }
         }
     }
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-    
+  
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return gigNames.count
+        return gigController.gigs.count
     }
     
     
@@ -54,7 +83,8 @@ class GigsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         
         // Configure the cell...
-        cell.textLabel?.text = gigNames[indexPath.row]
+        let gig = gigController.gigs[indexPath.row]
+        cell.textLabel?.text = gig.title
         df.dateStyle = .short
         cell.detailTextLabel?.text = df.string(from: gig.dueDate)
         
@@ -69,22 +99,19 @@ class GigsTableViewController: UITableViewController {
                 loginVC.gigController = gigController
             }
         } else if segue.identifier == "AddGigSegue" {
-                if let addGigVC = segue.destination as? GigDetailViewController {
-                    addGigVC.gigController = gigController
-//                    addGigVC.datePicker.date = gig.dueDate
-//                    addGigVC.jobTitleTextField.text = gig.title
-//                    addGigVC.jobDescriptionTextView.text = gig.description
-                } else if segue.identifier == "ShowGigSegue" {
-                        if let gigDetailVC = segue.destination as? GigDetailViewController {
-                            gigDetailVC.gigController = gigController
-//                            if let indexPath = tableview.indexPathforSelectedRow {
-//                                gigDetailVC.datePicker.date = gig.dueDate
-//                                gigDetailVC.jobDescriptionTextView.text = gig.description
-//                                gigDetailVC.jobTitleTextField.text = gig.title
-                            }
-                        }
+            if let addGigVC = segue.destination as? GigDetailViewController {
+                addGigVC.gigController = gigController
+            }
+        } else if segue.identifier == "ShowGigSegue" {
+                if let gigDetailVC = segue.destination as? GigDetailViewController {
+                    gigDetailVC.gigController = gigController
+                    if let indexPath = tableView.indexPathForSelectedRow {
+                        gigDetailVC.gig = gigController.gigs[indexPath.row]
+                        
                     }
                 }
             }
-        
+        }
+    }
+
 

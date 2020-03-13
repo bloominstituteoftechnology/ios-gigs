@@ -27,7 +27,7 @@ class GigController {
     
     // MARK: - Variables
     
-    var bearer: Bearer?
+    private(set) var bearer: Bearer?
     var gigs: [Gig] = []
     
     private let baseUrl = URL(string: "https://lambdagigapi.herokuapp.com/api")!
@@ -109,7 +109,7 @@ class GigController {
         }.resume()
     }
     
-    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         guard let bearer = bearer else {
             completion(.failure(.noAuth))
             return
@@ -131,10 +131,10 @@ class GigController {
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401 {
                 completion(.failure(.badAuth))
-    
+                
                 return
             }
-
+            
             guard let data = data else {
                 completion(.failure(.badData))
                 return
@@ -143,8 +143,8 @@ class GigController {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             do {
-                let gigTitles = try decoder.decode([String].self, from: data)
-                completion(.success(gigTitles))
+                let gigs = try decoder.decode([Gig].self, from: data)
+                completion(.success(gigs))
             } catch {
                 NSLog("Error decoding animal objects: \(error)")
                 completion(.failure(.noDecode))
@@ -179,29 +179,29 @@ class GigController {
                 completion(.failure(.otherError))
                 return
             }
-
+            
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401 {
                 completion(.failure(.badAuth))
-
+                
                 return
             }
-
+            
             guard let data = data else {
                 completion(.failure(.badData))
                 return
             }
-
+            
             
             let decoder = JSONDecoder()
-                      decoder.dateDecodingStrategy = .iso8601
-                      do {
-                          let gigTitles = try decoder.decode([String].self, from: data)
-                          completion(.success(gigTitles))
-                      } catch {
-                          NSLog("Error decoding gig objects: \(error)")
-                          completion(.failure(.noDecode))
-                      }
+            decoder.dateDecodingStrategy = .iso8601
+            do {
+                let gigTitles = try decoder.decode([String].self, from: data)
+                completion(.success(gigTitles))
+            } catch {
+                NSLog("Error decoding gig objects: \(error)")
+                completion(.failure(.noDecode))
+            }
             self.gigs.append(gig)
         }.resume()
     }
