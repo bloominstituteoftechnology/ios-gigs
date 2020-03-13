@@ -41,7 +41,7 @@ class GigDetailViewController: UIViewController {
                 gigController.addGig(thisGig) { result in
                     DispatchQueue.main.async {
                         self.gigController.gigs.append(thisGig)
-                        self.gigsTableView?.loadGigs()
+                        self.gigsTableView?.tableView.reloadData()
                     }
                 }
             } else {
