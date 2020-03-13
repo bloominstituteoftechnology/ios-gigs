@@ -15,12 +15,14 @@ enum HTTPMethod: String {
 }
 
 enum NetworkError: Error {
+    
     case badUrl
     case noAuth
     case badAuth
     case otherError
     case badData
     case noDecode
+    
 }
 
 class GigController {
@@ -116,7 +118,7 @@ class GigController {
         
         var request = URLRequest(url: allGigsUrl)
         request.httpMethod = HTTPMethod.get.rawValue
-        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
@@ -140,6 +142,7 @@ class GigController {
             }
             
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
             do {
                 let gigNames = try decoder.decode([String].self, from: data)
                 completion(.success(gigNames))
@@ -155,13 +158,14 @@ class GigController {
     
     
     // fetching one gig
-    func gigsDetail(for gigName: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+    func createGig(for gigName: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
          guard let bearer = bearer else {
              completion(.failure(.noAuth))
              return
+            
          }
          
-         let gigsUrl = baseUrl.appendingPathComponent("/gigs\(gigName)")
+         let gigsUrl = baseUrl.appendingPathComponent("/gigs/\(gigName)")
          
          var request = URLRequest(url: gigsUrl)
          request.httpMethod = HTTPMethod.post.rawValue
@@ -189,7 +193,7 @@ class GigController {
              }
              
              let decoder = JSONDecoder()
-             decoder.dateDecodingStrategy = .secondsSince1970
+            decoder.dateDecodingStrategy = .iso8601
              do {
                  let gig = try decoder.decode(Gig.self, from: data)
                  completion(.success(gig))
