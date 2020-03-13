@@ -14,6 +14,7 @@ class GigDetailViewController: UIViewController {
     
     // TODO: Gross, why is this here?
     var gigController: GigController!
+    var gigsTableView: GigsTableViewController?
     var gig: Gig? {
         didSet {
             updateViews()
@@ -37,7 +38,12 @@ class GigDetailViewController: UIViewController {
             
             if gig == nil {
                 // Create gig
-                print(thisGig)
+                gigController.addGig(thisGig) { result in
+                    DispatchQueue.main.async {
+                        self.gigController.gigs.append(thisGig)
+                        self.gigsTableView?.loadGigs()
+                    }
+                }
             } else {
                 // Update gig
                 print(thisGig)

@@ -167,5 +167,49 @@ class GigController {
 
         }.resume()
     }
-    
+
+    // create function for fetching all gigs
+    func addGig(_ gig: Gig, completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+
+        let allGigsUrl = baseUrl.appendingPathComponent("gigs/")
+
+        var request = URLRequest(url: allGigsUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+
+        do {
+            let jsonData = try encoder.encode(gig)
+            request.httpBody = jsonData
+        } catch {
+            NSLog("Error encoding user object: \(error)")
+            completion(.failure(.badData))
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                NSLog("Error receiving gigs data: \(error)")
+                completion(.failure(.otherNetworkError))
+                return
+            }
+
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                // TODO: NSError(domain: response.description, code: response.statusCode, userInfo: nil)
+                completion(.failure(.badData))
+                return
+            }
+
+            completion(.success([gig]))
+            
+        }.resume()
+    }
 }

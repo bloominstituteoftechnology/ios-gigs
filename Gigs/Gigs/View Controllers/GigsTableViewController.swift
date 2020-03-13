@@ -140,6 +140,7 @@ class GigsTableViewController: UITableViewController {
             
             if let detailVC = segue.destination as? GigDetailViewController {
                 detailVC.gigController = gigController
+                detailVC.gigsTableView = self
                 detailVC.gig = nil
                 
                 if segue.identifier == "EditGig" {
