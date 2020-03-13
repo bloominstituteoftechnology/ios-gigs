@@ -29,6 +29,7 @@ class GigController {
     var baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     var gigs: [Gig] = []
     
+    // MARK: - Network Methods
     func signUp(with user: User, completion: @escaping (Error?) -> ()) {
         let signUpURL = baseURL.appendingPathComponent("users/signup")
         
@@ -153,51 +154,63 @@ class GigController {
             }
         }.resume()
     }
-    /*
-    func signIn(with user: User, completion: @escaping (Error?) -> ()) {
-        let signInURL = baseURL.appendingPathComponent("users/login")
+    
+    func addGig(named gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> ()) {
         
-        var request = URLRequest(url: signInURL)
+        guard let bearer = bearer else {
+            NSLog("No bearer")
+            completion(.failure(.noBearer))
+            return
+        }
+        
+        let postGigURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: postGigURL)
         request.httpMethod = HTTPMethod.post.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
         do {
-            let jsonData = try jsonEncoder.encode(user)
+            let jsonData = try jsonEncoder.encode(gig)
             request.httpBody = jsonData
         } catch {
-            NSLog("Error encoding user object: \(error)")
-            completion(error)
+            NSLog("Error encoding gig object: \(error)")
+            completion(.failure(.badData))
             return
         }
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                completion(error)
+                NSLog("Error making network call: \(error)")
+                completion(.failure(.otherError))
                 return
             }
             
             if let response = response as? HTTPURLResponse,
-            response.statusCode != 200 {
-                completion(NSError(domain: "Did not get statusCode 200 back", code: response.statusCode, userInfo: nil))
+                response.statusCode == 401 {
+                NSLog("Server gave status code 401")
+                completion(.failure(.badBearer))
                 return
+            } else if let response = response as? HTTPURLResponse,
+                response.statusCode == 200 {
+                //self.gigs.append(gig)
+                completion(.success(gig))
             }
-            
-            guard let data = data else {
-                completion(NSError(domain: "Data not found", code: 99, userInfo: nil))
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            do {
-                self.bearer = try decoder.decode(Bearer.self, from: data)
-                completion(nil)
-            } catch {
-                NSLog("Error decoding bearer object: \(error)")
-                completion(error)
-                return
-            }
+
         }.resume()
     }
-    */
+    
+    // MARK: - CRUD
+    func createGig(title: String, date: Date, description: String) {
+        let newGig = Gig(title: title, description: description, dueDate: date)
+        addGig(named: newGig) { (result) in
+            if let gig = try? result.get() {
+                DispatchQueue.main.async {
+                    self.gigs.append(gig)
+                }
+            }
+        }
+    }
 }

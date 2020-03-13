@@ -72,8 +72,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Q07-Pg-Hag">
-                                <rect key="frame" x="0.0" y="108" width="414" height="479.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Q07-Pg-Hag">
+                                <rect key="frame" x="0.0" y="108" width="414" height="551.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ivb-Pv-Vib">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="54.5"/>
@@ -105,8 +105,8 @@
                                             </datePicker>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hio-vy-RYx">
-                                        <rect key="frame" x="0.0" y="331" width="414" height="148.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hio-vy-RYx">
+                                        <rect key="frame" x="0.0" y="331" width="414" height="220.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeA-3W-4ca">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
@@ -114,9 +114,12 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tuK-Kr-bjT">
-                                                <rect key="frame" x="0.0" y="20.5" width="414" height="128"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tuK-Kr-bjT">
+                                                <rect key="frame" x="0.0" y="20.5" width="414" height="200"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="46Q-3s-xsa"/>
+                                                </constraints>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -142,7 +145,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="descriptionTextView" destination="tuK-Kr-bjT" id="Frm-Uh-VpK"/>
+                        <outlet property="descriptionTextView" destination="tuK-Kr-bjT" id="wWf-Ua-NM5"/>
                         <outlet property="dueDatePicker" destination="982-bw-d06" id="sjv-fR-8tQ"/>
                         <outlet property="titleTextField" destination="Z8y-UZ-HFx" id="mru-oZ-OwR"/>
                     </connections>
@@ -233,6 +236,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Ekc-sC-5iK"/>
+        <segue reference="z97-ys-fRP"/>
     </inferredMetricsTieBreakers>
 </document>

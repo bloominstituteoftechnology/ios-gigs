@@ -28,6 +28,11 @@ class GigsTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     func fetchGigs() {
         if gigController.bearer != nil {
             gigController.fetchGigs(completion: { (result) in
@@ -63,6 +68,16 @@ class GigsTableViewController: UITableViewController {
         if segue.identifier == "LoginModalSegue" {
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.gigController = gigController
+            }
+        } else if segue.identifier == "AddGigSegue" {
+            if let addGigVC = segue.destination as? GigDetailViewController {
+                addGigVC.gigController = gigController
+            }
+        } else if segue.identifier == "GigDetailSegue" {
+            if let gigDetailVC = segue.destination as? GigDetailViewController {
+                gigDetailVC.gigController = gigController
+                guard let index = self.tableView.indexPathForSelectedRow?.row else { return }
+                gigDetailVC.gig = gigController.gigs[index]
             }
         }
     }
