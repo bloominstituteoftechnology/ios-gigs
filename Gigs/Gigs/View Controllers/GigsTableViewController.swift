@@ -98,6 +98,19 @@ class GigsTableViewController: UITableViewController {
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.gigController = gigController
             }
+        } else if segue.identifier == "AddGig" ||
+            segue.identifier == "EditGig" {
+            
+            if let detailVC = segue.destination as? GigDetailViewController {
+                detailVC.gigController = gigController
+                detailVC.gig = nil
+                
+                if segue.identifier == "EditGig" {
+                    if let indexPath = tableView.indexPathForSelectedRow {
+                        detailVC.gig = gigController.gigs[indexPath.row]
+                    }
+                }
+            }
         }
     }
 }
