@@ -16,10 +16,17 @@ enum HTTPMethod: String {
 class GigController {
     
     // MARK: - Properties
-    
+    private(set) var gigs: [Gig] = []
     private(set) var bearer: Bearer? = nil
     private let baseUrl = URL(string: "https://lambdagigapi.herokuapp.com/api")!
+    // FIXME: Hide this
+    let dateFormatter = DateFormatter()
  
+    init() {
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+    }
+    
     // MARK: - Methods
     
     /// Call to endpoint to get data from to/from server
