@@ -14,18 +14,20 @@ enum HTTPMethod: String {
 }
 
 enum NetworkError: Error {
-//    case noAuth
-//    case badAuth
-//    case otherNetworkError
+    case noAuth
+    case badAuth
+    case otherNetworkError
     case noData
     case noDecode
-//    case badUrl
+    case badData
+    case badUrl
 }
 
 class GigController {
     
     // MARK: - Properties
-    private(set) var gigs: [Gig] = []
+    // FIXME: put back: private(set) 
+    var gigs: [Gig] = []
     private(set) var bearer: Bearer? = nil
     private let baseUrl = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     // FIXME: Hide this
@@ -122,48 +124,48 @@ class GigController {
     }
     
     // create function for fetching all gigs
-//    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
-//        guard let bearer = bearer else {
-//            completion(.failure(.noAuth))
-//            return
-//        }
-//
-//        let allAnimalsUrl = baseUrl.appendingPathComponent("animals/all")
-//
-//        var request = URLRequest(url: allAnimalsUrl)
-//        request.httpMethod = HTTPMethod.get.rawValue
-//        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
-//
-//        URLSession.shared.dataTask(with: request) { data, response, error in
-//            if let error = error {
-//                NSLog("Error receiving animal name data: \(error)")
-//                completion(.failure(.otherNetworkError))
-//                return
-//            }
-//
-//            if let response = response as? HTTPURLResponse,
-//                response.statusCode == 401 {
-//                // User is not authorize (no token or bad token)
-//                completion(.failure(.badAuth))
-//                return
-//            }
-//
-//            guard let data = data else {
-//                completion(.failure(.badData))
-//                return
-//            }
-//
-//            let decoder = JSONDecoder()
-//            decoder.dateDecodingStrategy = .secondsSince1970
-//
-//            do {
-//                let animalNames = try decoder.decode([String].self, from: data)
-//                completion(.success(animalNames))
-//            } catch {
-//                completion(.failure(.noDecode))
-//            }
-//
-//        }.resume()
-//    }
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+
+        let allGigsUrl = baseUrl.appendingPathComponent("gigs")
+
+        var request = URLRequest(url: allGigsUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                NSLog("Error receiving gigs data: \(error)")
+                completion(.failure(.otherNetworkError))
+                return
+            }
+
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                // User is not authorize (no token or bad token)
+                completion(.failure(.badAuth))
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+
+            do {
+                let gigsFromServer = try decoder.decode([Gig].self, from: data)
+                completion(.success(gigsFromServer))
+            } catch {
+                completion(.failure(.noDecode))
+            }
+
+        }.resume()
+    }
     
 }

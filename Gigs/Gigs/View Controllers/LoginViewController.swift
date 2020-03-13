@@ -105,20 +105,20 @@ class LoginViewController: UIViewController {
                 } catch {
                     if let error = error as? NetworkError {
                         switch error {
-//                        case .noAuth:
-//                            NSLog("No bearer token exists")
-//                        case .badAuth:
-//                            NSLog("Bearer token invalid")
-//                        case .otherNetworkError:
-//                            NSLog("Other error occurred, see log")
-//                        case .badData:
-//                            NSLog("No data received, or data corrupted")
+                        case .noAuth:
+                            NSLog("No bearer token exists")
+                        case .badAuth:
+                            NSLog("Bearer token invalid")
+                        case .otherNetworkError:
+                            NSLog("Other error occurred, see log")
+                        case .badData:
+                            NSLog("No data received, or data corrupted")
                         case .noDecode:
                             NSLog("JSON could not be decoded")
                         case .noData:
                             NSLog("Data object not received")
-//                        case .badUrl:
-//                            NSLog("URL invalid")
+                        case .badUrl:
+                            NSLog("URL invalid")
                         }
                     }
                 }

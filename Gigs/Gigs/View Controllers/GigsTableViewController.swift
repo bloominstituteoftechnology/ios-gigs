@@ -19,11 +19,33 @@ class GigsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        gigController.fetchAllGigs(completion: { result in
+            do {
+                let gigs = try result.get()
+                DispatchQueue.main.async {
+                    self.gigController.gigs = gigs
+                }
+            } catch {
+                if let error = error as? NetworkError {
+                    switch error {
+                    case .noAuth:
+                        NSLog("No bearer token exists")
+                    case .badAuth:
+                        NSLog("Bearer token invalid")
+                    case .otherNetworkError:
+                        NSLog("Other error occurred, see log")
+                    case .badData:
+                        NSLog("No data received, or data corrupted")
+                    case .noDecode:
+                        NSLog("JSON could not be decoded")
+                    case .badUrl:
+                        NSLog("URL invalid")
+                    case .noData:
+                        NSLog("Data object not received")
+                    }
+                }
+            }
+        })
     }
 
     override func viewDidAppear(_ animated: Bool) {
