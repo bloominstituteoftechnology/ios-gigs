@@ -35,7 +35,7 @@ class GigController {
  
     init() {
         dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
+        dateFormatter.timeStyle = .none
     }
     
     // MARK: - Methods
