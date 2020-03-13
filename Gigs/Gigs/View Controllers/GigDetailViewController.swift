@@ -72,6 +72,11 @@ class GigDetailViewController: UIViewController {
         
         titleTextField?.text = gig.title
         datePicker?.date = gig.dueDate
+        // FIXME: Control is hidden?!
         descriptionTextView?.text = gig.description
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateViews()
     }
 }
