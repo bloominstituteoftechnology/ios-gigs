@@ -10,7 +10,7 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
 
-    let gigController = GigController()
+    var gigController = GigController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,25 +28,74 @@ class GigsTableViewController: UITableViewController {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
         } else {
-            // TODO: fetch gigs here
+            getAllGigs()
         }
+    }
+    
+    func getAllGigs() {
+        gigController.fetchAllGigs { result in
+            do {
+                let gigs = try result.get()
+                self.gigController.gigs = gigs
+                for i in 0..<self.gigController.gigs.count {
+                    let newTime = self.changeTime(theDate: self.gigController.gigs[i].dueDate)
+                    self.gigController.gigs[i].dueDate = newTime
+                }
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } catch {
+                if let error = error as? NetworkError {
+                    switch error {
+                    case .noAuth:
+                        NSLog("No bearer token exists")
+                    case .badAuth:
+                        NSLog("Bearer token invalid")
+                    case .otherError:
+                        NSLog("Other error occurred, see log")
+                    case .badData:
+                        NSLog("No data received, or data corrupted")
+                    case .noDecode:
+                        NSLog("JSON could not be decoded")
+                    case .badUrl:
+                        NSLog("URL invalid")
+                    }
+                }
+            }
+        }
+    }
+    
+    func changeTime(theDate: String) -> String {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        guard let myDate = dateFormatter.date(from: theDate) else {return ""}
+
+        dateFormatter.dateFormat = "MMM dd, YYYY"
+        let someDateString = dateFormatter.string(from: myDate)
+        return someDateString
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
+        let gig = gigController.gigs[indexPath.row]
+        cell.textLabel?.text = gig.title
+        cell.detailTextLabel?.text = gig.dueDate
+        
         return cell
     }
 
@@ -93,6 +142,21 @@ class GigsTableViewController: UITableViewController {
             if segue.identifier == "LoginViewModalSegue" {
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.gigController = gigController
+            }
+        }
+        
+        if segue.identifier == "addGig" {
+            if let detailVC = segue.destination as? GigDetailViewController {
+                detailVC.gigController = gigController
+            }
+        }
+        
+        if segue.identifier == "showGig" {
+            if let detailVC = segue.destination as? GigDetailViewController {
+                detailVC.gigController = gigController
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    detailVC.gig = gigController.gigs[indexPath.row]
+                }
             }
         }
     }
