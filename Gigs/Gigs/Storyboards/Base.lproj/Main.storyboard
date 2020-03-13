@@ -180,35 +180,38 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Rnr-l4-dkt">
-                                        <rect key="frame" x="0.0" y="70.5" width="320" height="216"/>
+                                        <rect key="frame" x="0.0" y="70.5" width="320" height="351"/>
                                     </datePicker>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eES-tw-ere">
-                                        <rect key="frame" x="0.0" y="294.5" width="88" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="429.5" width="88" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="B62-pa-mZz">
-                                        <rect key="frame" x="0.0" y="323" width="240" height="127"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="127" id="8q3-eF-98n"/>
-                                        </constraints>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="450" id="hnv-QJ-sSA"/>
                                     <constraint firstAttribute="trailing" secondItem="p66-xI-TfG" secondAttribute="trailing" id="jfX-UK-Epp"/>
                                 </constraints>
                             </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="B62-pa-mZz">
+                                <rect key="frame" x="20" y="613" width="374" height="127"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="127" id="uJz-Sl-xXm"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="B62-pa-mZz" firstAttribute="leading" secondItem="xId-3Z-7qf" secondAttribute="leading" constant="20" id="7pz-Am-6k5"/>
+                            <constraint firstItem="xId-3Z-7qf" firstAttribute="trailing" secondItem="B62-pa-mZz" secondAttribute="trailing" constant="20" id="BxB-uU-CUy"/>
                             <constraint firstItem="xId-3Z-7qf" firstAttribute="trailing" secondItem="06b-9S-eIp" secondAttribute="trailing" constant="20" id="D6w-ax-sDU"/>
                             <constraint firstItem="06b-9S-eIp" firstAttribute="leading" secondItem="xId-3Z-7qf" secondAttribute="leading" constant="20" id="Pit-ps-VTF"/>
+                            <constraint firstItem="B62-pa-mZz" firstAttribute="top" secondItem="06b-9S-eIp" secondAttribute="bottom" constant="8" id="daA-jK-V9O"/>
                             <constraint firstItem="xId-3Z-7qf" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="06b-9S-eIp" secondAttribute="bottom" id="qqF-XR-NFm"/>
                             <constraint firstItem="06b-9S-eIp" firstAttribute="top" secondItem="GN9-BM-3wz" secondAttribute="topMargin" constant="15" id="r8C-9X-Rke"/>
                         </constraints>

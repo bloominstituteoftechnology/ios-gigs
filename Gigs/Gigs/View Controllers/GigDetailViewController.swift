@@ -78,7 +78,7 @@ class GigDetailViewController: UIViewController {
         
         titleTextField?.text = gig.title
         datePicker?.date = gig.dueDate
-        // FIXME: Control is hidden?!
+        // FIXME: Control does not work well in a stack view.
         descriptionTextView?.text = gig.description
     }
     
