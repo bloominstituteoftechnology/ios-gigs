@@ -70,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="foo-LK-Y6P">
-                                <rect key="frame" x="30" y="325" width="354" height="246"/>
+                                <rect key="frame" x="30" y="275" width="354" height="246"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2en-Ja-hCe">
                                         <rect key="frame" x="77" y="0.0" width="200" height="34.5"/>
@@ -89,12 +89,12 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5bO-h0-TEG">
                                                 <rect key="frame" x="0.0" y="0.0" width="354" height="38"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8o7-h5-QvT">
                                                 <rect key="frame" x="0.0" y="53" width="354" height="37.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" secureTextEntry="YES"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -118,7 +118,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.18039215689999999" green="0.20000000000000001" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="foo-LK-Y6P" firstAttribute="centerY" secondItem="EZC-tR-vTc" secondAttribute="centerY" id="bc4-kQ-ycc"/>
+                            <constraint firstItem="foo-LK-Y6P" firstAttribute="centerY" secondItem="EZC-tR-vTc" secondAttribute="centerY" constant="-50" id="bc4-kQ-ycc"/>
                             <constraint firstItem="foo-LK-Y6P" firstAttribute="leading" secondItem="TDj-6L-NWi" secondAttribute="leading" constant="30" id="ki0-bN-GMn"/>
                             <constraint firstItem="TDj-6L-NWi" firstAttribute="trailing" secondItem="foo-LK-Y6P" secondAttribute="trailing" constant="30" id="urV-fg-cf6"/>
                             <constraint firstItem="foo-LK-Y6P" firstAttribute="centerX" secondItem="EZC-tR-vTc" secondAttribute="centerX" id="yN6-9j-IBJ"/>
