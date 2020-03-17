@@ -64,10 +64,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="foo-LK-Y6P">
-                                <rect key="frame" x="30" y="275" width="354" height="246"/>
+                                <rect key="frame" x="30" y="284.5" width="354" height="227"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2en-Ja-hCe">
-                                        <rect key="frame" x="77" y="0.0" width="200" height="34.5"/>
+                                        <rect key="frame" x="77" y="0.0" width="200" height="29.5"/>
                                         <color key="backgroundColor" red="0.25047515889999999" green="0.27950834959999998" blue="0.41008027889999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="rmJ-c1-jvG"/>
@@ -81,29 +81,29 @@
                                         </connections>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="mGo-C7-jy8">
-                                        <rect key="frame" x="0.0" y="74.5" width="354" height="90.5"/>
+                                        <rect key="frame" x="0.0" y="69.5" width="354" height="76.5"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5bO-h0-TEG">
-                                                <rect key="frame" x="0.0" y="0.0" width="354" height="38"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="31"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8o7-h5-QvT">
-                                                <rect key="frame" x="0.0" y="53" width="354" height="37.5"/>
+                                                <rect key="frame" x="0.0" y="46" width="354" height="30.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert" secureTextEntry="YES"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VwP-fw-bw1">
-                                        <rect key="frame" x="77" y="206" width="200" height="40"/>
-                                        <color key="backgroundColor" red="0.2756215396803432" green="0.45974777918781728" blue="0.40370683064701668" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VwP-fw-bw1">
+                                        <rect key="frame" x="77" y="187" width="200" height="40"/>
+                                        <color key="backgroundColor" red="0.71607312817258884" green="0.60241601283211466" blue="0.20455201113415594" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="ItO-yg-bcx"/>
                                             <constraint firstAttribute="height" constant="40" id="oFs-Wd-pi0"/>
                                         </constraints>
-                                        <state key="normal" title="Sign Up">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Sign Up" backgroundImage="button">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="buttonTapped:" destination="B2b-n8-c6U" eventType="touchUpInside" id="VOl-Ed-kLb"/>
@@ -115,10 +115,19 @@
                                     <constraint firstItem="mGo-C7-jy8" firstAttribute="leading" secondItem="foo-LK-Y6P" secondAttribute="leading" id="S6s-pB-mzk"/>
                                 </constraints>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gigsLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Grn-3p-PXH">
+                                <rect key="frame" x="132" y="94.5" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="3f7-hi-qAn"/>
+                                    <constraint firstAttribute="height" constant="150" id="iV5-1F-RBy"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.18039215689999999" green="0.20000000000000001" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="foo-LK-Y6P" firstAttribute="centerY" secondItem="EZC-tR-vTc" secondAttribute="centerY" constant="-50" id="bc4-kQ-ycc"/>
+                            <constraint firstItem="foo-LK-Y6P" firstAttribute="top" secondItem="Grn-3p-PXH" secondAttribute="bottom" constant="40" id="guJ-xS-k5t"/>
+                            <constraint firstItem="Grn-3p-PXH" firstAttribute="centerX" secondItem="EZC-tR-vTc" secondAttribute="centerX" id="gvT-A4-Iec"/>
                             <constraint firstItem="foo-LK-Y6P" firstAttribute="leading" secondItem="TDj-6L-NWi" secondAttribute="leading" constant="30" id="ki0-bN-GMn"/>
                             <constraint firstItem="TDj-6L-NWi" firstAttribute="trailing" secondItem="foo-LK-Y6P" secondAttribute="trailing" constant="30" id="urV-fg-cf6"/>
                             <constraint firstItem="foo-LK-Y6P" firstAttribute="centerX" secondItem="EZC-tR-vTc" secondAttribute="centerX" id="yN6-9j-IBJ"/>
@@ -155,4 +164,8 @@
             <point key="canvasLocation" x="272" y="149"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="button" width="200" height="50"/>
+        <image name="gigsLogo" width="120" height="120"/>
+    </resources>
 </document>
