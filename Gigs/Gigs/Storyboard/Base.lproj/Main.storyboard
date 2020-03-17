@@ -46,15 +46,9 @@
                             <outlet property="delegate" destination="eHC-CA-KgE" id="rje-he-QVe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Gigs" id="Kgj-NW-dvX">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="fsR-Wz-glE">
-                            <connections>
-                                <segue destination="B2b-n8-c6U" kind="presentation" modalPresentationStyle="fullScreen" id="YLo-i3-yXg"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Gigs" id="Kgj-NW-dvX"/>
                     <connections>
-                        <segue destination="B2b-n8-c6U" kind="presentation" modalPresentationStyle="fullScreen" id="qDL-yq-Qiq"/>
+                        <segue destination="B2b-n8-c6U" kind="presentation" identifier="LoginSegue" modalPresentationStyle="fullScreen" id="qDL-yq-Qiq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j7v-qy-dVS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -82,6 +76,9 @@
                                             <segment title="Sign Up"/>
                                             <segment title="Login"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="signInTypeChanged:" destination="B2b-n8-c6U" eventType="valueChanged" id="Gj5-Jx-Qq4"/>
+                                        </connections>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="mGo-C7-jy8">
                                         <rect key="frame" x="0.0" y="74.5" width="354" height="90.5"/>
@@ -94,7 +91,7 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8o7-h5-QvT">
                                                 <rect key="frame" x="0.0" y="53" width="354" height="37.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" secureTextEntry="YES"/>
+                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -108,6 +105,9 @@
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="B2b-n8-c6U" eventType="touchUpInside" id="VOl-Ed-kLb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -128,12 +128,13 @@
                     <connections>
                         <outlet property="loginSignInButton" destination="VwP-fw-bw1" id="sDF-WR-nfz"/>
                         <outlet property="passwordTextField" destination="8o7-h5-QvT" id="cZd-pj-cK8"/>
+                        <outlet property="segmentedControl" destination="2en-Ja-hCe" id="Jfh-6K-mAc"/>
                         <outlet property="userNameTextField" destination="5bO-h0-TEG" id="Rsi-8j-w7K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ppk-kN-74f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1824" y="150"/>
+            <point key="canvasLocation" x="1941" y="149"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jev-Qn-Prx">
@@ -154,7 +155,4 @@
             <point key="canvasLocation" x="272" y="149"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="YLo-i3-yXg"/>
-    </inferredMetricsTieBreakers>
 </document>
