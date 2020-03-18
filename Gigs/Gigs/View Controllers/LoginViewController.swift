@@ -8,27 +8,80 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+enum LoginType {
+    case signUp
+    case signIn
+}
 
+class LoginViewController: UIViewController {
+    
     // MARK: - IBOutlets
     @IBOutlet var logInSignUpSegmentedControl: UISegmentedControl!
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var logiInSignUpButton: UIButton!
     
+    // MARK: - Properties
+    
+    var gigController: GigController?
+    var loginType = LoginType.signUp
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
 
     // MARK: - IBActions
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            loginType = .signUp
+            logiInSignUpButton.setTitle("Sign Up", for: .normal)
+        } else {
+            loginType = .signIn
+            logiInSignUpButton.setTitle("Sign In", for: .normal)
+        }
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
+        guard let gigController = gigController else { return }
+        
+        guard let username = usernameTextField.text, !username.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty else {
+                return
+        }
+        
+        let user = User(username: username, password: password)
+        
+        switch loginType {
+        case .signUp:
+            gigController.signUp(with: user) { (error) in
+                guard error == nil else {
+                    print("Error signing up: \(error!)")
+                    return
+                }
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "Sign Up Successful", message: "Now please log in", preferredStyle: .alert)
+                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(alertAction)
+                    
+                    self.present(alertController, animated: true) {
+                        self.loginType = .signIn
+                        self.logInSignUpSegmentedControl.selectedSegmentIndex = 1
+                        self.logiInSignUpButton.setTitle("Sign In", for: .normal)
+                    }
+                }
+            }
+        case .signIn:
+            gigController.logIn(with: user) { (error) in
+                guard error == nil else {
+                    print("Error login in: \(error!)")
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     
