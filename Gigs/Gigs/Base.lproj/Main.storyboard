@@ -40,7 +40,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="sHe-WB-7RR" kind="presentation" modalPresentationStyle="fullScreen" id="Z9l-5s-BCv"/>
+                                    <segue destination="sHe-WB-7RR" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="Z9l-5s-BCv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -97,9 +97,9 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZC-pJ-O5q">
-                                <rect key="frame" x="184" y="286" width="46" height="30"/>
+                                <rect key="frame" x="180" y="286" width="54" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="loginSignupButtonPressed:" destination="sHe-WB-7RR" eventType="touchUpInside" id="qh1-ve-I9M"/>
                                 </connections>
@@ -115,8 +115,8 @@
                         <viewLayoutGuide key="safeArea" id="2yD-gw-e4N"/>
                     </view>
                     <connections>
+                        <outlet property="loginTypeSegmentedControl" destination="5zF-pa-rTy" id="Vyy-VK-CY7"/>
                         <outlet property="passwordTextField" destination="IoW-k6-Z2B" id="fqS-Ll-gEM"/>
-                        <outlet property="segmentedControl" destination="5zF-pa-rTy" id="Vyy-VK-CY7"/>
                         <outlet property="signInButton" destination="mZC-pJ-O5q" id="vsn-yw-Att"/>
                         <outlet property="usernameTextField" destination="DpA-FI-Knl" id="lnU-TI-oDn"/>
                     </connections>
