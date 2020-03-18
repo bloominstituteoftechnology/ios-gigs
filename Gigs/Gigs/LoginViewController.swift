@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
   
-    @IBAction func loginSignupButtonPressed(_ sender: Any) {
+    @IBAction func signupButtonPressed(_ sender: Any) {
         guard let gigController = gigController else { return }
         
         guard let username = usernameTextField.text,

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 enum HTTPMethod: String {
     case get = "GET"
