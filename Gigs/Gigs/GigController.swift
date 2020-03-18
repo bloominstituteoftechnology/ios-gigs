@@ -15,7 +15,7 @@ enum HTTPMethod: String {
 }
 class GigController {
     
-     var bearer : Bearer?
+     var bearer: Bearer?
     
     private let baseUrl = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     
@@ -51,8 +51,6 @@ class GigController {
            }.resume()
        }
        
-       
-       // create function for sign in
        func signIn(with user: User, completion: @escaping (Error?) -> Void) {
            let loginURL = baseUrl.appendingPathComponent("users/login")
            
@@ -99,5 +97,4 @@ class GigController {
                completion(nil)
            }.resume()
        }
-    
 }
