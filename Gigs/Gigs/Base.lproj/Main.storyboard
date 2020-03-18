@@ -95,7 +95,11 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZC-pJ-O5q">
-                                <rect key="frame" x="180" y="237" width="54" height="30"/>
+                                <rect key="frame" x="56" y="237" width="302" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="maf-wC-c9Z"/>
+                                    <constraint firstAttribute="width" constant="302" id="uc9-El-4Sc"/>
+                                </constraints>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="signupButtonPressed:" destination="sHe-WB-7RR" eventType="touchUpInside" id="qh1-ve-I9M"/>
@@ -107,6 +111,7 @@
                                     <segment title="Sign Up"/>
                                     <segment title="Log In"/>
                                 </segments>
+                                <color key="selectedSegmentTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="segmentedControl:" destination="sHe-WB-7RR" eventType="valueChanged" id="xxn-sW-fp0"/>
                                 </connections>
