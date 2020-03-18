@@ -8,7 +8,12 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+enum LoginType {
+    case signUp
+    case signIn
+}
+
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - IBOutlets
     @IBOutlet weak var usernameTextField: UITextField!
@@ -16,11 +21,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var signUpLogInBtn: UIButton!
     
+    var gigController: GigController?
+    var loginType = LoginType.signUp
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        signUpLogInBtn.backgroundColor = UIColor(hue: 190/360, saturation: 70/100, brightness: 80/100, alpha: 1.0)
+        signUpLogInBtn.tintColor = .white
+        signUpLogInBtn.layer.cornerRadius = 8.0
     }
     
 
@@ -36,9 +45,62 @@ class LoginViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func signUpLogInSegmentedTapped(_ sender: Any) {
+    @IBAction func signInTypeChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            loginType = .signUp
+            signUpLogInBtn.setTitle("Sign Up", for: .normal)
+        } else {
+            loginType = .signIn
+            signUpLogInBtn.setTitle("Log In", for: .normal)
+        }
     }
     
-    @IBAction func signUpLogInBtnTapped(_ sender: Any) {
+    
+    @IBAction func signUpLogInBtnTapped(_ sender: UIButton) {
+        guard let gigController = gigController else { return }
+        
+        guard let username = usernameTextField.text,
+        username.isEmpty == false,
+            let password = passwordTextField.text,
+            password.isEmpty == false else {
+                return
+        }
+        
+        let user = User(username: username, password: password)
+        
+        switch loginType {
+        case .signUp:
+            gigController.signUp(with: user) { (error) in
+                guard error == nil else {
+                    print("Error signing up: \(error!)")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "Sign Up was Successful", message: "Now please Log In.", preferredStyle: .alert)
+                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(alertAction)
+                    
+                    self.present(alertController, animated: true) {
+                        self.loginType = .signIn
+                        self.segmentedControl.selectedSegmentIndex = 1
+                        self.signUpLogInBtn.setTitle("Log In", for: .normal)
+                    }
+                }
+            }
+        case .signIn:
+            gigController.signIn(with: user) { (error) in
+                guard error == nil else {
+                    print("Error loggin in: \(error!)")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
     }
+    
+    
 }

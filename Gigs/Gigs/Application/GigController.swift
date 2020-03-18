@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum HTTPMethod: String {
     case get = "GET"
@@ -26,7 +27,7 @@ class GigController {
     
     // MARK: - Public Methods
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
-        let signUpUrl = baseURL.appendingPathComponent("/users/signup")
+        let signUpUrl = baseURL.appendingPathComponent("users/signup")
         
         var request = URLRequest(url: signUpUrl)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -61,7 +62,7 @@ class GigController {
     //SignIn Function
     
     func signIn(with user: User, completion: @escaping (Error?) -> Void) {
-        let loginUrl = baseURL.appendingPathComponent("/users/login")
+        let loginUrl = baseURL.appendingPathComponent("users/login")
         
         var request = URLRequest(url: loginUrl)
         request.httpMethod = HTTPMethod.post.rawValue
