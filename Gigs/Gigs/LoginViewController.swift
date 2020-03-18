@@ -50,17 +50,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             let alertController = UIAlertController(title: "Sign Up Successful", message: "Now please sign in", preferredStyle: .alert)
                             let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                             alertController.addAction(alertAction)
-                            self.present(alertController, animated: true) {
+                            self.present(alertController, animated: true, completion: {
                                 self.loginType = .signIn
                                 self.loginTypeSegmentedControl.selectedSegmentIndex = 1
                                 self.signInButton.setTitle("Sign In", for: .normal)
-                            }
+                            })
                         }
                     }
                 }
                 
             } else {
-                gigController.signIn(with: user) { (error) in
+                gigController.signIn(with: user) { error in
                     if let error = error {
                         print("Error occurred during sign in: \(error)")
                     } else {
