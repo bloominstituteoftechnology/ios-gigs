@@ -11,6 +11,7 @@ import Foundation
 class GigController {
     
     //MARK: -Properties-
+    
     var bearer: Bearer?
     let baseURL: URL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     
@@ -24,10 +25,10 @@ class GigController {
     
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
         
-        let signUpURL = baseURL.appendingPathComponent("/users/signup")
+        let signUpURL = baseURL.appendingPathComponent("users/signup")
         var request = URLRequest(url: signUpURL)
         request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("applocation/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         do {
             let encoder = JSONEncoder()
@@ -50,6 +51,7 @@ class GigController {
                 completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
                 return
             }
+            completion(nil)
         }.resume()
         
     } //End of sign up function
@@ -60,7 +62,7 @@ class GigController {
         let signInURL = baseURL.appendingPathComponent("/users/login")
         var request = URLRequest(url: signInURL)
         request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("applocation/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         do {
             let encoder = JSONEncoder()
