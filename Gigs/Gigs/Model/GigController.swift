@@ -13,8 +13,18 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case badAuth
+    case otherError(Error)
+    case noData
+    case decodeFailure
+}
+
 class GigController {
     var bearer: Bearer?
+    var gigs: [Gig] = []
+    
     let baseURL: URL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
@@ -94,6 +104,47 @@ class GigController {
             }
             
             completion(nil)
+        }.resume()
+    }
+    
+    //MARK: - FETCH ALL Gigs
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let allGigsURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: allGigsURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.badAuth))
+                return
+            }
+            
+            guard error == nil else {
+                completion(.failure(.otherError(error!)))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .secondsSince1970
+            do {
+                let gigs = try jsonDecoder.decode([Gig].self, from: data)
+                completion(.success(gigs))
+            } catch {
+                completion(.failure(.decodeFailure))
+            }
         }.resume()
     }
 }
