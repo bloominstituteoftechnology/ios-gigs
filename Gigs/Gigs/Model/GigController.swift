@@ -147,4 +147,9 @@ class GigController {
             }
         }.resume()
     }
+    
+    //MARK: - POST Gigs
+    func addGig() {
+        
+    }
 }
