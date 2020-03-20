@@ -5,7 +5,7 @@
 //  Created by Jarren Campos on 3/17/20.
 //  Copyright © 2020 Jarren Campos. All rights reserved.
 //
-
+import Foundation
 import UIKit
 
 enum LoginType {
@@ -83,11 +83,5 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 loginSigninButton.setTitle("Sign In", for: .normal)
             }
         }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LoginViewModalSegue", let loginVC = segue.destination as? LoginViewController {
-            loginVC.gigController = gigController
-        }
-    }
     
 }

@@ -16,10 +16,10 @@ enum HTTPMethod: String {
 
 class GigController {
     var bearer: Bearer?
-    private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
+    private let baseUrl = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     
     func signUp(with user: User, completion: @escaping (Error?) -> Void) {
-        let signUpUrl = baseURL.appendingPathComponent("users/signup")
+        let signUpUrl = baseUrl.appendingPathComponent("users/signup")
         
         var request = URLRequest(url: signUpUrl)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -45,10 +45,11 @@ class GigController {
                 return
             }
             completion(nil)
-        }.resume()
+            }.resume()
     }
+    
     func signIn(with user: User, completion: @escaping (Error?) -> Void) {
-        let loginUrl = baseURL.appendingPathComponent("users/login")
+        let loginUrl = baseUrl.appendingPathComponent("users/login")
         
         var request = URLRequest(url: loginUrl)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -91,5 +92,5 @@ class GigController {
             
             completion(nil)
         }.resume()
-}
+    }
 }

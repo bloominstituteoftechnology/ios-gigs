@@ -42,5 +42,11 @@ class GigsTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LoginViewModalSegue", let loginVC = segue.destination as? LoginViewController {
+            loginVC.gigController = gigController
+        }
+    }
 
 }
