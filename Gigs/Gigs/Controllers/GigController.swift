@@ -181,6 +181,7 @@ class GigController {
         
         // Encode the data to go in the body
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
         do {
             let jsonData = try encoder.encode(gig)
             request.httpBody = jsonData
