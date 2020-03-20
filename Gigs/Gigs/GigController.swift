@@ -21,6 +21,7 @@ enum NetworkError: Error {
     case otherError
     case badData
     case decodingError
+    case encodingError
 }
 
 class GigController {
@@ -113,7 +114,7 @@ class GigController {
         
     }
     
-    func fetchAllGigs(completion: @escaping (Result<Gig, NetworkError>) -> Void ){
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void ){
         guard let bearer = bearer else {
             completion(.failure(.noAuth))
             return
@@ -142,12 +143,12 @@ class GigController {
             }
             
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .secondsSince1970
+            decoder.dateDecodingStrategy = .iso8601
             
             do {
-                let gigNames = try decoder.decode(Gig.self, from: data)
+                let gigNames = try decoder.decode([Gig].self, from: data)
                 completion(.success(gigNames))
-                self.gigs = [gigNames]
+                self.gigs = gigNames
             } catch {
                 completion(.failure(.decodingError))
             }
@@ -173,12 +174,12 @@ class GigController {
             let jsonData = try JSONEncoder().encode(gig)
             request.httpBody = jsonData
         } catch {
-            completion(.failure(.decodingError))
+            completion(.failure(.encodingError))
             return
         }
       
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let response = response as? HTTPURLResponse, response.statusCode == 401 {
                 completion(.failure(.badAuth))
                 return
@@ -189,19 +190,14 @@ class GigController {
                 return
             }
             
-            guard let data = data else {
-                completion(.failure(.badData))
-                return
-            }
-            
-            let decoder = JSONDecoder()
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
             
             do {
-                let newGig = try decoder.decode(Gig.self, from: data)
-                completion(.success(newGig))
-                self.gigs.append(newGig)
+                let newGig = try encoder.encode(gig)
+                request.httpBody = newGig
             } catch {
-                completion(.failure(.decodingError))
+                completion(.failure(.encodingError))
             }
             
     }.resume()

@@ -30,7 +30,7 @@ class GigsTableViewController: UITableViewController {
             
         gigController.fetchAllGigs { (result) in
             do {
-                self.gigController.gigs = [try result.get()]
+                self.gigController.gigs = try result.get()
             } catch {
                 if let error = error as? NetworkError {
                     switch error {
@@ -44,6 +44,8 @@ class GigsTableViewController: UITableViewController {
                         print("Error: No authorization")
                     case .otherError:
                         print("Error: Other error")
+                    case .encodingError:
+                        print("Error: Encoding error")
                     }
                 }
             }
