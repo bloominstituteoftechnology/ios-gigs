@@ -26,10 +26,11 @@ class GigDetailViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func saveButtonTapped(_ sender: Any) {
-        if let title = jobTitleTextField.text, !title.isEmpty,
-            let description = descriptionTextView.text, !description.isEmpty {
+        guard let title = jobTitleTextField.text, !title.isEmpty,
+            let description = descriptionTextView.text, !description.isEmpty else { return }
+        
             let newGig = Gig(title: title, description: description, dueDate: datePicker.date)
-            
+
             gigController.postAGig(with: newGig) { (result) in
                 do {
                     let _ = try result.get()
@@ -57,7 +58,6 @@ class GigDetailViewController: UIViewController {
                     }
                 }
             }
-        }
     }
     
     //MARK: - Functions

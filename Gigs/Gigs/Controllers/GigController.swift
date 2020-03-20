@@ -138,7 +138,7 @@ class GigController {
         //Request data
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
-                response.statusCode != 401 {
+                response.statusCode == 401 {
                 completion(.failure(.unauthorized))
                 return
             }
@@ -154,6 +154,7 @@ class GigController {
             
             // Decode the data
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
             do {
                 self.gigs = try decoder.decode([Gig].self, from: data)
                 completion(.success(self.gigs))
@@ -201,6 +202,7 @@ class GigController {
             
             // If successful append to gigs array
             self.gigs.append(gig)
+            completion(.success(gig))
             
         }.resume()
     }
