@@ -16,7 +16,7 @@ class GigsTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-    
+    let dateFormatter = DateFormatter()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -66,10 +66,8 @@ class GigsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigsCell", for: indexPath)
         let gig = gigcontroller.gigs[indexPath.row]
-        cell.textLabel?.text = gig.title
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        cell.textLabel?.text = gig.title
         cell.detailTextLabel?.text = dateFormatter.string(from: gig.dueDate)
         
         return cell

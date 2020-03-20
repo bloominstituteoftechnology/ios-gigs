@@ -41,6 +41,12 @@ class GigDetailViewController: UIViewController {
     */
 
     @IBAction func saveJobTapped(_ sender: Any) {
+        guard let jobTitle = jobTitleTextField.text,
+           // let date = datePicker.date,
+            let description = jobDescriptionTextView.text,
+            !jobTitle.isEmpty,
+           // !date.isEmpty,
+            !description.isEmpty else { return }
         
     }
 }

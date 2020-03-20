@@ -184,4 +184,8 @@ class GigController {
                 }
             }.resume()
     }
+    
+    func createGig(with gig: Gig, title: String, date: Date, description: String) {
+        
+    }
 }
