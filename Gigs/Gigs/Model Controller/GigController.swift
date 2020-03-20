@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum HTTPMethod: String {
     case get = "GET"
@@ -107,7 +108,7 @@ class GigController {
            }.resume()
        }
     
-    func fetchAllGigs(completion: @escaping (Result,<[String], NetworkError>) -> Void) {
+    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
         guard let bearer = bearer else {
                    completion(.failure(.noAuth))
                    return
