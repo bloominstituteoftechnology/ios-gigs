@@ -55,7 +55,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="GDi-s5-hXd" kind="presentation" modalPresentationStyle="fullScreen" id="FIf-C1-ajq"/>
+                                    <segue destination="GDi-s5-hXd" kind="presentation" identifier="loginViewSegue" modalPresentationStyle="fullScreen" id="FIf-C1-ajq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="871" y="62"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Login View Controller2-->
         <scene sceneID="oF6-ZE-cKy">
             <objects>
-                <viewController id="GDi-s5-hXd" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GDi-s5-hXd" customClass="LoginViewController2" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rb7-qj-d8c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,11 +84,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m05-5j-LVk">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m05-5j-LVk">
                                 <rect key="frame" x="20" y="191" width="374" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <nil key="textColor"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="351-tO-Ub6">
                                 <rect key="frame" x="164" y="37" width="131" height="32"/>
@@ -98,7 +98,7 @@
                                     <segment title="Log In"/>
                                 </segments>
                                 <connections>
-                                    <action selector="loginSegControlToggle:" destination="GDi-s5-hXd" eventType="valueChanged" id="HHQ-ce-TPA"/>
+                                    <action selector="loginSegControl:" destination="GDi-s5-hXd" eventType="valueChanged" id="Wzo-uO-oof"/>
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnd-If-4Pa">
@@ -106,16 +106,20 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="GDi-s5-hXd" eventType="touchUpInside" id="Gxd-He-RsF"/>
+                                    <action selector="signUpButtonTapped:" destination="GDi-s5-hXd" eventType="touchUpInside" id="aYt-o4-mec"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="hV1-J2-muS"/>
                     </view>
                     <connections>
-                        <outlet property="loginButton" destination="bnd-If-4Pa" id="9Zm-fX-lQ7"/>
-                        <outlet property="loginSegControl" destination="351-tO-Ub6" id="BeK-lw-PK6"/>
-                        <outlet property="passwordTextField" destination="m05-5j-LVk" id="ULI-sb-9bL"/>
-                        <outlet property="usernameTextField" destination="DDM-iz-bZA" id="qR4-gF-bNZ"/>
+                        <outlet property="loginButton" destination="bnd-If-4Pa" id="ka0-gI-JAF"/>
+                        <outlet property="loginSegControl" destination="351-tO-Ub6" id="2bX-tP-gqy"/>
+                        <outlet property="passwordTextField" destination="m05-5j-LVk" id="ega-VQ-qSI"/>
+                        <outlet property="usernameTextField" destination="DDM-iz-bZA" id="gxE-3g-EM2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9tP-TJ-c8R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
