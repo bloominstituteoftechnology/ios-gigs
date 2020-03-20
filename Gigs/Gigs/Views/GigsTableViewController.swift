@@ -12,10 +12,18 @@ class GigsTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    private let gigController = GigController()
+    let gigController = GigController()
+    var gigs: [Gig] = []
+    var gigName: [String] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    var date: DateFormatter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -24,24 +32,49 @@ class GigsTableViewController: UITableViewController {
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginModalSegue", sender: self)
         }
-        
-        // TODO: fetch gigs here
+               gigController.fetchAllGigNames { (result) in
+                    do {
+                        let names = try result.get()
+                        DispatchQueue.main.async {
+                            self.gigName = names
+                        }
+                    } catch {
+                        if let error = error as? NetworkError {
+                            switch error {
+                            case .noAuth:
+                                print("Error: No bearer token exists.")
+                            case .unauthorized:
+                                print("Error: Bearer token invalid.")
+                            case .noData:
+                                print("Error: Response had no data")
+                            case .decodeFailed:
+                                print("Error: The data could not be decoded.")
+                            case .otherError(let otherError):
+                                print("Error: \(otherError)")
+                            }
+                        } else {
+                            print("Error: \(error)")
+                        
+                    
+                }
+            }
+        }
     }
-
-
+    
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return gigs.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigsCell", for: indexPath)
+        
+        let gig = gigs[indexPath.row]
+        cell.textLabel?.text = gig.title
+        
+        
         return cell
     }
     
@@ -49,7 +82,11 @@ class GigsTableViewController: UITableViewController {
         if segue.identifier == "LoginModalSegue",
             let loginVC = segue.destination as? LoginViewController {
             loginVC.gigController = gigController
-            
+        } else if segue.identifier == "ShowDetailSegue",
+            let detailVC = segue.destination as? GigDetailViewController,
+            let selectedIndexPath = tableView.indexPathForSelectedRow {
+            detailVC.gigController = gigController
+            detailVC.gigName = gigName[selectedIndexPath.row]
         }
         
     }

@@ -13,6 +13,14 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case unauthorized
+    case otherError(Error)
+    case noData
+    case decodeFailed
+}
+
 class GigController {
     
     //MARK: - Properties
@@ -101,6 +109,122 @@ class GigController {
             completion(nil)
         }.resume()
     }
+  
+    func fetchAllGigNames(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let allGigsUrl = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: allGigsUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.unauthorized))
+                return
+            }
+            
+            guard error == nil else {
+                completion(.failure(.otherError(error!)))
+                return
+            }
+            
+            guard let data =  data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .secondsSince1970
+            do {
+                let gigDetails = try jsonDecoder.decode([String].self, from: data)
+                completion(.success(gigDetails))
+            } catch {
+                completion(.failure(.decodeFailed))
+            }
+        }.resume()
+    }
     
+   func fetchDetails(for gigName: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+           guard let bearer = bearer else {
+               completion(.failure(.noAuth))
+               return
+           }
+           
+           let gigUrl = baseURL.appendingPathComponent("gig")
+           
+           var request = URLRequest(url: gigUrl)
+           request.httpMethod = HTTPMethod.get.rawValue
+           request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+           
+           URLSession.shared.dataTask(with: request) { (data, response, error) in
+               if let response = response as? HTTPURLResponse,
+                   response.statusCode == 401 {
+                   completion(.failure(.unauthorized))
+                   return
+               }
+               
+               guard error == nil else {
+                   completion(.failure(.otherError(error!)))
+                   return
+               }
+               
+               guard let data = data else {
+                   completion(.failure(.noData))
+                   return
+               }
+               
+               let jsonDecoder = JSONDecoder()
+               jsonDecoder.dateDecodingStrategy = .secondsSince1970
+               do {
+                   let gig = try jsonDecoder.decode(Gig.self, from: data)
+                   completion(.success(gig))
+               } catch {
+                   completion(.failure(.decodeFailed))
+               }
+           }.resume()
+       }
     
+    func createGig(with gig: Gig, completion: @escaping (Error?) -> Void) {
+        guard let bearer = bearer else {
+            completion(nil)
+            return
+        }
+        
+        let createURL = baseURL.appendingPathComponent("gigs")
+        
+        var request = URLRequest(url: createURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let jsonEncoder = JSONEncoder()
+        do {
+            let jsonData = try jsonEncoder.encode(gig)
+            request.httpBody = jsonData
+        } catch {
+            print("Error encoding user object?: \(error)")
+            completion(error)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            guard error == nil else {
+                completion(error)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                return
+            }
+            
+            completion(nil)
+        }.resume()
+    }
 }

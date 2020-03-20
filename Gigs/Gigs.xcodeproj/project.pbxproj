@@ -17,6 +17,8 @@
 		44B765C02421B22200876DDC /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B765BF2421B22200876DDC /* Bearer.swift */; };
 		44B765C22421B27700876DDC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B765C12421B27700876DDC /* User.swift */; };
 		44B765C42421B2D100876DDC /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B765C32421B2D100876DDC /* GigController.swift */; };
+		44F44079242453950061F596 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F44078242453950061F596 /* GigDetailViewController.swift */; };
+		44F4407B242453CF0061F596 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F4407A242453CF0061F596 /* Gig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		44B765BF2421B22200876DDC /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		44B765C12421B27700876DDC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		44B765C32421B2D100876DDC /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		44F44078242453950061F596 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		44F4407A242453CF0061F596 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 			children = (
 				44B765BB2421AD2800876DDC /* GigsTableViewController.swift */,
 				44B765BD2421B15200876DDC /* LoginViewController.swift */,
+				44F44078242453950061F596 /* GigDetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -107,6 +112,7 @@
 				44B765BF2421B22200876DDC /* Bearer.swift */,
 				44B765C12421B27700876DDC /* User.swift */,
 				44B765C32421B2D100876DDC /* GigController.swift */,
+				44F4407A242453CF0061F596 /* Gig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,12 +189,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				44B765C02421B22200876DDC /* Bearer.swift in Sources */,
+				44F44079242453950061F596 /* GigDetailViewController.swift in Sources */,
 				44B765C42421B2D100876DDC /* GigController.swift in Sources */,
 				44B765BE2421B15200876DDC /* LoginViewController.swift in Sources */,
 				44B765C22421B27700876DDC /* User.swift in Sources */,
 				44B765A42421ABDB00876DDC /* AppDelegate.swift in Sources */,
 				44B765A62421ABDB00876DDC /* SceneDelegate.swift in Sources */,
 				44B765BC2421AD2800876DDC /* GigsTableViewController.swift in Sources */,
+				44F4407B242453CF0061F596 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
