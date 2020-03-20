@@ -12,7 +12,11 @@ class GigsTableViewController: UITableViewController {
     
     // MARK: - Properties
     private let gigController = GigController()
-    
+//    private var gigs: [String] = gigController.gigs {
+//        didSet {
+//            tableView.reloadData()
+//        }
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +41,17 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JobPostCell", for: indexPath)
 
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        //cell.detailTextLabel?.text = gigController.gigs
+        
+        
         return cell
     }
     
@@ -52,6 +60,11 @@ class GigsTableViewController: UITableViewController {
             let loginVC = segue.destination as? LoginViewController {
             // inject dependencies
             loginVC.gigController = gigController
+        } else if segue.identifier == "ViewGigPostSegue",
+            let detailVC = segue.destination as? GigDetailViewController,
+            let selectedIndexPath = tableView.indexPathForSelectedRow {
+            detailVC.gigController = gigController
+            //detailVC.gigController.gigs = gigController.gigs[indexPath.row]
         }
     }
 
