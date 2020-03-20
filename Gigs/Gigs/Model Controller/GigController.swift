@@ -185,7 +185,8 @@ class GigController {
             }.resume()
     }
     
-    func createGig(with gig: Gig, title: String, date: Date, description: String) {
-        
+    func createGig(with title: String, date: Date, description: String) {
+        let gig = Gig(title: title, description: description, dueDate: date)
+        gigs.append(gig)
     }
 }

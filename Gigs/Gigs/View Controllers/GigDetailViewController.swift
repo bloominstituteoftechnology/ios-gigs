@@ -21,7 +21,7 @@ class GigDetailViewController: UIViewController {
         super.viewDidLoad()
         guard let gig = gig else { return }
         datePicker.setDate(gig.dueDate, animated: true)
-      
+        
     }
     
     func updateViews(with gig: Gig) {
@@ -31,22 +31,23 @@ class GigDetailViewController: UIViewController {
         jobDescriptionTextView.text = gig.description
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
     @IBAction func saveJobTapped(_ sender: Any) {
         guard let jobTitle = jobTitleTextField.text,
-           // let date = datePicker.date,
+            let date = datePicker.date,
             let description = jobDescriptionTextView.text,
             !jobTitle.isEmpty,
-           // !date.isEmpty,
+            !date.isEmpty,
             !description.isEmpty else { return }
         
+        gigController.createGig(with: jobTitle, date: Date, description: description)
     }
 }
