@@ -158,30 +158,30 @@ class GigController {
                request.httpMethod = HTTPMethod.get.rawValue
                request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
                
-               URLSession.shared.dataTask(with: request) { (data, response, error) in
-                   if let response = response as? HTTPURLResponse,
-                       response.statusCode == 401 {
-                       completion(.failure(.unauthorized))
-                   }
-                   
-                   guard error == nil else {
-                       completion(.failure(.otherError(error!)))
-                       return
-                   }
-                   
-                   guard let data = data else {
-                       completion(.failure(.noData))
-                       return
-                   }
-                   
-                   let decoder = JSONDecoder()
-                   decoder.dateDecodingStrategy = .secondsSince1970
-                   do {
-                       let animal = try decoder.decode(Gig.self, from: data)
-                       completion(.success(animal))
-                   } catch {
-                       completion(.failure(.decodeFailed))
-                   }
-               }.resume()
-           }
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let response = response as? HTTPURLResponse,
+                    response.statusCode == 401 {
+                    completion(.failure(.unauthorized))
+                }
+                
+                guard error == nil else {
+                    completion(.failure(.otherError(error!)))
+                    return
+                }
+                
+                guard let data = data else {
+                    completion(.failure(.noData))
+                    return
+                }
+                
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                do {
+                    let gig = try decoder.decode(Gig.self, from: data)
+                    completion(.success(gig))
+                } catch {
+                    completion(.failure(.decodeFailed))
+                }
+            }.resume()
+    }
 }

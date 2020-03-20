@@ -19,7 +19,8 @@ class GigDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        guard let gig = gig else { return }
+        datePicker.setDate(gig.dueDate, animated: true)
       
     }
     
@@ -40,5 +41,6 @@ class GigDetailViewController: UIViewController {
     */
 
     @IBAction func saveJobTapped(_ sender: Any) {
+        
     }
 }
