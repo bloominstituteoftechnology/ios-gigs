@@ -13,10 +13,20 @@ enum HTTPMethod: String {
     case post = "POST"
 }
 
+enum NetworkError: Error {
+    case noAuth
+    case unauthorized
+    case otherError(Error)
+    case noData
+    case decodeFailed
+    case encodeFailed
+}
+
 class GigController {
     
     // MARK: - Public Properties
     var bearer: Bearer?
+    var gigs: [Gig] = []
     
     // MARK: - Private Properties
     private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
@@ -100,5 +110,82 @@ class GigController {
             
             completion(nil)
         }.resume()
+    }
+    
+    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let allGigsUrl = baseURL.appendingPathComponent("gigs/")
+        
+        var request = URLRequest(url: allGigsUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.unauthorized))
+                return
+            }
+            
+            guard error == nil else {
+                completion(.failure(.otherError(error!)))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                let allGigs = try jsonDecoder.decode([String].self, from: data)
+                completion(.success(allGigs))
+            } catch {
+                completion(.failure(.decodeFailed))
+            }
+        }.resume()
+    }
+    
+    func addGig(with gig: Gig, completion: @escaping (NetworkError) -> Void) {
+        guard let bearer = bearer else {
+            completion(.noAuth)
+            return
+        }
+        
+        let addGigUrl = baseURL.appendingPathComponent("gigs/")
+        
+        var request = URLRequest(url: addGigUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let jsonEncoder = JSONEncoder()
+        do {
+            let jsonData = try jsonEncoder.encode(gig)
+            request.httpBody = jsonData
+        } catch {
+            completion(.encodeFailed)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            guard error == nil else {
+                completion(.otherError(error!))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.unauthorized)
+                return
+            }
+            
+            self.gigs.append(gig)
+        }.resume()
+        
     }
 }

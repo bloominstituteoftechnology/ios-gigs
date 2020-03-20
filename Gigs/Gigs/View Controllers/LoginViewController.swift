@@ -68,7 +68,7 @@ class LoginViewController: UIViewController {
                 }
             }
         case .signIn:
-            gigController.signUp(with: user) { (error) in
+            gigController.signIn(with: user) { (error) in
                 guard error == nil else {
                     print("Error logging in: \(error!)")
                     return

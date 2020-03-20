@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct Gig: Codable {
+    var title: String
+    var decription: String
+    var dueDate: Date
+}

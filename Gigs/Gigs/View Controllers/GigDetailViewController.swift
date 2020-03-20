@@ -9,22 +9,59 @@
 import UIKit
 
 class GigDetailViewController: UIViewController {
+    
+    // MARK: - IBOutlets
+    @IBOutlet weak var jobTitleTextField: UITextField!
+    @IBOutlet weak var dueDatePicker: UIDatePicker!
+    @IBOutlet weak var jobDescriptionTextView: UITextView!
+    
+    // MARK: - Private Properties
+    var gigController: GigController!
+    var gig: Gig?
+    
+    // MARK: - IBActions
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let jobTitle = jobTitleTextField.text,
+            let jobDescription = jobDescriptionTextView.text,
+            !jobTitle.isEmpty,
+            !jobDescription.isEmpty else { return }
+
+        gig?.title = jobTitle
+        gig?.decription = jobDescription
+        gig?.dueDate = dueDatePicker.date
+        
+        let newGig = Gig(title: jobTitle, decription: jobDescription, dueDate: dueDatePicker.date)
+
+        gigController.addGig(with: newGig) { _ in
+            DispatchQueue.main.async {
+                self.gig = newGig
+            }
+        }
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateViews()
+        dueDatePicker.datePickerMode = .date
+    }
+    
+    // MARK: - Private methods
+    private func updateViews() {
+        guard let gig = gig else {
+            self.title = "New Gig"
+            return
+        }
+        self.title = gig.title
+        jobTitleTextField.text = gig.title
+        jobDescriptionTextView.text = gig.decription
+        dueDatePicker.setDate(gig.dueDate, animated: true)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+         
     }
-    */
+
 
 }
