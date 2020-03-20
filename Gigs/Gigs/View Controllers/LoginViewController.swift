@@ -9,8 +9,8 @@
 import UIKit
 
 enum LoginType {
-    case signUp
     case signIn
+    case signUp
 }
 
 class LoginViewController: UIViewController {

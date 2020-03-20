@@ -15,26 +15,60 @@ class GigDetailViewController: UIViewController {
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var descriptionTextView: UITextView!
     
+    //MARK: - Properties
+    var gigController: GigController!
+    var gig: Gig?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateViews()
     }
     
     // MARK: - IBActions
     @IBAction func saveButtonTapped(_ sender: Any) {
+        if let title = jobTitleTextField.text, !title.isEmpty,
+            let description = descriptionTextView.text, !description.isEmpty {
+            let newGig = Gig(title: title, description: description, dueDate: datePicker.date)
+            
+            gigController.postAGig(with: newGig) { (result) in
+                do {
+                    let _ = try result.get()
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                } catch {
+                    if let error = error as? NetworkError {
+                        switch error {
+                        case .noAuth:
+                            print("Error: No bearer token exists.")
+                        case .unauthorized:
+                            print("Error: Bearer token invalid.")
+                        case .noData:
+                            print("Error: The response had no data.")
+                        case .decodeFailed:
+                            print("Error: The data could not be decoded.")
+                            case .encodeFailed:
+                            print("Error: The data could not be decoded")
+                        case .otherError(let otherError):
+                            print("Error: \(otherError)")
+                        }
+                    } else {
+                        print("Error: \(error)")
+                    }
+                }
+            }
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: - Functions
+    func updateViews() {
+        if let gig = gig {
+            jobTitleTextField.text = gig.title
+            descriptionTextView.text = gig.description
+            datePicker.setDate(gig.dueDate, animated: true)
+            self.title = gig.title
+        } else {
+            self.title = "New Gig"
+        }
     }
-    */
-
 }
