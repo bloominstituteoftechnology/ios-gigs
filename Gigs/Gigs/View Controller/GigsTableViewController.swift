@@ -45,6 +45,8 @@ class GigsTableViewController: UITableViewController {
                             print("Error: Decode failure")
                         case .otherError(let otherError):
                             print("Error: \(otherError)")
+                        case .encodeFailure:
+                            print("Error: Encode failure")
                         }
                     } else {
                         print("Error: \(error)")
@@ -62,16 +64,26 @@ class GigsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigsCell", for: indexPath)
+        cell.textLabel?.textColor = .white
         cell.textLabel?.text = gigs[indexPath.row].title
         cell.detailTextLabel?.text = "Due: \(gigs[indexPath.row].dueDate)"
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LoginSegue" {
-            let loginVC = segue.destination as? LoginViewController
-            loginVC?.gigController = gigController
-        }
+            if segue.identifier == "LoginSegue" {
+                let loginVC = segue.destination as? LoginViewController
+                loginVC?.gigController = gigController
+            }
+            else if segue.identifier == "AddGigSegue" {
+                let addGigVC = segue.destination as? DetailGigViewController
+                addGigVC?.gigController = gigController
+            } else if segue.identifier == "DetailGigSegue" {
+                let detailGigVC = segue.destination as? DetailGigViewController
+                guard let selectedIndexPath = tableView.indexPathForSelectedRow else { return }
+                detailGigVC?.gigController = gigController
+                detailGigVC?.gig = gigs[selectedIndexPath.row]
+            }
     }
 
 }
