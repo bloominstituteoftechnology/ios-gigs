@@ -144,10 +144,10 @@
             </objects>
             <point key="canvasLocation" x="296" y="-1428"/>
         </scene>
-        <!--Gigs Table View Controller-->
+        <!--Gigs-->
         <scene sceneID="JHW-vb-4NV">
             <objects>
-                <tableViewController id="8Ga-UW-Ayg" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Gigs" id="8Ga-UW-Ayg" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lJ2-PM-Uhm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -186,7 +186,7 @@
                             <outlet property="delegate" destination="8Ga-UW-Ayg" id="an7-44-dSe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="94i-rf-2Fr">
+                    <navigationItem key="navigationItem" title="Gigs" largeTitleDisplayMode="always" id="94i-rf-2Fr">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="31o-fF-WpP">
                             <connections>
                                 <segue destination="0yN-94-5pc" kind="show" identifier="AddGig" id="ga4-2y-qfi"/>

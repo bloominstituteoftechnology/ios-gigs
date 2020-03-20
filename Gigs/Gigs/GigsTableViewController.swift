@@ -26,9 +26,8 @@ class GigsTableViewController: UITableViewController {
         // transition to login view if conditions require
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
-        }
-        
-        // TODO: fetch gigs here
+        } else  {
+            
         gigController.fetchAllGigs { (result) in
             do {
                 self.gigController.gigs = [try result.get()]
@@ -48,6 +47,7 @@ class GigsTableViewController: UITableViewController {
                     }
                 }
             }
+        }
         }
         DispatchQueue.main.async {
             self.tableView.reloadData()
