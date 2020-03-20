@@ -8,10 +8,24 @@
 
 import Foundation
 
+enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+}
+
+enum NetworkError: Error {
+    case noAuth
+    case unauthorized
+    case otherError(Error)
+    case noData
+    case decodeFailed
+}
+
 class GigController {
     
     //MARK: -Properties-
     
+    var gigs: [Gig] = []
     var bearer: Bearer?
     let baseURL: URL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     
@@ -100,7 +114,97 @@ class GigController {
             completion(nil)
         }.resume()
         
+        fetchGigs { (result) in
+            do {
+                try self.gigs = result.get()
+            } catch {
+                if let error = error as? NetworkError {
+                    switch error {
+                    case .noAuth:
+                        print("No bearer token exists")
+                    case .unauthorized:
+                        print("bearer token invalid")
+                    case .noData:
+                        print("The response had no data")
+                    case .decodeFailed:
+                        print("the data could not be decoded")
+                    case .otherError(let otherError):
+                        print("Error: \(otherError)")
+                    }
+                } else {
+                    print("error: \(error)")
+                }
+            }
+        }
     } //End of sign in function
     
+    func fetchGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void ) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        let gigURL = baseURL.appendingPathComponent("/gigs/")
+        var request = URLRequest(url: gigURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.unauthorized))
+            }
+            guard error == nil else {
+                completion(.failure(.otherError(error!)))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            
+            do {
+                let decodedGigs = try decoder.decode([Gig].self, from: data)
+                completion(.success(decodedGigs))
+            } catch {
+                completion(.failure(.decodeFailed))
+            }
+        }.resume()
+    } //End of fetch gigs function
+    
+    func createGig(title: String, dueDate: Date, description: String, completion: @escaping (NetworkError?) -> Void) {
+        guard let bearer = bearer else {
+            completion(.noAuth)
+            return
+        }
+        let GigURL = baseURL.appendingPathComponent("/gigs/")
+        var request = URLRequest(url: GigURL)
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = HTTPMethod.post.rawValue
+        let newGig = Gig(title: title, description: description, dueDate: dueDate)
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.unauthorized)
+            }
+            guard error == nil else {
+                completion(.otherError(error!))
+                return
+            }
+            
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            do {
+                let data = try encoder.encode(newGig)
+                request.httpBody = data
+            } catch {
+                completion(.decodeFailed)
+            }
+            
+        }.resume()
+        
+    } //End of create gigs function
     
 } //End of class
