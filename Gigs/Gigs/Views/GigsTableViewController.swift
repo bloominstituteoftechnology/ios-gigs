@@ -13,13 +13,11 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Properties
     
     let gigController = GigController()
-    var gigs: [Gig] = []
-    var gigName: [String] = [] {
+    var gigs: [Gig] = [] {
         didSet {
             tableView.reloadData()
         }
     }
-    var date: DateFormatter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +29,12 @@ class GigsTableViewController: UITableViewController {
         
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginModalSegue", sender: self)
-        }
-               gigController.fetchAllGigNames { (result) in
+        } else {
+            gigController.fetchAllGigs { (result) in
                     do {
                         let names = try result.get()
                         DispatchQueue.main.async {
-                            self.gigName = names
+                            self.gigs = names
                         }
                     } catch {
                         if let error = error as? NetworkError {
@@ -53,13 +51,12 @@ class GigsTableViewController: UITableViewController {
                                 print("Error: \(otherError)")
                             }
                         } else {
-                            print("Error: \(error)")
-                        
-                    
+                                 print("Error: \(error)")
                 }
             }
         }
     }
+  }
     
     // MARK: - Table view data source
     
@@ -71,10 +68,8 @@ class GigsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigsCell", for: indexPath)
         
-        let gig = gigs[indexPath.row]
-        cell.textLabel?.text = gig.title
-        
-        
+        cell.textLabel?.text = gigs[indexPath.row].title
+        cell.detailTextLabel?.text = "Due: \(gigs[indexPath.row].dueDate)"
         return cell
     }
     
@@ -86,9 +81,11 @@ class GigsTableViewController: UITableViewController {
             let detailVC = segue.destination as? GigDetailViewController,
             let selectedIndexPath = tableView.indexPathForSelectedRow {
             detailVC.gigController = gigController
-            detailVC.gigName = gigName[selectedIndexPath.row]
+            detailVC.gig = gigs[selectedIndexPath.row]
+        } else if segue.identifier == "AddDetailSegue",
+            let addVC = segue.destination as? GigDetailViewController {
+            addVC.gigController = gigController
         }
-        
     }
 }
 

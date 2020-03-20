@@ -12,6 +12,7 @@ class GigDetailViewController: UIViewController {
     
     //MARK: - Properties
     
+    var gig: Gig?
     var gigName: String!
     var gigController: GigController!
     
@@ -24,29 +25,49 @@ class GigDetailViewController: UIViewController {
     //MARK: - IBActions
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        getDetails()
-
-    }
-    
-    func getDetails() {
-        gigController.fetchDetails(for: gigName) { (result) in
-            guard let gig = try? result.get() else { return }
-            
+        let date = datePickerView.date
+        if let jobTitle = jobTitleTextField.text,
+            let jobDescription = jobTitleTextField.text,
+            !jobTitle.isEmpty,
+            !jobDescription.isEmpty {
+                
+        gig?.title = jobTitle
+        gig?.description = jobDescription
+        gig?.dueDate = date
+        
+        let newGig = Gig(title: jobTitle, description: jobDescription, dueDate: date)
+        
+            gigController?.createGig(with: newGig, completion: { _ in
+            })
             DispatchQueue.main.async {
-                self.updateViews(with: gig)
+        self.navigationController?.popToRootViewController(animated: true)
                 
             }
         }
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateViews()
+    }
+//
+//    func getDetails() {
+//        gigController.fetchAllGigNames { (result) in
+//            guard let animal = try? result.get() else { return }
+//        }
+//
+//            DispatchQueue.main.async {
+//                self.updateViews()
+//
+//            }
+//        }
 
-    private func updateViews(with gig: Gig) {
+    func updateViews() {
+        if let gig = gig {
         jobTitleTextField.text = gig.title
         descriptionTextView.text = gig.description
         datePickerView.setDate(gig.dueDate, animated: true)
-        
+        } else {
+            self.title = "Add New Gig"
+        }
     }
 }
