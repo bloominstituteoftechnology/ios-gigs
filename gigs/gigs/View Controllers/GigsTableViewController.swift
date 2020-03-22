@@ -13,11 +13,14 @@ class GigsTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         letUserLoginIfNecessary()
+        formatTheFormatter()
+        tableView.reloadData()
     }
     
     //MARK: -Properties-
     
     var gigController = GigController()
+    var dateFormatter = DateFormatter()
     
     
     //MARK: -Methods-
@@ -29,19 +32,26 @@ class GigsTableViewController: UITableViewController {
         // TODO: fetch gigs here
     }
     
+    func formatTheFormatter() {
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+    }
+    
     
     // MARK: - Table view data source -
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
-        
-        // Configure the cell...
+
+        let gigTitle = gigController.gigs[indexPath.row].title
+        let dueDate = dateFormatter.string(from: gigController.gigs[indexPath.row].dueDate)
+        cell.textLabel?.text = gigTitle
+        cell.detailTextLabel?.text = dueDate
         
         return cell
     }
@@ -50,6 +60,10 @@ class GigsTableViewController: UITableViewController {
         if segue.identifier == "LoginSegue" {
             let loginVC = segue.destination as! LoginViewController
             loginVC.gigController = gigController
+        } else if segue.identifier == "" {
+            
+        } else if segue.identifier == " " {
+            
         }
     }
     
