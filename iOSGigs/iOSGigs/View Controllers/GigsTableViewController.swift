@@ -24,7 +24,6 @@ class GigsTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         if GigController.bearer == nil {
-            // TODO: move this around a bit
             performSegue(withIdentifier: "LoginViewController", sender: self)
         }
         // TODO: fetch gigs here

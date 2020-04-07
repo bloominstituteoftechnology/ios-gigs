@@ -29,7 +29,6 @@ final class GigController {
     private lazy var jsonDecoder = JSONDecoder()
     
     // MARK: - Sign up/Log in
-    // TODO: move part of the session to a seperate function
     
     func signUp(for user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         var request = postRequest(with: signUpURL)
