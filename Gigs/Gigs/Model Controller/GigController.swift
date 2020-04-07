@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class GigController {
     
@@ -19,7 +20,7 @@ class GigController {
         case failedSignUp, failedLogin, noData, badData
     }
     
-    private(set) var bearer: Bearer?
+    static var bearer: Bearer?
     
     private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
@@ -94,7 +95,7 @@ class GigController {
                    }
                    
                    do {
-                       self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data)
+                    Self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data)
                        completion(.success(true))
                    } catch {
                        print("Error decoding bearer: \(error.localizedDescription)")

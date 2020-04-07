@@ -12,6 +12,9 @@
 		150DD2AE243D16E200EB842D /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150DD2AD243D16E200EB842D /* Bearer.swift */; };
 		150DD2B0243D175100EB842D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150DD2AF243D175100EB842D /* User.swift */; };
 		150DD2B2243D17B700EB842D /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150DD2B1243D17B700EB842D /* GigController.swift */; };
+		150DD2B7243D2A7E00EB842D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150DD2B6243D2A7E00EB842D /* LoginViewModel.swift */; };
+		150DD2B9243D2D6F00EB842D /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150DD2B8243D2D6F00EB842D /* Gig.swift */; };
+		150DD2BB243D2DAF00EB842D /* GigsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150DD2BA243D2DAF00EB842D /* GigsViewModel.swift */; };
 		15954C71243D0F6B003DADC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15954C70243D0F6B003DADC4 /* AppDelegate.swift */; };
 		15954C73243D0F6B003DADC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15954C72243D0F6B003DADC4 /* SceneDelegate.swift */; };
 		15954C78243D0F6B003DADC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15954C76243D0F6B003DADC4 /* Main.storyboard */; };
@@ -25,6 +28,9 @@
 		150DD2AD243D16E200EB842D /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		150DD2AF243D175100EB842D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		150DD2B1243D17B700EB842D /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		150DD2B6243D2A7E00EB842D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		150DD2B8243D2D6F00EB842D /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
+		150DD2BA243D2DAF00EB842D /* GigsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsViewModel.swift; sourceTree = "<group>"; };
 		15954C6D243D0F6B003DADC4 /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15954C70243D0F6B003DADC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15954C72243D0F6B003DADC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +60,15 @@
 			path = "View Controller";
 			sourceTree = "<group>";
 		};
+		150DD2B3243D2A3C00EB842D /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				150DD2BA243D2DAF00EB842D /* GigsViewModel.swift */,
+				150DD2B6243D2A7E00EB842D /* LoginViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		15954C64243D0F6B003DADC4 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +91,7 @@
 			children = (
 				15954C86243D0FB4003DADC4 /* Storyboard */,
 				15954C87243D0FC7003DADC4 /* Model */,
+				150DD2B3243D2A3C00EB842D /* View Models */,
 				15954C88243D0FD1003DADC4 /* Model Controller */,
 				150DD2A8243D136200EB842D /* View Controller */,
 				15954C85243D0F85003DADC4 /* Resources */,
@@ -115,6 +131,7 @@
 			children = (
 				150DD2AD243D16E200EB842D /* Bearer.swift */,
 				150DD2AF243D175100EB842D /* User.swift */,
+				150DD2B8243D2D6F00EB842D /* Gig.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,9 +219,12 @@
 				150DD2B2243D17B700EB842D /* GigController.swift in Sources */,
 				150DD2AC243D144300EB842D /* LoginViewController.swift in Sources */,
 				150DD2B0243D175100EB842D /* User.swift in Sources */,
+				150DD2B7243D2A7E00EB842D /* LoginViewModel.swift in Sources */,
 				15954C71243D0F6B003DADC4 /* AppDelegate.swift in Sources */,
+				150DD2BB243D2DAF00EB842D /* GigsViewModel.swift in Sources */,
 				15954C73243D0F6B003DADC4 /* SceneDelegate.swift in Sources */,
 				150DD2AA243D138600EB842D /* GigsTableViewController.swift in Sources */,
+				150DD2B9243D2D6F00EB842D /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

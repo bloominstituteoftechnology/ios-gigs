@@ -10,7 +10,8 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
     
-    private var gigController: GigController()
+    private var gigController = GigController()
+    private lazy var viewModel = GigsViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +21,11 @@ class GigsTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if gigController.bearer == nil {
-            performSeque(withIdentifier: "LoginViewModalSegue", sender: self)
-        } else {
-            // TODO: fetch gigs here
+        if viewModel.shouldPresentLoginViewController {
+            performSegue(withIdentifier: LoginViewController.identifier, sender: self)
         }
+            // TODO: fetch gigs here
+        
     }
 
     // MARK: - Table view data source
