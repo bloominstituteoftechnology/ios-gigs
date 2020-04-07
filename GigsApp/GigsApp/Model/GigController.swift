@@ -18,7 +18,7 @@ class GigController {
     enum NetworkError: Error {
         case failedSignUp, failedSignIn, noData, badData
     }
-    static var bearer: Bearer?
+    var bearer: Bearer?
     
     
     
