@@ -90,7 +90,7 @@ class GigController {
             }
             
             do {
-                Self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data!)
+                self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data)
                         completion(.success(true))
                     } catch {
                         print("Error decoding bearer: \(error.localizedDescription)")
