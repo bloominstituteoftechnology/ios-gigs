@@ -14,6 +14,7 @@
 		3F789A98243D0A3500227B38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F789A96243D0A3500227B38 /* LaunchScreen.storyboard */; };
 		3F789AA0243D0D9800227B38 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F789A9F243D0D9800227B38 /* GigsTableViewController.swift */; };
 		3F789AA2243D11E400227B38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F789AA1243D11E400227B38 /* LoginViewController.swift */; };
+		3F789AAB243D144C00227B38 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F789AAA243D144C00227B38 /* Bearer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3F789A99243D0A3500227B38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F789A9F243D0D9800227B38 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		3F789AA1243D11E400227B38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3F789AAA243D144C00227B38 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +60,65 @@
 		3F789A8A243D0A3200227B38 /* GigsApp */ = {
 			isa = PBXGroup;
 			children = (
-				3F789A8B243D0A3200227B38 /* AppDelegate.swift */,
-				3F789A8D243D0A3200227B38 /* SceneDelegate.swift */,
-				3F789A91243D0A3200227B38 /* Main.storyboard */,
-				3F789AA1243D11E400227B38 /* LoginViewController.swift */,
-				3F789A9F243D0D9800227B38 /* GigsTableViewController.swift */,
-				3F789A94243D0A3500227B38 /* Assets.xcassets */,
-				3F789A96243D0A3500227B38 /* LaunchScreen.storyboard */,
-				3F789A99243D0A3500227B38 /* Info.plist */,
+				3F789AA7243D141400227B38 /* Model */,
+				3F789AA9243D142300227B38 /* Model Controller */,
+				3F789AA5243D13F000227B38 /* Appilcation */,
+				3F789AA4243D13DB00227B38 /* Storyboards */,
+				3F789AA3243D13CB00227B38 /* ViewControllers */,
+				3F789AA6243D140600227B38 /* Resources */,
 			);
 			path = GigsApp;
+			sourceTree = "<group>";
+		};
+		3F789AA3243D13CB00227B38 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3F789AA1243D11E400227B38 /* LoginViewController.swift */,
+				3F789A9F243D0D9800227B38 /* GigsTableViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3F789AA4243D13DB00227B38 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				3F789A91243D0A3200227B38 /* Main.storyboard */,
+				3F789A96243D0A3500227B38 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		3F789AA5243D13F000227B38 /* Appilcation */ = {
+			isa = PBXGroup;
+			children = (
+				3F789A8B243D0A3200227B38 /* AppDelegate.swift */,
+				3F789A8D243D0A3200227B38 /* SceneDelegate.swift */,
+			);
+			path = Appilcation;
+			sourceTree = "<group>";
+		};
+		3F789AA6243D140600227B38 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F789A94243D0A3500227B38 /* Assets.xcassets */,
+				3F789A99243D0A3500227B38 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3F789AA7243D141400227B38 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3F789AAA243D144C00227B38 /* Bearer.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3F789AA9243D142300227B38 /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F789AAB243D144C00227B38 /* Bearer.swift in Sources */,
 				3F789AA0243D0D9800227B38 /* GigsTableViewController.swift in Sources */,
 				3F789A8C243D0A3200227B38 /* AppDelegate.swift in Sources */,
 				3F789AA2243D11E400227B38 /* LoginViewController.swift in Sources */,
