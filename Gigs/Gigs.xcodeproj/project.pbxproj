@@ -16,6 +16,7 @@
 		DD5F8474243D0B3900C877A3 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F8473243D0B3900C877A3 /* LogInViewController.swift */; };
 		DD5F8476243D0EE200C877A3 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F8475243D0EE200C877A3 /* Bearer.swift */; };
 		DD5F8479243D0F2100C877A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F8478243D0F2100C877A3 /* User.swift */; };
+		DD5F847C243D0FF500C877A3 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F847B243D0FF500C877A3 /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		DD5F8473243D0B3900C877A3 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		DD5F8475243D0EE200C877A3 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		DD5F8478243D0F2100C877A3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DD5F847B243D0FF500C877A3 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,15 +64,15 @@
 		DD5F845A243D099400C877A3 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
+				DD5F847A243D0FC900C877A3 /* Controller */,
 				DD5F8477243D0F0E00C877A3 /* Models */,
 				DD5F845B243D099400C877A3 /* AppDelegate.swift */,
+				DD5F847D243D26A600C877A3 /* View Controllers */,
 				DD5F845D243D099400C877A3 /* SceneDelegate.swift */,
 				DD5F8461243D099400C877A3 /* Main.storyboard */,
 				DD5F8464243D099600C877A3 /* Assets.xcassets */,
 				DD5F8466243D099600C877A3 /* LaunchScreen.storyboard */,
 				DD5F8469243D099600C877A3 /* Info.plist */,
-				DD5F8471243D0AD900C877A3 /* GigsTableViewController.swift */,
-				DD5F8473243D0B3900C877A3 /* LogInViewController.swift */,
 			);
 			path = Gigs;
 			sourceTree = "<group>";
@@ -82,6 +84,23 @@
 				DD5F8478243D0F2100C877A3 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DD5F847A243D0FC900C877A3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DD5F847B243D0FF500C877A3 /* GigController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DD5F847D243D26A600C877A3 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD5F8471243D0AD900C877A3 /* GigsTableViewController.swift */,
+				DD5F8473243D0B3900C877A3 /* LogInViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD5F8476243D0EE200C877A3 /* Bearer.swift in Sources */,
+				DD5F847C243D0FF500C877A3 /* GigController.swift in Sources */,
 				DD5F8472243D0AD900C877A3 /* GigsTableViewController.swift in Sources */,
 				DD5F845C243D099400C877A3 /* AppDelegate.swift in Sources */,
 				DD5F8479243D0F2100C877A3 /* User.swift in Sources */,
