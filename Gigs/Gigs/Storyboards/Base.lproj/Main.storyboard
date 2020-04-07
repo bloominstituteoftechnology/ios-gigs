@@ -91,6 +91,9 @@
                                     <segment title="Sign Up"/>
                                     <segment title="Sign in"/>
                                 </segments>
+                                <connections>
+                                    <action selector="signUpSegmentedChanged:" destination="Ych-wq-bDl" eventType="valueChanged" id="oMn-VG-1CR"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvl-wj-WnM">
                                 <rect key="frame" x="145" y="322" width="124" height="63"/>
@@ -100,11 +103,20 @@
                                 <state key="normal" title="Sign In">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signInButtonTapped:" destination="Ych-wq-bDl" eventType="touchUpInside" id="V0v-s4-3MZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="U1A-FF-gne"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="893-6j-ky7" id="qsf-tK-9Di"/>
+                        <outlet property="segmentedControl" destination="Aou-cj-2HS" id="cy2-dy-swJ"/>
+                        <outlet property="signInButton" destination="uvl-wj-WnM" id="kzK-hk-M6N"/>
+                        <outlet property="usernameTextField" destination="lv0-gR-j33" id="zAy-gE-VfE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ohc-wT-Lry" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

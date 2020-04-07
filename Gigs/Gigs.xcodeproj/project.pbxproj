@@ -9,25 +9,27 @@
 /* Begin PBXBuildFile section */
 		FE71FB5E243D0B5D00F68FE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71FB5D243D0B5D00F68FE0 /* AppDelegate.swift */; };
 		FE71FB60243D0B5D00F68FE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71FB5F243D0B5D00F68FE0 /* SceneDelegate.swift */; };
-		FE71FB62243D0B5D00F68FE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71FB61243D0B5D00F68FE0 /* ViewController.swift */; };
 		FE71FB65243D0B5D00F68FE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE71FB63243D0B5D00F68FE0 /* Main.storyboard */; };
 		FE71FB67243D0B5E00F68FE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE71FB66243D0B5E00F68FE0 /* Assets.xcassets */; };
 		FE71FB6A243D0B5E00F68FE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE71FB68243D0B5E00F68FE0 /* LaunchScreen.storyboard */; };
 		FE71FB72243D0C2800F68FE0 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71FB71243D0C2800F68FE0 /* GigsTableViewController.swift */; };
 		FE71FB74243D0C8500F68FE0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71FB73243D0C8500F68FE0 /* LoginViewController.swift */; };
+		FE71FB76243D152600F68FE0 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71FB75243D152600F68FE0 /* Bearer.swift */; };
+		FE71FB78243D155600F68FE0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71FB77243D155600F68FE0 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FE71FB5A243D0B5D00F68FE0 /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE71FB5D243D0B5D00F68FE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE71FB5F243D0B5D00F68FE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FE71FB61243D0B5D00F68FE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FE71FB64243D0B5D00F68FE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE71FB66243D0B5E00F68FE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE71FB69243D0B5E00F68FE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE71FB6B243D0B5E00F68FE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE71FB71243D0C2800F68FE0 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		FE71FB73243D0C8500F68FE0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FE71FB75243D152600F68FE0 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		FE71FB77243D155600F68FE0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +62,58 @@
 		FE71FB5C243D0B5D00F68FE0 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				FE71FB5D243D0B5D00F68FE0 /* AppDelegate.swift */,
-				FE71FB5F243D0B5D00F68FE0 /* SceneDelegate.swift */,
-				FE71FB61243D0B5D00F68FE0 /* ViewController.swift */,
-				FE71FB63243D0B5D00F68FE0 /* Main.storyboard */,
-				FE71FB66243D0B5E00F68FE0 /* Assets.xcassets */,
-				FE71FB68243D0B5E00F68FE0 /* LaunchScreen.storyboard */,
-				FE71FB6B243D0B5E00F68FE0 /* Info.plist */,
+				FE71FB7B243D16B400F68FE0 /* App */,
+				FE71FB7A243D166F00F68FE0 /* Models */,
+				FE71FB79243D166C00F68FE0 /* View Controllers */,
+				FE71FB7D243D16E400F68FE0 /* Storyboards */,
+				FE71FB7C243D16C600F68FE0 /* Supporting Files */,
+			);
+			path = Gigs;
+			sourceTree = "<group>";
+		};
+		FE71FB79243D166C00F68FE0 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				FE71FB71243D0C2800F68FE0 /* GigsTableViewController.swift */,
 				FE71FB73243D0C8500F68FE0 /* LoginViewController.swift */,
 			);
-			path = Gigs;
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FE71FB7A243D166F00F68FE0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FE71FB75243D152600F68FE0 /* Bearer.swift */,
+				FE71FB77243D155600F68FE0 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FE71FB7B243D16B400F68FE0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FE71FB5D243D0B5D00F68FE0 /* AppDelegate.swift */,
+				FE71FB5F243D0B5D00F68FE0 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		FE71FB7C243D16C600F68FE0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FE71FB6B243D0B5E00F68FE0 /* Info.plist */,
+				FE71FB66243D0B5E00F68FE0 /* Assets.xcassets */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FE71FB7D243D16E400F68FE0 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FE71FB63243D0B5D00F68FE0 /* Main.storyboard */,
+				FE71FB68243D0B5E00F68FE0 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,11 +187,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE71FB62243D0B5D00F68FE0 /* ViewController.swift in Sources */,
 				FE71FB72243D0C2800F68FE0 /* GigsTableViewController.swift in Sources */,
+				FE71FB76243D152600F68FE0 /* Bearer.swift in Sources */,
 				FE71FB5E243D0B5D00F68FE0 /* AppDelegate.swift in Sources */,
 				FE71FB74243D0C8500F68FE0 /* LoginViewController.swift in Sources */,
 				FE71FB60243D0B5D00F68FE0 /* SceneDelegate.swift in Sources */,
+				FE71FB78243D155600F68FE0 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
