@@ -20,7 +20,7 @@ class GigController {
         case failedSignUp, failedSignIn, noData, badData
     }
     
-    static var bearer: Bearer?
+     var bearer: Bearer?
     
     private let baseURL = URL(string: " https://lambdagigapi.herokuapp.com/api")!
     private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
@@ -88,8 +88,9 @@ class GigController {
                 completion(.failure(.noData))
                 return
             }
+            
             do {
-                        Self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data)
+                Self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data!)
                         completion(.success(true))
                     } catch {
                         print("Error decoding bearer: \(error.localizedDescription)")
