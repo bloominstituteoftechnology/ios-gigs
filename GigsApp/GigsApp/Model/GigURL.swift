@@ -1,5 +1,5 @@
 //
-//  Bearer.swift
+//  GigURL.swift
 //  GigsApp
 //
 //  Created by Bhawnish Kumar on 4/7/20.
@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct Bearer: Codable {
-    let token: String
-     
+struct GigUrl {
+   
+    let baseURL: URL = {
+        URL(string: "https://lambdagigapi.herokuapp.com/api")!
+    }()
 }

@@ -1,5 +1,5 @@
 //
-//  Bearer.swift
+//  User.swift
 //  GigsApp
 //
 //  Created by Bhawnish Kumar on 4/7/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Bearer: Codable {
-    let token: String
-     
+struct User: Codable {
+    let username: String
+    let password: String
 }
