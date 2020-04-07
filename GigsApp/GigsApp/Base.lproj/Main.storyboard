@@ -63,10 +63,10 @@
             </objects>
             <point key="canvasLocation" x="1476.8115942028987" y="-69.642857142857139"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="gxh-dI-E2k">
             <objects>
-                <viewController id="k3p-sQ-X4W" sceneMemberID="viewController">
+                <viewController id="k3p-sQ-X4W" customClass="LoginViewController" customModule="GigsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ivb-i8-e6t">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,6 +81,9 @@
                                             <segment title="SignUp"/>
                                             <segment title="LogIn"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="loginSegmentControlAction:" destination="k3p-sQ-X4W" eventType="valueChanged" id="oPd-2N-9IB"/>
+                                        </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zQo-9V-Pbl">
                                         <rect key="frame" x="0.0" y="45" width="374" height="34"/>
@@ -117,6 +120,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l96-Sr-UTg"/>
                     </view>
+                    <connections>
+                        <outlet property="loginSegmentedControl" destination="ee8-Qn-Mlu" id="KZ9-vg-QdC"/>
+                        <outlet property="passwordTextField" destination="jXy-NN-UiS" id="pWI-E9-ksE"/>
+                        <outlet property="signUpButton" destination="Qc3-SN-RNW" id="jW8-qM-h8j"/>
+                        <outlet property="userTextField" destination="zQo-9V-Pbl" id="osU-dm-TzN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uU5-Zb-8cj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
