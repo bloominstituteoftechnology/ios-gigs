@@ -16,6 +16,7 @@
 		FE71FB74243D0C8500F68FE0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71FB73243D0C8500F68FE0 /* LoginViewController.swift */; };
 		FE71FB76243D152600F68FE0 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71FB75243D152600F68FE0 /* Bearer.swift */; };
 		FE71FB78243D155600F68FE0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71FB77243D155600F68FE0 /* User.swift */; };
+		FE71FB80243D176600F68FE0 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE71FB7F243D176600F68FE0 /* GigController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		FE71FB73243D0C8500F68FE0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FE71FB75243D152600F68FE0 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		FE71FB77243D155600F68FE0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FE71FB7F243D176600F68FE0 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				FE71FB7B243D16B400F68FE0 /* App */,
 				FE71FB7A243D166F00F68FE0 /* Models */,
+				FE71FB7E243D174900F68FE0 /* Controller */,
 				FE71FB79243D166C00F68FE0 /* View Controllers */,
 				FE71FB7D243D16E400F68FE0 /* Storyboards */,
 				FE71FB7C243D16C600F68FE0 /* Supporting Files */,
@@ -114,6 +117,14 @@
 				FE71FB68243D0B5E00F68FE0 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FE71FB7E243D174900F68FE0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FE71FB7F243D176600F68FE0 /* GigController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE71FB72243D0C2800F68FE0 /* GigsTableViewController.swift in Sources */,
+				FE71FB80243D176600F68FE0 /* GigController.swift in Sources */,
 				FE71FB76243D152600F68FE0 /* Bearer.swift in Sources */,
 				FE71FB5E243D0B5D00F68FE0 /* AppDelegate.swift in Sources */,
 				FE71FB74243D0C8500F68FE0 /* LoginViewController.swift in Sources */,
