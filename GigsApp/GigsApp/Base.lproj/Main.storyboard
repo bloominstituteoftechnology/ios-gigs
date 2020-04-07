@@ -72,7 +72,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="KxX-hh-EWy">
-                                <rect key="frame" x="20" y="55" width="374" height="125"/>
+                                <rect key="frame" x="20" y="55" width="374" height="127"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ee8-Qn-Mlu">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
@@ -83,19 +83,19 @@
                                         </segments>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zQo-9V-Pbl">
-                                        <rect key="frame" x="0.0" y="44" width="374" height="34"/>
+                                        <rect key="frame" x="0.0" y="45" width="374" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jXy-NN-UiS">
-                                        <rect key="frame" x="0.0" y="91" width="374" height="34"/>
+                                        <rect key="frame" x="0.0" y="93" width="374" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qc3-SN-RNW">
-                                <rect key="frame" x="100" y="268" width="214" height="50"/>
+                                <rect key="frame" x="100" y="212" width="214" height="50"/>
                                 <color key="backgroundColor" red="0.46189585239999997" green="0.76995486020000004" blue="0.2226475309" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="W0c-Jm-sB3"/>
@@ -109,10 +109,10 @@
                         <constraints>
                             <constraint firstItem="KxX-hh-EWy" firstAttribute="top" secondItem="l96-Sr-UTg" secondAttribute="top" constant="11" id="18P-pe-FWj"/>
                             <constraint firstItem="l96-Sr-UTg" firstAttribute="trailing" secondItem="Qc3-SN-RNW" secondAttribute="trailing" constant="100" id="FOq-NL-uqk"/>
-                            <constraint firstItem="Qc3-SN-RNW" firstAttribute="top" secondItem="KxX-hh-EWy" secondAttribute="bottom" constant="88" id="QXL-Pq-c2T"/>
-                            <constraint firstItem="l96-Sr-UTg" firstAttribute="bottom" secondItem="Qc3-SN-RNW" secondAttribute="bottom" constant="544" id="S3n-xk-8kC"/>
+                            <constraint firstItem="l96-Sr-UTg" firstAttribute="bottom" secondItem="Qc3-SN-RNW" secondAttribute="bottom" constant="600" id="FaI-Mb-rI9"/>
                             <constraint firstItem="KxX-hh-EWy" firstAttribute="leading" secondItem="l96-Sr-UTg" secondAttribute="leading" constant="20" id="XO0-Gg-OJP"/>
                             <constraint firstItem="Qc3-SN-RNW" firstAttribute="leading" secondItem="l96-Sr-UTg" secondAttribute="leading" constant="100" id="iEZ-8E-Kc7"/>
+                            <constraint firstItem="Qc3-SN-RNW" firstAttribute="top" secondItem="KxX-hh-EWy" secondAttribute="bottom" constant="30" id="jX5-Wp-IYh"/>
                             <constraint firstItem="l96-Sr-UTg" firstAttribute="trailing" secondItem="KxX-hh-EWy" secondAttribute="trailing" constant="20" id="kh0-NH-sXs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l96-Sr-UTg"/>
