@@ -140,10 +140,10 @@
             </objects>
             <point key="canvasLocation" x="1535" y="-546"/>
         </scene>
-        <!--View Controller-->
+        <!--Gig Detail View Controller-->
         <scene sceneID="sXp-R2-BiY">
             <objects>
-                <viewController id="G5E-Xb-tt6" sceneMemberID="viewController">
+                <viewController id="G5E-Xb-tt6" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DWa-l1-AFj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -165,7 +165,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LEe-mI-1Z5">
-                                <rect key="frame" x="20" y="214" width="374" height="244.5"/>
+                                <rect key="frame" x="20" y="214" width="374" height="150"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXn-j0-iJn">
                                         <rect key="frame" x="0.0" y="0.0" width="84.5" height="20.5"/>
@@ -173,46 +173,65 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="sV0-pf-cir">
-                                        <rect key="frame" x="0.0" y="28.5" width="374" height="216"/>
+                                    <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="sV0-pf-cir">
+                                        <rect key="frame" x="0.0" y="28.5" width="374" height="121.5"/>
                                     </datePicker>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="sV0-pf-cir" secondAttribute="trailing" id="2wa-Oz-jIi"/>
                                     <constraint firstItem="sV0-pf-cir" firstAttribute="top" secondItem="sXn-j0-iJn" secondAttribute="bottom" constant="8" id="J1F-vo-7V8"/>
                                     <constraint firstAttribute="bottom" secondItem="sV0-pf-cir" secondAttribute="bottom" id="YlC-dV-TXa"/>
+                                    <constraint firstAttribute="height" constant="150" id="bn1-aO-xWH"/>
                                     <constraint firstItem="sV0-pf-cir" firstAttribute="leading" secondItem="LEe-mI-1Z5" secondAttribute="leading" id="mxE-Sl-WmA"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DESCRIPTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0J-2I-MZr">
-                                <rect key="frame" x="20" y="476" width="109" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y57-N7-dCd">
-                                <rect key="frame" x="61" y="523" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="W7R-iR-abT">
+                                <rect key="frame" x="20" y="385" width="374" height="216.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0J-2I-MZr">
+                                        <rect key="frame" x="0.0" y="0.0" width="109" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y57-N7-dCd">
+                                        <rect key="frame" x="0.0" y="28.5" width="374" height="188"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="2uV-C8-OMe" firstAttribute="bottom" secondItem="W7R-iR-abT" secondAttribute="bottom" constant="260.5" id="3AX-Su-7mb"/>
+                            <constraint firstItem="W7R-iR-abT" firstAttribute="top" secondItem="LEe-mI-1Z5" secondAttribute="bottom" constant="21" id="8zZ-HD-6ry"/>
                             <constraint firstItem="LEe-mI-1Z5" firstAttribute="top" secondItem="HxS-GS-Cdj" secondAttribute="bottom" constant="20" id="E9H-l3-6rx"/>
                             <constraint firstItem="LEe-mI-1Z5" firstAttribute="leading" secondItem="2uV-C8-OMe" secondAttribute="leading" constant="20" id="Fpo-sx-x1O"/>
                             <constraint firstItem="2uV-C8-OMe" firstAttribute="trailing" secondItem="HxS-GS-Cdj" secondAttribute="trailing" constant="20" id="Jya-QJ-Gvz"/>
                             <constraint firstItem="HxS-GS-Cdj" firstAttribute="leading" secondItem="2uV-C8-OMe" secondAttribute="leading" constant="20" id="Ncd-At-Ntl"/>
+                            <constraint firstItem="2uV-C8-OMe" firstAttribute="trailing" secondItem="W7R-iR-abT" secondAttribute="trailing" constant="20" id="RR9-iJ-77i"/>
                             <constraint firstItem="2uV-C8-OMe" firstAttribute="trailing" secondItem="LEe-mI-1Z5" secondAttribute="trailing" constant="20" id="X6u-sB-UuN"/>
+                            <constraint firstItem="W7R-iR-abT" firstAttribute="leading" secondItem="2uV-C8-OMe" secondAttribute="leading" constant="20" id="pVF-If-wW3"/>
                             <constraint firstItem="HxS-GS-Cdj" firstAttribute="top" secondItem="2uV-C8-OMe" secondAttribute="top" constant="20" id="xx3-33-nDB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2uV-C8-OMe"/>
                     </view>
-                    <navigationItem key="navigationItem" id="UAT-2B-2uR"/>
+                    <navigationItem key="navigationItem" id="UAT-2B-2uR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="OPj-bg-GVP">
+                            <connections>
+                                <action selector="saveTapped:" destination="G5E-Xb-tt6" id="wLQ-Vg-nKo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="sV0-pf-cir" id="47z-3l-KG1"/>
+                        <outlet property="jobDescriptionTextView" destination="Y57-N7-dCd" id="xmz-G7-yv7"/>
+                        <outlet property="jobTextField" destination="pMj-Nd-Ke4" id="aI6-5Y-XVZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sau-dw-jOl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
