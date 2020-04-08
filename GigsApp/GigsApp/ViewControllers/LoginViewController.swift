@@ -63,10 +63,11 @@ class LoginViewController: UIViewController {
                        case .signUpSuccess:
                         alert = self.alert(title: "Success", message: loginResult.rawValue)
                            action = {
-                               self.present(alert, animated: true)
+                            self.present(alert, animated: true)
                                self.loginSegmentedControl.selectedSegmentIndex = 1
                                self.loginSegmentedControl.sendActions(for: .valueChanged) // act like if thhe user tpaped on you.
                            }
+                        
                        case .signInSuccess:
                            action = { self.dismiss(animated: true , completion: nil)}
                        

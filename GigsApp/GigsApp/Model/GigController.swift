@@ -63,7 +63,9 @@ class GigController {
                     else {
                         print("Unsuccessful Sign up")
                         return completion(.failure(.failedSignUp))
+                        
                 }
+                completion(.success(true))
             }
             .resume()
         } catch {
