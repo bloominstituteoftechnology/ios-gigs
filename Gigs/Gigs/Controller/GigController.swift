@@ -8,6 +8,11 @@
 
 import Foundation
 
+protocol GigControllerDelegate {
+    func updateTable()
+}
+
+
 class GigController {
     
     enum HTTPMethod: String {
@@ -16,12 +21,23 @@ class GigController {
     }
     
     //Variables
-    var bearer: Bearer? //Token
+    var delegate: GigControllerDelegate?
+    var gigs: [Gig] = [] //Fetched, Created gigs, and TableViewDataSource
+    
+    //Token
+    var bearer: Bearer? {
+        didSet {
+            if bearer != nil {
+                delegate?.updateTable()
+            }
+        }
+    }
     
     //URL's
     var baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     lazy var urlSignup = baseURL.appendingPathComponent("/users/signup")
     lazy var urlSignin = baseURL.appendingPathComponent("/users/login")
+    lazy var urlGetGig = baseURL.appendingPathComponent("/gigs/")
     
     //Encoder
     lazy var jsonEncoder = JSONEncoder()
@@ -53,6 +69,24 @@ class GigController {
         //Setting HTTPMethod to POST
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type") //Do this when Posting
+        return request
+    }
+    
+    func gigPostRequest(url: URL) -> URLRequest {
+        var request = URLRequest(url: url)
+        
+        //Setting HTTPMethod Post
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.addValue("Bearer \(bearer?.token)", forHTTPHeaderField: "Authorization")
+        return request
+    }
+    
+    func gigGetRequest(url: URL) -> URLRequest {
+        var request = URLRequest(url: url)
+        
+        //Setting HTTPMethod Get
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("Bearer \(bearer?.token)", forHTTPHeaderField: "Authorization")
         return request
     }
     
@@ -113,10 +147,86 @@ class GigController {
                     completion()
                 }
                 
-                
             }.resume()
         } catch {
             print("Error Signing in: \(error.localizedDescription)")
+        }
+    }
+    
+    func getGig(gig: Gig, completion: @escaping () -> Void) {
+        var request = gigGetRequest(url: urlGetGig)
+        do {
+            //Encoding
+            //let jsonData = try jsonEncoder.encode(gig)
+            //request.httpBody = jsonData
+            
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                //Error checking and unwrapping
+                if let error = error {
+                    print("Error requesting in GetGig: \(error.localizedDescription)")
+                    completion()
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    print("Bad Status Code: GetGig")
+                    completion()
+                    return
+                }
+                
+                guard let data = data else {
+                    print("Data is nil: GetGig")
+                    completion()
+                    return
+                }
+                
+                do {
+                    let results = try self.jsonDecoder.decode([Gig].self, from: data)
+                    self.gigs = results
+                    completion()
+                } catch {
+                    print("Error Decoding in GetGig: \(error.localizedDescription)")
+                }
+                
+            }.resume()
+        } catch {
+            print("Error Encoding in GetGig: \(error.localizedDescription)")
+        }
+    }
+    
+    
+    func postGig(completion: @escaping () -> Void) {
+        var request = gigPostRequest(url: urlGetGig)
+        do {
+            //Encoding
+            let jsonData = try jsonEncoder.encode(bearer)
+            request.httpBody = jsonData
+            
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                //Error checking and unwrapping
+                if let error = error {
+                    print("Error requesting in PostGig: \(error.localizedDescription)")
+                    completion()
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    print("Bad Status Code: PostGig")
+                    completion()
+                    return
+                }
+                
+                guard let data = data else {
+                    print("Data is nil: PostGig")
+                    completion()
+                    return
+                }
+                
+            }.resume()
+        } catch {
+            print("Error Encoding in PostGig: \(error.localizedDescription)")
         }
     }
     
