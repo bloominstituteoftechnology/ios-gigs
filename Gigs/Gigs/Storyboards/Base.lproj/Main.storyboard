@@ -42,6 +42,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="tXN-Ln-MJH" kind="show" identifier="ShowGig" id="dpM-PF-4xQ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -55,7 +58,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PZP-NE-rQx"/>
                     </view>
-                    <navigationItem key="navigationItem" id="y0z-GT-MAN"/>
+                    <navigationItem key="navigationItem" id="y0z-GT-MAN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="MFk-HT-iyk">
+                            <connections>
+                                <segue destination="tXN-Ln-MJH" kind="show" identifier="AddGig" id="3b5-F4-0Ov"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="cP7-0c-WmV" id="AVC-lQ-4gE"/>
                         <segue destination="Ych-wq-bDl" kind="presentation" identifier="LoginViewController" modalPresentationStyle="fullScreen" id="MWF-Wt-Vlh"/>
@@ -135,6 +144,45 @@
             </objects>
             <point key="canvasLocation" x="1646.376811594203" y="65.625"/>
         </scene>
+        <!--Gig Detail View Controller-->
+        <scene sceneID="eqM-MK-Wlm">
+            <objects>
+                <viewController id="tXN-Ln-MJH" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AJE-hO-54A">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BbM-f1-xrr">
+                                <rect key="frame" x="239" y="140" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="CYF-M7-3Wd">
+                                <rect key="frame" x="20" y="245" width="374" height="163"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cvq-Qg-zAN">
+                                <rect key="frame" x="28" y="416" width="374" height="197"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="jYU-vR-ito"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LHO-At-lWL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="lNN-vE-k6G"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="irM-Yg-G9D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1666.6666666666667" y="-619.41964285714278"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="p4t-ZE-ctI">
             <objects>
@@ -154,4 +202,7 @@
             <point key="canvasLocation" x="-1.4492753623188408" y="63.616071428571423"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3b5-F4-0Ov"/>
+    </inferredMetricsTieBreakers>
 </document>
