@@ -49,13 +49,8 @@ class LogInViewController: UIViewController {
         } else {
             print("SignUp Triggered")
             var user = User(username: nameTextField.text ?? "", password: passwordTextField.text ?? "")
-            gigController?.userLogin(user: &user)
+            gigController?.userSignup(user: &user)
         }
-        
-        /*
-        DispatchQueue.main.async {
-            print("Success?")
-        }*/
     }
     
     

@@ -32,16 +32,16 @@ class GigController {
     //Return Type either success or failure
     func userSignup(user: inout User) {
         var request = postRequest(url: urlSignup)
-        var result = encodeSignup(user: &user, request: &request) {
-            
+        Signup(user: &user, request: &request) {
+            print(self.bearer ?? "Token is nil")
         }
         
     }
     
     func userLogin(user: inout User) {
         var request = postRequest(url: urlSignin)
-        var result = Signin(user: &user, request: &request) {
-            
+        Signin(user: &user, request: &request) {
+            print(self.bearer ?? "Token is nil")
         }
     }
 
@@ -56,19 +56,17 @@ class GigController {
         return request
     }
     
-    func encodeSignup(user: inout User, request: inout URLRequest, completion: @escaping() -> Void) {
-        
+    func Signup(user: inout User, request: inout URLRequest, completion: @escaping() -> Void) {
         do {
-            var jsonData = try jsonEncoder.encode(user)
-            print(String(data: jsonData, encoding: .utf8)!)
+            let jsonData = try jsonEncoder.encode(user)
             request.httpBody = jsonData
-            
+            print(jsonData)
             URLSession.shared.dataTask(with: request) { _, response, error in
                 if let error = error {
                     print("Sign up failed with error: \(error.localizedDescription)")
                 }
                 
-                guard let response = response as? HTTPURLResponse, response.statusCode != 200 else {
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                     print("Sign up was unsuccessful")
                     return
                 }
@@ -80,7 +78,7 @@ class GigController {
     }
     
     func Signin(user: inout User, request: inout URLRequest, completion: @escaping() -> Void) {
-        
+        print("Signin")
         do {
             let jsonData = try jsonEncoder.encode(user)
             request.httpBody = jsonData
@@ -94,7 +92,7 @@ class GigController {
                 }
                 
                 //Check Response
-                guard let response = response as? HTTPURLResponse, response.statusCode != 200 else {
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                     print("Sign in was unsuccessful")
                     completion()
                     return
@@ -111,7 +109,7 @@ class GigController {
                     self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data)
                     completion()
                 } catch {
-                    print("Error decoding token: \(error.localizedDescription)")
+                    print("Error decoding bearer: \(error.localizedDescription)")
                     completion()
                 }
                 
