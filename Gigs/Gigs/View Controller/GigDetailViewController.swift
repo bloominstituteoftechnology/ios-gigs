@@ -9,10 +9,16 @@
 import UIKit
 
 class GigDetailViewController: UIViewController {
+    
+     // MARK: - Properties
 
     @IBOutlet weak var jobTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var jobDescriptionTextView: UITextView!
+    
+    var gigName: String?
+    
+    private lazy var viewModel = GigDetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
