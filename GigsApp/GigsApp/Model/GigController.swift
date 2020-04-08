@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class GigController {
-    
+//    MARK: ENUMS
     enum HTTPMethod: String {
         case get = "GET"
         case post = "POST"
@@ -18,6 +18,9 @@ class GigController {
     enum NetworkError: Error {
         case failedSignUp, failedSignIn, noData, badData
     }
+   
+//    END
+    
     var bearer: Bearer?
     
     
@@ -61,6 +64,7 @@ class GigController {
                         return completion(.failure(.failedSignUp))
                 }
             }
+            .resume()
         } catch {
             print("Error in signin up: \(error.localizedDescription)")
             completion(.failure(.failedSignUp))
@@ -101,10 +105,11 @@ class GigController {
                 completion(.failure(.failedSignIn))
             }
             }
+            .resume()
         } catch {
-            
+            print("Error encoding user: \(error.localizedDescription)")
+            completion(.failure(.failedSignIn))
         }
-        
         
     }
     
@@ -117,5 +122,6 @@ class GigController {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }
+    
     
 }
