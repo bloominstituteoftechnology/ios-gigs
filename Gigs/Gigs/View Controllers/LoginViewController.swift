@@ -9,31 +9,43 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
+    
+    
+    var gigController: GigController?
+    var loginType = LoginType.signUp
     
     enum LoginType {
         case login
-        case signup
+        case signUp
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        signInButton.layer.cornerRadius = 8 
+        submitButton.layer.cornerRadius = 8
     }
     
-
-    @IBAction func signInButtonTapped(_ sender: Any) {
+    
+    @IBAction func loginTypeChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 1:
+            loginType = .login
+            passwordTextField.textContentType = .password
+        default:
+            loginType = .signUp
+            passwordTextField.textContentType = .newPassword
+        }
+    }
+    @IBAction func submitButtonTapped(_ sender: UIButton) {
+        
     }
     
-    @IBAction func signUpSegmentedChanged(_ sender: Any) {
-    }
     
-
 }
+    
+  
