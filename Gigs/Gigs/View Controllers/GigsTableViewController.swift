@@ -8,7 +8,11 @@
 
 import UIKit
 
-class GigsTableViewController: UITableViewController {
+// delegate and data source
+class GigsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    
+    @IBOutlet weak var tableView: UITableView!
     
     var gigCongroller = GigController()
     
@@ -24,20 +28,21 @@ class GigsTableViewController: UITableViewController {
     }
     
     // MARK: - TableView Data Source
+}
+
+extension GigsTableViewController {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+     func numberOfSections(in tableView: UITableView) -> Int {
         return 0
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigsCell", for: indexPath)
         
         return cell
     }
-    
 }
-

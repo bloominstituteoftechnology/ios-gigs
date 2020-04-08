@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
     var gigController: GigController?
     var loginType = LoginType.signUp
     
+    
     enum LoginType {
         case login
         case signUp
@@ -43,9 +44,35 @@ class LoginViewController: UIViewController {
     }
     @IBAction func submitButtonTapped(_ sender: UIButton) {
         
+        guard let username = usernameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  username.isEmpty == false,
+                  let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  password.isEmpty == false
+                  else { return }
+        let alert: UIAlertController
+        let action: () -> Void
+        let user = User(username: username, password: password)
+        
+        switch loginType {
+        case .signUp:
+            alert = self.alert(title: "Success", message: "Login successful")
+            
+            action = {
+                self.present(alert, animated: true)
+                self.segmentedControl.selectedSegmentIndex = 1
+                self.segmentedControl.sendActions(for: .valueChanged)
+            }
+        case .login:
+            action = { self.dismiss(animated: true) }
+        }
+        action()
     }
     
-    
+    private func alert(title: String, message: String) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        return alert
+    }
 }
     
   

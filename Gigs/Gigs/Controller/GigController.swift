@@ -44,7 +44,7 @@ class GigController {
             
             URLSession.shared.dataTask(with: request) { _, response, error in
                 if let error = error {
-                    print("Sign up failed with error: \(error.localizedDescription)")
+                    NSLog("Sign up failed with error: \(error.localizedDescription)")
                     completion(.failure(.failedSignUp))
                     return
                 }
@@ -52,7 +52,7 @@ class GigController {
                 guard let response = response as? HTTPURLResponse,
                     response.statusCode == 200
                     else {
-                        print("Sign up was unsuccessful")
+                        NSLog("Sign up was unsuccessful")
                         return completion(.failure(.failedSignUp))
                 }
                 
