@@ -21,7 +21,7 @@ class GigController {
    
 //    END
     
-    var bearer: Bearer?
+   static var bearer: Bearer?
     
     
     
@@ -36,11 +36,12 @@ class GigController {
     
     //    MARK: BASEURL
     private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
-    
+    private lazy var signUpUrl = baseURL.appendingPathComponent("/users/signup")
+    private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
     //    MARK: SIGNUP FUNCTION
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
-        let signUpUrl = baseURL.appendingPathComponent("/users/signup")
-        var request = postRequest(url: signUpUrl)
+        
+        var request = postRequest(for: signUpUrl)
         // MARK: Encoder
         let jsonEncoder: JSONEncoder = {
             let encoder = JSONEncoder()
@@ -74,54 +75,57 @@ class GigController {
     }
     //    MARK: SIGNIN URL
     
-    func signIn(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
-        let signInUrl = baseURL.appendingPathComponent("/users/login")
-        let request = postRequest(url: signInUrl)
+        func signIn(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        var request = postRequest(for: signInURL)
         
         do {
+            let jsonData = try jsonEncoder.encode(user)
+            request.httpBody = jsonData
+            
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
-                    print("Error in signing in \(error.localizedDescription)")
+                    print("Sign in failed with error: \(error.localizedDescription)")
                     completion(.failure(.failedSignIn))
                     return
                 }
+                
                 guard let response = response as? HTTPURLResponse,
                     response.statusCode == 200
                     else {
-                        print("Unsucessful sign in")
+                        print("Sign in was unsuccessful")
                         return completion(.failure(.failedSignIn))
                 }
-                guard let data = data else  {
-                    print("Error in signing \(String(describing: error?.localizedDescription))")
+                
+                guard let data = data else {
+                    print("Data was not received")
                     completion(.failure(.noData))
                     return
                 }
-            
-            do {
-                self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data)
-                completion(.success(true))
-            } catch {
-                print("error decoded bearer: \(error.localizedDescription)")
-                completion(.failure(.failedSignIn))
-            }
+                
+                do {
+                    Self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data)
+                    completion(.success(true))
+                } catch {
+                    print("Error decoding bearer: \(error.localizedDescription)")
+                    completion(.failure(.failedSignIn))
+                }
             }
             .resume()
         } catch {
             print("Error encoding user: \(error.localizedDescription)")
             completion(.failure(.failedSignIn))
         }
-        
     }
     
     
     
     //    MARK: REQUEST URL METHOD USED IN SIGN UP AND SIGNED IN
-    private func postRequest(url: URL) -> URLRequest {
-        var request = URLRequest(url: url)
-        request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        return request
-    }
+   private func postRequest(for url: URL) -> URLRequest {
+           var request = URLRequest(url: url)
+           request.httpMethod = HTTPMethod.post.rawValue
+           request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+           return request
+       }
     
     
 }

@@ -13,6 +13,7 @@ enum LoginType: String {
     case signIn = "Sign In"
 }
 class LoginViewController: UIViewController {
+   
     
     @IBOutlet weak var userTextField: UITextField!
     

@@ -11,7 +11,7 @@ import UIKit
 class GigsTableViewController: UITableViewController {
 
     var gigController = GigController()
-    
+    private lazy var viewModel = GigViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,8 +20,8 @@ class GigsTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if gigController.bearer == nil {
-            performSegue(withIdentifier: "GigsModalSegue", sender: self)
+        if viewModel.shouldPresentLoginViewController {
+              performSegue(withIdentifier: "GigsModalSegue", sender: self)
         }
     }
 
