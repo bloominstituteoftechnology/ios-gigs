@@ -11,6 +11,16 @@ import UIKit
 class GigDetailViewController: UIViewController {
     
     
+    var gig: Gig?
+    var gigController: GigController?
+    var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter
+    }()
+    
+    
     @IBOutlet weak var jobTitleTextField: UITextField!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextView: UITextView!
