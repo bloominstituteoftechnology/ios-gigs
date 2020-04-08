@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
     @IBAction func segmentControlDidChange(_ sender: Any) {
         // Not certain why the password field isnt turning into dots since im setting the content type
         switch segmentedControl.selectedSegmentIndex {
-        case 0:
+        case 1:
             selectedLoginType = .login
             passwordTextField.textContentType = .password
         default:

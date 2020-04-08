@@ -172,8 +172,8 @@
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tox-B8-5BI">
                                         <rect key="frame" x="139.5" y="0.0" width="135" height="32"/>
                                         <segments>
-                                            <segment title="Log In"/>
                                             <segment title="Sign Up"/>
+                                            <segment title="Log In"/>
                                         </segments>
                                         <connections>
                                             <action selector="segmentControlDidChange:" destination="V9h-So-z9T" eventType="valueChanged" id="H4E-4e-7x7"/>
@@ -195,8 +195,8 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdQ-UN-GYm">
-                                        <rect key="frame" x="186" y="204" width="42" height="30"/>
-                                        <state key="normal" title="Log In"/>
+                                        <rect key="frame" x="180" y="204" width="54" height="30"/>
+                                        <state key="normal" title="Sign Up"/>
                                         <connections>
                                             <action selector="submitButtonTapped:" destination="V9h-So-z9T" eventType="touchUpInside" id="0UL-1u-UNr"/>
                                         </connections>
