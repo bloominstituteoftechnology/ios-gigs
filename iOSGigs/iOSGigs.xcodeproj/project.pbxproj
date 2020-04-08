@@ -17,6 +17,8 @@
 		2B62758C243D153400AAB260 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62758B243D153400AAB260 /* Bearer.swift */; };
 		2B62758E243D156100AAB260 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62758D243D156100AAB260 /* User.swift */; };
 		2B627590243D15C200AAB260 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62758F243D15C200AAB260 /* GigController.swift */; };
+		2B627594243E625600AAB260 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B627593243E625600AAB260 /* GigDetailViewController.swift */; };
+		2B627596243E630F00AAB260 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B627595243E630F00AAB260 /* Gig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		2B62758B243D153400AAB260 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		2B62758D243D156100AAB260 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2B62758F243D15C200AAB260 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		2B627593243E625600AAB260 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		2B627595243E630F00AAB260 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 		2B627584243D112700AAB260 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2B627595243E630F00AAB260 /* Gig.swift */,
 				2B62758B243D153400AAB260 /* Bearer.swift */,
 				2B62758D243D156100AAB260 /* User.swift */,
 			);
@@ -116,6 +121,7 @@
 			children = (
 				2B627587243D11F400AAB260 /* GigsTableViewController.swift */,
 				2B627589243D13D900AAB260 /* LoginViewController.swift */,
+				2B627593243E625600AAB260 /* GigDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -199,12 +205,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B62758C243D153400AAB260 /* Bearer.swift in Sources */,
+				2B627594243E625600AAB260 /* GigDetailViewController.swift in Sources */,
 				2B627590243D15C200AAB260 /* GigController.swift in Sources */,
 				2B62758A243D13D900AAB260 /* LoginViewController.swift in Sources */,
 				2B62758E243D156100AAB260 /* User.swift in Sources */,
 				2B62756E243D10CA00AAB260 /* AppDelegate.swift in Sources */,
 				2B627570243D10CA00AAB260 /* SceneDelegate.swift in Sources */,
 				2B627588243D11F400AAB260 /* GigsTableViewController.swift in Sources */,
+				2B627596243E630F00AAB260 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

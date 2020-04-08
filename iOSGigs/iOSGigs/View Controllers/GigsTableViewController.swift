@@ -13,6 +13,12 @@ class GigsTableViewController: UITableViewController {
     // MARK: Properties
     
     let gigController = GigController()
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter
+    }()
     
     // MARK: - View Lifecycle
     
@@ -25,8 +31,18 @@ class GigsTableViewController: UITableViewController {
         
         if GigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewController", sender: self)
+        } else {
+            gigController.getGigs { result in
+                switch result {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                case .failure(_):
+                    print("Failed fetching gigs.")
+                }
+            }
         }
-        // TODO: fetch gigs here
     }
     
     // MARK: - Navigation
@@ -36,22 +52,34 @@ class GigsTableViewController: UITableViewController {
             guard let loginVC = segue.destination as? LoginViewController else { return }
             
             loginVC.gigController = gigController
+        } else if segue.identifier == "ShowGig" {
+            guard let detailVC = segue.destination as? GigDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow
+                else { return }
+            
+            detailVC.gigController = gigController
+            detailVC.gig = gigController.gigs[indexPath.row]
+        } else if segue.identifier == "AddGig" {
+            guard let detailVC = segue.destination as? GigDetailViewController else { return }
+            
+            detailVC.gigController = gigController
         }
     }
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return gigController.gigs.count
     }
     
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-          
-     return cell
-     } 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        
+        let formattedDate = dateFormatter.string(from: gigController.gigs[indexPath.row].dueDate)
+        
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        cell.detailTextLabel?.text = formattedDate
+        
+        return cell
+    }
 }
