@@ -10,6 +10,11 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    enum LoginType {
+        case login
+        case signup
+    }
+    
     //Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var nameTextField: UITextField!
@@ -22,12 +27,37 @@ class LogInViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    //Variables
+    var gigController: GigController?
+    var selectedType: LoginType = .login
+    
     //Actions
     @IBAction func valueChanged(_ sender: UISegmentedControl) {
+        if selectedType == .login {
+            selectedType = .signup
+        } else {
+            selectedType = .login
+        }
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
+        
+       if selectedType == .login {
+            print("Login Triggered")
+            var user = User(username: nameTextField.text ?? "", password: passwordTextField.text ?? "")
+            gigController?.userLogin(user: &user)
+        } else {
+            print("SignUp Triggered")
+            var user = User(username: nameTextField.text ?? "", password: passwordTextField.text ?? "")
+            gigController?.userLogin(user: &user)
+        }
+        
+        /*
+        DispatchQueue.main.async {
+            print("Success?")
+        }*/
     }
+    
     
     /*
     // MARK: - Navigation
