@@ -175,6 +175,42 @@ class GigController {
         .resume()
     }
     
+    func getGig(for gigTitle: String, completion: @escaping GetGigCompletion) {
+        guard case let .loggedIn(bearer) = LoginStatus.isLoggedIn else {
+            return completion(.failure(.notSignedIn))
+        }
+        
+        let gigURL = baseURL.appendingPathComponent("/gigs/\(gigTitle)")
+        let request = getRequest(for: gigURL, bearer: bearer)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Failed to fetch gig with error \(error.localizedDescription)")
+                return completion(.failure(.failedFetch))
+            }
+            
+            guard let response = response as? HTTPURLResponse,
+            response.statusCode == 200
+                else {
+                    print(#file, #function, #line, "Fetch gig recieved bad response")
+                    return completion(.failure(.failedFetch))
+            }
+            
+            guard let data = data else {
+                return completion(.failure(.badData))
+            }
+            
+            do {
+                let gig = try self.jsonDecoder.decode(Gig.self, from: data)
+                completion(.success(gig))
+            } catch {
+                print("Error decoding gig: \(error.localizedDescription)")
+            }
+        }
+        
+    .resume()
+    }
+    
     func createGig(with gig: Gig, completion: @escaping PostGigCompletion) {
         var request = postRequest(for: allListedGigsURL)
 //        guard let bearer = bearer else {

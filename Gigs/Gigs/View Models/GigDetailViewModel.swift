@@ -22,15 +22,14 @@ final class GigDetailViewModel {
     }
     
     func getGig(with title: String, completion: @escaping (GetGigResult) -> Void) {
-        gigController.getListedGigs { result in
-            DispatchQueue.main.async { [weak self] in
+        gigController.getGig(for: title) { result in
+            DispatchQueue.main.async {  // maybe need [ weak self ] in
                 do {
                     let gig = try result.get()
                     completion(.successfulWithGig(gig))
                 } catch {
                     completion(.failure("Unable to fetch gig: \(title)"))
                 }
-                
             }
         }
     }

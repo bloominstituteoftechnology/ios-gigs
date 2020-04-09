@@ -23,21 +23,38 @@ class GigDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let gigName = gigName else { return }
+        
+        viewModel.getGig(with: gigName) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .successfulWithGig(let gig):
+                self.updateViews(with: gig)
+            case .failure(let message):
+                let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true)
+                
+            }
+        }
+    }
+    
+    private func updateViews(with gig: Gig) {
+        title = gig.title
+        jobTextField.text = gig.title
+        datePicker.date = gig.dueDate
+        jobDescriptionTextView.text = gig.description
     }
     
     @IBAction func saveTapped(_ sender: Any) {
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
 }
