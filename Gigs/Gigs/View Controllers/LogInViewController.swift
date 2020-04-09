@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, GigControllerDelegate {
     
     enum LoginType {
         case login
@@ -27,9 +27,14 @@ class LogInViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func update() {
+        dismiss(animated: true)
+    }
+    
     //Variables
     var gigController: GigController?
     var selectedType: LoginType = .login
+    
     
     //Actions
     @IBAction func valueChanged(_ sender: UISegmentedControl) {
@@ -45,11 +50,20 @@ class LogInViewController: UIViewController {
        if selectedType == .login {
             print("Login Triggered")
             var user = User(username: nameTextField.text ?? "", password: passwordTextField.text ?? "")
-            gigController?.userLogin(user: &user)
+            gigController?.userLogin(user: &user) {
+                DispatchQueue.main.async {
+                    if self.gigController?.bearer != nil {
+                        self.dismiss(animated: true)
+                    }
+                }
+            }
         } else {
             print("SignUp Triggered")
             var user = User(username: nameTextField.text ?? "", password: passwordTextField.text ?? "")
-            gigController?.userSignup(user: &user)
+            gigController?.userSignup(user: &user) {
+                DispatchQueue.main.async {
+                }
+            }
         }
     }
     

@@ -22,10 +22,24 @@ class GigsTableViewController: UITableViewController, GigControllerDelegate {
             performSegue(withIdentifier: "LogInSegue", sender: self)
         }
         
+        gigController.getGig() {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
+    @IBAction func refreshPressed(_ sender: UIBarButtonItem) {
+
+        gigController.getGig {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                print(self.gigController.gigs.count)
+            }
+        }
+    }
     //Updates TableView
-    func updateTable() {
+    func update() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -35,25 +49,18 @@ class GigsTableViewController: UITableViewController, GigControllerDelegate {
     var gigController = GigController()
     
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "jobCell", for: indexPath)
 
-        // Configure the cell...
-
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        //TODO: Set Date
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -99,10 +106,16 @@ class GigsTableViewController: UITableViewController, GigControllerDelegate {
             return
         }
         
+        
         if identifier == "LogInSegue" {
             print("Segue Performed")
             if let destination = segue.destination as? LogInViewController {
                 destination.gigController = gigController
+            }
+        } else if identifier == "showGigSegue" {
+            if let destination = segue.destination as? GigDetailViewController {
+                destination.gigController = gigController
+                destination.delegate = self
             }
         }
     }

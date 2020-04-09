@@ -9,7 +9,7 @@
 import Foundation
 
 protocol GigControllerDelegate {
-    func updateTable()
+    func update()
 }
 
 
@@ -28,7 +28,7 @@ class GigController {
     var bearer: Bearer? {
         didSet {
             if bearer != nil {
-                delegate?.updateTable()
+                delegate?.update()
             }
         }
     }
@@ -46,19 +46,20 @@ class GigController {
     
     //Functions
     //Return Type either success or failure
-    func userSignup(user: inout User) {
+    func userSignup(user: inout User, completion: () -> Void) {
         var request = postRequest(url: urlSignup)
         Signup(user: &user, request: &request) {
             print(self.bearer ?? "Token is nil")
         }
-        
+        completion()
     }
     
-    func userLogin(user: inout User) {
+    func userLogin(user: inout User, completion: () -> Void) {
         var request = postRequest(url: urlSignin)
         Signin(user: &user, request: &request) {
             print(self.bearer ?? "Token is nil")
         }
+        completion()
     }
 
     
@@ -75,18 +76,22 @@ class GigController {
     func gigPostRequest(url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         
-        //Setting HTTPMethod Post
-        request.httpMethod = HTTPMethod.post.rawValue
-        request.addValue("Bearer \(bearer?.token)", forHTTPHeaderField: "Authorization")
+        if let bearer = bearer {
+            //Setting HTTPMethod Post
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.addValue("Bearer \(String(describing: bearer.token))", forHTTPHeaderField: "Authorization")
+        }
         return request
     }
     
     func gigGetRequest(url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         
-        //Setting HTTPMethod Get
-        request.httpMethod = HTTPMethod.get.rawValue
-        request.addValue("Bearer \(bearer?.token)", forHTTPHeaderField: "Authorization")
+        if let bearer = bearer {
+            //Setting HTTPMethod Get
+            request.httpMethod = HTTPMethod.get.rawValue
+            request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        }
         return request
     }
     
@@ -153,54 +158,50 @@ class GigController {
         }
     }
     
-    func getGig(gig: Gig, completion: @escaping () -> Void) {
-        var request = gigGetRequest(url: urlGetGig)
-        do {
-            //Encoding
-            //let jsonData = try jsonEncoder.encode(gig)
-            //request.httpBody = jsonData
+    func getGig(completion: @escaping () -> Void) {
+        let request = gigGetRequest(url: urlGetGig)
+        //Encoding
+        //let jsonData = try jsonEncoder.encode(bearer)
+        //request.httpBody = jsonData
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
-                
-                //Error checking and unwrapping
-                if let error = error {
-                    print("Error requesting in GetGig: \(error.localizedDescription)")
-                    completion()
-                    return
-                }
-                
-                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    print("Bad Status Code: GetGig")
-                    completion()
-                    return
-                }
-                
-                guard let data = data else {
-                    print("Data is nil: GetGig")
-                    completion()
-                    return
-                }
-                
-                do {
-                    let results = try self.jsonDecoder.decode([Gig].self, from: data)
-                    self.gigs = results
-                    completion()
-                } catch {
-                    print("Error Decoding in GetGig: \(error.localizedDescription)")
-                }
-                
-            }.resume()
-        } catch {
-            print("Error Encoding in GetGig: \(error.localizedDescription)")
-        }
+            //Error checking and unwrapping
+            if let error = error {
+                print("Error requesting in GetGig: \(error.localizedDescription)")
+                completion()
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                print("Bad Status Code: GetGig")
+                completion()
+                return
+            }
+            
+            guard let data = data else {
+                print("Data is nil: GetGig")
+                completion()
+                return
+            }
+            
+            do {
+                let results = try self.jsonDecoder.decode([Gig].self, from: data)
+                self.gigs = results
+                completion()
+            } catch {
+                print("Error Decoding in GetGig: \(error.localizedDescription)")
+            }
+            
+        }.resume()
     }
     
     
-    func postGig(completion: @escaping () -> Void) {
+    func postGig(gig: Gig, completion: @escaping () -> Void) {
         var request = gigPostRequest(url: urlGetGig)
         do {
             //Encoding
-            let jsonData = try jsonEncoder.encode(bearer)
+            let jsonData = try jsonEncoder.encode(gig)
             request.httpBody = jsonData
             
             URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -222,6 +223,13 @@ class GigController {
                     print("Data is nil: PostGig")
                     completion()
                     return
+                }
+                
+                do {
+                    let result = try self.jsonDecoder.decode(Bearer.self, from: data)
+                    print(result)
+                } catch {
+                    print("Error Decoding Data in PostGig")
                 }
                 
             }.resume()

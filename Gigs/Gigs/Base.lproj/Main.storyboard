@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="personCell" textLabel="5te-uU-OBk" detailTextLabel="zmL-dV-Qbx" style="IBUITableViewCellStyleSubtitle" id="XIG-MY-15b">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="jobCell" textLabel="5te-uU-OBk" detailTextLabel="zmL-dV-Qbx" style="IBUITableViewCellStyleSubtitle" id="XIG-MY-15b">
                                 <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XIG-MY-15b" id="kDe-20-a25">
@@ -50,6 +50,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Wcf-Yz-Ju4">
+                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="oZw-vX-9dh">
+                            <connections>
+                                <action selector="refreshPressed:" destination="4n0-Rf-7IR" id="C30-4x-jKO"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mEP-SC-jqA">
                             <connections>
                                 <segue destination="nYa-5d-Vd3" kind="show" identifier="addGigSegue" id="leb-g0-BQm"/>
@@ -137,7 +142,7 @@
                     <navigationItem key="navigationItem" id="85e-y1-zKn">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Zek-1S-szc">
                             <connections>
-                                <action selector="saveButtonPressed:" destination="nYa-5d-Vd3" id="SE6-YX-954"/>
+                                <action selector="buttonPressed:" destination="nYa-5d-Vd3" id="Mg7-AN-vQU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -237,6 +242,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="leb-g0-BQm"/>
+        <segue reference="Qrn-Qn-alD"/>
     </inferredMetricsTieBreakers>
 </document>

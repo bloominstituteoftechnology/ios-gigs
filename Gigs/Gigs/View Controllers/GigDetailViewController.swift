@@ -15,17 +15,32 @@ class GigDetailViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var jobDescription: UITextView!
     
+    var gigController: GigController!
+    var gig: Gig?
+    var delegate: GigsTableViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        updateViews()
     }
     
     //Actions
-    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func buttonPressed(_ sender: UIBarButtonItem) {
+       /* gigController.postGig(gig: Gig(title: "Testing", description: "Testing", dueDate: String(datePicker.date.description))) {
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+                self.delegate?.update()
+            }
+        }*/
     }
     
+    
+    func updateViews() {
+        jobTitleText.text = gig?.title ?? "New Gig"
+        //datePicker?. = gig?.dueDate
+        jobDescription.text = gig?.description
+    }
     
 
     /*
