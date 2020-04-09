@@ -42,11 +42,11 @@ class LoginViewController: UIViewController {
     @IBAction func segmentChanged(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            loginType = .logIn
-            passwordTextField.textContentType = .password
-        default:
             loginType = .signUp
             passwordTextField.textContentType = .newPassword
+        default:
+            loginType = .logIn
+            passwordTextField.textContentType = .password
         }
     }
     

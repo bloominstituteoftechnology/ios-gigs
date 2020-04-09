@@ -12,6 +12,13 @@ class GigsTableViewController: UITableViewController {
     
     private let gigController = GigController()
     
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,20 +34,29 @@ class GigsTableViewController: UITableViewController {
         
         if gigController.bearer == nil {
             performSegue(withIdentifier: "ShowLogin", sender: self)
-            // TODO: fetch gigs here
-        }
+        } else {
+            gigController.getAllGigs { result in
+                switch result {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                case .failure(_):
+                    print("Failed fetching gigs.")
+                }
+            }        }
     }
     
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        gigController.gigs.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigTableViewCell", for: indexPath)
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        cell.detailTextLabel?.text = dateFormatter.string(from: gigController.gigs[indexPath.row].dueDate)
         return cell
     }
     
@@ -79,14 +95,25 @@ class GigsTableViewController: UITableViewController {
      }
      */
     
-     // MARK: - Navigation
-     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowLogin" {
             guard let loginViewController = segue.destination as? LoginViewController else { return }
             
             loginViewController.gigController = gigController
+        } else if  segue.identifier == "ShowGig" {
+            guard let detailViewController = segue.destination as? GigDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow
+                else { return }
+            
+            detailViewController.gigController = gigController
+            detailViewController.gig = gigController.gigs[indexPath.row]
+        } else if segue.identifier == "AddGig" {
+            guard let detailViewController = segue.destination as? GigDetailViewController else { return }
+            
+            detailViewController.gigController = gigController
         }
-     }
+    }
     
 }

@@ -24,7 +24,7 @@ class GigController {
     var bearer: Bearer?
     var gigs = [Gig]()
     
-    private let baseURL = URL(string: " https://lambdagigapi.herokuapp.com/api")!
+    private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     private lazy var signUpURL = baseURL.appendingPathComponent("users/signup")
     private lazy var loginURL = baseURL.appendingPathComponent("users/login")
     private lazy var getGigsURL = baseURL.appendingPathComponent("gigs/")
