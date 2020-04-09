@@ -8,7 +8,12 @@
 
 import Foundation
 final class GigViewModel {
-    var gigNames = [String]()
+    enum GetGigsNamesResult {
+        case success
+        case failure(String)
+        
+    }
+    var gigNames = [Gig]()
     var shouldPresentLoginViewController: Bool {
         GigController.bearer == nil
     }
@@ -17,5 +22,9 @@ final class GigViewModel {
     
     init(gigController: GigController = GigController()) {
         self.gigController = gigController
+    }
+    
+    func getGigsNames(completion: @escaping (GetGigsNamesResult) -> Void) {
+        
     }
 }

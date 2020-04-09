@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Gig: Codable {
+struct Gig: Decodable, Hashable {
     let title: String
     let description: String
     let dueDate: Date

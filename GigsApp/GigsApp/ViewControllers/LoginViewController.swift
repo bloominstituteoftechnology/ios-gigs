@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
     
     private var gigController: GigController?
   var loginType = LoginType.signUp
-    lazy var viewModel = loginViewModal()
+    lazy var viewModel = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

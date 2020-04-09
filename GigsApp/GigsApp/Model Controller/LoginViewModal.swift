@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class loginViewModal {
+final class LoginViewModel {
     enum LoginResult: String {
         case signUpSuccess = "Sign up successfulll Now please log in."
         case signInSuccess
