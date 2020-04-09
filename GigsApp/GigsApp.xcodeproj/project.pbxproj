@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F5A7094243E771200929363 /* GigViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A7093243E771200929363 /* GigViewModel.swift */; };
 		3F5A7096243EAEFB00929363 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A7095243EAEFB00929363 /* GigDetailViewController.swift */; };
+		3F5A7098243EB03100929363 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A7097243EB03100929363 /* Gig.swift */; };
 		3F789A8C243D0A3200227B38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F789A8B243D0A3200227B38 /* AppDelegate.swift */; };
 		3F789A8E243D0A3200227B38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F789A8D243D0A3200227B38 /* SceneDelegate.swift */; };
 		3F789A93243D0A3200227B38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F789A91243D0A3200227B38 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		3F5A7093243E771200929363 /* GigViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigViewModel.swift; path = GigsApp/ViewControllers/GigViewModel.swift; sourceTree = SOURCE_ROOT; };
 		3F5A7095243EAEFB00929363 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigDetailViewController.swift; path = GigsApp/Storyboards/GigDetailViewController.swift; sourceTree = SOURCE_ROOT; };
+		3F5A7097243EB03100929363 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Gig.swift; path = GigsApp/Storyboards/Gig.swift; sourceTree = SOURCE_ROOT; };
 		3F789A88243D0A3200227B38 /* GigsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GigsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F789A8B243D0A3200227B38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F789A8D243D0A3200227B38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 		3F789AA7243D141400227B38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3F5A7097243EB03100929363 /* Gig.swift */,
 				3F5A7093243E771200929363 /* GigViewModel.swift */,
 				3F9C104F243D469800B8F8D8 /* GigModelController.swift */,
 				3F789AAA243D144C00227B38 /* Bearer.swift */,
@@ -209,6 +212,7 @@
 			files = (
 				3F789AAB243D144C00227B38 /* Bearer.swift in Sources */,
 				3F5A7096243EAEFB00929363 /* GigDetailViewController.swift in Sources */,
+				3F5A7098243EB03100929363 /* Gig.swift in Sources */,
 				3F789AAF243D150300227B38 /* GigController.swift in Sources */,
 				3F789AA0243D0D9800227B38 /* GigsTableViewController.swift in Sources */,
 				3F5A7094243E771200929363 /* GigViewModel.swift in Sources */,

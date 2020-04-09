@@ -11,7 +11,6 @@ import UIKit
 class GigDetailViewController: UIViewController {
     @IBOutlet weak var jobTitleTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
     @IBOutlet weak var textView: UITextView!
     
     override func viewDidLoad() {
