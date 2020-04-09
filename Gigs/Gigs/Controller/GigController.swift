@@ -18,10 +18,12 @@ class GigController {
     
     enum NetworkError: Error {
         case failedSignUp, failedSignIn, noData, badData
+        case notSignedIn, failedFetch, badURL
+        case failedPost, noDecode 
     }
     
+    var gigs: [Gig] = [] 
     static var bearer: Bearer?
-    
     private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
     private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
