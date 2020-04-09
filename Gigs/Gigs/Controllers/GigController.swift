@@ -182,7 +182,6 @@ class GigController {
             do {
                 let newGig = try self.jsonDecoder.decode([Gig].self, from: data)
                 completion(.success(newGig))
-               // self.gigs.append(newGig)
             } catch {
                 print("Error decoding Gig: \(error.localizedDescription)")
                 completion(.failure(.failedPost))

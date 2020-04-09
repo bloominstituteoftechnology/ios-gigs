@@ -23,17 +23,16 @@ class LoginViewController: UIViewController {
     
     var gigController: GigController?
     
-    var loginType: LoginType = .signIn {
+    var loginType: LoginType = .signUp {
         didSet {
             switch loginType {
             case .signIn:
                 submitButton.setTitle("Sign In", for: .normal)
-            case .signUp:
+            default:
                 submitButton.setTitle("Sign Up", for: .normal)
             }
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
