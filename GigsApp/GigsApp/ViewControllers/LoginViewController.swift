@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     
-    private var gigController: GigController?
+  var gigController: GigController?
   var loginType = LoginType.signUp
     lazy var viewModel = LoginViewModel()
     
@@ -44,6 +44,7 @@ class LoginViewController: UIViewController {
         signUpButton.setTitle(loginType.rawValue, for: .normal)
         
     }
+    
     
     @IBAction func SignUpButtonTapped(_ sender: Any) {
         

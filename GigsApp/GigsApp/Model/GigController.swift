@@ -37,8 +37,15 @@ typealias getDateCompletion = (Result<Date, NetworkError>) -> Void
    
 //    END
     
-   static var bearer: Bearer?
-   var gigs: [Gig] = []
+   static var bearer: Bearer? 
+    var gigs: [Gig] = []
+    
+    let dateFormatter = DateFormatter()
+    
+       init() {
+           dateFormatter.dateStyle = .short
+           dateFormatter.timeStyle = .none
+       }
     
     
     
@@ -179,14 +186,23 @@ typealias getDateCompletion = (Result<Date, NetworkError>) -> Void
         
     }
     
-    func getGig(for gigName: String, completion: @escaping getGigCompletion ) {
+    func createGig(_ gig: Gig, completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         guard case let .loggedIn(bearer) = LoginStatus.isLoggedIn else {
         return completion(.failure(.notSignedIn))
           }
         
-        let animalURL = baseURL.appendingPathComponent("gigs/\(gigName)")
-        let request = postRequest(for: animalURL, bearer: bearer)
-        
+        let animalURL = baseURL.appendingPathComponent("gigs/")
+        var request = postRequest(for: animalURL, bearer: bearer)
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        do {
+                  let jsonData = try encoder.encode(gig)
+                  request.httpBody = jsonData
+              } catch {
+                  NSLog("Error encoding user object: \(error)")
+                  completion(.failure(.badData))
+                  return
+              }
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print("failed to fetchh gig with error \(error.localizedDescription)")
@@ -200,20 +216,13 @@ typealias getDateCompletion = (Result<Date, NetworkError>) -> Void
                     completion(.failure(.failedFetch))
                     return
             }
-            guard let data = data else {
-                return completion(.failure(.badData))
-            }
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
-            do {
-                let gig = try self.jsonDecoder.decode(Gig.self, from: data)
-                completion(.success(gig))
-            } catch {
-                print("Error decoding animal: \(error.localizedDescription)")
-                completion(.failure(.badUrl))
-            }
+            
+         completion(.success([gig]))
         }
-    .resume()
+        .resume()
+        
     }
     
     

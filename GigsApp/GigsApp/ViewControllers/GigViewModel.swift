@@ -25,6 +25,17 @@ final class GigViewModel {
     }
     
     func getGigsNames(completion: @escaping (GetGigsNamesResult) -> Void) {
-        
+        gigController.getGigsNames { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let gigNames):
+                    self.gigNames = gigNames
+                    completion(.success)
+                case .failure(_):
+                    completion(.failure("Unable to fetch gigs"))
+                }
+            }
+        }
     }
 }
