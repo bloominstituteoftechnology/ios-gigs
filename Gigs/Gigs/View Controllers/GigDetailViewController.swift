@@ -13,12 +13,7 @@ class GigDetailViewController: UIViewController {
     
     var gig: Gig?
     var gigController: GigController?
-    var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        return formatter
-    }()
+    
     
     
     @IBOutlet weak var jobTitleTextField: UITextField!
@@ -30,20 +25,48 @@ class GigDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+            view.addGestureRecognizer(tap)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        updateViews()
     }
     
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-    }
-    
-    // MARK: - Navigation
+        guard let gigName = jobTitleTextField.text,
+                gigName.isEmpty == false,
+                let description = descriptionTextView.text
+                else {
+                    return
+            }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    
+            let gig = Gig(title: gigName, description: description, dueDate: dueDatePicker.date)
 
+                gigController?.addGig(for: gig) { result in
+                switch result {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                case .failure(_):
+                    print("Error saving gig.")
+                }
+            }
+        }
+    
+    func updateViews() {
+        if let gig = gig {
+                self.title = gig.title
+                jobTitleTextField.text = gig.title
+                dueDatePicker.date = gig.dueDate
+                descriptionTextView.text = gig.description
+            } else {
+                self.title = "New Gig"
+            }
+        }
+    
 }

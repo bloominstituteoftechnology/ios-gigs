@@ -18,25 +18,31 @@ class GigController {
     
     enum NetworkError: Error {
         case failedSignUp, failedSignIn, noData, badData
-        case notSignedIn, failedFetch, badURL
+        case notSignedIn, failedFetch, failedPost
     }
+    
     
     var bearer: Bearer?
     var gigs: [Gig] = []
     
-    private let baseURL = URL(string: " https://lambdagigapi.herokuapp.com/api")!
-    private lazy var signUpURL = baseURL.appendingPathComponent("users/signup")
-    private lazy var signInURL = baseURL.appendingPathComponent("users/login")
-    private lazy var getAllURL = baseURL.appendingPathComponent("gigs/")
-    private lazy var gigURL = baseURL.appendingPathComponent("gigs")
+    private let baseURL: URL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
+    private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
+    private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
+    private lazy var getAllURL = baseURL.appendingPathComponent("/gigs/")
+   
     
-    private lazy var jsonEncoder: JSONEncoder = {
+    
+  private lazy var jsonEncoder: JSONEncoder = {
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
         encoder.outputFormatting = .prettyPrinted
         return encoder
     }()
-    
-    private lazy var jsonDecoder = JSONDecoder()
+    private lazy var jsonDecoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return decoder
+    }()
     
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         var request = postRequest(for: signUpURL)
@@ -107,13 +113,6 @@ class GigController {
                 completion(.failure(.failedSignIn))
             }
         }
-
-    private func postRequest(for url: URL) -> URLRequest {
-        var request = URLRequest(url: url)
-        request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        return request
-    }
     
     func getAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         guard let bearer = bearer else {
@@ -152,13 +151,14 @@ class GigController {
     .resume()
         }
     
-    func postAGig(for gig: Gig, completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+    
+    func addGig(for gig: Gig, completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         guard let bearer = bearer else {
             completion(.failure(.notSignedIn))
             return
         }
         
-        let request = getRequest(for: gigURL, bearer: bearer)
+        let request = getRequest(for: getAllURL, bearer: bearer)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
@@ -185,13 +185,30 @@ class GigController {
                // self.gigs.append(newGig)
             } catch {
                 print("Error decoding Gig: \(error.localizedDescription)")
-                completion(.failure(.badURL))
+                completion(.failure(.failedPost))
             }
         }
     .resume()
     }
-        
     
+    private func postRequest(for url: URL) -> URLRequest {
+           var request = URLRequest(url: url)
+           request.httpMethod = HTTPMethod.post.rawValue
+           request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+           return request
+       }
+    
+    
+    func createGig(title: String, date: Date, description: String) {
+        let newGig = Gig(title: title, description: description, dueDate: date)
+        addGig(for: newGig) { (result) in
+            if let gig = try? result.get() {
+                DispatchQueue.main.async {
+                    self.gigs.append(contentsOf: gig)
+                }
+            }
+        }
+    }
     
     private func getRequest(for url: URL, bearer: Bearer) -> URLRequest {
         var request = URLRequest(url: url)
