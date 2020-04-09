@@ -73,7 +73,7 @@ class GigsTableViewController: UITableViewController {
      // Override to support editing the table view.
      override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
      if editingStyle == .delete {
-     // Delete the row from the data source
+     let gig = gigController.gigs[indexPath.row]
      tableView.deleteRows(at: [indexPath], with: .fade)
      } else if editingStyle == .insert {
      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -101,16 +101,26 @@ class GigsTableViewController: UITableViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let loginVC = segue.destination as? LoginViewController {
-            loginVC.gigController = gigController
-        }
-        
-        if let gigDetailVC = segue.destination as? GigDetailViewController {
-            gigDetailVC.gigController = gigController
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        print(segue.identifier)
+        if segue.identifier == "GigsModalSegue" {
+            // inject dependencies
+            if let loginVC = segue.destination as? LoginViewController {
+                loginVC.gigController = gigController
+            }
+        } else if segue.identifier == "AddGig" ||
+            segue.identifier == "EditGig" {
             
-            if segue.identifier == "ShowGig" {
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    gigDetailVC.gig = gigController.gigs[indexPath.row]
+            if let detailVC = segue.destination as? GigDetailViewController {
+                detailVC.gigController = gigController
+                detailVC.gigsTableViewController = self
+                detailVC.gig = nil
+                
+                if segue.identifier == "EditGig" {
+                    if let indexPath = tableView.indexPathForSelectedRow {
+                        detailVC.gig = gigController.gigs[indexPath.row]
+                    }
                 }
             }
         }

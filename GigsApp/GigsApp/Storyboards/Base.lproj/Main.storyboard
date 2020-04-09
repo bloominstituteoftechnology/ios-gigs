@@ -106,7 +106,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GigCell" textLabel="ezT-RD-CF0" detailTextLabel="I9y-ux-nQa" style="IBUITableViewCellStyleSubtitle" id="eI8-G9-YsR">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GigsCell" textLabel="ezT-RD-CF0" detailTextLabel="I9y-ux-nQa" style="IBUITableViewCellStyleSubtitle" id="eI8-G9-YsR">
                                 <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eI8-G9-YsR" id="qHL-pW-1dG">
@@ -130,7 +130,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="fyQ-xe-vf1" kind="show" identifier="ShowGigSegue" id="Ebv-fc-ze9"/>
+                                    <segue destination="fyQ-xe-vf1" kind="show" identifier="EditGig" id="Ebv-fc-ze9"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -142,7 +142,7 @@
                     <navigationItem key="navigationItem" title="Gigs" id="u8A-dI-T9e">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="A76-hM-9Tt">
                             <connections>
-                                <segue destination="fyQ-xe-vf1" kind="show" identifier="AddGigSegue" id="nHA-CU-qIg"/>
+                                <segue destination="fyQ-xe-vf1" kind="show" identifier="AddGig" id="nHA-CU-qIg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

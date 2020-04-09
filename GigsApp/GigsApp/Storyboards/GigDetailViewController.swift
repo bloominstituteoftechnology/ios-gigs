@@ -66,9 +66,9 @@ class GigDetailViewController: UIViewController {
     }
     private func updateViews() {
         guard let gig = gig else { return }
-        jobTitleTextField.text = gig.title
-        datePicker.date = gig.dueDate
-        textView.text = gig.description
+        jobTitleTextField?.text = gig.title
+        datePicker?.date = gig.dueDate
+        textView?.text = gig.description
     }
     
     
