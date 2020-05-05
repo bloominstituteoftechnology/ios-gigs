@@ -27,8 +27,8 @@ class GigController {
     private lazy var signInUrl = baseURL?.appendingPathComponent("/users/login")
     private lazy var jsonEncoder = JSONEncoder()
     
-    func signUp(with user: User, completion: @escaping (Error?) -> ()) {
-        print("singUpURL = \(signUpURL?.absoluteString ?? "")") // debug step to confirm correct URL
+    func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        print("singUpURL = \(signUpURL?.absoluteString)") // debug step to confirm correct URL
         
         var request = URLRequest(url: signUpURL!)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -38,41 +38,27 @@ class GigController {
         do {
             let jsonData = try jsonEncoder.encode(user)
             request.httpBody = jsonData
-        } catch {
-            print("Error encoding user object: \(error)")
-            completion(error)
-            return
-        }
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let response = response as? HTTPURLResponse,
-                response.statusCode != 200 {
-                completion(NSError(domain: "", code: response.statusCode, userInfo:nil))
-                return
-            }
+        let task = URLSession.shared.dataTask(with: request) { (_, response, error) in
             
             if let error = error {
-                completion(error)
+                print("Sign up failed with error: \(error)")
+                completion(.failure(.failedSignUp))
                 return
             }
             
-            guard let data = data else {
-                completion(NSError())
-                return
+            guard let response = response as? HTTPURLResponse,
+                response.statusCode == 200 else {
+                    print("Sign up has failed")
+                    completion(.failure(.failedSignUp))
+                    return
             }
-            
-            let decoder = JSONDecoder()
-            do {
-                self.bearer = try decoder.decode(Bearer.self, from: data)
-            } catch {
-                print("Error decoding bearer object: \(error)")
-                completion(error)
-                return
-            }
-            
-            completion(nil)
+            completion(.success(true))
         }
-        .resume()
+        task.resume()
+        } catch {
+            print("Error encoding user: \(error)")
+            completion(.failure(.failedSignUp))
+        }
     }
 }
-

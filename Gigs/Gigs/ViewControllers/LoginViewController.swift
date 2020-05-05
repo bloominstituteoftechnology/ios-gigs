@@ -41,9 +41,8 @@ class LoginViewController: UIViewController {
         }
     }
     @IBAction func signInButtonAction(_ sender: Any) {
-        // perform login or sign up operation based on loginType
+        
         // unwrap text fields - 4 part if let.
-        guard let gigController = gigController else { return }
         if let username = userNameTextField.text,
             !username.isEmpty,
             let password = passwordTextField.text,
@@ -51,32 +50,25 @@ class LoginViewController: UIViewController {
             let user = User(username: username, password: password)
             
             if loginType == .signUp {
-                gigController.signUp(with: user) { error in
-                    if let error = error {
-                        print("Error occurred during sign up: \(error)")
-                    } else {
-                        DispatchQueue.main.async {
-                            let alertController = UIAlertController(title: "Sign Up Successful", message: "Now please log in.", preferredStyle: .alert)
-                            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                            alertController.addAction(alertAction)
-                            self.present(alertController, animated: true, completion: {
-                                self.loginType = .signIn
-                                self.segmentedControl.selectedSegmentIndex = 1
-                                self.signInButtonOutlet.setTitle("Sign In", for: .normal)
-                            })
+                gigController?.signUp(with: user, completion: { result in
+                    do {
+                        let success = try result.get()
+                        if success {
+                            DispatchQueue.main.async {
+                                let alertController = UIAlertController(title: "Sign Up Successful", message: "Now Please Login", preferredStyle: .alert)
+                                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                                alertController.addAction(alertAction)
+                                self.present(alertController, animated: true) {
+                                    self.loginType = .signIn
+                                    self.segmentedControl.selectedSegmentIndex = 1
+                                    self.signInButtonOutlet.setTitle("Sign In", for: .normal)
+                                }
+                            }
                         }
+                    } catch {
+                        print("Error signing up: \(error)")
                     }
-                }
-            } else {
-                gigController.signUp(with: user) { error in
-                    if let error = error {
-                        print("Error occurred during sign up: \(error)")
-                    } else {
-                        DispatchQueue.main.async {
-                            self.dismiss(animated: true, completion: nil)
-                        }
-                    }
-                }
+                })
             }
         }
     }
