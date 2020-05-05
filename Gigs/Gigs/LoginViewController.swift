@@ -8,7 +8,16 @@
 
 import UIKit
 
+enum LoginType {
+    case signup
+    case login
+}
+
 class LoginViewController: UIViewController {
+    
+    var gigController: GigController?
+    var loginType = LoginType.signup
+    
     //MARK: - OUTLETS
     
     @IBOutlet weak var signUpInSegment: UISegmentedControl!
