@@ -20,14 +20,17 @@ class GigController {
         case noData, failedSignUp, failedSignIn, noToken, tryAgain
     }
     
-    //MARK: -
+    //MARK: - URL DATA TASKS
     let baseURL = URL(fileURLWithPath: "https://lambdagigapi.herokuapp.com/api")
     private lazy var signUpURL = baseURL.appendingPathComponent("users/signup")
     private lazy var signInURL = baseURL.appendingPathComponent("users/login")
+    private lazy var getGigsURL = baseURL.appendingPathComponent("gigs/")
+    private lazy var gigURL = baseURL.appendingPathComponent("gigs")
     private lazy var jsonEncoder = JSONEncoder()
     private lazy var jsonDecoder = JSONDecoder()
     
     var bearer: Bearer?
+    var gigs: [Gig] = []
     
     //MARK: - SIGN UP METHOD
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
@@ -62,6 +65,7 @@ class GigController {
             completion(.failure(.failedSignUp))
         }
     }
+    
     //MARK: - SIGN IN METHOD
     func signIn(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         print("signInURL = \(signInURL.absoluteString)")
@@ -108,4 +112,46 @@ class GigController {
             completion(.failure(.failedSignIn))
         }
     }
+    
+    //MARK: - GET GIGS METHOD
+    func getGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+         guard let bearer = bearer else {
+             completion(.failure(.noToken))
+             return
+         }
+         var request = URLRequest(url: getGigsURL)
+        
+         request.httpMethod = HTTPMethod.get.rawValue
+         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+         
+         let task = URLSession.shared.dataTask(with: request) { data, response, error in
+             if let error = error {
+                 print("Error receiving gig name data: \(error)")
+                 completion(.failure(.tryAgain))
+                 return
+             }
+             if let response = response as? HTTPURLResponse,
+                 response.statusCode == 401 {
+                 completion(.failure(.noToken))
+                 return
+             }
+             guard let data = data else {
+                 print("No data received from gigs")
+                 completion(.failure(.noData))
+                 return
+             }
+             do {
+                self.gigs = try self.jsonDecoder.decode([Gig].self, from: data)
+                completion(.success(self.gigs))
+                 
+             } catch {
+                 print("Error decoding gigs: \(error)")
+                 completion(.failure(.tryAgain))
+             }
+         }
+         
+         task.resume()
+     }
+     
+     //MARK: -
 }
