@@ -7,13 +7,116 @@
 //
 
 import Foundation
+import os.log
 
-class GigController {
+final class GigController {
     
-    let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")
+    enum HTTPMethod: String {
+        case get = "GET"
+        case post = "POST"
+    }
+    
+    enum NetworkError: Error {
+        case noData, failedSignUp, failedSignIn, noToken, tryAgain
+    }
+    
+    private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
+    private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
+    private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
+    
+    private lazy var jsonEncoder = JSONEncoder()
+    private lazy var jsonDecoder = JSONDecoder()
     
     var bearer: Bearer?
     
+    func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        
+        var request = URLRequest(url: signUpURL)
+        
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            
+            let jsonData = try jsonEncoder.encode(user)
+            
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request) { _, response, error in
+                
+                if let error = error {
+                    os_log("Sign up error: %@", log: OSLog.default, type: .error, "\(error)")
+                    completion(.failure(.failedSignUp))
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    os_log("Sign up failed", log: OSLog.default, type: .error)
+                    completion(.failure(.failedSignUp))
+                    return
+                }
+                
+                completion(.success(true))
+            }
+            
+            task.resume()
+        
+        } catch {
+            os_log("Error encoding user: %@", log: OSLog.default, type: .error, "\(error)")
+            completion(.failure(.failedSignUp))
+        }
+        
+    }
     
-    
+    func signIn(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        
+        var request = URLRequest(url: signInURL)
+        
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            
+            let jsonData = try jsonEncoder.encode(user)
+            
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                
+                if let error = error {
+                    os_log("Sign in error: %@", log: OSLog.default, type: .error, "\(error)")
+                    completion(.failure(.failedSignIn))
+                    return
+                }
+                
+                if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                    os_log("Sign in was unsuccessful. Status code: %@", log: OSLog.default, type: .error, "\(response.statusCode)")
+                    completion(.failure(.failedSignIn))
+                    return
+                }
+                
+                guard let responseData = data else {
+                    os_log("No data received from server")
+                    completion(.failure(.noData))
+                    return
+                }
+                
+                do {
+                    self.bearer = try self.jsonDecoder.decode(Bearer.self, from: responseData)
+                } catch {
+                    os_log("Error decoding bearer object: %@", log: OSLog.default, type: .error, "\(error)")
+                    completion(.failure(.noToken))
+                }
+                
+                completion(.success(true))
+            }
+            
+            task.resume()
+            
+        } catch {
+            os_log("Error encoding user: %@", log: OSLog.default, type: .error, "\(error)")
+            completion(.failure(.failedSignIn))
+        }
+        
+    }
 }

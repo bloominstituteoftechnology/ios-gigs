@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import os.log
+
+protocol LoginDelegate {
+    func bearerTokenReceived(_ bearer: Bearer)
+}
 
 class LoginViewController: UIViewController {
 
@@ -15,9 +20,13 @@ class LoginViewController: UIViewController {
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var signupButton: UIButton!
     
+    var gigsController: GigController?
+    
+    var delegate: LoginDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
 
     }
@@ -31,14 +40,58 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
-        if !checkPasswordNotEmpty() {
-            if !checkPasswordNotEmpty(){
+        if checkUsernameNotEmpty() {
+            if checkPasswordNotEmpty(){
+                let user = User(username: usernameTextField.text!, password: passwordTextField.text!)
+                
                 let buttonMode = segmentedControl.selectedSegmentIndex
                 
                 if buttonMode == 0 {
-                    generateAlert(title: "Sign Up Successful", message: "Now please log in.")
+                    gigsController?.signUp(with: user, completion: { result in
+                        
+                        do {
+                            let success = try result.get()
+                            if success {
+                                DispatchQueue.main.async {
+                                    self.generateAlert(title: "Sign Up Successful", message: "Now please log in.")
+                                }
+                            }
+                        } catch {
+                            os_log("Error while signing up user: %@", log: OSLog.default, type: .error, "\(error)")
+                            return
+                        }
+                    })
                 } else {
-                    
+                    gigsController?.signIn(with: user, completion: { result in
+                        
+                        do {
+                            let success = try result.get()
+                            if success {
+                                DispatchQueue.main.async {
+                                    if let bearer = self.gigsController?.bearer {
+                                        self.delegate?.bearerTokenReceived(bearer)
+                                    }
+                                    
+                                    self.dismiss(animated: true, completion: nil)
+                                }
+                            }
+                        } catch {
+                            if let error = error as? GigController.NetworkError {
+                                switch error {
+                                case .failedSignIn:
+                                    os_log("Sign in failed", log: OSLog.default, type: .error)
+                                    
+                                    DispatchQueue.main.async {
+                                        self.generateAlert(title: "Sign in failed.", message: "The username and/or password provided was incorrect.")
+                                    }
+                                case .noData, .noToken:
+                                    os_log("No data received", log: OSLog.default, type: .error)
+                                default:
+                                    os_log("Unknown error occured", log: OSLog.default, type: .error)
+                                }
+                            }
+                        }
+                    })
                 }
             }
         }
@@ -76,6 +129,8 @@ class LoginViewController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        
+        present(alert, animated: true)
     }
 
     /*

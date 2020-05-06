@@ -17,20 +17,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="gigsViewCell" id="nIw-M6-FhV">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nIw-M6-FhV" id="8h5-Jg-5db">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiJ-6I-BJK">
-                                            <rect key="frame" x="20" y="11" width="44" height="21"/>
+                                            <rect key="frame" x="20" y="11" width="44" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXb-C8-mf6">
-                                            <rect key="frame" x="360.5" y="12" width="37.5" height="19"/>
+                                            <rect key="frame" x="360.5" y="12" width="37.5" height="19.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Gigs" id="123-A9-A2E"/>
                     <connections>
-                        <segue destination="Mpw-WQ-FA8" kind="presentation" modalPresentationStyle="fullScreen" id="k2B-4T-88u"/>
+                        <segue destination="Mpw-WQ-FA8" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="k2B-4T-88u"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucg-Fh-lcR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

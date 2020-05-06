@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import os.log
 
-class GigsTableViewController: UITableViewController {
+class GigsTableViewController: UITableViewController, LoginDelegate {
+    
+    let controller = GigController()
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +23,13 @@ class GigsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if controller.bearer == nil {
+            
+            performSegue(withIdentifier: "loginSegue", sender: self)
+        }
     }
 
     // MARK: - Table view data source
@@ -32,15 +44,13 @@ class GigsTableViewController: UITableViewController {
         return 0
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -86,5 +96,21 @@ class GigsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "loginSegue" {
+            guard let loginViewController = segue.destination as? LoginViewController else {
+                os_log("Invalid destination: %@", log: OSLog.default, type: .error, "\(segue.destination)")
+                return
+            }
+            
+            loginViewController.gigsController = controller
+        }
+    }
+    
+    // MARK: - Login Delegate
+    func bearerTokenReceived(_ bearer: Bearer) {
+        
+    }
 
 }
