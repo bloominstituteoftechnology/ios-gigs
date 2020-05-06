@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
                 let buttonMode = segmentedControl.selectedSegmentIndex
                 
                 if buttonMode == 0 {
-                    
+                    generateAlert(title: "Sign Up Successful", message: "Now please log in.")
                 } else {
                     
                 }
@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
         let username = usernameTextField.text ?? ""
         
         if username.isEmpty {
-            generateAlert(message: "Username field must not be empty!")
+            generateAlert(title: "Error", message: "Username field must not be empty!")
             
             return false
         }
@@ -60,7 +60,7 @@ class LoginViewController: UIViewController {
         let password = passwordTextField.text ?? ""
         
         if password.isEmpty {
-            generateAlert(message: "Password field must not be empty!")
+            generateAlert(title: "Error", message: "Password field must not be empty!")
             
             return false
         }
@@ -72,10 +72,10 @@ class LoginViewController: UIViewController {
         
     }
     
-    private func generateAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+    private func generateAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
     }
 
     /*
