@@ -40,7 +40,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="FBK-nH-c30" kind="show" identifier="ShowGigSegue" id="UYA-pb-y4t"/>
+                                    <segue destination="FBK-nH-c30" kind="show" identifier="ShowGigSegue" id="ITw-0e-mbn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -62,7 +62,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tRp-cx-Acn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="286.95652173913044" y="17.410714285714285"/>
+            <point key="canvasLocation" x="409" y="-356"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="JFN-eP-Rqh">
@@ -116,12 +116,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M0p-dA-i15" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063.768115942029" y="-248.4375"/>
+            <point key="canvasLocation" x="1775" y="477"/>
         </scene>
         <!--Title-->
         <scene sceneID="zEP-aZ-0vr">
             <objects>
-                <viewController id="FBK-nH-c30" sceneMemberID="viewController">
+                <viewController id="FBK-nH-c30" customClass="GigDetailViewController" customModule="Gigs1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kIM-6t-lXS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,12 +163,21 @@
                         <viewLayoutGuide key="safeArea" id="Wo3-K1-2Pc"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="YyD-ro-vzJ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="D8g-0b-mq8"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="D8g-0b-mq8">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="FBK-nH-c30" id="mdh-wc-8lE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="782-2e-43c" id="13c-TM-5wt"/>
+                        <outlet property="dueDatePicker" destination="Biv-WB-IaT" id="2vd-eZ-Z16"/>
+                        <outlet property="jobTitleTextView" destination="B5L-Q7-kcr" id="4IP-6w-ooi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZa-ha-FJ9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1064" y="396"/>
+            <point key="canvasLocation" x="1372" y="-591"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5T6-0D-lOi">
@@ -190,6 +199,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UYA-pb-y4t"/>
+        <segue reference="ITw-0e-mbn"/>
     </inferredMetricsTieBreakers>
 </document>
