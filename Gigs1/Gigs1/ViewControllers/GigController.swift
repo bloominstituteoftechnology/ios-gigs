@@ -211,12 +211,14 @@ class GigController {
     
     func addGig(newGig:Gig, completion: @escaping (Error?) -> Void) {
         
-        let newGigUrl = baseUrl.appendingPathComponent("gigs/")
+        let newGigURL = baseUrl.appendingPathComponent("gigs/")
+       
         
-        var request = URLRequest(url: newGigUrl)
-        request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+        var request = URLRequest(url: newGigURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("Bearer \(String(describing: bearer?.token))",
+            forHTTPHeaderField: "Content-Type")
+
         let jsonEncoder = JSONEncoder()
         do {
             let jsonData = try jsonEncoder.encode(newGig)
@@ -227,7 +229,7 @@ class GigController {
             completion(error)
             return
         }
-        
+
         URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 { //error response 200 is OK or sucessful response
@@ -240,9 +242,9 @@ class GigController {
             }
             completion(nil)
         }.resume()
-        
+
     }
-    
+
 }
 
 
