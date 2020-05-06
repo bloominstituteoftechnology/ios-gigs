@@ -32,7 +32,7 @@
                                     <segment title="Sign Up"/>
                                 </segments>
                                 <connections>
-                                    <action selector="signUpInSegmentTapped:" destination="1uu-BM-IxW" eventType="valueChanged" id="HNJ-h5-tCL"/>
+                                    <action selector="signUpInSegmentTapped:" destination="1uu-BM-IxW" eventType="valueChanged" id="rbM-Pr-7Vo"/>
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pY-lx-a4K">
@@ -81,10 +81,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert Title Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VZR-61-ApG">
-                                <rect key="frame" x="132" y="195" width="262" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="262" id="pdt-EC-bBD"/>
-                                </constraints>
+                                <rect key="frame" x="262" y="195" width="132" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -142,6 +139,7 @@
                             <constraint firstItem="iwe-5d-z18" firstAttribute="leading" secondItem="yeV-wy-5I9" secondAttribute="leading" id="Oa9-6K-vbN"/>
                             <constraint firstItem="Seq-At-wfr" firstAttribute="leading" secondItem="iwe-5d-z18" secondAttribute="leading" id="OsB-kO-ps7"/>
                             <constraint firstItem="xpH-nC-d5d" firstAttribute="bottom" secondItem="eq1-N3-tV1" secondAttribute="bottom" constant="17" id="c0t-Or-hmT"/>
+                            <constraint firstItem="VZR-61-ApG" firstAttribute="leading" secondItem="iwe-5d-z18" secondAttribute="trailing" constant="155.5" id="es6-ke-qxo"/>
                             <constraint firstItem="xpH-nC-d5d" firstAttribute="trailing" secondItem="VZR-61-ApG" secondAttribute="trailing" constant="20" id="fLB-Kv-GuF"/>
                             <constraint firstItem="b7Y-TF-ZlE" firstAttribute="trailing" secondItem="eq1-N3-tV1" secondAttribute="trailing" id="fZa-6L-mdd"/>
                             <constraint firstItem="b7Y-TF-ZlE" firstAttribute="leading" secondItem="eq1-N3-tV1" secondAttribute="leading" id="iT0-LZ-ftl"/>
@@ -204,7 +202,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="hQl-cG-kSS" kind="show" identifier="ShowGig" id="Ncf-ee-Cfr"/>
+                                    <segue destination="hQl-cG-kSS" kind="show" identifier="ShowGigSegue" id="Ncf-ee-Cfr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -248,6 +246,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="sOY-5t-sBq"/>
+        <segue reference="Ncf-ee-Cfr"/>
     </inferredMetricsTieBreakers>
 </document>

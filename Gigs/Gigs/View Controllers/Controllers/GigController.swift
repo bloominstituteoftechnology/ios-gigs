@@ -115,43 +115,81 @@ class GigController {
     
     //MARK: - GET GIGS METHOD
     func getGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
-         guard let bearer = bearer else {
-             completion(.failure(.noToken))
-             return
-         }
-         var request = URLRequest(url: getGigsURL)
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
+        var request = URLRequest(url: getGigsURL)
         
-         request.httpMethod = HTTPMethod.get.rawValue
-         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
-         
-         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-             if let error = error {
-                 print("Error receiving gig name data: \(error)")
-                 completion(.failure(.tryAgain))
-                 return
-             }
-             if let response = response as? HTTPURLResponse,
-                 response.statusCode == 401 {
-                 completion(.failure(.noToken))
-                 return
-             }
-             guard let data = data else {
-                 print("No data received from gigs")
-                 completion(.failure(.noData))
-                 return
-             }
-             do {
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error receiving gig name data: \(error)")
+                completion(.failure(.tryAgain))
+                return
+            }
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.noToken))
+                return
+            }
+            guard let data = data else {
+                print("No data received from gigs")
+                completion(.failure(.noData))
+                return
+            }
+            do {
                 self.gigs = try self.jsonDecoder.decode([Gig].self, from: data)
                 completion(.success(self.gigs))
-                 
-             } catch {
-                 print("Error decoding gigs: \(error)")
-                 completion(.failure(.tryAgain))
-             }
-         }
-         
-         task.resume()
-     }
-     
-     //MARK: -
+                
+            } catch {
+                print("Error decoding gigs: \(error)")
+                completion(.failure(.tryAgain))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    //MARK: -
+    func gigURL(for gig: Gig, completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
+        
+        var request = URLRequest(url: gigURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error receiving gig name data: \(error)")
+                completion(.failure(.noToken))
+                return
+            }
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.noToken))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            do {
+                self.gigs = try self.jsonDecoder.decode([Gig].self, from: data)
+                completion(.success(self.gigs))
+                
+            } catch {
+                print("Error decoding gigs: \(error)")
+                completion(.failure(.tryAgain))
+            }
+        }
+        
+        task.resume()
+    }
+    
 }
