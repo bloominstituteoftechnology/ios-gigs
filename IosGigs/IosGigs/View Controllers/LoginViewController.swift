@@ -81,7 +81,27 @@ class LoginViewController: UIViewController {
                     }
                 })
             } else {
-                
+                gigController?.signIn(with: user, completion: { result in
+                    do {
+                        let success = try result.get()
+                        if success {
+                            DispatchQueue.main.async {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                    } catch {
+                        if let error = error as? GigController.NetworkError {
+                            switch error {
+                            case .failedSignIn:
+                                print("Sign in failed")
+                            case .noData,.noToken:
+                                print("No data receieved")
+                            default:
+                                print("other error has ocurred")
+                            }
+                        }
+                    }
+                })
             }
         }
         

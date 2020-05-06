@@ -18,17 +18,23 @@ final class GigController {
         case post = "POST"
     }
     enum NetworkError: Error {
-        case noData, failedSignUP
+        case noData, failedSignUP, unableToCreateGig, failedSignIn, tryagain, noToken
     }
     
     // MARK: - Properties
     
-    var bearer: Bearer?
+    var gigs: [Gig] = [] 
     
+    var bearer: Bearer?
+
     private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     private lazy var signUpURL = baseURL.appendingPathComponent("users/signup")
     private lazy var signInURL = baseURL.appendingPathComponent("users/login")
+    private lazy var getGigsURL = baseURL.appendingPathComponent("gigs/")
+    private lazy var createGigURL = baseURL.appendingPathComponent("gigs/")
+    
     private lazy var jsonEncoder = JSONEncoder()
+    private lazy var jsonDecoder = JSONDecoder()
     
     // MARK: - Functions
     
@@ -68,4 +74,152 @@ final class GigController {
             completion(.failure(.failedSignUP))
         }
     }
+    
+    func signIn(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        
+        print("signInURL = \(signInURL.absoluteString)")
+        
+        var request = URLRequest(url: signInURL)
+        
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            let jsonData = try jsonEncoder.encode(user)
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    print("Sign up failed with error: \(error)")
+                    completion(.failure(.failedSignIn))
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 else {
+                        print("Sign up has failed")
+                        completion(.failure(.failedSignIn))
+                        return
+                }
+                
+                guard let data = data else {
+                    print("No data was received during sign in")
+                    completion(.failure(.noData))
+                    return
+                }
+                
+                do {
+                    self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data)
+                } catch {
+                    print("Error decdoing bearer object: \(error)")
+                    completion(.failure(.noToken))
+                }
+                
+                completion(.success(true))
+            }
+            task.resume()
+            
+        } catch {
+            print("Error encoding user: \(error)")
+            completion(.failure(.failedSignIn))
+        }
+    }
+    
+    func getGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            
+            completion(.failure(.noToken))
+            return
+        }
+        
+        var request = URLRequest(url: getGigsURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error receiving animal name data: \(error)")
+                completion(.failure(.tryagain))
+                return
+            }
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.noToken))
+            }
+            guard let data = data else {
+                print("No data received from getAllAnimals")
+                completion(.failure(.noData))
+                return
+            }
+            do {
+                self.jsonDecoder.dateDecodingStrategy = .secondsSince1970
+                let gigs = try self.jsonDecoder.decode([String].self, from: data)
+                completion(.success(gigs))
+            } catch {
+                print("Error decoding animal name data: \(error)")
+                completion(.failure(.tryagain))
+            }
+        }
+        task.resume()
+    }
+    
+    func createGig(title: String, dueDate: Date, jobDescription: String, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        
+        let gig = Gig(title: title, dueDate: dueDate, description: jobDescription)
+        
+        guard let bearer = bearer else {
+            
+            completion(.failure(.noToken))
+            return
+        }
+        
+        print("createGigURL = \(createGigURL.absoluteString)")
+        
+        var request = URLRequest(url: createGigURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        do {
+            let jsonData = try jsonEncoder.encode(gig)
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    print("Created gig was unsuccessfull: \(error)")
+                    completion(.failure(.unableToCreateGig))
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 else {
+                        print("Created gig has failed")
+                        completion(.failure(.unableToCreateGig))
+                        return
+                }
+                
+                guard let data = data else {
+                    print("No data was received during sign in")
+                    completion(.failure(.noData))
+                    return
+                }
+                
+                do {
+                    self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data)
+                } catch {
+                    print("Error decdoing bearer object: \(error)")
+                    completion(.failure(.noToken))
+                }
+                
+                self.gigs.append(gig)
+                completion(.success(true))
+            }
+            task.resume()
+            
+        } catch {
+            print("Error encoding user: \(error)")
+            completion(.failure(.unableToCreateGig))
+        }
+    }
+    
 }

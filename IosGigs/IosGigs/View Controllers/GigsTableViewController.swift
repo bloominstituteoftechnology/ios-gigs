@@ -14,6 +14,7 @@ class GigsTableViewController: UITableViewController {
     let gigController = GigController()
     
     
+    
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -28,23 +29,26 @@ class GigsTableViewController: UITableViewController {
             performSegue(withIdentifier: "loginVCSegue", sender: self)
         }
     }
+    
+    let df = DateFormatter()
+    
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "jobListCell", for: indexPath)
 
-
+        let gig = gigController.gigs[indexPath.row]
+        
+        cell.textLabel?.text = gig.title
+        cell.detailTextLabel?.text = "Due: \(df.string(from: gig.dueDate))"
+    
         return cell
     }
     
@@ -56,6 +60,20 @@ class GigsTableViewController: UITableViewController {
             
             if let loginVc = segue.destination as? LoginViewController {
                 loginVc.gigController = gigController
+            }
+        }
+        else if segue.identifier == "AddGig" {
+            if let gigDetailVC = segue.destination as? GigDetailViewController {
+                gigDetailVC.gigController = gigController
+            }
+            
+        }
+        else if segue.identifier == "ShowGig" {
+            if let gigDetailVC = segue.destination as? GigDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow {
+                
+                gigDetailVC.gigController = gigController
+                gigDetailVC.gig = gigController.gigs[indexPath.row]
             }
         }
         

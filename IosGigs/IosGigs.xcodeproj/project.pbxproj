@@ -17,6 +17,8 @@
 		50DED4472461C0CA00CF50CD /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DED4462461C0CA00CF50CD /* Bearer.swift */; };
 		50DED44B2461C19D00CF50CD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DED44A2461C19D00CF50CD /* User.swift */; };
 		50DED44D2461C20F00CF50CD /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DED44C2461C20F00CF50CD /* GigController.swift */; };
+		50DED458246314D700CF50CD /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DED457246314D700CF50CD /* GigDetailViewController.swift */; };
+		50DED45E24634C1D00CF50CD /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DED45D24634C1D00CF50CD /* Gig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		50DED4462461C0CA00CF50CD /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		50DED44A2461C19D00CF50CD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		50DED44C2461C20F00CF50CD /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		50DED457246314D700CF50CD /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		50DED45D24634C1D00CF50CD /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 			children = (
 				50DED4462461C0CA00CF50CD /* Bearer.swift */,
 				50DED44A2461C19D00CF50CD /* User.swift */,
+				50DED45D24634C1D00CF50CD /* Gig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -97,6 +102,7 @@
 			children = (
 				50DED4422461BD2D00CF50CD /* GigsTableViewController.swift */,
 				50DED4442461BF5B00CF50CD /* LoginViewController.swift */,
+				50DED457246314D700CF50CD /* GigDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -191,10 +197,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				50DED44D2461C20F00CF50CD /* GigController.swift in Sources */,
+				50DED458246314D700CF50CD /* GigDetailViewController.swift in Sources */,
 				50DED4432461BD2D00CF50CD /* GigsTableViewController.swift in Sources */,
 				50DED4472461C0CA00CF50CD /* Bearer.swift in Sources */,
 				50DED42B2461001B00CF50CD /* AppDelegate.swift in Sources */,
 				50DED4452461BF5B00CF50CD /* LoginViewController.swift in Sources */,
+				50DED45E24634C1D00CF50CD /* Gig.swift in Sources */,
 				50DED42D2461001B00CF50CD /* SceneDelegate.swift in Sources */,
 				50DED44B2461C19D00CF50CD /* User.swift in Sources */,
 			);
