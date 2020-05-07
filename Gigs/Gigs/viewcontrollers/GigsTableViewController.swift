@@ -13,7 +13,11 @@ class GigsTableViewController: UITableViewController, LoginDelegate {
     
     let controller = GigController()
     
-
+    var gigs: [Gig] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +27,12 @@ class GigsTableViewController: UITableViewController, LoginDelegate {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        self.refreshControl?.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if controller.bearer == nil {
-            
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
     }
@@ -35,67 +40,57 @@ class GigsTableViewController: UITableViewController, LoginDelegate {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigs.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
-
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "gigsViewCell", for: indexPath) as? GigsTableViewCell else {
+            os_log("The dequeued cell is not being displayed by the table", log: OSLog.default, type: .error)
+            
+            let errorCell = GigsTableViewCell()
+            errorCell.gigTitleLabel.text = "Error"
+            errorCell.dateLabel.text = "Error"
+            
+            return errorCell
+        }
+        
+        // TODO: set cell object
+                
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    @objc func refreshTable(_ sender: Any) {
+        getAllGigs()
+        self.refreshControl?.endRefreshing()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func getAllGigs() {
+        controller.getAllGigs { result in
+            do {
+                let receivedGigs = try result.get()
+                DispatchQueue.main.async {
+                    self.gigs = receivedGigs
+                }
+            } catch {
+                if let error = error as? GigController.NetworkError {
+                    switch error {
+                    case .noToken:
+                        os_log("Token authorization missing or invalid", log: OSLog.default, type: .error)
+                    case .noData, .tryAgain:
+                        os_log("No data received from server. Try calling again?", log: OSLog.default, type: .error)
+                    default:
+                        break
+                    }
+                }
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "loginSegue" {
@@ -105,12 +100,12 @@ class GigsTableViewController: UITableViewController, LoginDelegate {
             }
             
             loginViewController.gigsController = controller
+            loginViewController.loginDelegate = self
         }
     }
     
-    // MARK: - Login Delegate
-    func bearerTokenReceived(_ bearer: Bearer) {
-        
+    func loginAuthenticated() {
+        getAllGigs()
     }
 
 }

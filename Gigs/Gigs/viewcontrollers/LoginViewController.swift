@@ -10,7 +10,7 @@ import UIKit
 import os.log
 
 protocol LoginDelegate {
-    func bearerTokenReceived(_ bearer: Bearer)
+    func loginAuthenticated()
 }
 
 class LoginViewController: UIViewController {
@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     
     var gigsController: GigController?
     
-    var delegate: LoginDelegate?
+    var loginDelegate: LoginDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +52,8 @@ class LoginViewController: UIViewController {
                         do {
                             let success = try result.get()
                             if success {
+                                os_log("Signed in successfully", log: OSLog.default, type: .debug)
+
                                 DispatchQueue.main.async {
                                     self.generateAlert(title: "Sign Up Successful", message: "Now please log in.")
                                 }
@@ -68,10 +70,7 @@ class LoginViewController: UIViewController {
                             let success = try result.get()
                             if success {
                                 DispatchQueue.main.async {
-                                    if let bearer = self.gigsController?.bearer {
-                                        self.delegate?.bearerTokenReceived(bearer)
-                                    }
-                                    
+                                    self.loginDelegate?.loginAuthenticated()
                                     self.dismiss(animated: true, completion: nil)
                                 }
                             }
