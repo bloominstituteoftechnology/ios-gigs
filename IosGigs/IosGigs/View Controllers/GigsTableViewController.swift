@@ -19,6 +19,7 @@ class GigsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -27,6 +28,14 @@ class GigsTableViewController: UITableViewController {
         if gigController.bearer == nil {
             
             performSegue(withIdentifier: "loginVCSegue", sender: self)
+        } else {
+            gigController.getGigs { result in
+                if let gig = try? result.get() {
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
         }
     }
     
@@ -47,8 +56,12 @@ class GigsTableViewController: UITableViewController {
         let gig = gigController.gigs[indexPath.row]
         
         cell.textLabel?.text = gig.title
-        cell.detailTextLabel?.text = "Due: \(df.string(from: gig.dueDate))"
-    
+        //cell.detailTextLabel?.text = "Due: \(gig.dueDate.description.prefix(9))"
+       // df.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        df.dateStyle = .short
+        let finalDateString = df.string(from: gig.dueDate)
+        cell.detailTextLabel?.text = "Due: \(finalDateString)"
+
         return cell
     }
     
@@ -68,7 +81,7 @@ class GigsTableViewController: UITableViewController {
             }
             
         }
-        else if segue.identifier == "ShowGig" {
+        else if segue.identifier == "ViewGig" {
             if let gigDetailVC = segue.destination as? GigDetailViewController,
                 let indexPath = tableView.indexPathForSelectedRow {
                 

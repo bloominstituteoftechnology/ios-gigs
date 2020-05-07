@@ -23,15 +23,20 @@ final class GigController {
     
     // MARK: - Properties
     
-    var gigs: [Gig] = [] 
+    var gigs: [Gig] = [] {
+        
+        didSet {
+            
+        }
+    }
     
     var bearer: Bearer?
 
     private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     private lazy var signUpURL = baseURL.appendingPathComponent("users/signup")
     private lazy var signInURL = baseURL.appendingPathComponent("users/login")
-    private lazy var getGigsURL = baseURL.appendingPathComponent("gigs/")
-    private lazy var createGigURL = baseURL.appendingPathComponent("gigs/")
+    private lazy var getGigsURL = baseURL.appendingPathComponent("gigs")
+    private lazy var createGigURL = baseURL.appendingPathComponent("gigs")
     
     private lazy var jsonEncoder = JSONEncoder()
     private lazy var jsonDecoder = JSONDecoder()
@@ -125,7 +130,7 @@ final class GigController {
         }
     }
     
-    func getGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+    func getGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         
         guard let bearer = bearer else {
             
@@ -153,9 +158,9 @@ final class GigController {
                 return
             }
             do {
-                self.jsonDecoder.dateDecodingStrategy = .secondsSince1970
-                let gigs = try self.jsonDecoder.decode([String].self, from: data)
-                completion(.success(gigs))
+                self.jsonDecoder.dateDecodingStrategy = .iso8601
+                self.gigs = try self.jsonDecoder.decode([Gig].self, from: data)
+                completion(.success(self.gigs))
             } catch {
                 print("Error decoding animal name data: \(error)")
                 completion(.failure(.tryagain))
@@ -179,8 +184,10 @@ final class GigController {
         var request = URLRequest(url: createGigURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
-        
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
         do {
+            self.jsonEncoder.dateEncodingStrategy = .iso8601
             let jsonData = try jsonEncoder.encode(gig)
             request.httpBody = jsonData
             
@@ -204,12 +211,12 @@ final class GigController {
                     return
                 }
                 
-                do {
-                    self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data)
-                } catch {
-                    print("Error decdoing bearer object: \(error)")
-                    completion(.failure(.noToken))
-                }
+//                do {
+//                    self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data)
+//                } catch {
+//                    print("Error decdoing bearer object: \(error)")
+//                    completion(.failure(.noToken))
+//                }
                 
                 self.gigs.append(gig)
                 completion(.success(true))

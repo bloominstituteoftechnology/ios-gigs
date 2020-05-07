@@ -34,7 +34,10 @@ class GigDetailViewController: UIViewController {
             
         gigController.createGig(title: jobTitle, dueDate: date, jobDescription: jobDescription) { result in
             if let _ = try? result.get() {
-                self.navigationController?.popViewController(animated: true)
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+
+                }
             }
             
         }
