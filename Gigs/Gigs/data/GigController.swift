@@ -30,6 +30,10 @@ final class GigController {
     
     var bearer: Bearer?
     
+    init() {
+        jsonDecoder.dateDecodingStrategy = .iso8601
+    }
+    
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         
         var request = URLRequest(url: signUpURL)

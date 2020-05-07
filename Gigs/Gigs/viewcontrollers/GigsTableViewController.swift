@@ -60,7 +60,8 @@ class GigsTableViewController: UITableViewController, LoginDelegate {
             return errorCell
         }
         
-        // TODO: set cell object
+        let selectedGig = gigs[indexPath.row]
+        cell.gig = selectedGig
                 
         return cell
     }
