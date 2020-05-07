@@ -17,6 +17,9 @@
 		8E87839F2461F21A00205B72 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E87839E2461F21A00205B72 /* User.swift */; };
 		8E8783A12461F24500205B72 /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8783A02461F24500205B72 /* GigController.swift */; };
 		8E8783A32461F2C000205B72 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8783A22461F2C000205B72 /* Bearer.swift */; };
+		8ED2055C2463627400CD6601 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2055B2463627400CD6601 /* GigDetailViewController.swift */; };
+		8ED2055E2463630400CD6601 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2055D2463630400CD6601 /* Gig.swift */; };
+		8ED205602463B76700CD6601 /* GigsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2055F2463B76700CD6601 /* GigsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		8E87839E2461F21A00205B72 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Gigs/ViewControllers/User.swift; sourceTree = SOURCE_ROOT; };
 		8E8783A02461F24500205B72 /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigController.swift; path = Gigs/Models/GigController.swift; sourceTree = SOURCE_ROOT; };
 		8E8783A22461F2C000205B72 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Bearer.swift; path = Gigs/Controllers/Bearer.swift; sourceTree = SOURCE_ROOT; };
+		8ED2055B2463627400CD6601 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigDetailViewController.swift; path = Gigs/GigDetailViewController.swift; sourceTree = SOURCE_ROOT; };
+		8ED2055D2463630400CD6601 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Gig.swift; path = Gigs/Gig.swift; sourceTree = SOURCE_ROOT; };
+		8ED2055F2463B76700CD6601 /* GigsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigsTableViewCell.swift; path = Gigs/ViewControllers/GigsTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,7 @@
 		8E8783952461E94B00205B72 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8ED2055D2463630400CD6601 /* Gig.swift */,
 				8E8783A22461F2C000205B72 /* Bearer.swift */,
 				8E87839E2461F21A00205B72 /* User.swift */,
 			);
@@ -87,6 +94,7 @@
 		8E8783962461E95100205B72 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8ED2055F2463B76700CD6601 /* GigsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -102,6 +110,7 @@
 		8E8783982461E95D00205B72 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8ED2055B2463627400CD6601 /* GigDetailViewController.swift */,
 				8E87839A2461E9F400205B72 /* GigsTableViewController.swift */,
 				8E87839C2461F01900205B72 /* LoginViewController.swift */,
 			);
@@ -191,12 +200,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E87839D2461F01900205B72 /* LoginViewController.swift in Sources */,
+				8ED2055C2463627400CD6601 /* GigDetailViewController.swift in Sources */,
 				8E8783822461E92D00205B72 /* AppDelegate.swift in Sources */,
+				8ED205602463B76700CD6601 /* GigsTableViewCell.swift in Sources */,
 				8E8783842461E92D00205B72 /* SceneDelegate.swift in Sources */,
 				8E8783A32461F2C000205B72 /* Bearer.swift in Sources */,
 				8E87839F2461F21A00205B72 /* User.swift in Sources */,
 				8E87839B2461E9F400205B72 /* GigsTableViewController.swift in Sources */,
 				8E8783A12461F24500205B72 /* GigController.swift in Sources */,
+				8ED2055E2463630400CD6601 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

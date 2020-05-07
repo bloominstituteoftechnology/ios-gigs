@@ -30,6 +30,11 @@ class LoginViewController: UIViewController {
         signInButtonOutlet.layer.cornerRadius = 8.0
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        userNameTextField.becomeFirstResponder()
+    }
     // Actions
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -67,6 +72,28 @@ class LoginViewController: UIViewController {
                         }
                     } catch {
                         print("Error signing up: \(error)")
+                    }
+                })
+            } else {
+                gigController?.signIn(with: user, completion: { result in
+                    do {
+                        let success = try result.get()
+                        if success {
+                            DispatchQueue.main.async {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                    } catch {
+                        if let error = error as? GigController.NetworkError {
+                            switch error {
+                            case .failedLogin:
+                                print("Sign In Failed")
+                            case .noToken:
+                                print("No data received")
+                            default:
+                                print("Other errors occured")
+                            }
+                        }
                     }
                 })
             }
