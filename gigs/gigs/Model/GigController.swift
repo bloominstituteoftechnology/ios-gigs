@@ -16,8 +16,16 @@ final class GigController {
         case post = "POST"
     }
     
+    var gigs: [Gig] = []
+    
     enum NetworkError: Error {
         case failedSignUp, failedLogIn, noData, badData
+        case notSignedIn, failedFetch, failedPost
+    }
+    
+    enum LogInStatus {
+        case notLoggedIn
+        case loggedIn
     }
     
     var bearer: Bearer?
@@ -25,6 +33,7 @@ final class GigController {
     private var baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     private lazy var signUpURL: URL = baseURL.appendingPathComponent("/users/signup")
     private lazy var logInURL: URL = baseURL.appendingPathComponent("/users/login")
+    private lazy var allGigsURL: URL = baseURL.appendingPathComponent("/gigs/")
     
     private lazy var jsonEncoder = JSONEncoder()
     private lazy var jsonDecoder = JSONDecoder()
@@ -90,7 +99,6 @@ final class GigController {
                     completion(.failure(.failedLogIn))
                     return
             }
-            
             guard let data = data else {
                 print("no data was returned.")
                 completion(.failure(.noData))
@@ -108,5 +116,96 @@ final class GigController {
             }
             
         }.resume()
+    }
+    
+    func fetchGigs(completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.notSignedIn))
+            return
+        }
+        
+        let request = getRequest(for: allGigsURL, bearer: bearer)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("failed to fetch gigs: \(error)")
+                completion(.failure(.failedFetch))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse,
+            response.statusCode == 200
+                else {
+                    print("Gig names received bad response")
+                    completion(.failure(.failedFetch))
+                    return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            do {
+                let gigs = try self.jsonDecoder.decode([Gig].self, from: data)
+                self.gigs = gigs
+                completion(.success(true))
+            } catch {
+                print("error decoding Gigs: \(error)")
+                completion(.failure(.badData))
+            }
+        }.resume()
+    }
+    
+    func postGig(for gig: Gig, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.notSignedIn))
+            return
+        }
+        
+        let request = gigUrl(with: allGigsURL, with: bearer, requestType: .post)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("gig failed to post. error: \(error)")
+                completion(.failure(.failedFetch))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse,
+            response.statusCode == 200
+                else {
+                    print("gig received non-200 response")
+                    completion(.failure(.failedFetch))
+                    return
+            }
+            
+            guard let data = data else {
+                return completion(.failure(.badData))
+            }
+            
+            do {
+                let gig = try self.jsonDecoder.decode([Gig].self, from: data)
+                completion(.success(true))
+                self.gigs.append(contentsOf: gig)
+            } catch {
+                print("error decoding gig: \(error)")
+                completion(.failure(.failedPost))
+            }
+        }.resume()
+   
+    }
+    
+    private func getRequest(for url: URL, bearer: Bearer) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        return request
+    }
+    
+    private func gigUrl(with url: URL, with bearer: Bearer, requestType: HTTPMethod) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.httpMethod = requestType.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }
