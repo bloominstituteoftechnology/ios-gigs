@@ -23,6 +23,9 @@ class GigDetailViewController: UIViewController, UITextFieldDelegate {
             jobTitleTextField.text = gig.title
             datePicker.setDate(gig.dueDate, animated: false)
             descriptionTextView.text = gig.description
+            self.title = gig.title
+        } else {
+            self.title = "New Gig"
         }
     }
 

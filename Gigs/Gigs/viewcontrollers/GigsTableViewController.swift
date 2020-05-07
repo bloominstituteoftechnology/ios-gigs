@@ -40,8 +40,9 @@ class GigsTableViewController: UITableViewController, LoginDelegate {
     func loginAuthenticated() {
         getAllGigs()
     }
+    
 
-    // MARK: - Table view data source
+    // MARK: - Table view
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -97,6 +98,12 @@ class GigsTableViewController: UITableViewController, LoginDelegate {
         }
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+        }
+    }
+    
     // MARK: - Storyboard Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -141,13 +148,27 @@ class GigsTableViewController: UITableViewController, LoginDelegate {
             
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 gigs[selectedIndexPath.row] = sourceGig
-                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                tableView.reloadData()
                 
             } else {
-                let newIndexPath = IndexPath(row: gigs.count, section: 0)
-                
-                gigs.append(sourceGig)
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
+                controller.createGig(with: sourceGig) { result in
+                    
+                    do {
+                        let success = try result.get()
+                        if success {
+                            os_log("Successfully posted a new gig to server")
+                            
+                            DispatchQueue.main.async {
+                                self.gigs.append(sourceGig)
+                                self.tableView.reloadData()
+                            }
+                        }
+                        
+                    } catch {
+                        os_log("Error while posting new gig to server", log: OSLog.default, type: .error)
+                        return
+                    }
+                }
             }
         }
     }

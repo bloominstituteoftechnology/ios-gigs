@@ -48,7 +48,7 @@
 		BE2677BC24626A6800487FBD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BE2677BE2462705E00487FBD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BE2677C02463071300487FBD /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
-		BE2677C22463075E00487FBD /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
+		BE2677C22463075E00487FBD /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigController.swift; path = Gigs/controller/GigController.swift; sourceTree = SOURCE_ROOT; };
 		BE5C61E02463718100B1E796 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 		BE5C61E22463B2D700B1E796 /* GigsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewCell.swift; sourceTree = "<group>"; };
 		BE5C61E42463FDEA00B1E796 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +99,6 @@
 			children = (
 				BE2677BE2462705E00487FBD /* User.swift */,
 				BE2677C02463071300487FBD /* Bearer.swift */,
-				BE2677C22463075E00487FBD /* GigController.swift */,
 				BE5C61E02463718100B1E796 /* Gig.swift */,
 			);
 			path = data;
@@ -113,6 +112,14 @@
 				BE5C61E42463FDEA00B1E796 /* GigDetailViewController.swift */,
 			);
 			path = viewcontrollers;
+			sourceTree = "<group>";
+		};
+		BE5C61E62464065A00B1E796 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				BE2677C22463075E00487FBD /* GigController.swift */,
+			);
+			path = controller;
 			sourceTree = "<group>";
 		};
 		BE86B9B62461E88800A4837F = {
@@ -138,6 +145,7 @@
 		BE86B9C12461E88800A4837F /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
+				BE5C61E62464065A00B1E796 /* controller */,
 				BE2677B92462699B00487FBD /* viewcontrollers */,
 				BE2677B82462697900487FBD /* data */,
 				BE86B9F62461E95300A4837F /* app */,

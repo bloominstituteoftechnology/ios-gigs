@@ -17,7 +17,7 @@ final class GigController {
     }
     
     enum NetworkError: Error {
-        case noData, failedSignUp, failedSignIn, noToken, tryAgain
+        case noData, failedSignUp, failedSignIn, noToken, tryAgain, failedPost
     }
     
     private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
@@ -32,6 +32,7 @@ final class GigController {
     
     init() {
         jsonDecoder.dateDecodingStrategy = .iso8601
+        jsonEncoder.dateEncodingStrategy = .iso8601
     }
     
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
@@ -160,5 +161,45 @@ final class GigController {
         }
         
         task.resume()
+    }
+    
+    func createGig(with gig: Gig, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
+        
+        var request = URLRequest(url: gigsURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            let jsonData = try jsonEncoder.encode(gig)
+            
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request) { _, response, error in
+                       
+                       if let error = error {
+                           os_log("Error posting gig data: %@", log: OSLog.default, type: .error, "\(error)")
+                           completion(.failure(.tryAgain))
+                           return
+                       }
+                       
+                       if let response = response as? HTTPURLResponse, response.statusCode == 401 {
+                           completion(.failure(.noToken))
+                           return
+                       }
+                       
+                completion(.success(true))
+            }
+            
+            task.resume()
+            
+        } catch {
+            os_log("Error encoding gig: %@", log: OSLog.default, type: .error, "\(error)")
+            completion(.failure(.failedPost))
+        }
     }
 }
