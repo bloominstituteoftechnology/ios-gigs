@@ -24,7 +24,6 @@ class GigDetailViewController: UIViewController {
         }
         updateViews()
     }
-    
     func updateViews() {
         guard let gig = gig else { return }
         gigNameTextField.text = gig.title
@@ -32,7 +31,6 @@ class GigDetailViewController: UIViewController {
         datePicker.date = gig.dueDate
         
     }
-    
     @IBAction func saveButtonPressed(_ sender: Any) {
         guard let gigName = gigNameTextField.text,
             gigName.isEmpty == false,

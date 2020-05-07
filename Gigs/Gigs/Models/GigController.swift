@@ -34,7 +34,7 @@ final class GigController {
             return .notLoggedIn
         }
     }
-    // Properties
+    // MARK: - Properties
     var bearer: Bearer?
     var gigs: [Gig] = []
     
@@ -53,9 +53,7 @@ final class GigController {
         decoder.dateDecodingStrategy = .iso8601
         return decoder
     }()
-    
-    
-    
+    // MARK: Functions
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         print("singUpURL = \(signUpURL.absoluteString)") // debug step to confirm correct URL
         
@@ -178,20 +176,19 @@ final class GigController {
             }
         }.resume()
     }
-    
     func addGig(gig: Gig, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         guard let bearer = bearer else {
             print("Not Authorized")
             completion(.failure(.failedPost))
             return
         }
-        
+        // request
         var request = URLRequest(url: allGigsURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+        // encoder
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         do {
