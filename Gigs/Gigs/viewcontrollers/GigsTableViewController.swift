@@ -36,6 +36,10 @@ class GigsTableViewController: UITableViewController, LoginDelegate {
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
     }
+    
+    func loginAuthenticated() {
+        getAllGigs()
+    }
 
     // MARK: - Table view data source
 
@@ -93,8 +97,11 @@ class GigsTableViewController: UITableViewController, LoginDelegate {
         }
     }
     
+    // MARK: - Storyboard Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "loginSegue" {
+        
+        switch segue.identifier ?? "" {
+        case "loginSegue":
             guard let loginViewController = segue.destination as? LoginViewController else {
                 os_log("Invalid destination: %@", log: OSLog.default, type: .error, "\(segue.destination)")
                 return
@@ -102,11 +109,47 @@ class GigsTableViewController: UITableViewController, LoginDelegate {
             
             loginViewController.gigsController = controller
             loginViewController.loginDelegate = self
+            
+        case "showDetailSegue":
+            guard let gigDetailViewController = segue.destination as? GigDetailViewController else {
+                os_log("Invalid destination: %@", log: OSLog.default, type: .error, "\(segue.destination)")
+                return
+            }
+            
+            guard let selectedCell = sender as? GigsTableViewCell else {
+                os_log("Unexpected sender: %@", log: OSLog.default, type: .error, "\(sender ?? "No sender available")")
+                return
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedCell) else {
+                os_log("The selected cell is not being displayed by the table view", log: OSLog.default, type: .error)
+                return
+            }
+            
+            gigDetailViewController.gig = gigs[indexPath.row]
+            
+        case "addGigSegue":
+            os_log("Add button pressed")
+            
+        default:
+            os_log("Invalid segue or no segue identifier available", log: OSLog.default, type: .error)
         }
     }
     
-    func loginAuthenticated() {
-        getAllGigs()
+    @IBAction func unwindToGigsTableView(_ sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? GigDetailViewController, let sourceGig = sourceViewController.gig {
+            
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                gigs[selectedIndexPath.row] = sourceGig
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                
+            } else {
+                let newIndexPath = IndexPath(row: gigs.count, section: 0)
+                
+                gigs.append(sourceGig)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        }
     }
 
 }
