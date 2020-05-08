@@ -10,7 +10,7 @@
         <!--Gigs-->
         <scene sceneID="j8v-ba-d7j">
             <objects>
-                <tableViewController id="B4Q-3q-aaf" sceneMemberID="viewController">
+                <tableViewController id="B4Q-3q-aaf" customClass="GigsTableViewController" customModule="GigsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lsU-B6-CWQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,7 +48,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Gigs" id="p8s-qy-WAL"/>
                     <connections>
-                        <segue destination="Dlh-HT-UZm" kind="presentation" identifier="LoginSegue" modalPresentationStyle="fullScreen" id="d4n-QU-XDk"/>
+                        <segue destination="Dlh-HT-UZm" kind="presentation" identifier="LoginSegue" id="d4n-QU-XDk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ZQ-w2-ILm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -60,11 +60,11 @@
             <objects>
                 <viewController id="Dlh-HT-UZm" customClass="LoginViewController" customModule="GigsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WS0-Ay-fF7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="EbS-iS-fkv">
-                                <rect key="frame" x="8" y="60" width="398" height="219"/>
+                                <rect key="frame" x="8" y="16" width="398" height="219"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g5I-os-CW9">
                                         <rect key="frame" x="0.0" y="0.0" width="398" height="32"/>
@@ -85,13 +85,13 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="skf-DP-riO">
                                         <rect key="frame" x="0.0" y="125" width="398" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h6B-b8-S3B">
                                         <rect key="frame" x="0.0" y="189" width="398" height="30"/>
                                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <state key="normal" title="Button">
+                                        <state key="normal" title="Sign Up">
                                             <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>

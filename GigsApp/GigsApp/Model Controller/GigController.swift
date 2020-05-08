@@ -31,6 +31,8 @@ class GigController {
     //MARK: - Functions
     //Function to sign up
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        print("signUpURL = \(signUpUrl.absoluteString)")
+        
         var request = postRequest(for: signUpUrl)
         
         do{

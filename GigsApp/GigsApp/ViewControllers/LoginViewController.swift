@@ -21,8 +21,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     
     //MARK: - Properties
-    
-    
     var gigController: GigController?
     var loginType = LoginType.signUp
     
@@ -56,6 +54,7 @@ class LoginViewController: UIViewController {
                                     self.segmentedController.selectedSegmentIndex = 1
                                     self.loginButton.setTitle("Sign In", for: .normal)
                                 }
+                                
                             }
                         }
                     } catch {
