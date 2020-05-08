@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		0B10CB5A2465C11700CA0AEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B10CB592465C11700CA0AEB /* AppDelegate.swift */; };
 		0B10CB5C2465C11700CA0AEB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B10CB5B2465C11700CA0AEB /* SceneDelegate.swift */; };
-		0B10CB5E2465C11700CA0AEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B10CB5D2465C11700CA0AEB /* ViewController.swift */; };
 		0B10CB612465C11700CA0AEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B10CB5F2465C11700CA0AEB /* Main.storyboard */; };
 		0B10CB632465C11900CA0AEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B10CB622465C11900CA0AEB /* Assets.xcassets */; };
 		0B10CB662465C11900CA0AEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B10CB642465C11900CA0AEB /* LaunchScreen.storyboard */; };
+		0B10CB6F2465C19E00CA0AEB /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B10CB6E2465C19E00CA0AEB /* GigsTableViewController.swift */; };
+		0B10CB742465C49000CA0AEB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B10CB732465C49000CA0AEB /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0B10CB562465C11700CA0AEB /* GigsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GigsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B10CB592465C11700CA0AEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B10CB5B2465C11700CA0AEB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0B10CB5D2465C11700CA0AEB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0B10CB602465C11700CA0AEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0B10CB622465C11900CA0AEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B10CB652465C11900CA0AEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B10CB672465C11900CA0AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B10CB6E2465C19E00CA0AEB /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
+		0B10CB732465C49000CA0AEB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,40 @@
 		0B10CB582465C11700CA0AEB /* GigsApp */ = {
 			isa = PBXGroup;
 			children = (
-				0B10CB592465C11700CA0AEB /* AppDelegate.swift */,
-				0B10CB5B2465C11700CA0AEB /* SceneDelegate.swift */,
-				0B10CB5D2465C11700CA0AEB /* ViewController.swift */,
-				0B10CB5F2465C11700CA0AEB /* Main.storyboard */,
-				0B10CB622465C11900CA0AEB /* Assets.xcassets */,
-				0B10CB642465C11900CA0AEB /* LaunchScreen.storyboard */,
+				0B10CB712465C1C200CA0AEB /* Resources */,
+				0B10CB702465C1A600CA0AEB /* Views */,
+				0B10CB6D2465C18F00CA0AEB /* ViewControllers */,
 				0B10CB672465C11900CA0AEB /* Info.plist */,
 			);
 			path = GigsApp;
+			sourceTree = "<group>";
+		};
+		0B10CB6D2465C18F00CA0AEB /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0B10CB6E2465C19E00CA0AEB /* GigsTableViewController.swift */,
+				0B10CB732465C49000CA0AEB /* LoginViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0B10CB702465C1A600CA0AEB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0B10CB5F2465C11700CA0AEB /* Main.storyboard */,
+				0B10CB642465C11900CA0AEB /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0B10CB712465C1C200CA0AEB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0B10CB592465C11700CA0AEB /* AppDelegate.swift */,
+				0B10CB5B2465C11700CA0AEB /* SceneDelegate.swift */,
+				0B10CB622465C11900CA0AEB /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +165,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B10CB5E2465C11700CA0AEB /* ViewController.swift in Sources */,
+				0B10CB742465C49000CA0AEB /* LoginViewController.swift in Sources */,
 				0B10CB5A2465C11700CA0AEB /* AppDelegate.swift in Sources */,
 				0B10CB5C2465C11700CA0AEB /* SceneDelegate.swift in Sources */,
+				0B10CB6F2465C19E00CA0AEB /* GigsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
