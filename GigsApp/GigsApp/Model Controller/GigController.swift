@@ -110,10 +110,10 @@ class GigController {
     }
     
     //MARK: - Helper Functions
-    private func postRequest(for url: URL) -> URLRequest{
-        var request = URLRequest(url: url)
-        request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("applicaiton/json", forHTTPHeaderField: "Content-Type")
-        return request
-    }
+    private func postRequest(for url: URL) -> URLRequest {
+           var request = URLRequest(url: url)
+           request.httpMethod = HTTPMethod.post.rawValue
+           request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+           return request
+       }
 }

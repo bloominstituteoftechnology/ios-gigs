@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func loginButtonTapped(_ sender: Any) {
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
         if let username = usernameTextField.text , !username.isEmpty,
             let password = passwordTextField.text, !password.isEmpty{
             let user = User(username: username, password: password)
