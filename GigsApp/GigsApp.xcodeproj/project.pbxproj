@@ -14,6 +14,8 @@
 		0B10CB662465C11900CA0AEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B10CB642465C11900CA0AEB /* LaunchScreen.storyboard */; };
 		0B10CB6F2465C19E00CA0AEB /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B10CB6E2465C19E00CA0AEB /* GigsTableViewController.swift */; };
 		0B10CB742465C49000CA0AEB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B10CB732465C49000CA0AEB /* LoginViewController.swift */; };
+		0B10CB772465C62A00CA0AEB /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B10CB762465C62A00CA0AEB /* Bearer.swift */; };
+		0B10CB792465C67700CA0AEB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B10CB782465C67700CA0AEB /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		0B10CB672465C11900CA0AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B10CB6E2465C19E00CA0AEB /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		0B10CB732465C49000CA0AEB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0B10CB762465C62A00CA0AEB /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		0B10CB782465C67700CA0AEB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 		0B10CB582465C11700CA0AEB /* GigsApp */ = {
 			isa = PBXGroup;
 			children = (
+				0B10CB752465C5F200CA0AEB /* Models */,
 				0B10CB712465C1C200CA0AEB /* Resources */,
 				0B10CB702465C1A600CA0AEB /* Views */,
 				0B10CB6D2465C18F00CA0AEB /* ViewControllers */,
@@ -92,6 +97,15 @@
 				0B10CB622465C11900CA0AEB /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		0B10CB752465C5F200CA0AEB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0B10CB762465C62A00CA0AEB /* Bearer.swift */,
+				0B10CB782465C67700CA0AEB /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,7 +179,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B10CB772465C62A00CA0AEB /* Bearer.swift in Sources */,
 				0B10CB742465C49000CA0AEB /* LoginViewController.swift in Sources */,
+				0B10CB792465C67700CA0AEB /* User.swift in Sources */,
 				0B10CB5A2465C11700CA0AEB /* AppDelegate.swift in Sources */,
 				0B10CB5C2465C11700CA0AEB /* SceneDelegate.swift in Sources */,
 				0B10CB6F2465C19E00CA0AEB /* GigsTableViewController.swift in Sources */,
