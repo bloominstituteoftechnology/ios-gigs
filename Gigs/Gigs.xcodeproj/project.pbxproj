@@ -68,12 +68,11 @@
 		0219ED3323D7E284004AEF86 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				0219ED3423D7E284004AEF86 /* AppDelegate.swift */,
+				0224EF402466383100222A36 /* Application */,
+				0224EF3E2466381B00222A36 /* Models */,
+				0224EF3D2466380B00222A36 /* View Controllers */,
 				0219ED3623D7E284004AEF86 /* SceneDelegate.swift */,
-				0219ED4C23D7F264004AEF86 /* Bearer.swift */,
-				0219ED4E23D7F2A1004AEF86 /* User.swift */,
 				0219ED5423DA92C1004AEF86 /* GigDetailViewController.swift */,
-				0219ED5023D7F311004AEF86 /* GigController.swift */,
 				0219ED3A23D7E284004AEF86 /* Main.storyboard */,
 				0219ED5623DA9441004AEF86 /* Gig.swift */,
 				0219ED4A23D7F10B004AEF86 /* LoginViewController.swift */,
@@ -83,6 +82,31 @@
 				0219ED4223D7E28C004AEF86 /* Info.plist */,
 			);
 			path = Gigs;
+			sourceTree = "<group>";
+		};
+		0224EF3D2466380B00222A36 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		0224EF3E2466381B00222A36 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0219ED4E23D7F2A1004AEF86 /* User.swift */,
+				0219ED4C23D7F264004AEF86 /* Bearer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0224EF402466383100222A36 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				0219ED3423D7E284004AEF86 /* AppDelegate.swift */,
+				0219ED5023D7F311004AEF86 /* GigController.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
