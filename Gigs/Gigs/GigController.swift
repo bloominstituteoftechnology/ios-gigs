@@ -27,7 +27,7 @@ enum NetworkError: Error {
 class GigController {
     
     
-    private let baseUrl = URL(string: "https://lambdagigs.vapor.cloud/api")!
+    private let baseUrl = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     
     var bearer: Bearer?
     
