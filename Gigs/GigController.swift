@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
-class GigController {
+final class GigController {
+    
     enum HTTPMethod: String {
         case get = "GET"
         case post = "POST"

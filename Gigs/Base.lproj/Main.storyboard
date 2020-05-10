@@ -48,7 +48,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="eyt-cE-fNW"/>
                     <connections>
-                        <segue destination="W2B-6j-iYq" kind="presentation" modalPresentationStyle="fullScreen" id="WOf-GS-SX6"/>
+                        <segue destination="W2B-6j-iYq" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="WOf-GS-SX6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nmw-b5-MgA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -66,7 +66,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kk1-2G-wjb">
                                 <rect key="frame" x="20" y="157" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Pha-SR-Djo">
                                 <rect key="frame" x="20" y="64" width="374" height="32"/>
@@ -75,14 +75,17 @@
                                     <segment title="Log In"/>
                                 </segments>
                                 <connections>
-                                    <action selector="signUpLogInChanged:" destination="W2B-6j-iYq" eventType="valueChanged" id="BAK-Lg-tqd"/>
+                                    <action selector="signUpLogInChanged:" destination="W2B-6j-iYq" eventType="valueChanged" id="cyW-0B-YHD"/>
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2a-7N-AWC">
-                                <rect key="frame" x="20" y="211" width="374" height="30"/>
+                                <rect key="frame" x="20" y="211" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="GL7-ko-5ak"/>
+                                </constraints>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <action selector="signUpLogInTapped:" destination="W2B-6j-iYq" eventType="touchUpInside" id="hpa-Jx-Jtt"/>
+                                    <action selector="signUpLogInTapped:" destination="W2B-6j-iYq" eventType="touchUpInside" id="ucu-Km-1r0"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="80C-Ag-rZW">
@@ -139,8 +142,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sqt-c3-AU9" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WQo-KJ-avw">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="WQo-KJ-avw">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
