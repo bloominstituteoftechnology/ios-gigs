@@ -15,12 +15,22 @@ class GigDetailViewController: UIViewController {
     @IBOutlet weak var jobDescriptionTextView: UITextView!
     
     var gigController: GigController!
-    var gig: Gig?
+    var gig: Gig? {
+        didSet {
+            updateViews(with: gig!)
+        }
+    }
+    
+     let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         guard let gig = gig else { return }
-        datePicker.setDate(gig.dueDate, animated: true)
+        
+        guard let dueDate = dateFormatter.date(from: gig.dueDate) else { return }
+        
+        datePicker.setDate(dueDate, animated: true)
         
     }
     
@@ -30,24 +40,14 @@ class GigDetailViewController: UIViewController {
         
         jobDescriptionTextView.text = gig.description
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
     @IBAction func saveJobTapped(_ sender: Any) {
+        let date = datePicker.date
         guard let jobTitle = jobTitleTextField.text,
-            let date = datePicker.date,
             let description = jobDescriptionTextView.text,
             !jobTitle.isEmpty,
-            !date.isEmpty,
             !description.isEmpty else { return }
         
-        gigController.createGig(with: jobTitle, date: Date, description: description)
+        gigController.createGig(with: jobTitle, date: date, description: description)
     }
 }
