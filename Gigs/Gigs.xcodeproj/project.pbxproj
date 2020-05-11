@@ -14,6 +14,8 @@
 		E31E5D812465490600A3D929 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E5D7F2465490600A3D929 /* LaunchScreen.storyboard */; };
 		E31E5D8924654E6F00A3D929 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E5D8824654E6F00A3D929 /* GigsTableViewController.swift */; };
 		E31E5D8B246A152300A3D929 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E5D8A246A152300A3D929 /* LoginViewController.swift */; };
+		E31E5D91246A172D00A3D929 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E5D90246A172D00A3D929 /* Bearer.swift */; };
+		E31E5D93246A177D00A3D929 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E5D92246A177D00A3D929 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		E31E5D822465490600A3D929 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E31E5D8824654E6F00A3D929 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		E31E5D8A246A152300A3D929 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E31E5D90246A172D00A3D929 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		E31E5D92246A177D00A3D929 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +62,58 @@
 		E31E5D732465490400A3D929 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				E31E5D742465490400A3D929 /* AppDelegate.swift */,
-				E31E5D762465490400A3D929 /* SceneDelegate.swift */,
-				E31E5D7A2465490400A3D929 /* Main.storyboard */,
+				E31E5D8F246A171200A3D929 /* Resources */,
+				E31E5D94246A17B000A3D929 /* Model Controllers */,
+				E31E5D8E246A16FE00A3D929 /* Models */,
+				E31E5D8D246A16F500A3D929 /* View Controllers */,
+				E31E5D8C246A16E800A3D929 /* Views */,
 				E31E5D7D2465490600A3D929 /* Assets.xcassets */,
-				E31E5D7F2465490600A3D929 /* LaunchScreen.storyboard */,
 				E31E5D822465490600A3D929 /* Info.plist */,
+			);
+			path = Gigs;
+			sourceTree = "<group>";
+		};
+		E31E5D8C246A16E800A3D929 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E31E5D7A2465490400A3D929 /* Main.storyboard */,
+				E31E5D7F2465490600A3D929 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E31E5D8D246A16F500A3D929 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				E31E5D8824654E6F00A3D929 /* GigsTableViewController.swift */,
 				E31E5D8A246A152300A3D929 /* LoginViewController.swift */,
 			);
-			path = Gigs;
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		E31E5D8E246A16FE00A3D929 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E31E5D90246A172D00A3D929 /* Bearer.swift */,
+				E31E5D92246A177D00A3D929 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E31E5D8F246A171200A3D929 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E31E5D742465490400A3D929 /* AppDelegate.swift */,
+				E31E5D762465490400A3D929 /* SceneDelegate.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E31E5D94246A17B000A3D929 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +187,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E31E5D91246A172D00A3D929 /* Bearer.swift in Sources */,
 				E31E5D8B246A152300A3D929 /* LoginViewController.swift in Sources */,
+				E31E5D93246A177D00A3D929 /* User.swift in Sources */,
 				E31E5D752465490400A3D929 /* AppDelegate.swift in Sources */,
 				E31E5D772465490400A3D929 /* SceneDelegate.swift in Sources */,
 				E31E5D8924654E6F00A3D929 /* GigsTableViewController.swift in Sources */,
