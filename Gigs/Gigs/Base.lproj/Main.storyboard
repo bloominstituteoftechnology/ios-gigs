@@ -7,16 +7,61 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="mOX-Kp-U1G">
             <objects>
-                <viewController id="L4p-MH-xFM" sceneMemberID="viewController">
+                <viewController id="L4p-MH-xFM" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oTW-w6-pXs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="bDW-Vu-k4o">
+                                <rect key="frame" x="32" y="60" width="350" height="195"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nUa-o4-Zvo">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="32"/>
+                                        <segments>
+                                            <segment title="Sign Up"/>
+                                            <segment title="Sign In"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segmentedControlChanged:" destination="L4p-MH-xFM" eventType="valueChanged" id="Mfc-Qf-bQR"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kMx-Xp-zuc">
+                                        <rect key="frame" x="0.0" y="53" width="350" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nyQ-Wm-MuX">
+                                        <rect key="frame" x="0.0" y="109" width="350" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAL-ZF-65O">
+                                        <rect key="frame" x="0.0" y="165" width="350" height="30"/>
+                                        <state key="normal" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="signButtonTapped:" destination="L4p-MH-xFM" eventType="touchUpInside" id="lKh-Q1-6kJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="bDW-Vu-k4o" firstAttribute="top" secondItem="FVV-ws-NPz" secondAttribute="top" constant="16" id="D61-cQ-Hr7"/>
+                            <constraint firstItem="FVV-ws-NPz" firstAttribute="trailing" secondItem="bDW-Vu-k4o" secondAttribute="trailing" constant="32" id="IUM-DJ-VXZ"/>
+                            <constraint firstItem="bDW-Vu-k4o" firstAttribute="leading" secondItem="FVV-ws-NPz" secondAttribute="leading" constant="32" id="fey-LS-xGF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="FVV-ws-NPz"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="nyQ-Wm-MuX" id="kYc-zx-vV9"/>
+                        <outlet property="signUpSignInButton" destination="UAL-ZF-65O" id="HYg-H1-DZi"/>
+                        <outlet property="signUpSignInControl" destination="nUa-o4-Zvo" id="KsM-7d-iLY"/>
+                        <outlet property="usernameTextField" destination="kMx-Xp-zuc" id="g7x-EI-Vnz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rwD-u6-dMk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -25,13 +70,13 @@
         <!--Gigs-->
         <scene sceneID="b7a-Oj-nCA">
             <objects>
-                <tableViewController id="U0a-d2-qOt" sceneMemberID="viewController">
+                <tableViewController id="U0a-d2-qOt" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hNc-4x-kpR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tq2-Uk-SE3">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GigCell" id="tq2-Uk-SE3">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tq2-Uk-SE3" id="fYR-Gi-etl">
@@ -46,6 +91,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Gigs" id="q6S-2I-nIl"/>
+                    <connections>
+                        <segue destination="L4p-MH-xFM" kind="presentation" modalPresentationStyle="fullScreen" id="K2x-Tv-Bdt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o5A-dj-ssN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
