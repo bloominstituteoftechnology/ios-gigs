@@ -28,6 +28,8 @@ class GigController {
     
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         
+        print("signUp = \(signUpURL.absoluteString)")
+        
         var request = postRequest(for: signUpURL)
         
         do {

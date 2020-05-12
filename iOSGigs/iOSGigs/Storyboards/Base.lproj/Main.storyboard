@@ -48,7 +48,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="lyX-i1-PRC"/>
                     <connections>
-                        <segue destination="LUH-gj-MUl" kind="presentation" modalPresentationStyle="fullScreen" id="iRf-zp-GqA"/>
+                        <segue destination="LUH-gj-MUl" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="iRf-zp-GqA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ChF-qH-ekb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -71,7 +71,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="syf-R3-WBc">
                                 <rect key="frame" x="20" y="237" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="s0U-GF-kQl">
                                 <rect key="frame" x="139.5" y="103" width="135" height="32"/>
@@ -80,7 +80,7 @@
                                     <segment title="Sign In"/>
                                 </segments>
                                 <connections>
-                                    <action selector="segmentedControlSwitch:" destination="LUH-gj-MUl" eventType="valueChanged" id="kSL-gV-fkQ"/>
+                                    <action selector="segmentedControllerSwitch:" destination="LUH-gj-MUl" eventType="valueChanged" id="Tdb-6O-s67"/>
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4B7-gp-NDB">
@@ -89,9 +89,9 @@
                                     <constraint firstAttribute="height" constant="63" id="dF5-d4-UtG"/>
                                     <constraint firstAttribute="width" constant="283" id="lmv-sY-53M"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <action selector="buttonTapped:" destination="LUH-gj-MUl" eventType="touchUpInside" id="0ja-8x-fK1"/>
+                                    <action selector="buttonTapped:" destination="LUH-gj-MUl" eventType="touchUpInside" id="6gG-F5-tfY"/>
                                 </connections>
                             </button>
                         </subviews>
