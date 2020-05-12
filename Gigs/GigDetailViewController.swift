@@ -10,10 +10,12 @@ import UIKit
 
 class GigDetailViewController: UIViewController {
     
+    var gigController: GigController?
+    var gigTitle: String?
+    
     @IBOutlet weak var gigTextField: UITextField!
     @IBOutlet weak var gigDatePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextView: UITextView!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
