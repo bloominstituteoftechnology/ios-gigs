@@ -10,6 +10,13 @@ import UIKit
 
 class GigsTableViewController: UITableViewController {
     
+    var formatter: DateFormatter = {
+        let dFormatter = DateFormatter()
+        dFormatter.dateStyle = .short
+        dFormatter.timeStyle = .short
+        return dFormatter
+    }()
+    
     let gigController = GigController()
     private var allGigs: [Gig] = [] {
         didSet {
@@ -33,14 +40,17 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allGigs.count
+        return gigController.gigs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         
-        cell.textLabel?.text = allGigs[indexPath.row].title
-        // Add cell detaillabel text
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        cell.detailTextLabel?.text = formatter.string(from: gigController.gigs[indexPath.row].dueDate)
 
         return cell
     }
@@ -55,13 +65,14 @@ class GigsTableViewController: UITableViewController {
         } else if segue.identifier == "ShowGigSegue" {
             if let detailVC = segue.destination as? GigDetailViewController {
                 if let indexPath = tableView.indexPathForSelectedRow {
-                    detailVC.gigTextField.text = allGigs[indexPath.row].title
-                    detailVC.descriptionTextView.text = allGigs[indexPath.row].description
-                    detailVC.gigDatePicker.date = allGigs[indexPath.row].dueDate
+                    detailVC.gigController = gigController
+                    detailVC.gig = gigController.gigs[indexPath.row]
                 }
             }
         } else if segue.identifier == "AddGigSegue" {
-            
+            if let addVC = segue.destination as? GigDetailViewController {
+                addVC.gigController = gigController
+            }
         }
     }
 
