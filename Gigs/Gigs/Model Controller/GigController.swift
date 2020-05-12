@@ -10,6 +10,8 @@ import Foundation
 
 class GigController {
     // Mark: Properties
+    var gigs: [Gig] = []
+    
     
     enum HTTPMethod: String {
         case get = "GET"
