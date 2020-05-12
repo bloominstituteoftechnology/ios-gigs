@@ -23,12 +23,16 @@ class GigController {
         case noToken
         case failedSignUp
         case failedSignIn
+        case tryAgain
+        
     }
     
     var bearer: Bearer?
     private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     private lazy var signUpUrl = baseURL.appendingPathComponent("/users/signup")
     private lazy var signInUrl = baseURL.appendingPathComponent("/users/login")
+    private lazy var allGigsURL = baseURL.appendingPathComponent("/gigs")
+    private lazy var detailGigURL = baseURL.appendingPathComponent("/gigs")
     
     
     // Creating a function to sign up
@@ -118,6 +122,54 @@ class GigController {
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
+    }
+    
+    // Fetching All Gigs
+    
+    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
+        // Set up Request
+        var request = URLRequest(url: allGigsURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(.tryAgain))
+                return
+            }
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.noToken))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let gigs = try decoder.decode([String].self, from: data)
+                completion(.success(gigs))
+            } catch {
+                print("Error decoding gigs detail data: \(error)")
+                completion(.failure(.tryAgain))
+            }
+        }
+        task.resume()
+    }
+    
+    func fetchGigDetails(for gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        // Make sure the user is authenticated through the bearer token
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
     }
 }
 
