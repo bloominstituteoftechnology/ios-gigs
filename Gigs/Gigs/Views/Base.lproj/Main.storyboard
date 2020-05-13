@@ -39,6 +39,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="RY4-Pe-Bgw" kind="show" identifier="ShowGig" id="jmv-CU-UAz"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -46,7 +49,13 @@
                             <outlet property="delegate" destination="BJT-AJ-pGT" id="AYl-jX-Gb3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Your Gigs" id="KUX-1f-8hU"/>
+                    <navigationItem key="navigationItem" title="Your Gigs" id="KUX-1f-8hU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="57H-2p-fQp">
+                            <connections>
+                                <segue destination="RY4-Pe-Bgw" kind="show" identifier="AddGig" id="2oU-cL-PuX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="ujJ-8M-GCx" kind="presentation" identifier="ToLogInScreen" modalPresentationStyle="fullScreen" id="8Yv-lQ-90Q"/>
                     </connections>
@@ -54,6 +63,92 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ti6-Bu-WWC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="894.20289855072474" y="115.84821428571428"/>
+        </scene>
+        <!--Gig's name-->
+        <scene sceneID="vyg-7g-89x">
+            <objects>
+                <viewController id="RY4-Pe-Bgw" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pvs-cl-8Va">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8zW-N2-8q1">
+                                <rect key="frame" x="16" y="160" width="382" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB TITLE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qm2-uC-fud">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bae-qa-l2c">
+                                        <rect key="frame" x="80" y="0.0" width="302" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNI-lt-EqK">
+                                <rect key="frame" x="20" y="212" width="71" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="HJM-Ey-20g">
+                                <rect key="frame" x="10" y="237" width="394" height="216"/>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEo-up-Esq">
+                                <rect key="frame" x="20" y="473" width="91.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BW0-gV-rbF">
+                                <rect key="frame" x="20" y="498" width="374" height="202"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9eM-pa-PVW" firstAttribute="trailing" secondItem="8zW-N2-8q1" secondAttribute="trailing" constant="16" id="5HC-SL-poZ"/>
+                            <constraint firstItem="HJM-Ey-20g" firstAttribute="leading" secondItem="Pvs-cl-8Va" secondAttribute="leading" constant="10" id="8Ns-Mn-vna"/>
+                            <constraint firstItem="8zW-N2-8q1" firstAttribute="top" secondItem="9eM-pa-PVW" secondAttribute="top" constant="20" id="8fh-Dj-dBe"/>
+                            <constraint firstItem="9eM-pa-PVW" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YNI-lt-EqK" secondAttribute="trailing" symbolic="YES" id="FV2-pk-AAe"/>
+                            <constraint firstItem="EEo-up-Esq" firstAttribute="leading" secondItem="9eM-pa-PVW" secondAttribute="leading" constant="20" id="KEG-7m-MAn"/>
+                            <constraint firstItem="BW0-gV-rbF" firstAttribute="leading" secondItem="9eM-pa-PVW" secondAttribute="leading" constant="20" id="MDM-24-f0S"/>
+                            <constraint firstItem="9eM-pa-PVW" firstAttribute="bottom" secondItem="BW0-gV-rbF" secondAttribute="bottom" constant="162" id="RxV-vj-aVT"/>
+                            <constraint firstItem="YNI-lt-EqK" firstAttribute="leading" secondItem="9eM-pa-PVW" secondAttribute="leading" constant="20" id="UBJ-O4-dJz"/>
+                            <constraint firstItem="9eM-pa-PVW" firstAttribute="trailing" secondItem="HJM-Ey-20g" secondAttribute="trailing" constant="10" id="X6i-7y-xYG"/>
+                            <constraint firstItem="9eM-pa-PVW" firstAttribute="trailing" secondItem="BW0-gV-rbF" secondAttribute="trailing" constant="20" id="XUh-dN-F0T"/>
+                            <constraint firstItem="BW0-gV-rbF" firstAttribute="top" secondItem="EEo-up-Esq" secondAttribute="bottom" constant="8" id="dJw-U0-7A1"/>
+                            <constraint firstItem="8zW-N2-8q1" firstAttribute="leading" secondItem="9eM-pa-PVW" secondAttribute="leading" constant="16" id="fDy-8o-A4O"/>
+                            <constraint firstItem="YNI-lt-EqK" firstAttribute="top" secondItem="8zW-N2-8q1" secondAttribute="bottom" constant="18" id="fQo-88-QLD"/>
+                            <constraint firstItem="9eM-pa-PVW" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EEo-up-Esq" secondAttribute="trailing" symbolic="YES" id="j0c-0K-imh"/>
+                            <constraint firstItem="EEo-up-Esq" firstAttribute="top" secondItem="HJM-Ey-20g" secondAttribute="bottom" constant="20" id="tNB-ew-vl7"/>
+                            <constraint firstItem="HJM-Ey-20g" firstAttribute="top" secondItem="YNI-lt-EqK" secondAttribute="bottom" constant="8" id="wzb-cB-FQO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9eM-pa-PVW"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Gig's name" id="D0I-4C-cuG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="rjx-GQ-zyu">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="RY4-Pe-Bgw" id="Il9-JF-EM6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="BW0-gV-rbF" id="mPz-i7-QyO"/>
+                        <outlet property="dueDatePicker" destination="HJM-Ey-20g" id="Cjf-aD-abJ"/>
+                        <outlet property="jobTitleTextField" destination="Bae-qa-l2c" id="Ztc-Qd-na1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HlC-Un-f3V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1807.2463768115942" y="569.86607142857144"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="XGi-Tj-R7O">
@@ -140,4 +235,7 @@
             <point key="canvasLocation" x="-15.942028985507248" y="115.84821428571428"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="jmv-CU-UAz"/>
+    </inferredMetricsTieBreakers>
 </document>
