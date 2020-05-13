@@ -64,7 +64,7 @@
             </objects>
             <point key="canvasLocation" x="726" y="136"/>
         </scene>
-        <!--Title-->
+        <!--Gig-->
         <scene sceneID="h7J-Y9-49p">
             <objects>
                 <viewController id="vUU-7y-Zo4" customClass="GigDetailViewController" customModule="GigsApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -98,7 +98,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="p4A-ab-pWV">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="216"/>
+                                        <rect key="frame" x="0.0" y="28.5" width="414" height="216"/>
                                     </datePicker>
                                 </subviews>
                             </stackView>
@@ -135,10 +135,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="j7Y-R9-VgE"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="FPG-A2-nyy">
+                    <navigationItem key="navigationItem" title="Gig" id="FPG-A2-nyy">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="cEx-JT-wPO">
                             <connections>
-                                <action selector="saveButtonTapped:" destination="vUU-7y-Zo4" id="A4V-Dd-yR7"/>
+                                <action selector="saveButtonTapped:" destination="vUU-7y-Zo4" id="YLL-CG-i7U"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

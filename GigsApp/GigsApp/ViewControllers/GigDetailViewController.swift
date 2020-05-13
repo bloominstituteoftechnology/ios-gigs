@@ -27,23 +27,22 @@ class GigDetailViewController: UIViewController {
     
     //MARK: - IBAction
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let gigTitle = gigTitleTextField.text, !gigTitle.isEmpty,
-            let gigDescription = gigDescriptionTextField.text, !gigDescription.isEmpty,
+        guard let title = gigTitleTextField.text,
+            let description = gigDescriptionTextField.text,
             let gigController = gigController else { return }
         let date = gigDueDatePicker.date
         
-        gigController.createGig(title: gigTitle, dueDate: date, description: gigDescription) { (result) in
+        gigController.createGig(title: title, dueDate: date, description: description) { (result) in
             DispatchQueue.main.async {
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }
-        
     }
+    
     
     //MARK: - Helper Function
     private func updateViews(){
-        if let gig = self.gig{
-            navigationItem.title = "Gigs"
+        if let gig = gig{
             gigTitleTextField.text = gig.title
             gigDueDatePicker.date = gig.dueDate
             gigDescriptionTextField.text = gig.description

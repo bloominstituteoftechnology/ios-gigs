@@ -29,27 +29,34 @@ class GigsTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         if gigController.bearer == nil{
             performSegue(withIdentifier: "LoginSegue", sender: self)
-        }
-        
-        gigController.getAllGigs { (result) in
-            do{
-                let gigs = try result.get()
+        } else {
+            gigController.getAllGigs { (result) in
                 DispatchQueue.main.async {
-                    self.gigController.gigList = gigs
-                }
-            } catch {
-                if let error = error as? GigController.NetworkError {
-                    switch error {
-                    case .noToken:
-                        print("have user try to log in again")
-                    case .noData, .tryAgain:
-                        print("have user try again")
-                    default:
-                        break
-                    }
+                    self.tableView.reloadData()
                 }
             }
         }
+        
+//        gigController.getAllGigs { (result) in
+//            do{
+//                let gigs = try result.get()
+//                DispatchQueue.main.async {
+//                    self.gigController.gigList = gigs
+//                }
+//            } catch {
+//                if let error = error as? GigController.NetworkError {
+//                    switch error {
+//                    case .noToken:
+//                        print("have user try to log in again")
+//                    case .noData, .tryAgain:
+//                        print("have user try again")
+//                    default:
+//                        break
+//                    }
+//                }
+//            }
+            
+//        }
     }
     
     // MARK: - Table view data source
@@ -71,16 +78,17 @@ class GigsTableViewController: UITableViewController {
         if segue.identifier == "LoginSegue"{
             if let loginVC = segue.destination as? LoginViewController{
                 loginVC.gigController = gigController
-            } else if segue.identifier == "AddGigSegue"{
-                if let addGigVC = segue.destination as? GigDetailViewController{
-                    addGigVC.gigController = gigController
-                }
-            } else if segue.identifier == "GigDetailSegue"{
-                if let gigDetailVC = segue.destination as? GigDetailViewController,
-                    let indexPath = tableView.indexPathForSelectedRow{
-                    gigDetailVC.gigController = gigController
-                    gigDetailVC.gig = gigController.gigList[indexPath.row]
-                }
+            }
+        }
+        else if segue.identifier == "AddGigSegue"{
+            if let addGigVC = segue.destination as? GigDetailViewController{
+                addGigVC.gigController = gigController
+            }
+        } else if segue.identifier == "GigDetailSegue"{
+            if let gigDetailVC = segue.destination as? GigDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow{
+                gigDetailVC.gigController = gigController
+                gigDetailVC.gig = gigController.gigList[indexPath.row]
             }
         }
     }
