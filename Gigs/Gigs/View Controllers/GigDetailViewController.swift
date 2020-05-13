@@ -38,14 +38,10 @@ class GigDetailViewController: UIViewController {
     func updateViews(with gig: Gig) {
         title = gig.title
         jobTitleTextField.text = gig.title
+
+      guard let dueDate = dateFormatter.date(from: gig.dueDate) else { return }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "MMM d, yyyy"
-        let date = dateFormatter.date(from: gig.dueDate)!
-        
-        
-        datePicker.setDate(date, animated: true)
+        datePicker.setDate(dueDate, animated: true)
         jobDescriptionTextView.text = gig.description
     }
     
