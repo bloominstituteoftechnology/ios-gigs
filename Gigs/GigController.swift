@@ -41,8 +41,6 @@ final class GigController {
     }
     
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
-        print("signUpURL = \(signUpURL.absoluteString)")
-        
         var request = postRequest(for: signUpURL)
         
         do {
@@ -120,43 +118,35 @@ final class GigController {
         }
     }
     
-    // create function for fetching all animal names
     func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
-        // Make sure the user is authenticated through the bearer token
         guard let bearer = self.bearer else {
             completion(.failure(.noToken))
             return
         }
         
-        // Set up request
         var request = URLRequest(url: allGigsURL)
         request.httpMethod = HTTPMethod.get.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
-        // Create data task
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            // Handle errors first
             if let error = error {
                 print("Error receiving gig data: \(error)")
                 completion(.failure(.tryAgain))
                 return
             }
             
-            // Handle responses
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401 {
                 completion(.failure(.noToken))
                 return
             }
             
-            // Handle data
             guard let data = data else {
                 print("No data received from fetchAllGigs")
                 completion(.failure(.noData))
                 return
             }
             
-            // Decode the data
             do {
                 let decoder = JSONDecoder()
                 let allGigs = try decoder.decode([Gig].self, from: data)
@@ -171,9 +161,13 @@ final class GigController {
     }
     
     func addGig(with gig: Gig, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
-        print("addGigURL = \(allGigsURL.absoluteString)")
+        guard let bearer = self.bearer else {
+            completion(.failure(.noToken))
+            return
+        }
         
         var request = postRequest(for: allGigsURL)
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         do {
             let encoder = JSONEncoder()
@@ -189,11 +183,11 @@ final class GigController {
                     return
                 }
                 
-                guard let response = response as? HTTPURLResponse,
-                    response.statusCode == 200 else {
-                        print("Adding was unsuccessful")
-                        completion(.failure(.failedToAdd))
-                        return
+                if let response = response as? HTTPURLResponse,
+                    response.statusCode == 401 {
+                    print("Adding was unsuccessful")
+                    completion(.failure(.noToken))
+                    return
                 }
                 
                 completion(.success(true))

@@ -18,11 +18,6 @@ class GigsTableViewController: UITableViewController {
     }()
     
     let gigController = GigController()
-    private var allGigs: [Gig] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +28,13 @@ class GigsTableViewController: UITableViewController {
         
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+        } else {
+            gigController.fetchAllGigs { (result) in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
-        // TODO: fetch gigs here
     }
 
     // MARK: - Table view data source
@@ -49,8 +49,8 @@ class GigsTableViewController: UITableViewController {
         cell.textLabel?.text = gigController.gigs[indexPath.row].title
         let formatter = DateFormatter()
         formatter.dateStyle = .short
-        formatter.timeStyle = .short
-        cell.detailTextLabel?.text = formatter.string(from: gigController.gigs[indexPath.row].dueDate)
+        formatter.timeStyle = .none
+        cell.detailTextLabel?.text = "Due " + formatter.string(from: gigController.gigs[indexPath.row].dueDate)
 
         return cell
     }
