@@ -16,6 +16,7 @@ class GigController {
     enum HTTPMethod: String {
         case get = "GET"
         case post = "POST"
+        case delete = "DELETE"
     }
     
     enum NetworkError: Error{
@@ -24,6 +25,7 @@ class GigController {
         case failedSignUp
         case failedSignIn
         case tryAgain
+        case encodingError
         
     }
     
@@ -127,7 +129,7 @@ class GigController {
     
     // Fetching All Gigs
     
-    func fetchAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         guard let bearer = bearer else {
             completion(.failure(.noToken))
             return
@@ -154,7 +156,7 @@ class GigController {
             
             do {
                 let decoder = JSONDecoder()
-                let gigs = try decoder.decode([String].self, from: data)
+                let gigs = try decoder.decode([Gig].self, from: data)
                 completion(.success(gigs))
             } catch {
                 print("Error decoding gigs data: \(error)")
@@ -203,34 +205,32 @@ class GigController {
         task.resume()
     }
     
-    func addGig(newGig: Gig, completion: @escaping (Error?) -> Void) {
+    func addGig(newGig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
         var request = URLRequest(url: newGigURL)
-        request.httpMethod = HTTPMethod.get.rawValue
-        request.addValue("Bearer \(String(describing: bearer?.token))", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(String(describing: bearer?.token))", forHTTPHeaderField: "Authorization")
         
-        let jsonEncoder = JSONEncoder()
         
         do {
-            let jsonData = try jsonEncoder.encode(newGig)
+            let jsonData = try JSONEncoder().encode(newGig)
             request.httpBody = jsonData
             gigs.append(newGig)
         } catch {
             print("Error saving new gig: \(error)")
-            completion(error)
+            completion(.failure(.encodingError))
             return
         }
         
         let task = URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let error = error {
-                completion(error)
+                completion(.failure(.noToken))
                 return
             }
             if let response = response as? HTTPURLResponse,
-                response.statusCode != 200 {
-                    completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
-                    return
+                response.statusCode == 401 {
+                completion(.failure(.noToken))
             }
-            completion(nil)
+            
         }
         task.resume()
     }

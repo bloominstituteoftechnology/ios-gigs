@@ -9,58 +9,59 @@
 import UIKit
 
 class GigDetailViewController: UIViewController {
-
+    
     // Mark: IBOutlets
     @IBOutlet weak var titleOfGigTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var discriptionOfGigTextView: UITextView!
     
-    var gigController: GigController!
+    var gigController = GigController()
     var gig: Gig?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        getGig()
+        updateViews()
         // Do any additional setup after loading the view.
     }
-    func updateViews(with newGig: Gig) {
-        if gig == nil {
-            self.title = "New Gig"
-        } else {
-            titleOfGigTextField.text = newGig.title
-            datePicker.date = newGig.dueDate
-            discriptionOfGigTextView.text = newGig.discription
-        }
-    }
     
-    func getGig() {
-        guard let gigController = gigController,
-            let gig = self.gig else { return }
-        
-        gigController.fetchGigDetails(for: gig) { (result) in
-            if let gig = try? result.get() {
-                DispatchQueue.main.async {
-                    self.updateViews(with: gig)
-                }
-            }
-        }
-    }
     
     // Mark: IBActions
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        if let newGigTitle = titleOfGigTextField.text, !newGigTitle.isEmpty,
-            let newGigDiscription = discriptionOfGigTextView.text, !newGigDiscription.isEmpty {
-            let newGigDueDate = datePicker.date
-        let newGig = Gig(title: newGigTitle, discription: newGigDiscription, dueDate: newGigDueDate)
-            gigController.addGig(newGig: newGig) { (error) in
-                if let error = error {
-                    print("Error adding new gig: \(error)")
-                } else {
-                    DispatchQueue.main.async {
-                        self.navigationController?.popToRootViewController(animated: true)
-                    }
-                }
+        do {
+            let newGig = Gig(title: titleOfGigTextField.text ?? "No Title", discription: discriptionOfGigTextView.text, dueDate: datePicker.date)
+            gigController.addGig(newGig: newGig) { (result) in
+                guard (try? result.get()) != nil else { return }
+                
+                
+            }
+            DispatchQueue.main.async {
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }
     }
+//    func getGig() {
+//        guard let gig = gig else { return }
+//
+//        gigController.fetchGigDetails(for: gig) { (result) in
+//            if let gig = try? result.get() {
+//                DispatchQueue.main.async {
+//                    self.updateViews()
+//                }
+//            }
+//        }
+//    }
+    
+    func updateViews() {
+        if let gig = gig {
+            titleOfGigTextField.text = gig.title
+            datePicker.date = gig.dueDate
+            discriptionOfGigTextView.text = gig.discription
+            self.title = gig.title
+            
+        } else {
+            self.title = "New Gig"
+        }
+    }
 }
+
