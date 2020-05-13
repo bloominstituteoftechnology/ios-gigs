@@ -13,13 +13,7 @@ class GigsTableViewController: UITableViewController {
     
     let gigController = GigController()
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -28,9 +22,15 @@ class GigsTableViewController: UITableViewController {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
         } else  {
             
-        gigController.fetchAllGigs { (result) in
+            gigController.fetchAllGigs { (result) in
             do {
-                self.gigController.gigs = try result.get()
+                let success = try result.get()
+                if success {
+                    DispatchQueue.main.async {
+                        print("Successfully fetched all gigs")
+                        self.tableView.reloadData()
+                    }
+                }
             } catch {
                 if let error = error as? NetworkError {
                     switch error {
@@ -50,10 +50,8 @@ class GigsTableViewController: UITableViewController {
                 }
             }
         }
-        }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+       
+    }
     }
     
     // MARK: - Table view data source
@@ -68,7 +66,7 @@ class GigsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
-        guard indexPath.row < gigController.gigs.count else {return cell}
+     
         
         let gig = gigController.gigs[indexPath.row]
         let dateFormatter = DateFormatter()
@@ -98,7 +96,7 @@ class GigsTableViewController: UITableViewController {
             }
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             
-            guard indexPath.row < gigController.gigs.count else {return}
+         
             detailVC.gig = gigController.gigs[indexPath.row]
             detailVC.gigController = gigController
         }
