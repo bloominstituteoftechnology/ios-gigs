@@ -21,7 +21,7 @@ class GigDetailViewController: UIViewController {
         }
     }
     
-     let dateFormatter = DateFormatter()
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +48,13 @@ class GigDetailViewController: UIViewController {
             !jobTitle.isEmpty,
             !description.isEmpty else { return }
         
-        gigController.createGig(with: jobTitle, date: date, description: description)
+        gigController.createGig(with: jobTitle, date: date, description: description) { (result) in
+            if let gig = try? result.get() {
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
     }
 }
+

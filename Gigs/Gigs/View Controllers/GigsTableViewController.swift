@@ -52,6 +52,8 @@ class GigsTableViewController: UITableViewController {
                             print("Error: Failed signing in.")
                         case .noToken:
                             print("Invalid token")
+                        case .failPost:
+                            print("Failed to post gig to api")
                         }
                     } else {
                         print("Error: \(error)")

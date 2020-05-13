@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-private class GigController {
+final class GigController {
     
     enum HTTPMethod: String {
         case get = "GET"
@@ -25,15 +25,16 @@ private class GigController {
         case failedSignUp
         case failedSignIn
         case noToken
+        case failPost
     }
     
     var bearer: Bearer?
     var gigs: [Gig] = []
-    /// https://lambdagigs.vapor.cloud/api new api??
-    private let baseUrl = URL(string: "https://lambdagigapi.herokuapp.com/api")!
-    private lazy var signUpURL = baseUrl.appendingPathComponent("users/signup")
-    private lazy var logInURL = baseUrl.appendingPathComponent("users/login")
-    
+    // private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
+    private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
+    private lazy var signUpURL = baseURL.appendingPathComponent("users/signup")
+    private lazy var logInURL = baseURL.appendingPathComponent("users/login")
+    private lazy var saveURL = baseURL.appendingPathComponent("/gigs")
     
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {           var request = postRequest(for: signUpURL)
         do {
@@ -114,14 +115,14 @@ private class GigController {
         }
     }
     
-   // demonstrating the ease of referencing a postrequest on multiple attempts - to save lines of code and erroneous mis-types
+    // demonstrating the ease of referencing a postrequest on multiple attempts - to save lines of code and erroneous mis-types
     private func postRequest(for url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }
-  
+    
     
     func fetchAllGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         guard let bearer = bearer else {
@@ -129,7 +130,7 @@ private class GigController {
             return
         }
         
-        let allGigsUrl = baseUrl.appendingPathComponent("gigs/")
+        let allGigsUrl = baseURL.appendingPathComponent("gigs/")
         
         var request = URLRequest(url: allGigsUrl)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -167,7 +168,7 @@ private class GigController {
             return
         }
         
-        let gigUrl = baseUrl.appendingPathComponent("gigs/\(gigName)")
+        let gigUrl = baseURL.appendingPathComponent("gigs/\(gigName)")
         
         var request = URLRequest(url: gigUrl)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -200,11 +201,40 @@ private class GigController {
         }.resume()
     }
     
-    func createGig(with title: String, date: Date, description: String) {
+    func createGig(with title: String, date: Date, description: String, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         let dateFormatter = DateFormatter()
         let dueDate = dateFormatter.string(from: date)
         
         let gig = Gig(title: title, description: description, dueDate: dueDate)
         gigs.append(gig)
+        
+        
+          var request = postRequest(for: saveURL)
+        
+        do {
+            let encoder = JSONEncoder()
+            let jsonData = try encoder.encode(gig)
+            request.httpBody = jsonData
+            
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                // Handle Error
+                if let error = error {
+                    print("Error posting gig: \(error)")
+                    completion(.failure(.otherError(error)))
+                    return
+                }
+                
+                // Handle Response
+                guard let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 else {
+                        print("Attempt was unsuccessful")
+                        completion(.failure(.failPost))
+                        return
+                }
+            }.resume()
+        } catch {
+            print("Error saving gig: \(error)")
+            completion(.failure(.failPost))
+        }
     }
 }
