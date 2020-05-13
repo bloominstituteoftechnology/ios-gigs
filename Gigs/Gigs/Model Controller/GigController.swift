@@ -33,6 +33,7 @@ class GigController {
     private lazy var signInUrl = baseURL.appendingPathComponent("/users/login")
     private lazy var allGigsURL = baseURL.appendingPathComponent("/gigs")
     private lazy var detailGigURL = baseURL.appendingPathComponent("/gigs")
+    private lazy var newGigURL = baseURL.appendingPathComponent("/gigs")
     
     
     // Creating a function to sign up
@@ -156,7 +157,7 @@ class GigController {
                 let gigs = try decoder.decode([String].self, from: data)
                 completion(.success(gigs))
             } catch {
-                print("Error decoding gigs detail data: \(error)")
+                print("Error decoding gigs data: \(error)")
                 completion(.failure(.tryAgain))
             }
         }
@@ -170,6 +171,69 @@ class GigController {
             completion(.failure(.noToken))
             return
         }
+        // Request
+        var request = URLRequest(url: detailGigURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(.tryAgain))
+                return
+            }
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.noToken))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let gig = try decoder.decode(Gig.self, from: data)
+                completion(.success(gig))
+            } catch {
+                print("Error decoding gigs detail data: \(error)")
+                completion(.failure(.noData))
+            }
+        }
+        task.resume()
     }
+    
+    func addGig(newGig: Gig, completion: @escaping (Error?) -> Void) {
+        var request = URLRequest(url: newGigURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.addValue("Bearer \(String(describing: bearer?.token))", forHTTPHeaderField: "Content-Type")
+        
+        let jsonEncoder = JSONEncoder()
+        
+        do {
+            let jsonData = try jsonEncoder.encode(newGig)
+            request.httpBody = jsonData
+            gigs.append(newGig)
+        } catch {
+            print("Error saving new gig: \(error)")
+            completion(error)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let error = error {
+                completion(error)
+                return
+            }
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                    completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                    return
+            }
+            completion(nil)
+        }
+        task.resume()
+    }
+    
 }
 
