@@ -15,6 +15,7 @@ class GigsTableViewController: UITableViewController {
     var gigNames: [String] = []
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +42,7 @@ class GigsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
     
     
@@ -49,6 +50,7 @@ class GigsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
         
         cell.textLabel?.text = gigNames[indexPath.row]
+        
         
         return cell
     }
