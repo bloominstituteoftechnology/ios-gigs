@@ -17,6 +17,7 @@ class GigsTableViewController: UITableViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        gigController.getAllGigs(completion: <#T##(Result<[Gigs], GigController.NetworkError>) -> Void#>)
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Gig: Codable{
+struct Gigs: Codable{
     var title: String
     var description: String
     var dueDate: Date
