@@ -148,7 +148,7 @@ class GigController {
             do {
                 let gigNames = try decoder.decode([Gig].self, from: data)
                 completion(.success(gigNames))
-                self.gigs = gigNames
+                self.gigs.append(contentsOf: gigNames)
             } catch {
                 completion(.failure(.decodingError))
             }
@@ -173,6 +173,8 @@ class GigController {
         do {
             let jsonData = try JSONEncoder().encode(gig)
             request.httpBody = jsonData
+            self.gigs.append(gig)
+            completion(.success(gig))
         } catch {
             completion(.failure(.encodingError))
             return

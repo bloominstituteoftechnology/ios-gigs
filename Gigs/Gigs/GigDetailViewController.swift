@@ -10,7 +10,7 @@ import UIKit
 
 class GigDetailViewController: UIViewController {
     
-    var gigController: GigController!
+    var gigController = GigController()
     
     var gig: Gig?
     
@@ -27,13 +27,14 @@ class GigDetailViewController: UIViewController {
             guard (try? result.get()) != nil else {return}
             
             DispatchQueue.main.async {
-                self.navigationController?.popToRootViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateViews()
         
         // Do any additional setup after loading the view.
     }
