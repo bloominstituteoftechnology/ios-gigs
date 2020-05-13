@@ -18,16 +18,12 @@ class LoginViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func signSegmentedTapped(_ sender: Any) {
-        switch signUpSignInControl.selectedSegmentIndex {
-        case 0:
+        if signUpSignInControl.selectedSegmentIndex == 0 {
             loginType = .signUp
             signUpSignInButton.setTitle("Sign Up", for: .normal)
-        case 1:
+        } else {
             loginType = .signIn
             signUpSignInButton.setTitle("Sign In", for: .normal)
-        default:
-            loginType = .signUp
-            signUpSignInButton.setTitle("Sign Up", for: .normal)
         }
     }
     
@@ -36,7 +32,7 @@ class LoginViewController: UIViewController {
             let password = passwordTextField.text, !password.isEmpty {
             let user = User(username: username, password: password)
             if loginType == .signUp {
-                gigController.signUp(with: user, completion: { (result) in
+                gigController?.signUp(with: user, completion: { (result) in
                     do {
                         let success = try result.get()
                         if success {
@@ -56,7 +52,7 @@ class LoginViewController: UIViewController {
                     }
                 })
             } else {
-                gigController.signIn(with: user, completion: { (result) in
+                gigController?.signIn(with: user, completion: { (result) in
                     do {
                         let success = try result.get()
                         if success {
@@ -82,28 +78,12 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Properties
-    var gigController = GigController()
+    var gigController: GigController?
     var loginType: LoginType = .signUp
     
     enum LoginType {
         case signUp
         case signIn
     }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
