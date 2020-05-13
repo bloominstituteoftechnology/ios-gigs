@@ -12,6 +12,8 @@
 		3C70612F2468DE0E0057E02A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C70612D2468DE0E0057E02A /* Main.storyboard */; };
 		3C7061312468DE0F0057E02A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C7061302468DE0F0057E02A /* Assets.xcassets */; };
 		3C7061342468DE0F0057E02A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C7061322468DE0F0057E02A /* LaunchScreen.storyboard */; };
+		3C89F643246B669700082ED4 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C89F642246B669700082ED4 /* GigDetailViewController.swift */; };
+		3C89F645246B67E600082ED4 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C89F644246B67E600082ED4 /* Gig.swift */; };
 		3CC19F472468E16E004BAE5E /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC19F462468E16E004BAE5E /* GigsTableViewController.swift */; };
 		3CC19F492468E82E004BAE5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC19F482468E82E004BAE5E /* LoginViewController.swift */; };
 		3CC19F4B2468E96E004BAE5E /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC19F4A2468E96E004BAE5E /* Bearer.swift */; };
@@ -27,6 +29,8 @@
 		3C7061302468DE0F0057E02A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C7061332468DE0F0057E02A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C7061352468DE0F0057E02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C89F642246B669700082ED4 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
+		3C89F644246B67E600082ED4 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 		3CC19F462468E16E004BAE5E /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		3CC19F482468E82E004BAE5E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3CC19F4A2468E96E004BAE5E /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 			children = (
 				3CC19F4A2468E96E004BAE5E /* Bearer.swift */,
 				3CC19F4C2468E9DE004BAE5E /* User.swift */,
+				3C89F644246B67E600082ED4 /* Gig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -91,6 +96,7 @@
 			children = (
 				3CC19F462468E16E004BAE5E /* GigsTableViewController.swift */,
 				3CC19F482468E82E004BAE5E /* LoginViewController.swift */,
+				3C89F642246B669700082ED4 /* GigDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -175,12 +181,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CC19F4B2468E96E004BAE5E /* Bearer.swift in Sources */,
+				3C89F643246B669700082ED4 /* GigDetailViewController.swift in Sources */,
 				3CC19F4F2468EA41004BAE5E /* GigController.swift in Sources */,
 				3CC19F492468E82E004BAE5E /* LoginViewController.swift in Sources */,
 				3CC19F4D2468E9DE004BAE5E /* User.swift in Sources */,
 				3C7061282468DE0E0057E02A /* AppDelegate.swift in Sources */,
 				3C70612A2468DE0E0057E02A /* SceneDelegate.swift in Sources */,
 				3CC19F472468E16E004BAE5E /* GigsTableViewController.swift in Sources */,
+				3C89F645246B67E600082ED4 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +334,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = gigs/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -343,6 +352,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = gigs/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

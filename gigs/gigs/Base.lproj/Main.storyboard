@@ -39,6 +39,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="fMU-Fz-W1T" kind="show" identifier="ViewGigSegue" id="oVf-RG-7DA"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -46,7 +49,13 @@
                             <outlet property="delegate" destination="s1p-Sf-NfC" id="HgY-MO-zHt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Gigs" id="RSv-cU-frp"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="RSv-cU-frp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iCI-e4-2OJ">
+                            <connections>
+                                <segue destination="fMU-Fz-W1T" kind="show" identifier="AddGigSegue" id="AUh-9n-Gyc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="9lY-pi-wcc" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="aDr-AD-QTZ"/>
                     </connections>
@@ -54,6 +63,89 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Sb-45-QV7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="781" y="-29"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="wd8-GH-Ebh">
+            <objects>
+                <viewController id="fMU-Fz-W1T" customClass="GigDetailViewController" customModule="gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bB8-K2-MY1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yOr-B1-LPE">
+                                <rect key="frame" x="121" y="133" width="228" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="TCt-bW-cib">
+                                <rect key="frame" x="0.0" y="224" width="414" height="216"/>
+                            </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6BC-Bb-65j">
+                                <rect key="frame" x="20" y="499" width="374" height="143"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Olp-uv-jhT">
+                                <rect key="frame" x="20" y="462" width="114" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB TITLE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kz-am-nKH">
+                                <rect key="frame" x="25" y="140" width="86" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8m-6h-mXM">
+                                <rect key="frame" x="25" y="195" width="86" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="yOr-B1-LPE" firstAttribute="top" secondItem="bB8-K2-MY1" secondAttribute="top" constant="133" id="3yG-Qm-2TN"/>
+                            <constraint firstItem="6BC-Bb-65j" firstAttribute="leading" secondItem="Olp-uv-jhT" secondAttribute="leading" id="5ZO-qU-nk8"/>
+                            <constraint firstItem="TCt-bW-cib" firstAttribute="top" secondItem="b8m-6h-mXM" secondAttribute="bottom" constant="8" id="625-hL-Uen"/>
+                            <constraint firstItem="6BC-Bb-65j" firstAttribute="top" secondItem="Olp-uv-jhT" secondAttribute="bottom" constant="16" id="8dS-EW-tdw"/>
+                            <constraint firstItem="b8m-6h-mXM" firstAttribute="top" secondItem="7Kz-am-nKH" secondAttribute="bottom" constant="34" id="CQx-Fl-b1B"/>
+                            <constraint firstItem="7Kz-am-nKH" firstAttribute="leading" secondItem="B73-QU-0JT" secondAttribute="leading" constant="25" id="Fyf-KJ-1pq"/>
+                            <constraint firstItem="B73-QU-0JT" firstAttribute="trailing" secondItem="6BC-Bb-65j" secondAttribute="trailing" constant="20" id="N55-Lo-mwK"/>
+                            <constraint firstItem="B73-QU-0JT" firstAttribute="trailing" secondItem="yOr-B1-LPE" secondAttribute="trailing" constant="65" id="PC9-5d-16V"/>
+                            <constraint firstItem="TCt-bW-cib" firstAttribute="top" secondItem="yOr-B1-LPE" secondAttribute="bottom" constant="57" id="QiP-ga-d1Z"/>
+                            <constraint firstItem="Olp-uv-jhT" firstAttribute="top" secondItem="TCt-bW-cib" secondAttribute="bottom" constant="22" id="R2C-Mc-eXg"/>
+                            <constraint firstItem="6BC-Bb-65j" firstAttribute="leading" secondItem="B73-QU-0JT" secondAttribute="leading" constant="20" id="T3T-Wp-Rm1"/>
+                            <constraint firstItem="TCt-bW-cib" firstAttribute="leading" secondItem="B73-QU-0JT" secondAttribute="leading" id="Wks-xU-Vcc"/>
+                            <constraint firstItem="TCt-bW-cib" firstAttribute="trailing" secondItem="B73-QU-0JT" secondAttribute="trailing" id="Y9c-BE-gKw"/>
+                            <constraint firstItem="b8m-6h-mXM" firstAttribute="trailing" secondItem="7Kz-am-nKH" secondAttribute="trailing" id="bo4-sB-wNV"/>
+                            <constraint firstItem="B73-QU-0JT" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Olp-uv-jhT" secondAttribute="trailing" symbolic="YES" id="ped-3R-I0f"/>
+                            <constraint firstItem="b8m-6h-mXM" firstAttribute="centerX" secondItem="7Kz-am-nKH" secondAttribute="centerX" id="wYc-oA-oof"/>
+                            <constraint firstItem="yOr-B1-LPE" firstAttribute="leading" secondItem="7Kz-am-nKH" secondAttribute="trailing" constant="10" id="wck-fa-PCx"/>
+                            <constraint firstItem="B73-QU-0JT" firstAttribute="bottom" secondItem="6BC-Bb-65j" secondAttribute="bottom" constant="220" id="xhh-00-ypW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="B73-QU-0JT"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="kCZ-78-2SU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="dEq-8x-RQI">
+                            <connections>
+                                <action selector="SaveTapped:" destination="fMU-Fz-W1T" id="zhA-k5-fgP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="DatePickerOutlet" destination="TCt-bW-cib" id="Ug9-4s-JTA"/>
+                        <outlet property="DetailTextView" destination="6BC-Bb-65j" id="Isf-2Z-VlT"/>
+                        <outlet property="TitleTextField" destination="yOr-B1-LPE" id="Y1m-o1-0MB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xiS-bc-tKZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1553.6231884057972" y="-320.08928571428572"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="2il-XC-c5p">
@@ -127,7 +219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aE6-yO-Sqz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1547.8260869565217" y="-29.464285714285712"/>
+            <point key="canvasLocation" x="1554" y="364"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Unm-lk-f5n">
@@ -148,4 +240,7 @@
             <point key="canvasLocation" x="-97.101449275362327" y="-28.125"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="oVf-RG-7DA"/>
+    </inferredMetricsTieBreakers>
 </document>
