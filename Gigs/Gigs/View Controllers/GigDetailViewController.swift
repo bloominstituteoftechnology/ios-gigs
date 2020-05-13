@@ -17,7 +17,8 @@ class GigDetailViewController: UIViewController {
     var gigController: GigController!
     var gig: Gig? {
         didSet {
-            updateViews(with: gig!)
+            guard let gig = gig else { return }
+            updateViews(with: gig)
         }
     }
     
@@ -38,6 +39,13 @@ class GigDetailViewController: UIViewController {
         title = gig.title
         jobTitleTextField.text = gig.title
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        let date = dateFormatter.date(from: gig.dueDate)!
+        
+        
+        datePicker.setDate(date, animated: true)
         jobDescriptionTextView.text = gig.description
     }
     
