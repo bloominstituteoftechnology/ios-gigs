@@ -11,19 +11,22 @@ import Foundation
 
 final class GigController {
     
+    var gigs: [Gig] = []
+    
     enum HTTPMethod: String {
         case get = "GET"
         case post = "POST"
     }
     
     enum NetworkError: Error {
-        case noData, failedSignUp, failedSignIn, noToken
+        case noData, failedSignUp, failedSignIn, noToken, tryAgain
     }
     
     
     private let baseURL = URL(string: "https://lambdaanimalspotter.herokuapp.com/api")!
     private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
     private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
+    private lazy var allGigsURL = baseURL.appendingPathComponent("/gigs")
     var bearer: Bearer?
     
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
@@ -111,6 +114,51 @@ final class GigController {
             completion(.failure(.failedSignIn))
         }
     }
+    
+    //Fetch all gig
+    func fetchGig(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+           //Make sure user is aithenticated through bearer token
+           guard let bearer = self.bearer else {
+               completion(.failure(.noToken))
+               return
+           }
+           
+           var request = URLRequest(url: allGigsURL)
+           request.httpMethod = HTTPMethod.get.rawValue
+           request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+           //cerate data task
+           let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+               //handle error first ALWAYS
+               if let error = error {
+                   print("Error reciving gigs data wiht \(error)")
+                   completion(.failure(.tryAgain))
+                   return
+               }
+               //handle response
+               if let response = response as? HTTPURLResponse,
+                   response.statusCode == 401 {
+                   completion(.failure(.noToken))
+                   return
+               }
+               //handle data
+               guard let data = data else {
+                   print("No data received from allGigsURL")
+                   completion(.failure(.noData))
+                   return
+               }
+               //Decode data
+               do {
+                   let decoder = JSONDecoder()
+                   let gigNames = try decoder.decode([Gig].self, from: data)
+                   completion(.success(gigNames))
+               } catch {
+                   print("Erorr decoding gigNames \(error)")
+                   completion(.failure(.tryAgain))
+                   return
+               }
+           }
+           task.resume()
+       }
     
     
     private func postRequest(for url: URL) -> URLRequest {
