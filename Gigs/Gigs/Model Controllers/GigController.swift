@@ -146,7 +146,7 @@ class GigController {
             
             do {
                 let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .secondsSince1970
+                decoder.dateDecodingStrategy = .iso8601
                 let gigs = try decoder.decode([Gig].self, from: data)
                 self.gigs = gigs
                 completion(.success(gigs))
@@ -173,7 +173,7 @@ class GigController {
         
         do {
             let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .secondsSince1970
+            encoder.dateEncodingStrategy = .iso8601
             request.httpBody = try encoder.encode(newGig)
             self.gigs.append(newGig)
         } catch {
