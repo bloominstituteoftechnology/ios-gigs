@@ -16,6 +16,9 @@ class GigController {
     private var baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
     private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
+    private lazy var getGigsURL = baseURL.appendingPathComponent("/gigs")
+    private lazy var createGigURL = baseURL.appendingPathComponent("/gigs")
+    var gigs: [Gig] = []
     
     enum HTTPMethod: String {
         case get = "GET"
@@ -23,7 +26,7 @@ class GigController {
     }
     
     enum NetworkError: Error {
-        case failedSignUp, failedSignIn, noData, noToken
+        case failedSignUp, failedSignIn, noData, noToken, tryAgain
     }
     
     // MARK: - Methods
@@ -110,4 +113,91 @@ class GigController {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }
+    
+    func getGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
+        guard let bearer = bearer.self else {
+            completion(.failure(.noToken))
+            return
+        }
+        
+        var request = URLRequest(url: getGigsURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                NSLog("Error receiving data: \(error)")
+                completion(.failure(.tryAgain))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                NSLog("Response code 401")
+                completion(.failure(.noToken))
+                return
+            }
+            
+            guard let data = data else {
+                NSLog("No data received")
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .secondsSince1970
+                let gigs = try decoder.decode([Gig].self, from: data)
+                self.gigs = gigs
+                completion(.success(gigs))
+            } catch {
+                NSLog("Could not decode data")
+                completion(.failure(.tryAgain))
+                return
+            }
+        }
+        task.resume()
+    }
+    
+    func createGig(title: String, dueDate: Date, description: String, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        guard let bearer = bearer.self else {
+            completion(.failure(.noToken))
+            return
+        }
+        
+        let newGig = Gig(title: title, description: description, dueDate: dueDate)
+        var request = URLRequest(url: createGigURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .secondsSince1970
+            request.httpBody = try encoder.encode(newGig)
+            self.gigs.append(newGig)
+        } catch {
+            NSLog("Could not encode data")
+            completion(.failure(.tryAgain))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let error = error {
+                NSLog("Error posting gig: \(error)")
+                completion(.failure(.tryAgain))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+            response.statusCode == 401 {
+                NSLog("Response code 401")
+                completion(.failure(.tryAgain))
+                return
+            }
+            completion(.success(newGig))
+        }
+        task.resume()
+    }
+    
 }
