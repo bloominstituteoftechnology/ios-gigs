@@ -12,15 +12,23 @@ class GigsTableViewController: UITableViewController {
     
     // MARK: - Properties
     var gigController = GigController()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var dateFormatter: DateFormatter {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .short
+        return formatter
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginSegue", sender: self)
+        } else {
+            gigController.getGigs { (result) in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
 
@@ -30,18 +38,33 @@ class GigsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
+        let currentGig = gigController.gigs[indexPath.row]
+        cell.textLabel?.text = currentGig.title
+        cell.detailTextLabel?.text = dateFormatter.string(from: currentGig.dueDate)
 
         return cell
     }
 
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LoginSegue" {
+        switch segue.identifier {
+        case "LoginSegue":
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.gigController = gigController
             }
+        case "AddGig":
+            if let addGigVC = segue.destination as? GigDetailViewController {
+                addGigVC.gigController = gigController
+            }
+        case "ShowGig":
+            if let gigDetailVC = segue.destination as? GigDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow {
+                gigDetailVC.gigController = gigController
+                gigDetailVC.gig = gigController.gigs[indexPath.row]
+            }
+        default:
+            break
         }
     }
 
