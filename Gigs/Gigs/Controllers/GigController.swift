@@ -19,14 +19,14 @@ final class GigController {
     }
     
     enum NetworkError: Error {
-        case noData, failedSignUp, failedSignIn, noToken, tryAgain
+        case noData, failedSignUp, failedSignIn, noToken, tryAgain, decodigError
     }
     
     
     private let baseURL = URL(string: "https://lambdaanimalspotter.herokuapp.com/api")!
     private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
     private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
-    private lazy var allGigsURL = baseURL.appendingPathComponent("/gigs")
+    private lazy var allGigsURL = baseURL.appendingPathComponent("/gigs/")
     var bearer: Bearer?
     
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
@@ -102,6 +102,7 @@ final class GigController {
                 do {
                     let decoder = JSONDecoder()
                     self.bearer = try decoder.decode(Bearer.self, from: data)
+                    print(self.bearer!)
                     completion(.success(true))
                 } catch {
                     print("Error decoding bearer: \(error)")
@@ -116,72 +117,81 @@ final class GigController {
     }
     
     //Fetch all gig
-    func fetchGig(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
-        //Make sure user is aithenticated through bearer token
+    func fetchGig(completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         guard let bearer = self.bearer else {
             completion(.failure(.noToken))
             return
         }
-        
         var request = URLRequest(url: allGigsURL)
         request.httpMethod = HTTPMethod.get.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
-        //cerate data task
+        
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            //handle error first ALWAYS
-            if let error = error {
-                print("Error reciving gigs data wiht \(error)")
+            
+            
+            guard error == nil else {
                 completion(.failure(.tryAgain))
                 return
             }
-            //handle response
+            
             if let response = response as? HTTPURLResponse,
                 response.statusCode == 401 {
                 completion(.failure(.noToken))
                 return
             }
-            //handle data
+            
             guard let data = data else {
-                print("No data received from allGigsURL")
                 completion(.failure(.noData))
                 return
             }
-            //Decode data
+            
+            let decoder = JSONDecoder()
+            let serial = try? JSONSerialization.jsonObject(with: data, options: [])
+            print(serial)
+            decoder.dateDecodingStrategy = .iso8601
+            
             do {
-                let decoder = JSONDecoder()
-                let gigNames = try decoder.decode([Gig].self, from: data)
-                self.gigs = gigNames
-                completion(.success(gigNames))
+                let newGigs = try decoder.decode([Gig].self, from: data)
+                //request.httpBody = newGigs
+                completion(.success(true))
+                self.gigs = newGigs
             } catch {
-                print("Erorr decoding gigNames \(error)")
-                completion(.failure(.tryAgain))
+                completion(.failure(.decodigError))
                 return
             }
         }
         task.resume()
     }
     
-    func createGig(with gig: Gig, completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+    func createGig(with gig: Gig, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         guard let bearer = self.bearer else {
             completion(.failure(.noToken))
             return
         }
-        
         var request = URLRequest(url: allGigsURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+
         do {
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
             let jsonData = try encoder.encode(gig)
             request.httpBody = jsonData
+            print(String(data: jsonData, encoding: .utf8)!)
             
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        }  catch {
+                   print("Error encoding gig: \(error)")
+                   completion(.failure(.tryAgain))
+            
+        }
+            let task = URLSession.shared.dataTask(with: request) { (_, response, error) in
+                
                 // Check for error first
                 if let error = error {
                     print("CreateGig failed with error: \(error)")
-                    completion(.failure(.failedSignUp))
+                    completion(.failure(.tryAgain))
                     return
                 }
                 
@@ -191,30 +201,30 @@ final class GigController {
                     completion(.failure(.noToken))
                     return
                 }
-                //handle data
-                guard let data = data else {
-                    print("No data received from createGig")
-                    completion(.failure(.noData))
-                    return
-                }
-                //Decode data
-                do {
-                    let decoder = JSONDecoder()
-                    let gigs = try decoder.decode(Gig.self, from: data)
-                    completion(.success(gigs))
-                    self.gigs.append(gigs)
-                } catch {
-                    print("Erorr decoding animaName \(error)")
-                    completion(.failure(.tryAgain))
-                    return
-                }
+              
+//                guard let data = data else {
+//                    print("No data received from createGig")
+//                    completion(.failure(.noData))
+//                    return
+//                }
+//                let decoder = JSONDecoder()
+//                decoder.dateDecodingStrategy = .iso8601
+//
+//                do {
+//                   let gigs = try decoder.decode([Gig].self, from: data)
+//                    self.gigs.append(contentsOf: gigs)
+//                    completion(.success(true))
+//                } catch {
+//                    completion(.failure(.tryAgain))
+//                    return
+//                }
+                self.gigs.append(gig)
+                completion(.success(true))
             }
             task.resume()
-        } catch {
-            print("Error encoding user: \(error)")
-            completion(.failure(.failedSignUp))
+
         }
-    }
+    
     
     
     private func postRequest(for url: URL) -> URLRequest {
