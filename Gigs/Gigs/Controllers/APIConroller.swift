@@ -20,7 +20,7 @@ final class APIController {
         case noData, failedSignUp, failedSignIn, noToken
     }
     
-    private let baseURL = URL(string: "http://lambdagigapi.herokuapp.com/api")!
+    private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
     private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
     private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
     var bearer: Bearer?

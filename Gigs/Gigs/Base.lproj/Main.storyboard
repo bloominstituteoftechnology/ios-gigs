@@ -74,6 +74,9 @@
                                             <segment title="Sign Up"/>
                                             <segment title="Sign In"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="signInTypeChanged:" destination="YX1-N7-yZz" eventType="valueChanged" id="gtK-jr-MiN"/>
+                                        </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zat-S5-URJ">
                                         <rect key="frame" x="0.0" y="44" width="394" height="34"/>
@@ -92,6 +95,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="YX1-N7-yZz" eventType="touchUpInside" id="5YU-ik-aiK"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
