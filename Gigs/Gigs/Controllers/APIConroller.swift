@@ -171,28 +171,37 @@ final class APIController {
         return
         }
         
-        let newGig = Gig(title: title, dueDate: date, description: description)
+        let newGig = Gig(title: title, dueDate: dueDate, description: description)
         
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: gigsURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(bearer.token)"), forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
-        let encoder = JSONEncoder
-        encoder.DateEncodingStrategy = .ios8601
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
         do{
             request.httpBody = try encoder.encode(newGig)
             self.gigs.append(newGig)
         } catch {
             print("error encoding new gig error: \(error)")
-            completion(.failure(.failedCreation)
+            completion(.failure(.failedCreation))
             return
         }
         let task = URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let error = error{
                 print("error \(error)")
+                completion(.failure(.failedCreation))
+                return
             }
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401{
+                completion(.failure(.failedCreation))
+                return
+            }
+            completion(.success(newGig))
         }
+        task.resume()
     }
     
 }

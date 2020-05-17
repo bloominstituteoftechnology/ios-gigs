@@ -81,7 +81,7 @@
         <!--New Gig-->
         <scene sceneID="l7F-Nz-pvf">
             <objects>
-                <viewController id="JQr-GY-vUl" sceneMemberID="viewController">
+                <viewController id="JQr-GY-vUl" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MId-b8-0ax">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,8 +147,17 @@
                         <viewLayoutGuide key="safeArea" id="NMo-FS-yZC"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Gig" id="AcG-Ri-Ga0">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="zGc-LI-0jb"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="zGc-LI-0jb">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="JQr-GY-vUl" id="ea5-L3-1am"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="jobDescription" destination="j2p-6c-SLc" id="RSK-Cc-uK8"/>
+                        <outlet property="jobDueDate" destination="LlS-3M-rwZ" id="6r5-HP-SoU"/>
+                        <outlet property="jobTitle" destination="c5m-x7-O6l" id="amj-pF-Cdb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fS-j1-d9D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -262,6 +271,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LeH-Ih-MQR"/>
+        <segue reference="OTc-S0-YSD"/>
     </inferredMetricsTieBreakers>
 </document>
