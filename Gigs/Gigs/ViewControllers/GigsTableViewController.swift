@@ -45,7 +45,7 @@ class GigsTableViewController: UITableViewController {
         let gigs = apiController.gigs[indexPath.row]
         // Configure the cell...
         cell.textLabel?.text = gigs.title
-        cell.detailTextLabel?.text = dateFormatter.string(from: gigs.date)
+        cell.detailTextLabel?.text = dateFormatter.string(from: gigs.dueDate)
         return cell
     }
 

@@ -17,7 +17,7 @@ final class APIController {
     }
     
     enum NetworkError: Error {
-        case noData, failedSignUp, failedSignIn, noToken, tryAgain
+        case noData, failedSignUp, failedSignIn, noToken, tryAgain, failedCreation
     }
     
     private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
@@ -165,4 +165,34 @@ final class APIController {
     }
         task.resume()
 }
+    func newGig(title: String, dueDate: Date, description: String, completion: @escaping (Result<Gig, NetworkError>) -> Void){
+        guard let bearer = bearer.self else{
+        completion(.failure(.noToken))
+        return
+        }
+        
+        let newGig = Gig(title: title, dueDate: date, description: description)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearer.token)"), forHTTPHeaderField: "Authorization")
+        
+        let encoder = JSONEncoder
+        encoder.DateEncodingStrategy = .ios8601
+        do{
+            request.httpBody = try encoder.encode(newGig)
+            self.gigs.append(newGig)
+        } catch {
+            print("error encoding new gig error: \(error)")
+            completion(.failure(.failedCreation)
+            return
+        }
+        let task = URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let error = error{
+                print("error \(error)")
+            }
+        }
+    }
+    
 }
