@@ -10,13 +10,13 @@ import UIKit
 
 class GigDetailViewController: UIViewController {
     
-    var apiController: APIController?
-    var gig: Gig?
     
     @IBOutlet weak var jobTitle: UITextField!
     @IBOutlet weak var jobDueDate: UIDatePicker!
     @IBOutlet weak var jobDescription: UITextView!
     
+    var apiController: APIController?
+    var gig: Gig?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +28,7 @@ class GigDetailViewController: UIViewController {
     @IBAction func saveButtonTapped(_ secnder: Any) {
         guard let title = jobTitle.text,
         let description = jobDescription.text,
-        let apiController = apiController else
-    { return }
+        let apiController = apiController else { return }
         let date = jobDueDate.date
         
         apiController.newGig(title: title, dueDate: date, description: description) { (result) in
@@ -37,9 +36,6 @@ class GigDetailViewController: UIViewController {
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
-
-        
-    
     }
     
     private func updateViews() {

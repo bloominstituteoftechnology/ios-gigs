@@ -16,45 +16,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="64" id="tOg-TX-lLY">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="gigsTableViewCell" textLabel="8OM-gw-duQ" detailTextLabel="5rH-zj-OIb" rowHeight="64" style="IBUITableViewCellStyleSubtitle" id="tOg-TX-lLY">
                                 <rect key="frame" x="0.0" y="28" width="414" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="gigsTableViewCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tOg-TX-lLY" id="2WR-gg-i8O">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Hsw-5s-F8I">
-                                            <rect key="frame" x="20" y="10" width="384" height="44"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="zI3-Aw-gsT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="24"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="gigTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zi-Ox-VHa">
-                                                            <rect key="frame" x="0.0" y="0.0" width="64" height="24"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="gigDate" text="01/12/12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzT-DT-Sos">
-                                                    <rect key="frame" x="0.0" y="24" width="68.5" height="20"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8OM-gw-duQ">
+                                            <rect key="frame" x="20" y="12" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5rH-zj-OIb">
+                                            <rect key="frame" x="20" y="35.5" width="33" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Hsw-5s-F8I" firstAttribute="leading" secondItem="2WR-gg-i8O" secondAttribute="leading" constant="20" id="0ME-Z7-XzZ"/>
-                                        <constraint firstItem="Hsw-5s-F8I" firstAttribute="top" secondItem="2WR-gg-i8O" secondAttribute="top" constant="10" id="LcN-1x-0kF"/>
-                                        <constraint firstAttribute="trailing" secondItem="Hsw-5s-F8I" secondAttribute="trailing" constant="10" id="Z3R-0I-nRb"/>
-                                        <constraint firstAttribute="bottom" secondItem="Hsw-5s-F8I" secondAttribute="bottom" constant="10" id="fRh-kJ-c4z"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="PNn-T6-Qjv" kind="show" identifier="showGig" id="OTc-S0-YSD"/>
+                                    <segue destination="JQr-GY-vUl" kind="show" identifier="showGig" id="8kH-4f-lvT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -66,7 +52,7 @@
                     <navigationItem key="navigationItem" title="Gigs" id="YKF-Ea-BNa">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="uZb-mC-Eph">
                             <connections>
-                                <segue destination="PNn-T6-Qjv" kind="show" identifier="createGig" id="LeH-Ih-MQR"/>
+                                <segue destination="JQr-GY-vUl" kind="show" identifier="createGig" id="W6z-Gj-4rf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -161,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fS-j1-d9D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4078.2608695652175" y="-31.473214285714285"/>
+            <point key="canvasLocation" x="2984" y="-18"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="iw3-HX-iw1">
@@ -230,7 +216,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nqY-wk-e1g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2388" y="-834"/>
+            <point key="canvasLocation" x="2570" y="708"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HKZ-AJ-B09">
@@ -250,27 +236,8 @@
             </objects>
             <point key="canvasLocation" x="1322" y="-18"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="uA8-Qm-rHQ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PNn-T6-Qjv" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="FTb-h4-MSk"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Kb4-id-wlT">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="JQr-GY-vUl" kind="relationship" relationship="rootViewController" id="Mnc-7Y-TJr"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VQp-I6-lkD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3168.115942028986" y="-31.473214285714285"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="OTc-S0-YSD"/>
+        <segue reference="8kH-4f-lvT"/>
     </inferredMetricsTieBreakers>
 </document>

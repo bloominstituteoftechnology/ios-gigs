@@ -11,7 +11,7 @@ import UIKit
 class GigsTableViewController: UITableViewController {
 
     let reuseIdentifier = "gigsTableViewCell"
-    let apiController: APIController = APIController()
+    let apiController = APIController()
     private var gigs: [Gig] = []
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -30,6 +30,12 @@ class GigsTableViewController: UITableViewController {
         
         if apiController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+        } else {
+            apiController.fetchAllGigs{ (result) in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
         
     }
