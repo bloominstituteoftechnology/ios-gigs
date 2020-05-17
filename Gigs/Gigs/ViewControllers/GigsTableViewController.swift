@@ -12,7 +12,13 @@ class GigsTableViewController: UITableViewController {
 
     let reuseIdentifier = "gigsTableViewCell"
     let apiController: APIController = APIController()
-    private var gigs: [String] = []
+    private var gigs: [Gig] = []
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter
+    }
     
     
     override func viewDidLoad() {
@@ -31,19 +37,16 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return gigs.count
+        return apiController.gigs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-
+        let gigs = apiController.gigs[indexPath.row]
         // Configure the cell...
-        cell.textLabel?.text = gigs[indexPath.row]
+        cell.textLabel?.text = gigs.title
+        cell.detailTextLabel?.text = dateFormatter.string(from: gigs.date)
         return cell
-    }
-    
-    @IBAction func getGigs(_ sender: UIBarButtonItem) {
-        
     }
 
     
@@ -58,7 +61,22 @@ class GigsTableViewController: UITableViewController {
         }
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        else if segue.identifier == "createGig" {
+            if let createGigVC = segue.destination as? GigDetailViewController{
+                createGigVC.apiController = apiController
+            }
+        }
+        else if segue.identifier == "showGig" {
+            if let viewGig = segue.destination as? GigDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow{
+                viewGig.apiController = apiController
+                viewGig.gig = apiController.gigs[indexPath.row]
+            }
+        }
+        
+        
     }
+    
     
 
 }
