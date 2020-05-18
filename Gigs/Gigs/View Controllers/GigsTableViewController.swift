@@ -9,6 +9,14 @@
 import UIKit
 
 class GigsTableViewController: UITableViewController {
+    
+     enum NetworkError: Error {
+           case noAuth
+           case badAuth
+           case otherError
+           case badData
+           case noDecode
+    }
 
     let gigController = GigController()
     let dateFormatter = DateFormatter()
@@ -19,14 +27,38 @@ class GigsTableViewController: UITableViewController {
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if gigController.bearer == nil {
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
         
-        // TODO: fetch gigs here
+        gigController.fetchAllGigs { (result) in
+            do {
+                self.gigController.gigs = try result.get()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } catch {
+                if let error = error as? NetworkError {
+                    switch error {
+                    case .noAuth:
+                        NSLog("No bearer token, please log in")
+                    case .badAuth:
+                        NSLog("Bearer token invalid")
+                    case .otherError:
+                        NSLog("Generic network error occurred")
+                    case .badData:
+                        NSLog("Data recieved was invalid, corrupt, or doesn't exist")
+                    case .noDecode:
+                        NSLog("JSON data could not be decoded")
+                    default:
+                        NSLog("Other error occurred")
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Table view data source
@@ -57,6 +89,17 @@ class GigsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let loginVC = segue.destination as? LoginViewController {
             loginVC.gigController = gigController
+        } else if segue.identifier == "addGigSegue" {
+            if let viewController = segue.destination as? GigDetailViewController {
+                viewController.gigController = gigController
+            }
+        } else if segue.identifier == "gigDetailSegue" {
+            if let viewController = segue.destination as? GigDetailViewController {
+                viewController.gigController = gigController
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    viewController.gig = gigController.gigs[indexPath.row]
+                }
+            }
         }
     }
     

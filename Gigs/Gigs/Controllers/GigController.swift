@@ -16,7 +16,6 @@ class GigController {
     }
     
     enum NetworkError: Error {
-        case badUrl
         case noAuth
         case badAuth
         case otherError
@@ -27,7 +26,7 @@ class GigController {
     var bearer: Bearer?
     var gigs: [Gig] = []
     
-    let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
+    let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
     func signUp(with user: User, completion: @escaping (Error?) -> ()) {
         let signUpURL = baseURL.appendingPathComponent("/users/signup")
@@ -126,7 +125,7 @@ class GigController {
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
-                NSLog("Error receiving animal name data: \(error)")
+                NSLog("Error receiving gigs data: \(error)")
                 completion(.failure(.otherError))
                 return
             }
@@ -143,18 +142,21 @@ class GigController {
             }
             
             let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
             do {
-                self.gigs = try decoder.decode([Gig].self, from: data)
-                completion(.success(self.gigs))
+                let allGigs = try decoder.decode([Gig].self, from: data)
+                self.gigs = allGigs
+                print(allGigs)
+                completion(.success(allGigs))
             } catch {
-                NSLog("Error decoding animal objects: \(error)")
+                NSLog("Error decoding gig objects: \(error)")
                 completion(.failure(.noDecode))
                 return
             }
         }.resume()
     }
     
-    func addGig(with user: User, add gig: Gig, completion: @escaping (Error?) -> ()) {
+    func addGig(add gig: Gig, completion: @escaping () -> ()) {
         let addGigUrl = baseURL.appendingPathComponent("/gigs/")
         
         var request = URLRequest(url: addGigUrl)
@@ -168,24 +170,26 @@ class GigController {
             request.httpBody = jsonData
         } catch {
             NSLog("Error encoding gig object: \(error)")
-            completion(error)
+            completion()
             return
         }
         
         URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let error = error {
-                completion(error)
+                NSLog("Other error: \(error)")
+                completion()
                 return
             }
             
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                completion(NSError(domain: "", code: response.statusCode, userInfo: nil))
+                NSLog("Status code: \(response.statusCode)")
+                completion()
                 return
             }
             
             self.gigs.append(gig)
-            completion(nil)
+            completion()
         }.resume()
     }
 }
