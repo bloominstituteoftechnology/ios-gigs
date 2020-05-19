@@ -146,7 +146,6 @@ class GigController {
             do {
                 let allGigs = try decoder.decode([Gig].self, from: data)
                 self.gigs = allGigs
-                print(allGigs)
                 completion(.success(allGigs))
             } catch {
                 NSLog("Error decoding gig objects: \(error)")
@@ -156,18 +155,27 @@ class GigController {
         }.resume()
     }
     
-    func addGig(add gig: Gig, completion: @escaping () -> ()) {
+    func addGig(gig: Gig, completion: @escaping () -> ()) {
         let addGigUrl = baseURL.appendingPathComponent("/gigs/")
         
         var request = URLRequest(url: addGigUrl)
         
+        guard let bearer = bearer else {
+            NSLog("Bearer token invalid or nonexistant. Please log in")
+            completion()
+            return
+        }
+        
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
         let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
         do {
             let jsonData = try jsonEncoder.encode(gig)
             request.httpBody = jsonData
+            
         } catch {
             NSLog("Error encoding gig object: \(error)")
             completion()
@@ -189,6 +197,7 @@ class GigController {
             }
             
             self.gigs.append(gig)
+            
             completion()
         }.resume()
     }

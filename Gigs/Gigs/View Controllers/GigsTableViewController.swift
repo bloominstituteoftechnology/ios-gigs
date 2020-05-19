@@ -53,8 +53,6 @@ class GigsTableViewController: UITableViewController {
                         NSLog("Data recieved was invalid, corrupt, or doesn't exist")
                     case .noDecode:
                         NSLog("JSON data could not be decoded")
-                    default:
-                        NSLog("Other error occurred")
                     }
                 }
             }
@@ -74,9 +72,10 @@ class GigsTableViewController: UITableViewController {
         let gig = gigController.gigs[indexPath.row]
         let dateString = dateFormatter.string(from: gig.dueDate)
         
+//        print(gig.title)
+        
         cell.textLabel?.text = gig.title
-        cell.detailTextLabel?.text = "\(gig.dueDate)"
-//        cell.detailTextLabel?.text = dateString
+        cell.detailTextLabel?.text = dateString
 
         return cell
     }
