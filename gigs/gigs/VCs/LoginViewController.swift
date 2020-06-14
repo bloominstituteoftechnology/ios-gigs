@@ -8,14 +8,16 @@
 
 import UIKit
 
+enum LoginType {
+    case signIn
+    case signUp
+}
+
 class LoginViewController: UIViewController {
     
     var gigController: GigController?
     
-    enum LoginType {
-        case signIn
-        case signUp
-    }
+    var loginType = LoginType.signUp
     
     var selectLoginType: LoginType = .signIn {
         didSet {
@@ -62,35 +64,32 @@ class LoginViewController: UIViewController {
     
     @IBAction func buttonTapped(_ sender: Any) {
         //  create user from textfield
-        if let username = usernameTextField.text,
-            !username.isEmpty,
-            let password = passwordTextField.text,
-            !password.isEmpty {
-            let user = User(username: username, password: password)
-            
-            if selectLoginType == .signUp {
-                gigController?.signUp(with: user, completion: { result in
-                    do {
-                        let success = try result.get()
-                        if success {
-                            DispatchQueue.main.async {
-                                let alertController = UIAlertController(title: "sign up siccessful", message: "please log in", preferredStyle: .alert)
-                                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                                alertController.addAction(alertAction)
-                                self.present(alertController, animated: true) {
-                                    self.selectLoginType = .signIn
-                                    self.signUpSegment.selectedSegmentIndex = 1
-                                    self.signUpButton.setTitle("sign in", for: .normal)
-                                }
-                            }
+        guard let username = usernameTextField.text,
+            let password = passwordTextField.text, !password.isEmpty, !username.isEmpty else { return }
+        
+        let user = User(username: username, password: password)
+        
+        if loginType == .signUp {
+            gigController?.signUp(with: user, completion: { (networkError) in
+                if let error = networkError {
+                    NSLog("error during signup: \(error)")
+                } else {
+                    let alert = UIAlertController(title: "signup success", message: "please sign in", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(okAction)
+                    
+                    DispatchQueue.main.async {
+                        self.present(alert, animated: true) {
+                            self.loginType = .signIn
+                            self.signUpSegment.selectedSegmentIndex = 1
+                            self.signUpButton.setTitle("sign in", for: .normal)
                         }
-                    } catch {
-                        print("error signing up: \(error)")
                     }
-                })
-            }
+                }
+            })
         }
     }
+        
     @IBAction func signInTypeChanged(_ sender: UISegmentedControl) {
         //  switch UI between login types
         if sender.selectedSegmentIndex == 0 {

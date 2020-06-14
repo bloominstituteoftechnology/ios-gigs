@@ -43,7 +43,7 @@ final class GigController {
     private let httpHeaderType = "Content-Type"
     
     // MARK: - sign up
-    func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+    func signUp(with user: User, completion: @escaping (NetworkError?) -> Void) {
         print("signUpURL = \(signUpURL.absoluteString)")
         
         var request = URLRequest(url: signUpURL)
@@ -58,20 +58,20 @@ final class GigController {
             URLSession.shared.dataTask(with: request) { _, response, error in
                 if let error = error {
                     print("sign up failed with error: \(error)")
-                    completion(.failure(.failedSignUp))
+                    completion(.failedSignUp)
                     return
                 }
                 guard let response = response as? HTTPURLResponse,
                     response.statusCode == 200 else {
                         print("sign up unsuccessful")
-                        completion(.failure(.failedSignUp))
+                        completion(.failedSignUp)
                         return
                 }
-                completion(.success(true))
+                completion(nil)
             }.resume()
         } catch {
             print("error encoding user object: \(error)")
-            completion(.failure(.failedSignUp))
+            completion(.failedSignUp)
             return
         }
     }
