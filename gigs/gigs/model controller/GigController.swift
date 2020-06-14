@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class GigController {
     
@@ -42,8 +43,11 @@ final class GigController {
     private let httpHeaderType = "Content-Type"
     
     // MARK: - sign up
-    func signUp(for user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+    func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        print("signUpURL = \(signUpURL.absoluteString)")
+        
         var request = URLRequest(url: signUpURL)
+        
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -53,23 +57,22 @@ final class GigController {
             
             URLSession.shared.dataTask(with: request) { _, response, error in
                 if let error = error {
-                    print("sign up failed with error: /(error)")
+                    print("sign up failed with error: \(error)")
                     completion(.failure(.failedSignUp))
                     return
                 }
                 guard let response = response as? HTTPURLResponse,
                     response.statusCode == 200 else {
-                        print("sign up was not successful.")
+                        print("sign up unsuccessful")
                         completion(.failure(.failedSignUp))
                         return
                 }
                 completion(.success(true))
-            }
-        .resume()
-
+            }.resume()
         } catch {
-            print("error encoding user: \(error)")
+            print("error encoding user object: \(error)")
             completion(.failure(.failedSignUp))
+            return
         }
     }
     
@@ -134,7 +137,7 @@ final class GigController {
             }
             
             guard let response = response as? HTTPURLResponse,
-            response.statusCode == 200
+                response.statusCode == 200
                 else {
                     print("Gig names received bad response")
                     completion(.failure(.failedFetch))
@@ -172,7 +175,7 @@ final class GigController {
             }
             
             guard let response = response as? HTTPURLResponse,
-            response.statusCode == 200
+                response.statusCode == 200
                 else {
                     print("gig received non-200 response")
                     completion(.failure(.failedFetch))
@@ -192,7 +195,7 @@ final class GigController {
                 completion(.failure(.failedPost))
             }
         }.resume()
-   
+        
     }
     
     private func getRequest(for url: URL, bearer: Bearer) -> URLRequest {

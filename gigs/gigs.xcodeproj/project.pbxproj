@@ -49,6 +49,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D977A76247B161F00BCFADA /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				0DDFAF9124622293009BD222 /* LoginViewController.swift */,
+				0DDFAF8F24621ABD009BD222 /* GigsTableViewController.swift */,
+				0DE46F10246373EF00EC2A30 /* GigDetailViewController.swift */,
+			);
+			path = VCs;
+			sourceTree = "<group>";
+		};
+		0D977A77247B163800BCFADA /* model controller */ = {
+			isa = PBXGroup;
+			children = (
+				0DDFAF9824622FD5009BD222 /* GigController.swift */,
+			);
+			path = "model controller";
+			sourceTree = "<group>";
+		};
 		0DDFAF6F246219A3009BD222 = {
 			isa = PBXGroup;
 			children = (
@@ -71,9 +89,8 @@
 				0DDFAF7B246219A3009BD222 /* AppDelegate.swift */,
 				0DDFAF7D246219A3009BD222 /* SceneDelegate.swift */,
 				0DDFAF81246219A3009BD222 /* Main.storyboard */,
-				0DE46F10246373EF00EC2A30 /* GigDetailViewController.swift */,
-				0DDFAF8F24621ABD009BD222 /* GigsTableViewController.swift */,
-				0DDFAF9124622293009BD222 /* LoginViewController.swift */,
+				0D977A77247B163800BCFADA /* model controller */,
+				0D977A76247B161F00BCFADA /* VCs */,
 				0DDFAF9724622F69009BD222 /* Model */,
 				0DDFAF84246219A6009BD222 /* Assets.xcassets */,
 				0DDFAF86246219A6009BD222 /* LaunchScreen.storyboard */,
@@ -86,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				0DDFAF9524622F4A009BD222 /* Bearer.swift */,
-				0DDFAF9824622FD5009BD222 /* GigController.swift */,
 				0DDFAF9324622EEC009BD222 /* User.swift */,
 				0DE46F122463783700EC2A30 /* Gig.swift */,
 			);
