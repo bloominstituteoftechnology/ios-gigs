@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E162B66424B96DFE00BA2DE1 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E162B66324B96DFE00BA2DE1 /* GigsTableViewController.swift */; };
 		E1A3579524B8261300F3012B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A3579424B8261300F3012B /* AppDelegate.swift */; };
 		E1A3579724B8261300F3012B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A3579624B8261300F3012B /* SceneDelegate.swift */; };
 		E1A3579924B8261300F3012B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A3579824B8261300F3012B /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E162B66324B96DFE00BA2DE1 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		E1A3579124B8261300F3012B /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1A3579424B8261300F3012B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1A3579624B8261300F3012B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E162B66224B96DB700BA2DE1 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E162B66324B96DFE00BA2DE1 /* GigsTableViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		E1A3578824B8261300F3012B = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +66,7 @@
 		E1A3579324B8261300F3012B /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
+				E162B66224B96DB700BA2DE1 /* View Controllers */,
 				E1A3579424B8261300F3012B /* AppDelegate.swift */,
 				E1A3579624B8261300F3012B /* SceneDelegate.swift */,
 				E1A3579824B8261300F3012B /* ViewController.swift */,
@@ -139,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1A3579924B8261300F3012B /* ViewController.swift in Sources */,
+				E162B66424B96DFE00BA2DE1 /* GigsTableViewController.swift in Sources */,
 				E1A3579524B8261300F3012B /* AppDelegate.swift in Sources */,
 				E1A3579724B8261300F3012B /* SceneDelegate.swift in Sources */,
 			);
