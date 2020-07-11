@@ -72,7 +72,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Ig9-0y-cWV">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zdr-rY-tA9">
+                                <rect key="frame" x="145" y="142" width="124" height="32"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <segments>
+                                    <segment title="sign up"/>
+                                    <segment title="log in"/>
+                                </segments>
+                                <connections>
+                                    <action selector="signInTypeChanged:" destination="kJu-gG-3Bs" eventType="touchUpInside" id="kv0-B1-bsF"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEG-Of-Qaf">
+                                <rect key="frame" x="98" y="342" width="218" height="82"/>
+                                <color key="backgroundColor" red="0.26061721119999998" green="0.54962081009999997" blue="0.3540262099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <state key="normal" title="sign up">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="kJu-gG-3Bs" eventType="touchUpInside" id="YKy-Xv-Z6x"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Ig9-0y-cWV">
                                 <rect key="frame" x="8" y="208" width="398" height="86"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CQb-ry-xh3">
@@ -87,42 +109,19 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zdr-rY-tA9">
-                                <rect key="frame" x="140" y="142" width="134" height="32"/>
-                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <segments>
-                                    <segment title="sign up"/>
-                                    <segment title="log in"/>
-                                </segments>
-                                <connections>
-                                    <action selector="signInTypeChanged:" destination="kJu-gG-3Bs" eventType="touchUpInside" id="kv0-B1-bsF"/>
-                                </connections>
-                            </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEG-Of-Qaf">
-                                <rect key="frame" x="98" y="360" width="218" height="64"/>
-                                <color key="backgroundColor" red="0.26061721119999998" green="0.54962081009999997" blue="0.3540262099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <state key="normal" title="sign up">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonTapped:" destination="kJu-gG-3Bs" eventType="touchUpInside" id="YKy-Xv-Z6x"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="PK3-X9-rA6" firstAttribute="bottom" secondItem="xEG-Of-Qaf" secondAttribute="bottom" constant="438" id="8Oy-4t-zZT"/>
-                            <constraint firstItem="PK3-X9-rA6" firstAttribute="trailing" secondItem="zdr-rY-tA9" secondAttribute="trailing" constant="140" id="C0U-xI-ajp"/>
+                            <constraint firstItem="xEG-Of-Qaf" firstAttribute="top" secondItem="Ig9-0y-cWV" secondAttribute="bottom" constant="48" id="A9S-fJ-vSK"/>
+                            <constraint firstItem="zdr-rY-tA9" firstAttribute="leading" secondItem="PK3-X9-rA6" secondAttribute="leading" constant="145" id="GuT-k9-vWj"/>
                             <constraint firstItem="PK3-X9-rA6" firstAttribute="trailing" secondItem="xEG-Of-Qaf" secondAttribute="trailing" constant="98" id="Ils-0k-vCB"/>
-                            <constraint firstItem="Ig9-0y-cWV" firstAttribute="top" secondItem="PK3-X9-rA6" secondAttribute="top" constant="164" id="Sjv-1e-lB5"/>
-                            <constraint firstItem="PK3-X9-rA6" firstAttribute="bottom" secondItem="Ig9-0y-cWV" secondAttribute="bottom" constant="568" id="VAd-JK-iwP"/>
+                            <constraint firstAttribute="bottom" secondItem="Ig9-0y-cWV" secondAttribute="bottom" constant="602" id="Vpj-U7-PrT"/>
                             <constraint firstItem="CQb-ry-xh3" firstAttribute="top" secondItem="zdr-rY-tA9" secondAttribute="bottom" constant="35" id="XXi-yI-MP2"/>
-                            <constraint firstItem="PK3-X9-rA6" firstAttribute="trailing" secondItem="Ig9-0y-cWV" secondAttribute="trailing" constant="8" id="bFd-d3-L5W"/>
-                            <constraint firstItem="xEG-Of-Qaf" firstAttribute="top" secondItem="NKO-mI-J0J" secondAttribute="bottom" constant="66" id="jIX-l1-J3o"/>
+                            <constraint firstItem="Ig9-0y-cWV" firstAttribute="leading" secondItem="PK3-X9-rA6" secondAttribute="leading" constant="8" id="YGb-zQ-juc"/>
                             <constraint firstItem="zdr-rY-tA9" firstAttribute="top" secondItem="PK3-X9-rA6" secondAttribute="top" constant="98" id="ldw-rK-Jjm"/>
-                            <constraint firstItem="zdr-rY-tA9" firstAttribute="leading" secondItem="PK3-X9-rA6" secondAttribute="leading" constant="140" id="pAk-iG-SgA"/>
-                            <constraint firstItem="Ig9-0y-cWV" firstAttribute="leading" secondItem="PK3-X9-rA6" secondAttribute="leading" constant="8" id="uHf-YY-u85"/>
+                            <constraint firstItem="Ig9-0y-cWV" firstAttribute="centerX" secondItem="xEG-Of-Qaf" secondAttribute="centerX" id="p2V-Uj-tJ8"/>
+                            <constraint firstItem="Ig9-0y-cWV" firstAttribute="centerX" secondItem="zdr-rY-tA9" secondAttribute="centerX" id="wic-Rg-E73"/>
                             <constraint firstItem="xEG-Of-Qaf" firstAttribute="leading" secondItem="PK3-X9-rA6" secondAttribute="leading" constant="98" id="wl6-H5-aaK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PK3-X9-rA6"/>

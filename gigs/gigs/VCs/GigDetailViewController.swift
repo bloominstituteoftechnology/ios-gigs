@@ -10,6 +10,9 @@ import UIKit
 
 class GigDetailViewController: UIViewController {
 
+    var gig: Gig?
+    var gigController: GigController?
+    
     @IBOutlet weak var gigNameTextField: UITextField!
     @IBOutlet weak var dueDate: UIDatePicker!
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -18,7 +21,6 @@ class GigDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func save(_ sender: Any) {
@@ -29,8 +31,11 @@ class GigDetailViewController: UIViewController {
                 return
         }
         
-        //  let gig = 
+        let gig = Gig(title: gigName, description: description, dueDate: dueDate.date)
+        
+        //  may want to implement .postGig method to save functionality
+        //  it doesn't look like save method will work considering the way
+        //  postGig() method is built...
     }
     
-
 }
