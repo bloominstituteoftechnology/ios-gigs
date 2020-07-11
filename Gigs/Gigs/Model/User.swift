@@ -1,5 +1,5 @@
 //
-//  Bearer.swift
+//  User.swift
 //  Gigs
 //
 //  Created by Sammy Alvarado on 7/11/20.
@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct Bearer: Codable {
-    let id: Int
-    let token: String
-    let userId: Int
+struct User: Codable {
+    let username: String
+    let password: String
 }
