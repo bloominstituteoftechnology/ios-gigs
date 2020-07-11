@@ -18,6 +18,8 @@ class GigiController {
     enum NetWorkError: Error {
         case noData
         case failedSignUP
+        case failedSignIn
+        case noToKen
     }
 
 
@@ -53,12 +55,10 @@ class GigiController {
             }
             task.resume()
         } catch {
-
+            print("Error encoding user: \(error)")
+            completion(.failure(.failedSignUP))
         }
     }
-
-
-
     private func postRequest(for url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -66,5 +66,47 @@ class GigiController {
         return request
     }
 
+    func signIn(with user: User, completion: @escaping (Result<Bool, NetWorkError>) -> Void) {
+        print("SignInURL = \(signInURL.absoluteString)")
+        var request = postRequest(for: signInURL)
 
+        do {
+            let jsonData = try JSONEncoder().encode(user)
+            request.httpBody = jsonData
+
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    print("SignIn in failed with error \(error)")
+                    completion(.failure(.failedSignIn))
+                    return
+                }
+
+                guard let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 else {
+                        print("Sign in was unsuccessful")
+                        completion(.failure(.failedSignIn))
+                        return
+                }
+
+                guard let data = data else {
+                    print("Data was not recieved")
+                    completion(.failure(.noData))
+                    return
+                }
+
+                do {
+                    self.bearer = try JSONDecoder().decode(Bearer.self, from: data)
+                    completion(.success(true))
+                } catch {
+                    print("Error decoding bearer: \(error)")
+                    completion(.failure(.noToKen))
+                    return
+                }
+            }
+            task.resume()
+        } catch {
+            print("Error encoding user: \(error.localizedDescription)")
+            completion(.failure(.failedSignIn))
+        }
+    }
 }
