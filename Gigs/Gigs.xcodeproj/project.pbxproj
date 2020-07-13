@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		A4CAFCCE24BBEDE700C30E25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CAFCCD24BBEDE700C30E25 /* AppDelegate.swift */; };
 		A4CAFCD024BBEDE700C30E25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CAFCCF24BBEDE700C30E25 /* SceneDelegate.swift */; };
-		A4CAFCD224BBEDE700C30E25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CAFCD124BBEDE700C30E25 /* ViewController.swift */; };
 		A4CAFCD524BBEDE700C30E25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4CAFCD324BBEDE700C30E25 /* Main.storyboard */; };
 		A4CAFCD724BBEDE800C30E25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CAFCD624BBEDE800C30E25 /* Assets.xcassets */; };
 		A4CAFCDA24BBEDE800C30E25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4CAFCD824BBEDE800C30E25 /* LaunchScreen.storyboard */; };
+		A4CAFCE424BBEE7200C30E25 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CAFCE324BBEE7200C30E25 /* GigsTableViewController.swift */; };
+		A4CAFCE924BBF18200C30E25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CAFCE824BBF18200C30E25 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A4CAFCCA24BBEDE700C30E25 /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4CAFCCD24BBEDE700C30E25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4CAFCCF24BBEDE700C30E25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A4CAFCD124BBEDE700C30E25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A4CAFCD424BBEDE700C30E25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A4CAFCD624BBEDE800C30E25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4CAFCD924BBEDE800C30E25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4CAFCDB24BBEDE800C30E25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4CAFCE324BBEE7200C30E25 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
+		A4CAFCE824BBF18200C30E25 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,56 @@
 		A4CAFCCC24BBEDE700C30E25 /* Gigs */ = {
 			isa = PBXGroup;
 			children = (
-				A4CAFCCD24BBEDE700C30E25 /* AppDelegate.swift */,
-				A4CAFCCF24BBEDE700C30E25 /* SceneDelegate.swift */,
-				A4CAFCD124BBEDE700C30E25 /* ViewController.swift */,
-				A4CAFCD324BBEDE700C30E25 /* Main.storyboard */,
+				A4CAFCE524BBEF6B00C30E25 /* Application */,
+				A4CAFCE224BBEE5A00C30E25 /* View Controllers */,
+				A4CAFCE124BBEE4900C30E25 /* Storyboards */,
+				A4CAFCE624BBEF7D00C30E25 /* Model */,
+				A4CAFCE724BBEF8C00C30E25 /* Controllers */,
 				A4CAFCD624BBEDE800C30E25 /* Assets.xcassets */,
-				A4CAFCD824BBEDE800C30E25 /* LaunchScreen.storyboard */,
 				A4CAFCDB24BBEDE800C30E25 /* Info.plist */,
 			);
 			path = Gigs;
+			sourceTree = "<group>";
+		};
+		A4CAFCE124BBEE4900C30E25 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A4CAFCD324BBEDE700C30E25 /* Main.storyboard */,
+				A4CAFCD824BBEDE800C30E25 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A4CAFCE224BBEE5A00C30E25 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A4CAFCE324BBEE7200C30E25 /* GigsTableViewController.swift */,
+				A4CAFCE824BBF18200C30E25 /* LoginViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A4CAFCE524BBEF6B00C30E25 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A4CAFCCD24BBEDE700C30E25 /* AppDelegate.swift */,
+				A4CAFCCF24BBEDE700C30E25 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		A4CAFCE624BBEF7D00C30E25 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A4CAFCE724BBEF8C00C30E25 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +181,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4CAFCD224BBEDE700C30E25 /* ViewController.swift in Sources */,
+				A4CAFCE924BBF18200C30E25 /* LoginViewController.swift in Sources */,
 				A4CAFCCE24BBEDE700C30E25 /* AppDelegate.swift in Sources */,
 				A4CAFCD024BBEDE700C30E25 /* SceneDelegate.swift in Sources */,
+				A4CAFCE424BBEE7200C30E25 /* GigsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
