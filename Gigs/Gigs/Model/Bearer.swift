@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Bearer {
-    var id: String
+struct Bearer: Codable {
+    var token: String
 }

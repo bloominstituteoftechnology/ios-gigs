@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="IVT-TH-eRB">
             <objects>
-                <viewController id="4Rx-6Q-8j1" sceneMemberID="viewController">
+                <viewController id="4Rx-6Q-8j1" customClass="LoginViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Fx-sI-FYB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -18,11 +18,12 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="K9P-p6-fMW">
                                 <rect key="frame" x="16" y="64" width="382" height="32"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="Signup"/>
+                                    <segment title="Login"/>
                                 </segments>
                                 <connections>
                                     <action selector="loginSignupSegmentedControl:" destination="sWl-wC-YyK" eventType="valueChanged" id="yDk-hM-Z77"/>
+                                    <action selector="loginTypeSegmentedControlValueChanged:" destination="4Rx-6Q-8j1" eventType="valueChanged" id="rkh-dx-aSk"/>
                                 </connections>
                             </segmentedControl>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CkZ-js-ZgR">
@@ -36,20 +37,25 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PGc-BO-x25">
                                 <rect key="frame" x="16" y="254" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="passwordTextField:" destination="sWl-wC-YyK" eventType="editingDidEnd" id="sz7-9j-QEG"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="si6-SB-paH">
                                 <rect key="frame" x="16" y="388" width="382" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Hra-Rb-IZh"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="loginSignupButton:" destination="sWl-wC-YyK" eventType="touchUpInside" id="feP-fO-IPS"/>
                                     <action selector="loginSignupButtonPressed:" destination="sWl-wC-YyK" eventType="touchUpInside" id="ODA-0I-fMg"/>
+                                    <action selector="loginSignupButtonPressed:" destination="4Rx-6Q-8j1" eventType="touchUpInside" id="VO9-Xe-GL3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -74,6 +80,12 @@
                         <viewLayoutGuide key="safeArea" id="3ST-pm-KAu"/>
                     </view>
                     <navigationItem key="navigationItem" id="TZC-Ey-7AD"/>
+                    <connections>
+                        <outlet property="loginSignupButton" destination="si6-SB-paH" id="3FV-fq-gO7"/>
+                        <outlet property="loginTypeSegmentedControl" destination="K9P-p6-fMW" id="Y8N-hI-tdq"/>
+                        <outlet property="passwordTextField" destination="PGc-BO-x25" id="o94-hj-5Z6"/>
+                        <outlet property="usernameTextField" destination="CkZ-js-ZgR" id="Ifq-NV-j7g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xob-Kj-aep" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="sWl-wC-YyK" userLabel="Exit" sceneMemberID="exit"/>
@@ -121,7 +133,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="iPX-60-INs"/>
                     <connections>
-                        <segue destination="4Rx-6Q-8j1" kind="presentation" modalPresentationStyle="fullScreen" id="ftZ-X0-Ksf"/>
+                        <segue destination="4Rx-6Q-8j1" kind="presentation" identifier="LoginSignupModalSegue" modalPresentationStyle="fullScreen" id="ftZ-X0-Ksf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v88-Zv-kNy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
