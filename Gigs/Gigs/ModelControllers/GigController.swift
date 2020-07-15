@@ -128,8 +128,10 @@ class GigController {
                 completion(.failure(.noData))
                 return
             }
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
             do {
-                let gigs = try JSONDecoder().decode([Gig].self, from: data)
+                let gigs = try jsonDecoder.decode([Gig].self, from: data)
                 completion(.success(gigs))
             } catch {
                 print("Error decoding gig data: \(error)")
@@ -162,6 +164,7 @@ class GigController {
                     completion(.failure(.noToken))
                     return
                 }
+                self.gigs.append(gig)
                 completion(.success(true))
             }
             task.resume()
