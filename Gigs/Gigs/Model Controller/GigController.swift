@@ -20,13 +20,18 @@ class GigiController {
         case failedSignUP
         case failedSignIn
         case noToKen
+        case sessionTryAgian
     }
 
 
     private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
     private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
+    private lazy var allGigURL = baseURL.appendingPathComponent("/gigs/")
+
     var bearer: Bearer?
+
+    var gigs: [Gig] = []
 
     func signUP(with user: User, completion: @escaping (Result<Bool, NetWorkError>) ->Void) {
         print("SignUpURL = \(signUpURL.absoluteString)")
@@ -109,4 +114,44 @@ class GigiController {
             completion(.failure(.failedSignIn))
         }
     }
+
+    func fetchAllGigs(completion: @escaping (Result<[String], NetWorkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noToKen))
+            return
+        }
+
+        var request = URLRequest(url: allGigURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error receiving animal name data: \(error)")
+                completion(.failure(.sessionTryAgian))
+            }
+
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.noToKen))
+                return
+            }
+
+            guard let data = data else {
+                print("No data was received from All Gigs")
+                completion(.failure(.noData))
+                return
+            }
+
+            do {
+                let gigTitles = try JSONDecoder().decode([String].self, from: data)
+                completion(.success(gigTitles))
+            } catch {
+                print("Error decoding Gig Title data: \(error)")
+                completion(.failure(.sessionTryAgian))
+            }
+        }
+        task.resume()
+    }
+
 }
