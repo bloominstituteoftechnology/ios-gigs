@@ -124,6 +124,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Q3w-E2-iUD" kind="show" identifier="ViewGigShowSegue" id="5Gn-A0-PL5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -131,7 +134,13 @@
                             <outlet property="delegate" destination="7pD-RF-9Cv" id="xlI-AD-3Nm"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="iPX-60-INs"/>
+                    <navigationItem key="navigationItem" id="iPX-60-INs">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bW1-Ol-Gif">
+                            <connections>
+                                <segue destination="Q3w-E2-iUD" kind="show" identifier="AddGigShowSegue" id="yLb-xR-29E"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="4Rx-6Q-8j1" kind="presentation" identifier="LoginSignupModalSegue" modalPresentationStyle="fullScreen" id="ftZ-X0-Ksf"/>
                     </connections>
@@ -158,5 +167,91 @@
             </objects>
             <point key="canvasLocation" x="353.62318840579712" y="148.66071428571428"/>
         </scene>
+        <!--Gig Detail View Controller-->
+        <scene sceneID="fgK-qh-Rwc">
+            <objects>
+                <viewController id="Q3w-E2-iUD" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WAZ-ME-znT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gig Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KG7-Q5-7JU">
+                                <rect key="frame" x="111" y="108" width="283" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EQd-Ya-Ns0">
+                                <rect key="frame" x="0.0" y="214" width="414" height="216"/>
+                            </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OJT-Oo-Ng2">
+                                <rect key="frame" x="20" y="491" width="374" height="351"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTh-Xk-D0D">
+                                <rect key="frame" x="20" y="115" width="71" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwM-5p-9xU">
+                                <rect key="frame" x="20" y="185" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKQ-p6-dpC">
+                                <rect key="frame" x="20" y="450" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Wfb-VM-6XG" firstAttribute="bottom" secondItem="OJT-Oo-Ng2" secondAttribute="bottom" constant="20" id="0mP-fm-qtK"/>
+                            <constraint firstItem="LKQ-p6-dpC" firstAttribute="leading" secondItem="Wfb-VM-6XG" secondAttribute="leading" constant="20" id="2fe-Fv-udo"/>
+                            <constraint firstItem="Wfb-VM-6XG" firstAttribute="trailing" secondItem="lwM-5p-9xU" secondAttribute="trailing" constant="20" id="3UQ-u2-cia"/>
+                            <constraint firstItem="YTh-Xk-D0D" firstAttribute="leading" secondItem="Wfb-VM-6XG" secondAttribute="leading" constant="20" id="5GY-5v-JKE"/>
+                            <constraint firstItem="EQd-Ya-Ns0" firstAttribute="leading" secondItem="Wfb-VM-6XG" secondAttribute="leading" id="5Iu-YL-Xzd"/>
+                            <constraint firstItem="EQd-Ya-Ns0" firstAttribute="trailing" secondItem="Wfb-VM-6XG" secondAttribute="trailing" id="8Kz-fb-cIF"/>
+                            <constraint firstItem="lwM-5p-9xU" firstAttribute="top" secondItem="YTh-Xk-D0D" secondAttribute="bottom" constant="50" id="LOL-Ms-y4C"/>
+                            <constraint firstItem="lwM-5p-9xU" firstAttribute="leading" secondItem="Wfb-VM-6XG" secondAttribute="leading" constant="20" id="YrX-0M-cN3"/>
+                            <constraint firstItem="OJT-Oo-Ng2" firstAttribute="leading" secondItem="Wfb-VM-6XG" secondAttribute="leading" constant="20" id="nfO-Rq-PsH"/>
+                            <constraint firstItem="Wfb-VM-6XG" firstAttribute="trailing" secondItem="KG7-Q5-7JU" secondAttribute="trailing" constant="20" id="nms-Eh-7pC"/>
+                            <constraint firstItem="LKQ-p6-dpC" firstAttribute="top" secondItem="EQd-Ya-Ns0" secondAttribute="bottom" constant="20" id="ob0-ie-m2n"/>
+                            <constraint firstItem="Wfb-VM-6XG" firstAttribute="trailing" secondItem="LKQ-p6-dpC" secondAttribute="trailing" constant="20" id="pZo-kJ-mL9"/>
+                            <constraint firstItem="EQd-Ya-Ns0" firstAttribute="top" secondItem="lwM-5p-9xU" secondAttribute="bottom" constant="8" id="pzI-I2-764"/>
+                            <constraint firstItem="OJT-Oo-Ng2" firstAttribute="top" secondItem="LKQ-p6-dpC" secondAttribute="bottom" constant="20" id="qcc-uv-uLT"/>
+                            <constraint firstItem="KG7-Q5-7JU" firstAttribute="leading" secondItem="YTh-Xk-D0D" secondAttribute="trailing" constant="20" id="t1g-Z5-ekr"/>
+                            <constraint firstItem="KG7-Q5-7JU" firstAttribute="top" secondItem="Wfb-VM-6XG" secondAttribute="top" constant="20" id="uVN-Td-qUU"/>
+                            <constraint firstItem="YTh-Xk-D0D" firstAttribute="centerY" secondItem="KG7-Q5-7JU" secondAttribute="centerY" id="v1t-2k-aOr"/>
+                            <constraint firstItem="Wfb-VM-6XG" firstAttribute="trailing" secondItem="OJT-Oo-Ng2" secondAttribute="trailing" constant="20" id="xRP-tm-FnT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wfb-VM-6XG"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6Qq-5I-4vb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Kth-CH-lgG">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="Q3w-E2-iUD" id="8wu-iQ-vQs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descTextView" destination="OJT-Oo-Ng2" id="Czp-To-x6M"/>
+                        <outlet property="dueDatePicker" destination="EQd-Ya-Ns0" id="TXr-ke-Tu6"/>
+                        <outlet property="jobTitleTextField" destination="KG7-Q5-7JU" id="5Re-2m-610"/>
+                        <outlet property="saveButton" destination="Kth-CH-lgG" id="62O-OE-gqd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qgF-Kh-LXY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2128.985507246377" y="148.66071428571428"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="yLb-xR-29E"/>
+    </inferredMetricsTieBreakers>
 </document>
