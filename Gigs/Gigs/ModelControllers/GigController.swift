@@ -27,7 +27,7 @@ class GigController {
     
     var gigs: [Gig] = []
     
-    private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
+    private let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
     private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
     private lazy var gigsURL = baseURL.appendingPathComponent("/gigs/")
@@ -133,6 +133,7 @@ class GigController {
             do {
                 let gigs = try jsonDecoder.decode([Gig].self, from: data)
                 completion(.success(gigs))
+                
             } catch {
                 print("Error decoding gig data: \(error)")
                 completion(.failure(.tryAgain))
@@ -147,7 +148,7 @@ class GigController {
             return
         }
         var request = postRequest(for: gigsURL)
-        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         do {
             let jsonEncoder = JSONEncoder()
             jsonEncoder.dateEncodingStrategy = .iso8601

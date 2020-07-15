@@ -39,18 +39,27 @@ class GigDetailViewController: UIViewController {
             let description = descriptionTextView.text,
             !description.isEmpty {
             let gig = Gig(title: title, dueDate: datePicker.date, description: description)
-            gigController?.createGig(with: gig, completion: { (result) in
-                switch result {
-                case .success(true):
-                    DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                case .failure(let error):
-                    print("Error creating gig: \(error)")
-                default:
-                    return
+            if let gigController = gigController {
+                if gigController.gigs.contains(gig) {
+                    let alert = UIAlertController(title: "This gig is already saved.", message: nil, preferredStyle: .alert)
+                    let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alert.addAction(okButton)
+                    present(alert, animated: true, completion: nil)
+                } else {
+                    gigController.createGig(with: gig, completion: { (result) in
+                        switch result {
+                        case .success(true):
+                            DispatchQueue.main.async {
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        case .failure(let error):
+                            print("Error creating gig: \(error)")
+                        default:
+                            return
+                        }
+                    })
                 }
-            })
+            }
         }
     }
 
