@@ -21,6 +21,7 @@ class GigiController {
         case failedSignIn
         case noToKen
         case sessionTryAgian
+        case failToPost
     }
 
 
@@ -64,6 +65,7 @@ class GigiController {
             completion(.failure(.failedSignUP))
         }
     }
+
     private func postRequest(for url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -115,7 +117,7 @@ class GigiController {
         }
     }
 
-    func fetchAllGigs(completion: @escaping (Result<[String], NetWorkError>) -> Void) {
+    func fetchAllGigs(completion: @escaping (Result<[Gig], NetWorkError>) -> Void) {
         guard let bearer = bearer else {
             completion(.failure(.noToKen))
             return
@@ -144,11 +146,50 @@ class GigiController {
             }
 
             do {
-                let gigTitles = try JSONDecoder().decode([String].self, from: data)
+                let gigTitles = try JSONDecoder().decode([Gig].self, from: data)
+                self.gigs = gigTitles
                 completion(.success(gigTitles))
             } catch {
                 print("Error decoding Gig Title data: \(error)")
                 completion(.failure(.sessionTryAgian))
+            }
+        }
+        task.resume()
+    }
+
+    func postGigDetail(with gig: Gig, completion: @escaping (Result<Gig, NetWorkError>) ->Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noToKen)) // my key access the API
+            return
+        }
+
+//      var postrequest = baseURL.appendingPathComponent("gigs") example on how to use appendingPathComponent
+        var request = URLRequest(url: allGigURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type") // me tell the API this of type JSON
+        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization") // Me showing the API I have a authiticated key
+
+        let task = URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let error = error {
+                print("Error reciveing due to post having error: \(error)")
+                completion(.failure(.sessionTryAgian))
+            }
+
+            if let response = response as? HTTPURLResponse,
+                response.statusCode == 401 {
+                completion(.failure(.noToKen))
+                return
+            }
+
+            do {
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.dateDecodingStrategy = .iso8601
+
+                let jsonGig = try JSONEncoder().encode(gig)
+                request.httpBody = jsonGig
+            } catch {
+                print("Error encoding user: \(error)")
+                completion(.failure(.failToPost))
             }
         }
         task.resume()
