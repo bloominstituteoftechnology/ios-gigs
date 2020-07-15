@@ -67,7 +67,7 @@
         <!--New Gig-->
         <scene sceneID="SRB-ru-zJe">
             <objects>
-                <viewController id="4cP-cO-1qs" sceneMemberID="viewController">
+                <viewController id="4cP-cO-1qs" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f7v-0y-6YQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,8 +132,17 @@
                         <viewLayoutGuide key="safeArea" id="KnO-1L-dPR"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Gig" leftItemsSupplementBackButton="YES" id="LGO-yp-kOo">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="opg-cF-j33"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="opg-cF-j33">
+                            <connections>
+                                <action selector="saveDetailTapped:" destination="4cP-cO-1qs" id="e2t-p5-HYg"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="gvA-zS-wCU" id="V9U-v7-Oj9"/>
+                        <outlet property="dueDatePicker" destination="oXV-1Q-b9W" id="fNF-s9-FvZ"/>
+                        <outlet property="jobTitleTextField" destination="CCE-p0-U0H" id="Vio-y7-cNO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bwK-IW-dkm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
