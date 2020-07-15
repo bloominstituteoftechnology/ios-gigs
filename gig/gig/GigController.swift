@@ -23,11 +23,11 @@ enum NetworkError: Error {
 
 class GigController {
 
-    //Bearer and baseURL variables to hold bearer token data and URl for API respectively.
+    
     var bearer: Bearer?
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")
 
-    //Array of Gig Objects used to store and fetch created gigs.
+    
     var gigs: [Gig] = []
 
     //Function to Sign Up a new user.
@@ -177,7 +177,8 @@ class GigController {
 
         var request = URLRequest(url: createGigURL)
         request.httpMethod = HTTPMethod.post.rawValue
-        request.addValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let jsonEncoder = JSONEncoder()
         jsonEncoder.dateEncodingStrategy = .iso8601
@@ -197,6 +198,7 @@ class GigController {
             }
 
             if let response = response as? HTTPURLResponse {
+                print("Response encoding new Gig data: \(response)")
                 if response.statusCode == 401 {
                     completion(nil)
                     return

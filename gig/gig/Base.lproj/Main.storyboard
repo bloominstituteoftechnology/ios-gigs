@@ -33,7 +33,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="ZJZ-cR-lpy" kind="show" id="00z-YE-MNU"/>
+                                    <segue destination="ZJZ-cR-lpy" kind="show" identifier="ShowGigSegue" id="00z-YE-MNU"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -43,14 +43,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="qqe-Um-G3B">
-                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="mho-gk-s0i">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hGy-Mp-guu">
-                                <rect key="frame" x="322" y="11" width="72" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="plus" catalog="system"/>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="uct-54-X97">
                             <connections>
-                                <segue destination="ZJZ-cR-lpy" kind="show" id="2Sf-Rf-jMw"/>
+                                <segue destination="ZJZ-cR-lpy" kind="show" identifier="AddGigSegue" id="0Et-pV-X0s"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -95,7 +90,10 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MF7-hH-e3K">
                                         <rect key="frame" x="162" y="129" width="50" height="30"/>
-                                        <state key="normal" title="SignUp"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="SignUp">
+                                            <color key="titleColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="actionButtonTapped:" destination="Zkc-Nm-lKX" eventType="touchUpInside" id="0Er-zb-YVe"/>
                                         </connections>
@@ -107,8 +105,12 @@
                                     <constraint firstItem="Eqy-Ur-nPO" firstAttribute="centerX" secondItem="bUC-BE-tfT" secondAttribute="centerX" id="zWG-FI-wan"/>
                                 </constraints>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="2FAEB553-BCD9-4712-9775-EA1A13082ADC" translatesAutoresizingMaskIntoConstraints="NO" id="d4y-uY-nrC">
+                                <rect key="frame" x="20" y="388" width="374" height="330"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="OPI-w4-dW1" firstAttribute="trailing" secondItem="bUC-BE-tfT" secondAttribute="trailing" constant="20" id="FjA-6M-pp4"/>
                             <constraint firstItem="bUC-BE-tfT" firstAttribute="top" secondItem="OPI-w4-dW1" secondAttribute="top" constant="20" id="Z40-ad-WRz"/>
@@ -134,10 +136,62 @@
                     <view key="view" contentMode="scaleToFill" id="stz-A4-zMB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IaE-wG-Zn1">
+                                <rect key="frame" x="102" y="139" width="292" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="emX-bo-jsl">
+                                <rect key="frame" x="20" y="242" width="374" height="141"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L3u-Il-JH1">
+                                <rect key="frame" x="20" y="458" width="374" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Job Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTf-Sp-fCw">
+                                <rect key="frame" x="20" y="146" width="74" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ouI-kf-ZXR">
+                                <rect key="frame" x="20" y="194" width="76" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKk-cx-QXB">
+                                <rect key="frame" x="20" y="422" width="93" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="wDs-QG-aQQ"/>
                     </view>
-                    <navigationItem key="navigationItem" id="L0u-up-bwb"/>
+                    <navigationItem key="navigationItem" id="iEi-7q-ek2">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="f7m-Iq-cef">
+                            <connections>
+                                <action selector="saveTapped:" destination="ZJZ-cR-lpy" id="xqT-H8-5fJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dueDatePicker" destination="emX-bo-jsl" id="2LO-wB-Npd"/>
+                        <outlet property="jobDescription" destination="L3u-Il-JH1" id="UkE-pT-MJT"/>
+                        <outlet property="jobTitleTextField" destination="IaE-wG-Zn1" id="8V0-XY-5MW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mkZ-R5-wQF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -163,9 +217,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="2FAEB553-BCD9-4712-9775-EA1A13082ADC" width="1035" height="734"/>
         <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2Sf-Rf-jMw"/>
+        <segue reference="0Et-pV-X0s"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,14 +9,50 @@
 import UIKit
 
 class GigDetailViewController: UIViewController {
+    
+    @IBOutlet weak var jobTitleTextField: UITextField!
+    @IBOutlet weak var dueDatePicker: UIDatePicker!
+    @IBOutlet weak var jobDescription: UITextView!
+    
+    var gigController: GigController!
+    var gig: Gig?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateViews()
         // Do any additional setup after loading the view.
     }
     
-
+    func updateViews() {
+        guard let gig = gig else {
+            title = "New Gig"
+            return
+        }
+        title = gig.title
+        jobTitleTextField.text = gig.title
+        dueDatePicker.date = gig.dueDate
+        jobDescription.text = gig.description
+    }
+    
+    @IBAction func saveTapped(_ sender: Any) {
+        guard let gigTitle = jobTitleTextField.text,
+            let gigDescription = jobTitleTextField.text,
+            !gigTitle.isEmpty,
+            !gigDescription.isEmpty else { return }
+        
+        let newGig = Gig(title: gigTitle, dueDate: dueDatePicker.date, description: gigDescription)
+        
+        gigController.createGig(for: newGig) { (error) in
+            if let error = error {
+                print("Error saving gig to database: \(error)")
+            }
+            
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
