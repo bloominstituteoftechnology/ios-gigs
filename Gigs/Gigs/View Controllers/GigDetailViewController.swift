@@ -10,6 +10,11 @@ import UIKit
 
 class GigDetailViewController: UIViewController {
 
+    //MARK: - Properties
+    var gigController: GigController!
+    var gig: Gig?
+    
+    
     //MARK: - IBOutlets
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var jobTitleTextField: UITextField!
@@ -23,8 +28,30 @@ class GigDetailViewController: UIViewController {
     
     //MARK: - IBActions
     @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let title = jobTitleTextField.text, let description = descTextView.text else {
+            return
+        }
+        
+        gigController.addNewGig(title: title, description: description, dueDate: dueDatePicker.date) { (error) in
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        
     }
     
+    //MARK: - Private Functions
+    private func updateViews() {
+        guard let gig = gig else {
+            title = "Add New Gig"
+            return
+        }
+        
+        title = gig.title
+        jobTitleTextField.text = gig.title
+        descTextView.text = gig.description
+        dueDatePicker.date = gig.dueDate
+    }
     
     /*
     // MARK: - Navigation

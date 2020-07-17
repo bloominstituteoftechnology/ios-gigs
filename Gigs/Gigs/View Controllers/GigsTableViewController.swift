@@ -11,6 +11,7 @@ import UIKit
 class GigsTableViewController: UITableViewController {
 
     var gigController = GigController()
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,18 +20,28 @@ class GigsTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         if gigController.bearer == nil {
             self.performSegue(withIdentifier: "LoginSignupModalSegue", sender: nil)
+        } else {
+            gigController.getAllGigs { (error) in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        gigController.gigs.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let gigCell = tableView.dequeueReusableCell(withIdentifier: "GigCell", for: indexPath)
 
-        return cell
+        let currentGig = gigController.gigs[indexPath.row]
+        gigCell.textLabel?.text = currentGig.title
+        gigCell.detailTextLabel?.text = ("Due Date: \(dateFormatter.string(from: currentGig.dueDate))")
+        
+        return gigCell
     }
 
     // MARK: - Navigation
@@ -40,6 +51,22 @@ class GigsTableViewController: UITableViewController {
                 destinationVC.gigController = gigController
             }
         }
+        
+        if segue.identifier == "AddGigShowSegue" {
+            if let destinationVC = segue.destination as? GigDetailViewController {
+                destinationVC.gigController = gigController
+            }
+        }
+        
+        if segue.identifier == "ViewGigShowSegue" {
+            if let destinationVC = segue.destination as? GigDetailViewController {
+                destinationVC.gigController = gigController
+                if let indexPath = tableView.indexPathForSelectedRow?.row {
+                    destinationVC.gig = gigController.gigs[indexPath]
+                }
+            }
+        }
+        
     }
     
 }
