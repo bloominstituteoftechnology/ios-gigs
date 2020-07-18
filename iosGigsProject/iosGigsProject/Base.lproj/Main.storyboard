@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ffc-K3-zV6">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -48,7 +48,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="nSy-RW-MYT"/>
                     <connections>
-                        <segue destination="lxq-pu-E8l" kind="presentation" id="zod-bl-tEC"/>
+                        <segue destination="lxq-pu-E8l" kind="presentation" identifier="signUpSegue" id="zod-bl-tEC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59W-0V-f9v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
