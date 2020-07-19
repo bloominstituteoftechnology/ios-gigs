@@ -9,10 +9,16 @@
 import UIKit
 
 class GigsTableViewController: UITableViewController {
-    
+   
+    let df = DateFormatter()
     let reuseIdentifier = "cell"
-    private var gig: [String] = []
+    private var gigs: [String] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     let apiController = APIController()
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +36,7 @@ class GigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return gig.count
+        return gigs.count
     }
 
     
@@ -38,7 +44,8 @@ class GigsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = gig[indexPath.row]
+        cell.textLabel?.text = gigs[indexPath.row]
+        df.dateStyle = .short
         return cell
     }
     
@@ -85,14 +92,17 @@ class GigsTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "login" {
+        if segue.identifier == "ShowGig",
+            let detailVC = segue.destination as? GigDetailViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                detailVC.gig = gigs[indexPath.row]
+            }
+            detailVC.apiController = apiController
+        }
+       else if segue.identifier == "login" {
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.apiController = apiController
             }
         }
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    
-
 }

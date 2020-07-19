@@ -24,12 +24,16 @@ final class APIController {
     }
     
     var bearer: Bearer?
+    var gigs: [Gig] = []
     
     private let baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
   //add users
     private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
   //add logins
     private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
+  // get all gigs
+    private lazy var getGigs = baseURL.appendingPathComponent("/gigs/")
+  // create gig uses same endpoint
     
     
     
@@ -122,6 +126,42 @@ final class APIController {
             print("Error encoding user: \(error.localizedDescription)")
             completion(.failure(.failedSignIn))
         }
+    }
+    
+    func getAllGigs(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
+        var request = URLRequest(url: getGigs)
+        request.httpMethod = HTTPMethod.get.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error \(error)")
+                completion(.failure(.noData))
+                return
+            }
+            if let response = response as? HTTPURLResponse,
+            response.statusCode == 401 {
+                completion(.failure(.noToken))
+                return
+            }
+            guard let data = data else {
+                print("no data")
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let gigs = try JSONDecoder().decode([String].self, from: data)
+                completion(.success(gigs))
+            } catch {
+                print("Error")
+                completion(.failure(.noData))
+            }
+        }
+        task.resume()
     }
 }
