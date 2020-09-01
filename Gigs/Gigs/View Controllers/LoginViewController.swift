@@ -95,7 +95,7 @@ class LoginViewController: UIViewController {
                                 alert = self.alert(title: "Success", message: "Successfull sign up. Please log in.")
                                 action = {
                                     self.present(alert, animated: true)
-                                    self.loginTypeSegmentedControl.selectedSegmentIndex = 0
+                                    self.loginTypeSegmentedControl.selectedSegmentIndex = 1
                                     self.loginTypeSegmentedControl.sendActions(for: .valueChanged)
                                 }
                             case .failure(_):
