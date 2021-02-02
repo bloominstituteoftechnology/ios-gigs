@@ -14,6 +14,8 @@
 		A8081B9B25C8F3DB00B91D5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8081B9925C8F3DB00B91D5A /* LaunchScreen.storyboard */; };
 		A8081BAF25C8F8D000B91D5A /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8081BAE25C8F8D000B91D5A /* GigsTableViewController.swift */; };
 		A8081BB225C8F92E00B91D5A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8081BB125C8F92E00B91D5A /* SignInViewController.swift */; };
+		A8081BB525C8FEC700B91D5A /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8081BB425C8FEC700B91D5A /* Bearer.swift */; };
+		A8081BBC25C9002D00B91D5A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8081BBB25C9002D00B91D5A /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		A8081B9C25C8F3DB00B91D5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8081BAE25C8F8D000B91D5A /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		A8081BB125C8F92E00B91D5A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		A8081BB425C8FEC700B91D5A /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		A8081BBB25C9002D00B91D5A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,8 @@
 		A8081BA525C8F6A500B91D5A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A8081BB425C8FEC700B91D5A /* Bearer.swift */,
+				A8081BBB25C9002D00B91D5A /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -212,7 +218,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8081BB525C8FEC700B91D5A /* Bearer.swift in Sources */,
 				A8081BB225C8F92E00B91D5A /* SignInViewController.swift in Sources */,
+				A8081BBC25C9002D00B91D5A /* User.swift in Sources */,
 				A8081B8F25C8F3D400B91D5A /* AppDelegate.swift in Sources */,
 				A8081B9125C8F3D500B91D5A /* SceneDelegate.swift in Sources */,
 				A8081BAF25C8F8D000B91D5A /* GigsTableViewController.swift in Sources */,
