@@ -75,7 +75,7 @@ You will only need the token as a property in your struct in this application, b
     
     - A `Bearer?` variable
     
-    - A `baseURL: URL` constant. See the API documenatation [here](https://github.com/LambdaSchool/ios-gigs/blob/master/APIDocumentation.md) for the url you should use. 
+    - A `baseURL: URL` constant. See the API documenatation [here](https://github.com/BloomInstituteOfTechnology/ios-gigs/blob/master/APIDocumentation.md) for the url you should use. 
 
 **NOTE: Before you begin the next step, be aware that you will need to add an "application/json" Content-Type header to any POST request, or it will not work properly. As an example, you would add this line once you have a request object:**
 
@@ -83,7 +83,7 @@ You will only need the token as a property in your struct in this application, b
 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 ```
 
-3. Following the API's documentation [here](https://github.com/LambdaSchool/ios-gigs/blob/master/APIDocumentation.md), create methods that perform a `URLSessionDataTask` for:
+3. Following the API's documentation [here](https://github.com/BloomInstituteOfTechnology/ios-gigs/blob/master/APIDocumentation.md), create methods that perform a `URLSessionDataTask` for:
 
     - Signing up for the API using a username and password. Once you "sign up", you can then log into the API like you did in the guided project this morning.
     
@@ -125,5 +125,5 @@ request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     - In the button's action, based on the `loginType` property, perform the corresponding method in the `gigController` to either sign them up or log them in. If the **sign up** is successful, present an alert telling them they can log in. If the **log in** is successful, dismiss the view controller to take them back to the `GigsTableViewController`.
     
 
-**The API documentation only showed what was required for this module project. For the next module project, you will continue writing this project. The updated API documentation can be found in the day2 branch's README of this repo here: https://github.com/LambdaSchool/ios-gigs/blob/day2/APIDocumentation.md**
+**The API documentation only showed what was required for this module project. For the next module project, you will continue writing this project. The updated API documentation can be found in the day2 branch's README of this repo here: https://github.com/BloomInstituteOfTechnology/ios-gigs/blob/day2/APIDocumentation.md**
 
