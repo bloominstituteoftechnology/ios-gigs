@@ -19,15 +19,15 @@ class GigController {
     
     var bearer: Bearer?
     
-    private let baseURL: URL = URL(string: "https://lambdagigapi.herokuapp.com/api")!
-    private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
-    private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
+    private let baseURL: URL = URL(string: "https://nap-1-2-project-gigs-default-rtdb.firebaseio.com/")!
+//    private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
+//    private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
     
     private lazy var jsonEncoder = JSONEncoder()
     
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         
-        var request = URLRequest(url: signUpURL)
+        var request = URLRequest(url: baseURL)//signUpURL)
         request.httpMethod = HTTPMethod.get.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         

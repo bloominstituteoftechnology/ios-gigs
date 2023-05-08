@@ -81,10 +81,10 @@ class LoginViewController: UIViewController {
     @IBAction func signInTypeChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             loginType = .logIn
-            logInButton.setTitle("Sign Up", for: .normal)
+            logInButton.setTitle("Log In", for: .normal)
         } else {
             loginType = .signUp
-            logInButton.setTitle("Sign In", for: .normal)
+            logInButton.setTitle("Sign Up", for: .normal)
         }
     }
     
