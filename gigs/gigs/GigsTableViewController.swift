@@ -14,7 +14,7 @@ class GigsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+//        performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
 
 
         // Uncomment the following line to preserve selection between presentations
