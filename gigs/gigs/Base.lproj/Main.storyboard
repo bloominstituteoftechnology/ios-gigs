@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7U0-LX-EuN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ByX-FA-VQS">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -49,7 +49,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="27h-2y-bup"/>
                     <connections>
-                        <segue destination="7U0-LX-EuN" kind="presentation" modalPresentationStyle="fullScreen" id="I13-H2-gPn"/>
+                        <segue destination="7U0-LX-EuN" kind="presentation" identifier="LoginViewModalSegue" modalPresentationStyle="fullScreen" id="I13-H2-gPn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tys-au-3dh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

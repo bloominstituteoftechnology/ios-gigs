@@ -19,7 +19,7 @@ class GigController {
     
     var bearer: Bearer?
     
-    private let baseURL: URL = URL(string: "https://nap-1-2-project-gigs-default-rtdb.firebaseio.com/")!
+    private let baseURL: URL = URL(string: "https://nap-1-2-project-gigs-default-rtdb.firebaseio.com/.json")!
 //    private lazy var signUpURL = baseURL.appendingPathComponent("/users/signup")
 //    private lazy var signInURL = baseURL.appendingPathComponent("/users/login")
     
@@ -28,7 +28,7 @@ class GigController {
     func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         
         var request = URLRequest(url: baseURL)//signUpURL)
-        request.httpMethod = HTTPMethod.get.rawValue
+        request.httpMethod = HTTPMethod.post.rawValue//get.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         do {
