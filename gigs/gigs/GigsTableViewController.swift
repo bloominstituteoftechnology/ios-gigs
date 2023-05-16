@@ -105,8 +105,27 @@ class GigsTableViewController: UITableViewController {
 //                loginVC.apiController = apiController
                 loginVC.gigController = gigController
             }
+        } else if segue.identifier == "ShowGigFromAdd" {
+            if let detailVC = segue.destination as? GigDetailViewController {
+                detailVC.gigController = gigController
+            }
+        } else if segue.identifier == "ShowGigFromCell" {
+            if let detailVC = segue.destination as? GigDetailViewController {
+                guard let indexPath = tableView.indexPathForSelectedRow else { return }
+                let selectedGig = gigController.gigs[indexPath.row]
+                detailVC.gigController = gigController
+                detailVC.gig = selectedGig
+            }
         }
     }
     
-
+/*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+ if segue.identifier == "DetailSegue", let indexPath = tableView.indexPathForSelectedRow {
+     let selectedGig = items[indexPath.row] // Assuming 'items' is your data source array
+     if let detailViewController = segue.destination as? DetailViewController {
+         detailViewController.gig = selectedGig
+     }
+ }
+}
+*/
 }
