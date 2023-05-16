@@ -64,6 +64,8 @@ class GigController {
     
     func getGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         
+        jsonDecoder.dateDecodingStrategy = .iso8601
+        
         guard bearer != nil else {
             completion(.failure(.noToken))
             return

@@ -10,6 +10,7 @@ import UIKit
 class GigsTableViewController: UITableViewController {
 
     let gigController = GigController()
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,23 +29,33 @@ class GigsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigController.gigs.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "gigsCell", for: indexPath)
+        
+//        var content = cell.defaultContentConfiguration()
+//        content.text = gigController.gigs[indexPath.row].title
+        cell.textLabel?.text = gigController.gigs[indexPath.row].title
+        
+        dateFormatter.dateStyle = .short
+        
+        let due = dateFormatter.string(from: gigController.gigs[indexPath.row].dueDate)
+//        content.secondaryText = due
+        cell.detailTextLabel?.text = due
+        
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
