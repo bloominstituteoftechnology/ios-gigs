@@ -101,10 +101,10 @@ class GigController {
     
     func postGig(gig: Gig, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         
-        guard bearer != nil else {
-            completion(.failure(.noToken))
-            return
-        }
+//        guard bearer != nil else {
+//            completion(.failure(.noToken))
+//            return
+//        }
         
         let requestBody = ["title": "\(gig.title)", "dueDate": "\(gig.dueDate)", "description": "\(gig.description)"]
         let jsonData = try? JSONSerialization.data(withJSONObject: requestBody)

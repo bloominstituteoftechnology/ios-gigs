@@ -15,7 +15,10 @@ class GigsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+        if gigController.bearer?.token == nil {        
+            performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+        }
+        
 
 
         // Uncomment the following line to preserve selection between presentations
@@ -23,6 +26,12 @@ class GigsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
