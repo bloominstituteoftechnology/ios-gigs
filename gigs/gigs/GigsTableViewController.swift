@@ -12,14 +12,27 @@ class GigsTableViewController: UITableViewController {
     let gigController = GigController()
     let dateFormatter = DateFormatter()
     
+    var gigsLoaded = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if gigController.bearer?.token == nil {        
-            performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
-        }
+//        if gigController.bearer?.token == nil {
+//            performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+//        }
         
-
+        gigController.getGigs { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let success):
+                    self.gigController.gigs = success
+                    self.tableView.reloadData()
+                case .failure(let failure):
+                    fatalError("SKJHEDKUSDHFLIUSHDF: \(failure)")
+                }
+            }
+        }
+        gigsLoaded = true
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -62,14 +62,71 @@ class GigController {
         
     }
     
+    func createToken() -> String {
+        let newToken = UUID().uuidString
+        return newToken
+    }
+    
+//    func signIn(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+//
+//    }
+    
+    func signIn(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        do {
+            let jsonData = try jsonEncoder.encode(user)
+            request.httpBody = jsonData
+
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    print("Sign in failed with \(error)")
+                    completion(.failure(.failedSignIn))
+                    return
+                }
+
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    print("Sign in was unsuccessful")
+                    completion(.failure(.failedSignIn))
+                    return
+                }
+
+                guard let data = data else {
+                    print("No data received during sign in")
+                    completion(.failure(.noData))
+                    return
+                }
+
+                do {
+                    self.bearer = try self.jsonDecoder.decode(Bearer.self, from: data)
+                } catch {
+                    print("Error decoding bearer object: \(error)")
+                    completion(.failure(.noToken))
+                }
+
+                completion(.success(true))
+            }
+            task.resume()
+        } catch {
+            print("Error encoding user: \(error)")
+            completion(.failure(.failedSignIn))
+        }
+    }
+    
     func getGigs(completion: @escaping (Result<[Gig], NetworkError>) -> Void) {
         
         jsonDecoder.dateDecodingStrategy = .iso8601
         
-        guard bearer != nil else {
-            completion(.failure(.noToken))
-            return
-        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyy-MM-dd HH:mm:ss Z"
+        jsonDecoder.dateDecodingStrategy = .formatted(dateFormatter)
+
+//        guard bearer != nil else {
+//            completion(.failure(.noToken))
+//            return
+//        }
         
         var request = URLRequest(url: baseURL)
         request.httpMethod = HTTPMethod.get.rawValue
@@ -87,8 +144,9 @@ class GigController {
             }
             
             do {
-                let gigs = try self.jsonDecoder.decode([Gig].self, from: data)
-                completion(.success(gigs))
+                let gigsDictionary = try self.jsonDecoder.decode([String: Gig].self, from: data)
+                let gigsArray = Array(gigsDictionary.values)
+                completion(.success(gigsArray))
             } catch {
                 print("Error decoding gig data: \(error)")
                 completion(.failure(.tryAgain))

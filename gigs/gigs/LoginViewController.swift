@@ -56,6 +56,7 @@ class LoginViewController: UIViewController {
                     do {
                         let success = try result.get()
                         if success {
+//                            gigController?.bearer?.token = success
                             DispatchQueue.main.async {
                                 let alertController = UIAlertController(title: "Sign Up Successful", message: "Now please log in.", preferredStyle: .alert)
                                 let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -73,6 +74,35 @@ class LoginViewController: UIViewController {
                 })
             } else {
                 // TODO: call signIn method on apiController with above user object
+                gigController?.signIn(with: user, completion: { result in
+                    do {
+                        let success = try result.get()
+                        if success {
+                            guard let token = self.gigController?.createToken() else { return }
+                            self.gigController?.bearer?.token = token
+                            DispatchQueue.main.async {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                    } catch {
+                        if let error = error as? NetworkError {
+                            switch error {
+                            case .noData:
+                                print("No data received")
+                            case .noToken:
+                                print("no token")
+                            case .failedSignUp:
+                                print("failed sign up")
+                            case .failedSignIn:
+                                print("failed sign in")
+                            case .tryAgain:
+                                print("try again")
+                            case .postError:
+                                print("post error")
+                            }
+                        }
+                    }
+                })
             }
             
         }

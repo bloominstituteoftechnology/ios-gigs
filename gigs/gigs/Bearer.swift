@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Bearer {
+struct Bearer: Codable {
     
     var id: Int = Int.random(in: 1...5000)
     var token: String //= UUID().uuidString
